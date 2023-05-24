@@ -10,7 +10,7 @@ class ExhibitorManagement {
       add_action('wp_ajax_get_exhibitor_members', array($this, 'get_exhibitor_members'));
       add_action('wp_ajax_nopriv_get_exhibitor_members', array($this, 'get_exhibitor_members'));
       add_filter( 'gform_confirmation_16', array($this, 'exhibitor_members_admin_confirmation'), 10, 4 );
-      add_filter( 'gform_after_submission_16', array($this, 'remove_form_entry'), 10 );
+      // add_filter( 'gform_after_submission_16', array($this, 'remove_form_entry'), 10 );
 
       add_filter( 'gform_user_registration_update_user_id', array($this, 'gform_user_registration_update_user_id'), 10, 4 );
       add_filter('woocommerce_payment_complete', array($this, 'exhibitor_members_payment_complete'));
@@ -82,79 +82,116 @@ class ExhibitorManagement {
             background-color: #fff;
             padding: 40px 30px 30px 30px;
             border-radius: 10px;
-        }
-        #exhibitor-container .gform_title, #exhibitor-profile .gform_title, #exhibitor-send-invitation .gform_title {
-            font-size: 30px;
-            line-height: 1.5em;
-            margin-top: 0;
-            text-align: center;
-        }
-        #exhibitor-container .registration-form-heading, #exhibitor-profile .registration-form-heading {
-            font-size: 22px;
-            line-height: 32px;
-            margin: 0;
-            padding: 10px;
-            background: #bdbdbd70;
-        }
-        #exhibitor-container label, #exhibitor-profile label, #field_15_18 .registration-form-heading, #field_16_18 .registration-form-heading, #exhibitor-send-invitation label, #field_17_2 legend {
-            padding: 0 0 10px 0;
-            margin: 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-        p.exhibitors-contact-res-heading {
-            background-color: #bdbdbd70;
-            padding: 5px;
-        }
-        #exhibitor-profile p.gform_required_legend {
-            display: none;
-        }
-        #exhibitor-container .exhibitors-contact-res-heading em, #exhibitor-profile .exhibitors-contact-res-heading em {
-            font-size: 22px;
-            line-height: 32px;
-            font-weight: 400;
-            font-style: normal;
-        }
-        #field_15_18 .registration-form-heading, #field_16_18 .registration-form-heading {
-            background: transparent;
-            padding: 0;
-        }
-        #exhibitor-container .registration-required-heading, #exhibitor-profile .registration-required-heading {
+          }
+          #exhibitor-container .gform_title, #exhibitor-profile .gform_title, #exhibitor-send-invitation .gform_title {
+              font-size: 30px;
+              line-height: 1.5em;
+              margin-top: 0;
+              text-align: center;
+          }
+          #exhibitor-container .registration-form-heading, #exhibitor-profile .registration-form-heading {
+              font-size: 22px;
+              line-height: 32px;
+              margin: 0;
+              padding: 10px;
+              background: #bdbdbd70;
+          }
+          #exhibitor-container label, #exhibitor-profile label, #field_15_18 .registration-form-heading, #field_16_18 .registration-form-heading, #exhibitor-send-invitation label, #field_17_2 legend {
+              padding: 0 0 10px 0;
+              margin: 0;
+              font-size: 16px;
+              font-weight: 600;
+          }
+          p.exhibitors-contact-res-heading {
+              background-color: #bdbdbd70;
+              padding: 5px;
+          }
+          #exhibitor-profile p.gform_required_legend {
+              display: none;
+          }
+          #exhibitor-container .exhibitors-contact-res-heading em, #exhibitor-profile .exhibitors-contact-res-heading em {
+              font-size: 22px;
+              line-height: 32px;
+              font-weight: 400;
+              font-style: normal;
+          }
+          #field_15_18 .registration-form-heading, #field_16_18 .registration-form-heading {
+              background: transparent;
+              padding: 0;
+          }
+          #exhibitor-container .registration-required-heading, #exhibitor-profile .registration-required-heading {
+              position: absolute;
+              right: 0;
+              top: 65px;
+              font-size: 15px;
+              margin: 0;
+          }
+          #exhibitor-container #gform_submit_button_15, #exhibitor-profile #gform_submit_button_16, #exhibitor-send-invitation #gform_submit_button_17 {
+              background: #F7C338;
+              color: #080E41;
+              border: 0;
+              border-radius: 0;
+              font-size: 18px;
+              padding: 6px 50px;
+              margin-bottom: 0;
+          }
+          #exhibitor-container #gform_submit_button_15:hover, #exhibitor-profile #gform_submit_button_16:hover, #exhibitor-send-invitation #gform_submit_button_17:hover {
+              background: #080E41;
+              color: #F7C338;
+              transition: 0.25s all;
+          }
+          #exhibitor-container select, #exhibitor-profile select {
+              height: 48px;
+              padding: 8px;
+              box-shadow: 0 0 0 transparent;
+              border-radius: 4px;
+              border: 1px solid #8c8f94;
+              background-color: #fff;
+              color: #2c3338;
+          }
+          #exhibitor-container .gfield--type-choice label, #exhibitor-profile .gfield--type-choice label {
+              padding-bottom: 0;
+          }
+          #exhibitor-members-list_length select {
+              padding: 2.5px 5px;
+          }
+          .exhibitor-profile-wrap {
+              display: flex;
+              gap: 20px;
+          }
+          #assistant-spinner {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            margin: 0 auto;
+          }
+
+          #assistant-spinner:before,
+          #assistant-spinner:after {
+            content: "";
             position: absolute;
-            right: 0;
-            top: 65px;
-            font-size: 15px;
-            margin: 0;
-        }
-        #exhibitor-container #gform_submit_button_15, #exhibitor-profile #gform_submit_button_16, #exhibitor-send-invitation #gform_submit_button_17 {
-            background: #F7C338;
-            color: #080E41;
-            border: 0;
-            border-radius: 0;
-            font-size: 18px;
-            padding: 6px 50px;
-            margin-bottom: 0;
-        }
-        #exhibitor-container #gform_submit_button_15:hover, #exhibitor-profile #gform_submit_button_16:hover, #exhibitor-send-invitation #gform_submit_button_17:hover {
-            background: #080E41;
-            color: #F7C338;
-            transition: 0.25s all;
-        }
-        #exhibitor-container select, #exhibitor-profile select {
-            height: 48px;
-            padding: 8px;
-            box-shadow: 0 0 0 transparent;
-            border-radius: 4px;
-            border: 1px solid #8c8f94;
-            background-color: #fff;
-            color: #2c3338;
-        }
-        #exhibitor-container .gfield--type-choice label, #exhibitor-profile .gfield--type-choice label {
-            padding-bottom: 0;
-        }
-        #exhibitor-members-list_length select {
-            padding: 2.5px 5px;
-        }
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid #333;
+            border-top-color: transparent;
+          }
+
+          #assistant-spinner:before {
+            animation: spin 1.5s linear infinite;
+          }
+
+          @keyframes spin {
+            0% {
+              transform: rotate(0);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+
       </style>
       <?php
     }
@@ -214,7 +251,7 @@ class ExhibitorManagement {
   
     // Callback function to display the Exhibitor Management page content
     public function exhibitor_management_page_content() {
-      ob_start();
+      // ob_start();
       // Enqueue DataTables scripts and styles
       wp_enqueue_script('jquery');
       wp_enqueue_style('datatables-management', 'https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css', array(), '1.13.4');
@@ -466,21 +503,27 @@ class ExhibitorManagement {
       ?>
       <div class="wrap">
         <h1>Exhibitor Profile</h1>
-        <div id="exhibitor-profile" style="width: 60%;">
-          <?php
-            if(isset($_REQUEST['exhibitor_id']))
-            {
-              if(get_users( [ 'include' => $_REQUEST['exhibitor_id'], 'fields' => 'ID' ] ))
+        <div class="exhibitor-profile-wrap">
+            <?php
+              if(isset($_REQUEST['exhibitor_id']))
               {
-                gravity_form(16, true, false, false, null, false, '', true ); // Replace 1 with the ID of your Gravity Form
+                if(get_users( [ 'include' => $_REQUEST['exhibitor_id'], 'fields' => 'ID' ] ))
+                {
+                  echo '<div id="exhibitor-profile" style="width: 60%;">';
+                  gravity_form(16, true, false, false, null, false, '', true ); // Replace 1 with the ID of your Gravity Form
+                  echo '</div>';
+                  echo '<div id="exhibitor-assistant-container" style="width:40%;">';
+                  echo '<h1>Exhibitor Assistant</h1>';
+                  echo do_shortcode( '[exhibit_assistant_list exhibitor_id="'.$_REQUEST['exhibitor_id'].'"]' );
+                  echo '</div>';
+                }else{
+                  echo "<div class='notice notice-error'><p><b> Exhibitor doesn't exists with the ID ".$_REQUEST['exhibitor_id']." </b></p></div>";
+                }
               }else{
-                echo "<div class='notice notice-error'><p><b> Exhibitor doesn't exists with the ID ".$_REQUEST['exhibitor_id']." </b></p></div>";
+                wp_redirect( admin_url( 'admin.php?page=exhibitor-management' ) );
+                exit;
               }
-            }else{
-              wp_redirect( admin_url( 'admin.php?page=exhibitor-management' ) );
-              exit;
-            }
-          ?>
+            ?>
         </div>
       </div>
       <?php
@@ -509,8 +552,8 @@ class ExhibitorManagement {
       $data = array();
       foreach ($exhibitor_members as $exhibitor_member) {
         $username = $exhibitor_member->first_name.' '.$exhibitor_member->last_name;
-        $company_name = get_user_meta($exhibitor_member->ID, 'billing_company', true) ? get_user_meta($exhibitor_member->ID, 'billing_company', true) : get_field('user_employer', $exhibitor_member->ID);
-        $exhibit_booth_number = get_field('exhibit_booth_number', $exhibitor_member->ID);
+        $company_name = get_user_meta($exhibitor_member->ID, 'user_employer', true) ? get_user_meta($exhibitor_member->ID, 'user_employer', true) : get_field('billing_company', $exhibitor_member->ID);
+        $exhibit_booth_number = get_user_meta($exhibitor_member->ID, 'exhibit_booth_number', true);
         $get_status   = get_user_meta($exhibitor_member->ID, '_exhibitor_status', true );    
         $data[] = array(
             'no'                    => '',

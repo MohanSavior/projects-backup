@@ -10,8 +10,65 @@ class ExhibitAssistantRegistration
         add_action('gform_after_submission_14', array( $this, 'crete_new_exhibit_assistants' ), 10, 2);
         // Show already registerd user for assistant
         add_shortcode( 'exhibit_assistant_list', array( $this, 'exhibit_assistant_list_ajax' ) );
+        add_action('admin_footer', array($this, 'exhibitor_assistant_scripts'));
+        add_action('wp_ajax_update_exhibitor_assistant', array($this, 'update_exhibitor_assistant'));
     }
 
+    public function exhibitor_assistant_scripts()
+    {
+        ?>
+        <script type="text/javascript">
+            jQuery( function() {
+                jQuery( "#accordion" ).accordion(
+                    {
+                        collapsible: true,
+                        active: false,
+                        autoHeight: true,
+                        icons: {
+                            header: "ui-icon-circle-arrow-e",
+                            activeHeader: "ui-icon-circle-arrow-s"
+                        }
+                    }
+                );
+            } );
+            jQuery(document).ready(function($) {
+                jQuery('#accordion').on('click', '.show-assistants-billing-address a', function(){
+                    let assistantID = jQuery(this).attr('data-id');
+                    jQuery(`.assistant-addres-${assistantID}`).toggle();
+                    jQuery(`.assistant-addres-form-${assistantID}`).toggle();           
+                    if(jQuery(`.assistant-addres-form-${assistantID}`).is(":visible"))
+                    {
+                        $(`#tab-${assistantID}`).css('height','auto')
+                    }
+                });
+                jQuery('.assistants-billing-form-btn').click(function(event) {
+                    event.preventDefault(); // Prevent default form submission behavior
+                    // Serialize form data
+                    let formID = $(this).attr('data-id');
+                    var formData = $(`#assistant-addres-form-${formID}`).serialize();
+                    
+                    // Send AJAX request
+                    $.ajax({
+                        url: ajax_object.ajax_url,
+                        method: 'POST',
+                        data: formData,
+                        beforeSend: function(){
+                            $('body').find(`#tab-${formID}`).prepend('<div id="assistant-spinner"></div>');
+                        },
+                        success: function(response) {
+                            // Handle success response
+                            console.log(response);
+                        },
+                        error: function(xhr, status, error) {
+                            // Handle error
+                            console.error(error);
+                        }
+                    });
+                });
+            });
+        </script>
+        <?php
+    }
     public function exhibit_assistant_registration($form)
     {
         // Create the First Name field
@@ -223,22 +280,151 @@ class ExhibitAssistantRegistration
         }
     }
 
-    public function exhibit_assistant_list_ajax()
+    public function exhibit_assistant_list_ajax( $atts )
     {
-        $get_assistants_ids = get_user_meta(get_current_user_id(), '_assistants_ids', true);
+        $atts = shortcode_atts(
+            array(
+                'exhibitor_id' => get_current_user_id(),
+            ), $atts, 'exhibit_assistant_list' 
+        );
+        wp_enqueue_style('jquery-ui', '//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css', array(), '1.13.2');
+        wp_enqueue_script('jquery-ui', '//code.jquery.com/ui/1.13.2/jquery-ui.js', array('jquery'), '1.13.2', true);
+        wp_localize_script('jquery-ui', 'ajax_object', array(
+            'ajax_url' => admin_url('admin-ajax.php'),
+            'action'   => 'update_exhibitor_assistant',
+            'security' => wp_create_nonce( 'exhibitor_assistant' )
+        ));
+        $get_assistants_ids = get_user_meta($atts['exhibitor_id'], '_assistants_ids', true);
         if(!empty($get_assistants_ids))
         {
             $args = [
                 'include' => $get_assistants_ids, // ID's of users you want to get
-                'fields'  => [ 'ID', 'user_email', 'display_name', 'user_url' ],
+                // 'fields'  => [ 'ID', 'user_email', 'display_name', 'user_url' ],
               ];
-              $users = get_users( $args );
+              $assistants = get_users( $args );
+              $countries = GF_Fields::get( 'address' )->get_default_countries()
             ?>
-                <ul>
-                    <?php foreach ($users as $user) : ?>
-                        <li><?php echo $user->display_name; ?></li>
+                <div id="accordion">
+                    <?php foreach ($assistants as $assistant) : ?>
+                        <h3><?php echo $assistant->first_name.' '.$assistant->last_name; ?></h3>
+                        <div id="tab-<?php echo $assistant->ID ;?>" class="accordion-content">
+                            <?php
+                                if(is_admin())
+                                {
+                                    ?>
+                                        <div class="show-assistants-billing-address">
+                                            <a data-id="<?php echo $assistant->ID ;?>" class="dashicons dashicons-edit-large" href="javascript:void(0)"></a>
+                                        </div>  
+                                    <?php 
+                                }    
+                            ?>
+                            <div class="assistants-billing-address assistant-addres-<?php echo $assistant->ID; ?>">
+                                <?php                                                                 
+                                    echo '<p><span>First Name: </span>' . get_user_meta($assistant->ID, 'billing_first_name', true) . '</p>';
+                                    echo '<p><span>Last Name: </span>' . get_user_meta($assistant->ID, 'billing_last_name', true) . '</p>';
+                                    echo '<p><span>Email: </span>' . get_user_meta($assistant->ID, 'billing_email', true) . '</p>';
+                                    echo '<p><span>Street Address: </span>' . get_user_meta($assistant->ID, 'billing_address_1', true) . '</p>';
+                                    echo '<p><span>Address Line 2: </span>' . get_user_meta($assistant->ID, 'billing_address_2', true) . '</p>';
+                                    echo '<p><span>ZIP / Postal Code: </span>' . get_user_meta($assistant->ID, 'billing_postcode', true) . '</p>';
+                                    echo '<p><span>City: </span>' . get_user_meta($assistant->ID, 'billing_city', true) . '</p>';
+                                    echo '<p><span>State / Province / Region: </span>' . get_user_meta($assistant->ID, 'billing_state', true) . '</p>';
+                                    echo '<p><span>Country: </span>' . $countries["get_user_meta($assistant->ID, 'billing_country', true)"] . '</p>';
+                                ?>
+                            </div>
+                            <?php
+                                if(is_admin())
+                                {
+                                    $special_role = get_user_meta($assistant->ID, 'special_role', true);
+                                    ?>                            
+                                        <div class="assistants-billing-address-update assistant-addres-form-<?php echo $assistant->ID; ?>" style="display:none;">   
+                                            <form id="assistant-addres-form-<?php echo $assistant->ID; ?>">
+                                                <input type="hidden" name="action" value="update_exhibitor_assistant" />
+                                                <input type="hidden" name="assistants-user-id" value="<?php echo $assistant->ID; ?>" />
+                                                <input type="hidden" name="security" value="<?php echo wp_create_nonce( 'exhibitor_assistant' ); ?>" />
+                                                <div class="assistant-form">
+                                                    <div class="assitant-col-100">
+                                                    <div class="assitant-form-col-50">
+                                                        <label for="first_name">First Name:</label><br>
+                                                        <input type="text" id="first_name" name="billing_first_name" value="<?php echo get_user_meta($assistant->ID, 'billing_first_name', true); ?>"><br><br>
+                                                    </div>
+
+                                                    <div class="assitant-form-col-50">
+                                                        <label for="last_name">Last Name:</label><br>
+                                                        <input type="text" id="last_name" name="billing_last_name" value="<?php echo get_user_meta($assistant->ID, 'billing_last_name', true); ?>"><br><br>
+                                                    </div>
+                                                    </div>
+                                                    
+                                                    <label for="address1">Street Address 1:</label><br>
+                                                    <input type="text" id="address1" name="billing_address_1" value="<?php echo get_user_meta($assistant->ID, 'billing_address_1', true); ?>"><br><br>
+                                                    
+                                                    <label for="address2">Street Address 2:</label><br>
+                                                    <input type="text" id="address2" name="billing_address_2" value="<?php echo get_user_meta($assistant->ID, 'billing_address_2', true); ?>"><br><br>
+                                                    
+                                                    <div class="assitant-col-100">
+                                                        <div class="assitant-form-col-50">
+                                                        <label for="city">City:</label><br>
+                                                        <input type="text" id="city" name="billing_city" value="<?php echo get_user_meta($assistant->ID, 'billing_city', true); ?>"><br><br>
+                                                        </div>
+                                                    
+                                                        <div class="assitant-form-col-50">
+                                                        <label for="state">State:</label><br>
+                                                        <input type="text" id="state" name="billing_state" value="<?php echo get_user_meta($assistant->ID, 'billing_state', true); ?>"><br><br>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <div class="assitant-col-100">
+                                                        <div class="assitant-form-col-50">
+                                                        <label for="zip">Zip/Postal Code:</label><br>
+                                                        <input type="text" id="zip" name="billing_postcode" value="<?php echo get_user_meta($assistant->ID, 'billing_postcode', true); ?>"><br><br>
+                                                        </div>
+                                                    
+                                                        <div class="assitant-form-col-50">
+                                                        <label for="country">Country:</label><br>
+                                                        <?php
+                                                            // Get HTML options
+                                                            $html_countries = '';
+                                                            foreach ( $countries as $country_cod => $country ) {
+                                                                $html_countries .= sprintf(
+                                                                    '<option value="%1$s" %3$s>%2$s</option>',
+                                                                    esc_attr( $country_cod ),
+                                                                    esc_html( $country ),
+                                                                    selected( $my_option, esc_attr( $country_cod ), false )
+                                                                );
+                                                            }
+                                                            // Display Select element or tag
+                                                            echo '<select class="country" name="billing_country">' . $html_countries . '</select>';
+                                                        ?><br><br>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                    <label for="email">Email:</label><br>
+                                                    <input type="email" id="email" name="billing_email" value="<?php echo get_user_meta($assistant->ID, 'billing_email', true); ?>"><br><br>
+                                                    <label for="first_year">Is this your first year?:</label><br>
+                                                    <input type="radio" id="first_year_true" name="first_year" value="true">
+                                                    <label for="first_year_true">Yes</label><br>
+                                                    <input type="radio" id="first_year_false" name="first_year" value="false">
+                                                    <label for="first_year_false">No</label><br><br>
+                                                    
+                                                    <label for="special_role">SPECIAL ROLE? (Check all that apply):</label><br>
+                                                    <input type="checkbox" id="speaker" name="special_role[speaker]" value="speaker" <?php checked(array_key_exists(0, $special_role), 1); ?>>
+                                                    <label for="speaker">Are you a speaker at ASGMT?</label><br>
+                                                    
+                                                    <input type="checkbox" id="committee_member" name="special_role[asgmt-committee-member]" value="asgmt-committee-member" <?php checked(array_key_exists(1, $special_role), 1); ?>>
+                                                    <label for="committee_member">Are you an ASGMT Committee Member?</label><br>
+                                                    
+                                                    <input type="checkbox" id="board_member" name="special_role[board-member]" value="board-member" <?php checked(array_key_exists(2, $special_role), 1); ?>>
+                                                    <label for="board_member">Are you a Board Member?</label><br><br>
+                                                    
+                                                    <input type="submit" class="assistants-billing-form-btn" data-id="<?php echo $assistant->ID; ?>" value="Update Assitant Information">
+                                                </div>
+                                            </form>
+                                        </div>
+                                    <?php
+                                }
+                            ?>
+                        </div>
                     <?php endforeach; ?>
-                </ul>
+                </div>
             <?php
         }
     }
@@ -255,6 +441,19 @@ class ExhibitAssistantRegistration
             $user_id = wp_create_user($email, $random_password, $email);
             return $user_id;
         }
+    }
+
+    public function update_exhibitor_assistant()
+    {
+        // Verify the nonce
+        $nonce = $_POST['security'];
+        if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
+            wp_send_json_error( 'Invalid nonce.' );
+        }
+
+        echo"<pre>";
+        print_r($_POST);
+        echo"</pre>";
     }
 }
 
