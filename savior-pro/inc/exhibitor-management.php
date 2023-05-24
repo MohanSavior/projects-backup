@@ -16,6 +16,7 @@ class ExhibitorManagement {
       add_filter('woocommerce_payment_complete', array($this, 'exhibitor_members_payment_complete'));
 
       add_action('admin_head', array($this, 'exhibitor_members_style'));
+      add_action('admin_footer', array($this, 'exhibitor_management_scripts'));
       add_action('wp_ajax_update_user_status', array($this, 'update_user_status_callback'));
       // add_action( 'woocommerce_order_status_completed', array( $this, 'exhibitor_members_payment_complete' ) );//order_status_completed
     }
@@ -159,28 +160,111 @@ class ExhibitorManagement {
               display: flex;
               gap: 20px;
           }
+          #exhibitor-assistant-container {
+              background-color: #fff;
+              padding: 40px 30px 30px 30px;
+              border-radius: 10px;
+          }
+          #exhibitor-assistant-container h1 {
+              font-size: 30px;
+              line-height: 1.5em;
+              font-weight: 600;
+              padding: 0;
+              margin: 0px auto 1em auto !important;
+              display: table !important;
+          }
+          #exhibitor-assistant-container .ui-accordion-header {
+              font-size: 16px;
+              line-height: 26px;
+              padding: 11px 20px;
+              margin: 10px 0 0 0;
+              background: #F7C338;
+              color: #252F86;
+              outline: none !important;
+              border: 0 !important;
+          }
+          #exhibitor-assistant-container .ui-accordion-header span {
+              padding-left: 2px;
+          }
+          #exhibitor-assistant-container .ui-accordion-content {
+              position: relative;
+              padding: 20px 20px !important;
+          }
+          #exhibitor-assistant-container .assistants-billing-address p, #exhibitor-assistant-container .assistants-billing-address label {
+              font-size: 16px;
+              line-height: 26px;
+              margin: 10px 0px;
+              color: #000000;
+              font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+          }
+          #exhibitor-assistant-container .assistants-billing-address p span {
+              font-weight: 600;
+          }
+          #exhibitor-assistant-container .assistants-billing-address input {
+              border-color: #000000;
+          }
+          #exhibitor-assistant-container .assistant-form label {
+              padding: 0 0 10px 0;
+              margin: 0;
+              font-size: 16px;
+              font-weight: 600;
+              color: #3c434a;
+              font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+          }
+          #exhibitor-assistant-container .assistant-form input[type="text"], #exhibitor-assistant-container .assistant-form input[type="email"], #exhibitor-assistant-container .assistant-form select {
+              font-size: 15px;
+              padding: 8px;
+              width: 100%;
+              margin-top: 9px;
+              outline: none !important;
+              box-shadow: none !important;
+          }
+          #exhibitor-assistant-container .assistant-form input[type="text"]:focus, #exhibitor-assistant-container .assistant-form input[type="email"]:focus, #exhibitor-assistant-container .assistant-form select:focus {
+              border-color: #2c3338;
+          }
+          .assistants-billing-address-update {
+              margin-top: 13px;
+          }
+          .assistants-billing-form-btn {
+              background: #F7C338;
+              color: #080E41;
+              border: 0;
+              border-radius: 0;
+              font-size: 18px !important;
+              padding: 16px 30px;
+              margin-bottom: 0;
+              cursor: pointer;
+          }
+          .assistants-billing-form-btn:hover {
+              background: #080E41;
+              color: #F7C338;
+              transition: 0.25s all;
+          }
+          #exhibitor-assistant-container .assistant-form select {
+              color: #2c3338;
+          }
           #assistant-spinner {
-            position: relative;
-            width: 40px;
-            height: 40px;
-            margin: 0 auto;
+              position: absolute;
+              width: 96.5%;
+              height: 100%;
+              background: #898989a6;
           }
-
-          #assistant-spinner:before,
-          #assistant-spinner:after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid #333;
-            border-top-color: transparent;
-          }
-
           #assistant-spinner:before {
-            animation: spin 1.5s linear infinite;
+              content: "";
+              position: absolute;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+              border: 2px solid #333;
+              border-top-color: transparent;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+          }
+          #assistant-spinner:before {
+              animation: spin 1.5s linear infinite;
+              top: 44.8%;
+              left: 45.5%;
           }
 
           @keyframes spin {
@@ -191,11 +275,104 @@ class ExhibitorManagement {
               transform: rotate(360deg);
             }
           }
-
+          .assign-booth-products {
+              background-color: #fff;
+              padding: 40px 30px 30px 30px;
+              border-radius: 10px;
+              height: max-content;
+          }
+          .assign-booth-products h1 {
+              font-size: 22px;
+              line-height: 1.5em;
+              font-weight: 600;
+              padding: 0;
+              margin: 0px auto 1em auto !important;
+          }
+          #assgin-booth-product-exhibitor #booth-products {
+              font-size: 16px !important;
+              border: 1px solid;
+              padding: 10px 5px;
+              color: #000000;
+              box-shadow: none;
+          }
+          #send-invoice-assgin-booth {
+              background: #F7C338;
+              color: #080E41;
+              border: 0;
+              border-radius: 0;
+              font-size: 18px !important;
+              padding: 6px 20px;
+              cursor: pointer;
+              margin-top: 20px;
+          }
+          #send-invoice-assgin-booth:hover {
+              background: #080E41;
+              color: #F7C338;
+              transition: 0.25s all;
+          }
       </style>
       <?php
     }
-  
+    
+    public function exhibitor_management_scripts()
+    {
+      ?>
+      <script>
+        jQuery(document).ready(function($){
+          $('#booth-products').select2({
+            placeholder: 'Select an booth', // Placeholder text
+            allowClear: true, // Show clear button
+            // tags: true, // Enable tagging
+            // dropdownCssClass: 'custom-select2-dropdown', // Custom CSS class for dropdown
+          });
+          $('#booth-products').on('select2:select select2:unselect', function() {
+            var selectedOptions = $('#booth-products option:selected');
+            var totalValue = 0;
+
+            if (selectedOptions.length > 0) {
+              selectedOptions.each(function() {
+                var optionValue = parseInt($(this).data('price'));
+                totalValue += isNaN(optionValue) ? 0 : optionValue;
+              });
+            }
+
+            $('#totalValue').text(totalValue);
+          });
+          $('#send-invoice-assgin-booth').on('click', function(event){
+            event.preventDefault();
+            var productsValues = $('#booth-products option:selected').map(function() {
+              return $(this).val();
+            }).get();
+            if (productsValues.length > 0) {
+              $.ajax({
+                  url: ajax_object.ajax_url,
+                  method: 'POST',
+                  data: {
+                    action: 'assign_booth_products',
+                    products_ids: productsValues
+                  },
+                  beforeSend: function(){
+                      $('body').find(`#tab-${formID}`).prepend('<div id="assistant-spinner"></div>');
+                  },
+                  success: function(response) {
+                      if(response.success){
+                          $(`.assistants-billing-address assistant-addres-${formID}`).html(response.data);
+                          $(`.show-assistants-billing-address a[data-id="${formID}"]`).trigger('click');
+                          $('body').find(`#tab-${formID}`).find('#assistant-spinner').remove();
+                      }
+                  },
+                  error: function(xhr, status, error) {
+                      $('body').find(`#tab-${formID}`).find('#assistant-spinner').remove();
+                  }
+              });
+            }else{
+              alert('Please select one product at least');
+            }            
+          })
+        });
+      </script>
+      <?php
+    }
     public function gform_user_registration_update_user_id( $user_id, $entry, $form, $feed )
     {
       $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $user_id;
@@ -280,7 +457,7 @@ class ExhibitorManagement {
       $unique_years = array_unique($user_years);
       rsort($unique_years);
       // Exhibitor Members List
-      echo '<h2>Exhibitor Members List</h2>  <a href="'.admin_url( 'admin.php?page=add-new-exhibitor' ).'" class="btn button">Add New Exhibitor</a>';
+      echo '<h2>Exhibitor List</h2>  <a href="'.admin_url( 'admin.php?page=add-new-exhibitor' ).'" class="btn button">Add New Exhibitor</a>';
       // Year filter dropdown
       echo '<div class="year-filter">';
       echo '<label for="year">Select Year : </label>';
@@ -298,9 +475,10 @@ class ExhibitorManagement {
       echo '<thead>
               <tr>
                 <th>No.</th>
-                <th>Member name</th>
-                <th>Email</th>
                 <th>Company name</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Email</th>
                 <th>Booth number</th>
                 <th>Year</th>
                 <th>Member id</th>
@@ -359,13 +537,14 @@ class ExhibitorManagement {
               "columns": [
                   { "data": "no" },
                   { 
-                    "data": "username",
+                    "data": "company_name",
                     render: function(data, type, row, meta) {
                       return `<a href="${exhibitor_profile}&exhibitor_id=${row.id}">${data}</a>`;
                     }
                   },
+                  { "data": "first_name" },
+                  { "data": "last_name" },
                   { "data": "email" },
-                  { "data": "company_name" },
                   { "data": "exhibit_booth_number" },
                   { "data": "year" },
                   { "data": "id" },
@@ -375,9 +554,9 @@ class ExhibitorManagement {
                     render: function(data, type, row, meta) {
                       // Array with key-value pairs
                       var keyValueArray = [
-                        { key: 'new_registration', value: 'New Registration' },
+                        { key: 'booth_pending', value: 'Booth Pending' },
                         { key: 'pending_payment', value: 'Pending Payment' },
-                        { key: 'invoice_paid', value: 'Invoice Paid' },
+                        { key: 'payment_complete', value: 'Payment Complete' },
                         { key: 'completed', value: 'Completed' }
                       ];
 
@@ -428,7 +607,7 @@ class ExhibitorManagement {
                 },
               ],
               // order: [[1, 'asc']],
-              order: [[6, 'desc']],
+              order: [[8, 'desc']],
               "processing": true,
               responsive: true
           });
@@ -509,11 +688,41 @@ class ExhibitorManagement {
               {
                 if(get_users( [ 'include' => $_REQUEST['exhibitor_id'], 'fields' => 'ID' ] ))
                 {
+                    wp_enqueue_style('select2', '//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0');
+                    wp_enqueue_script('select2', '//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0', true);
+                  ?>
+                  <div class="assign-booth-products">
+                    <h1>Assign Booths</h1>
+                    <form action="" id="assgin-booth-product-exhibitor">
+                      <select id="booth-products" multiple="multiple">
+                        <?php 
+                          $category_slug = 'booth-products'; 
+                          $args = array(
+                              'category' => array( $category_slug ),
+                          );                        
+                          $products = wc_get_products( $args );                        
+                          foreach ( $products as $product ) {
+                              // Access product properties
+                              $product_id = $product->get_id();
+                              $product_name = $product->get_name();
+                              $product_price = $product->get_price();
+                          
+                              // Do something with the product information
+                              echo "<option value=". $product_id ." data-price=". $product_price .">" . $product_name . "</option>";
+                          }
+                          
+                        ?>
+                      </select>
+                      <p>Total Value: $<span id="totalValue">0</span></p>
+                      <input type="submit" class="button" value="Send Invoice" id="send-invoice-assgin-booth" />
+                    </form>
+                  </div>
+                  <?php
                   echo '<div id="exhibitor-profile" style="width: 60%;">';
                   gravity_form(16, true, false, false, null, false, '', true ); // Replace 1 with the ID of your Gravity Form
                   echo '</div>';
                   echo '<div id="exhibitor-assistant-container" style="width:40%;">';
-                  echo '<h1>Exhibitor Assistant</h1>';
+                  echo '<h1>Booth Admin Assistant</h1>';
                   echo do_shortcode( '[exhibit_assistant_list exhibitor_id="'.$_REQUEST['exhibitor_id'].'"]' );
                   echo '</div>';
                 }else{
@@ -557,9 +766,10 @@ class ExhibitorManagement {
         $get_status   = get_user_meta($exhibitor_member->ID, '_exhibitor_status', true );    
         $data[] = array(
             'no'                    => '',
-            'username'              => $username,
-            'email'                 => $exhibitor_member->user_email,
             'company_name'          => $company_name,
+            'first_name'            => $exhibitor_member->first_name,
+            'last_name'            => $exhibitor_member->last_name,
+            'email'                 => $exhibitor_member->user_email,
             'exhibit_booth_number'  => $exhibit_booth_number,
             'year'                  => date('Y', strtotime($exhibitor_member->user_registered)),
             'id'                    => $exhibitor_member->ID,
