@@ -7,7 +7,10 @@ class ExhibitAssistantRegistration
         add_filter('gform_form_post_get_meta_14', array( $this, 'exhibit_assistant_registration' ));
         // Remove the field before the form is saved. Adjust your form ID
         add_filter('gform_form_update_meta_14', array( $this, 'remove_exhibit_assistant_registration' ), 10, 3);
+        // Hook into Gravity Forms pre-submission
+        add_action('gform_validation_14', array( $this, 'check_email_and_role'));
         add_action('gform_after_submission_14', array( $this, 'crete_new_exhibit_assistants' ), 10, 2);
+        add_filter( 'gform_confirmation_14', array($this, 'exhibit_assistant_registration_confirmation'), 10, 4 );
         // Show already registerd user for assistant
         add_shortcode( 'exhibit_assistant_list', array( $this, 'exhibit_assistant_list_ajax' ) );
         add_action('admin_footer', array($this, 'exhibitor_assistant_scripts'));
@@ -104,7 +107,7 @@ class ExhibitAssistantRegistration
         $address->formId = $form['id'];
         // $address->label = 'Address';
         $address->pageNumber = 1;
-        $address->isRequired = true;
+        $address->isRequired = false;
         $address->labelPlacement = 'top_label';
         $address->cssClass     = 'input-before-label';
 
@@ -157,7 +160,7 @@ class ExhibitAssistantRegistration
             'type'        => 'radio',
             'id'          => 1005,
             'formId'      => $form['id'],
-            'label'       => 'Is this your first year?*',
+            'label'       => 'Is this your first year?',
             'pageNumber'  => 1,
             'isRequired'  => true,
             'choices'     => array(
@@ -215,10 +218,10 @@ class ExhibitAssistantRegistration
             'id'               => 1000, // The Field ID must be unique on the form
             'formId'           => $form['id'],
             'label'            => '',
-            'addButtonText'    => '+ Add Assistant', // Optional
-            'removeButtonText' => '- Remove Assistant', // Optional
+            'addButtonText'    => '+ Add Booth Attendee', // Optional
+            'removeButtonText' => '- Remove Booth Attendee', // Optional
             'pageNumber'       => 1, // Ensure this is correct
-            'fields'           => array($first_name, $last_name, $address, $email, $first_year, $special_role) // $first_name, $last_name, $address, $email, $radio, $checkbox
+            'fields'           => array($first_name, $last_name, $email, )//$first_year, $special_role, $address, // $first_name, $last_name, $address, $email, $radio, $checkbox
         ));
         $form['fields'][] = $repeater;
         return $form;
@@ -232,6 +235,83 @@ class ExhibitAssistantRegistration
         return $form_meta;
     }
 
+    public function check_email_and_role( $validation_result )
+    {
+        // Replace 1 with the actual field ID of the repeater field
+        $repeater_field_id = 1004;
+        // error_log(print_r($validation_result, true));
+        // Get the form object and the field value
+        $form = $validation_result['form'];
+        $field_value = rgpost( 'input_' . $repeater_field_id );
+
+        // Perform your validation logic here
+        // You can access individual repeater fields using the $field_value array
+
+        // Example validation: check if any of the emails already exist in the database
+        // foreach ( $field_value as $row_index => $row ) {
+        //     error_log(print_r('$row', true));
+        //     error_log(print_r($row, true));
+        //     error_log(print_r($form, true));
+            // foreach ( $row as $field_key => $field_value ) {
+            //     if ( strpos( $field_key, 'email' ) === 0 ) {
+            //         $email = rgar( $row, $field_key );
+
+            //         // Check if email exists in database
+            //         if ( email_exists( $email ) ) {
+            //             $field_id = $repeater_field_id . '.' . $row_index . '.' . $field_key;
+            //             $form['fields'][$field_id]->failed_validation = true;
+            //             $form['fields'][$field_id]->validation_message = 'This email already exists in the database.';
+            //             $validation_result['is_valid'] = false;
+            //         }
+            //     }
+            // }
+        // }
+        $form = $validation_result['form'];
+
+        // Replace "2" with the field ID of your repeater field
+        $repeater_field_id = 1000;
+    
+        // Replace "3" with the field ID of the email validation field
+        $email_validation_field_id = 1004;
+    
+        // Get the submitted form values
+        $field_values = $_POST['input_' . $repeater_field_id];
+    
+        $invalid_emails = array();
+    
+        // Perform the email validation
+        foreach ($field_values as $field_value) {
+            $email = $field_value['input_' . $email_validation_field_id];
+            error_log(print_r('$email', true));
+            error_log(print_r($email, true));
+            error_log(print_r($field_value, true));
+            // Implement your email existence check here
+            // You can query a database or use an API to validate the email existence
+    
+            // For example, assume you have a function named "check_email_existence" that performs the check
+            $email_exists = email_exists( $email );
+    
+            if (!$email_exists) {
+                $invalid_emails[] = $email;
+            }
+        }
+    
+        // If there are invalid emails, set the validation result to false and add an error message
+        if (!empty($invalid_emails)) {
+            $validation_result['is_valid'] = false;
+    
+            // Customize the error message as needed
+            $error_message = 'The following emails are invalid: ' . implode(', ', $invalid_emails);
+    
+            // Replace "3" with the field ID of the email validation field
+            $form['fields'][$email_validation_field_id]['failed_validation'] = true;
+            $form['fields'][$email_validation_field_id]['validation_message'] = $error_message;
+        }
+    
+        $validation_result['form'] = $form;
+        return $validation_result;
+    }
+
     public function crete_new_exhibit_assistants($entry, $form)
     {
 
@@ -243,18 +323,18 @@ class ExhibitAssistantRegistration
                 if (is_wp_error($attendee_user_id)) {
                 } else {
                     $assistant_metas = array(
-                        'first_name'                => $assistants_data['1001'],
-                        'last_name'                 => $assistants_data['1002'],
-                        'billing_first_name'        => $assistants_data['1001'],
-                        'billing_last_name'         => $assistants_data['1002'],
-                        'billing_address_1'         => $assistants_data['1003.1'],
-                        'billing_address_2'         => $assistants_data['1003.2'],
-                        'billing_city'              => $assistants_data['1003.3'],
-                        'billing_state'             => $assistants_data['1003.4'],
-                        'billing_postcode'          => $assistants_data['1003.5'],
-                        'billing_country'           => $assistants_data['1003.6'],
-                        'billing_email'             => $assistants_data['1004'],
-                        'is_this_your_first_year'   => $assistants_data['1005']
+                        'first_name'                => isset($assistants_data['1001']) ? $assistants_data['1001'] : '',
+                        'last_name'                 => isset($assistants_data['1002']) ? $assistants_data['1002'] : '',
+                        'billing_first_name'        => isset($assistants_data['1001']) ? $assistants_data['1001'] : '',
+                        'billing_last_name'         => isset($assistants_data['1002']) ? $assistants_data['1002'] : '',
+                        'billing_address_1'         => isset($assistants_data['1003.1']) ? $assistants_data['1003.1'] : '',
+                        'billing_address_2'         => isset($assistants_data['1003.2']) ? $assistants_data['1003.2'] : '',
+                        'billing_city'              => isset($assistants_data['1003.3']) ? $assistants_data['1003.3'] : '',
+                        'billing_state'             => isset($assistants_data['1003.4']) ? $assistants_data['1003.4'] : '',
+                        'billing_postcode'          => isset($assistants_data['1003.5']) ? $assistants_data['1003.5'] : '',
+                        'billing_country'           => isset($assistants_data['1003.6']) ? $assistants_data['1003.6'] : '',
+                        'billing_email'             => isset($assistants_data['1004']) ? $assistants_data['1004'] : '',
+                        'is_this_your_first_year'   => isset($assistants_data['1005']) ? $assistants_data['1005'] : ''
                     );
                     foreach ($assistant_metas as $key => $value) {
                         if (empty(get_user_meta($attendee_user_id, $key, true))) {
@@ -282,9 +362,18 @@ class ExhibitAssistantRegistration
                     $_assistants_ids[] = $attendee_user_id;
                 }
             }
-            $get_assistants_ids = get_user_meta($entry['created_by'], '_assistants_ids', true);
+            $exhibitor_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $entry['created_by'];
+            $get_assistants_ids = get_user_meta($exhibitor_id, '_assistants_ids', true);
             $update_assistants_ids = is_array($get_assistants_ids) ? array_unique(array_merge($get_assistants_ids, $_assistants_ids)) : $_assistants_ids;
-            update_user_meta($entry['created_by'], '_assistants_ids', $update_assistants_ids);
+            update_user_meta($exhibitor_id, '_assistants_ids', $update_assistants_ids);
+        }
+    }
+
+    public function exhibit_assistant_registration_confirmation( $confirmation, $form, $entry, $ajax )
+    {
+        if(is_admin()){
+            $confirmation = array( 'redirect' => $entry['source_url'] );
+            return $confirmation;
         }
     }
 
@@ -333,22 +422,22 @@ class ExhibitAssistantRegistration
                                     echo '<p><span>First Name: </span>' . get_user_meta($assistant->ID, 'billing_first_name', true) . '</p>';
                                     echo '<p><span>Last Name: </span>' . get_user_meta($assistant->ID, 'billing_last_name', true) . '</p>';
                                     echo '<p><span>Email: </span>' . get_user_meta($assistant->ID, 'billing_email', true) . '</p>';
-                                    echo '<p><span>Street Address: </span>' . get_user_meta($assistant->ID, 'billing_address_1', true) . '</p>';
-                                    echo '<p><span>Address Line 2: </span>' . get_user_meta($assistant->ID, 'billing_address_2', true) . '</p>';
-                                    echo '<p><span>ZIP / Postal Code: </span>' . get_user_meta($assistant->ID, 'billing_postcode', true) . '</p>';
-                                    echo '<p><span>City: </span>' . get_user_meta($assistant->ID, 'billing_city', true) . '</p>';
-                                    echo '<p><span>State / Province / Region: </span>' . get_user_meta($assistant->ID, 'billing_state', true) . '</p>';
-                                    echo '<p><span>Country: </span>' . $countries[get_user_meta($assistant->ID, 'billing_country', true)] . '</p>';
-                                    echo '<p><span>Is this your first year?: </span>' . get_user_meta($assistant->ID, 'is_this_your_first_year', true) . '</p>';
+                                    // echo '<p><span>Street Address: </span>' . get_user_meta($assistant->ID, 'billing_address_1', true) . '</p>';
+                                    // echo '<p><span>Address Line 2: </span>' . get_user_meta($assistant->ID, 'billing_address_2', true) . '</p>';
+                                    // echo '<p><span>ZIP / Postal Code: </span>' . get_user_meta($assistant->ID, 'billing_postcode', true) . '</p>';
+                                    // echo '<p><span>City: </span>' . get_user_meta($assistant->ID, 'billing_city', true) . '</p>';
+                                    // echo '<p><span>State / Province / Region: </span>' . get_user_meta($assistant->ID, 'billing_state', true) . '</p>';
+                                    // echo '<p><span>Country: </span>' . $countries[get_user_meta($assistant->ID, 'billing_country', true)] . '</p>';
+                                    // echo '<p><span>Is this your first year?: </span>' . get_user_meta($assistant->ID, 'is_this_your_first_year', true) . '</p>';
                                 ?>
-                                    <input type="checkbox" id="speaker" name="special_role[]" value="speaker" <?php checked($special_role[0], 'speaker'); ?> readonly disabled='disabled'/>
+                                    <!-- <input type="checkbox" id="speaker" name="special_role[]" value="speaker" <?php //checked($special_role[0], 'speaker'); ?> readonly disabled='disabled'/>
                                     <label for="speaker">Are you a speaker at ASGMT?</label><br>
                                     
-                                    <input type="checkbox" id="committee_member" name="special_role[]" value="committeemember" <?php checked($special_role[1], 'committeemember'); ?> readonly disabled='disabled' />
+                                    <input type="checkbox" id="committee_member" name="special_role[]" value="committeemember" <?php //checked($special_role[1], 'committeemember'); ?> readonly disabled='disabled' />
                                     <label for="committee_member">Are you an ASGMT Committee Member?</label><br>
                                     
-                                    <input type="checkbox" id="board_member" name="special_role[]" value="bodmember" <?php checked($special_role[2], 'bodmember'); ?> readonly disabled='disabled' />
-                                    <label for="board_member">Are you a Board Member?</label><br><br>
+                                    <input type="checkbox" id="board_member" name="special_role[]" value="bodmember" <?php //checked($special_role[2], 'bodmember'); ?> readonly disabled='disabled' />
+                                    <label for="board_member">Are you a Board Member?</label><br><br> -->
                                 
                             </div>
                             <?php
@@ -374,64 +463,64 @@ class ExhibitAssistantRegistration
                                                     </div>
                                                     </div>
                                                     
-                                                    <label for="<?php echo $assistant->ID; ?>-address1">Street Address 1:</label><br>
-                                                    <input type="text" id="<?php echo $assistant->ID; ?>-address1" name="billing_address_1" value="<?php echo get_user_meta($assistant->ID, 'billing_address_1', true); ?>"><br><br>
+                                                    <!-- <label for="<?php //echo $assistant->ID; ?>-address1">Street Address 1:</label><br>
+                                                    <input type="text" id="<?php //echo $assistant->ID; ?>-address1" name="billing_address_1" value="<?php //echo get_user_meta($assistant->ID, 'billing_address_1', true); ?>"><br><br>
                                                     
-                                                    <label for="<?php echo $assistant->ID; ?>-address2">Street Address 2:</label><br>
-                                                    <input type="text" id="<?php echo $assistant->ID; ?>-address2" name="billing_address_2" value="<?php echo get_user_meta($assistant->ID, 'billing_address_2', true); ?>"><br><br>
+                                                    <label for="<?php //echo $assistant->ID; ?>-address2">Street Address 2:</label><br>
+                                                    <input type="text" id="<?php //echo $assistant->ID; ?>-address2" name="billing_address_2" value="<?php //echo get_user_meta($assistant->ID, 'billing_address_2', true); ?>"><br><br>
                                                     
                                                     <div class="assitant-col-100">
                                                         <div class="assitant-form-col-50">
-                                                        <label for="<?php echo $assistant->ID; ?>-city">City:</label><br>
-                                                        <input type="text" id="<?php echo $assistant->ID; ?>-city" name="billing_city" value="<?php echo get_user_meta($assistant->ID, 'billing_city', true); ?>"><br><br>
+                                                        <label for="<?php //echo $assistant->ID; ?>-city">City:</label><br>
+                                                        <input type="text" id="<?php //echo $assistant->ID; ?>-city" name="billing_city" value="<?php //echo get_user_meta($assistant->ID, 'billing_city', true); ?>"><br><br>
                                                         </div>
                                                     
                                                         <div class="assitant-form-col-50">
-                                                        <label for="<?php echo $assistant->ID; ?>-state">State:</label><br>
-                                                        <input type="text" id="<?php echo $assistant->ID; ?>-state" name="billing_state" value="<?php echo get_user_meta($assistant->ID, 'billing_state', true); ?>"><br><br>
+                                                        <label for="<?php //echo $assistant->ID; ?>-state">State:</label><br>
+                                                        <input type="text" id="<?php //echo $assistant->ID; ?>-state" name="billing_state" value="<?php //echo get_user_meta($assistant->ID, 'billing_state', true); ?>"><br><br>
                                                         </div>
                                                     </div>
                                                     
                                                     <div class="assitant-col-100">
                                                         <div class="assitant-form-col-50">
-                                                        <label for="<?php echo $assistant->ID; ?>-zip">Zip/Postal Code:</label><br>
-                                                        <input type="text" id="<?php echo $assistant->ID; ?>-zip" name="billing_postcode" value="<?php echo get_user_meta($assistant->ID, 'billing_postcode', true); ?>"><br><br>
+                                                        <label for="<?php //echo $assistant->ID; ?>-zip">Zip/Postal Code:</label><br>
+                                                        <input type="text" id="<?php //echo $assistant->ID; ?>-zip" name="billing_postcode" value="<?php //echo get_user_meta($assistant->ID, 'billing_postcode', true); ?>"><br><br>
                                                         </div>
                                                     
                                                         <div class="assitant-form-col-50">
-                                                        <label for="<?php echo $assistant->ID; ?>-country">Country:</label><br>
+                                                        <label for="<?php //echo $assistant->ID; ?>-country">Country:</label><br>
                                                         <?php
                                                             // Get HTML options
-                                                            $html_countries = '';
-                                                            foreach ( $countries as $country_cod => $country ) {
-                                                                $html_countries .= sprintf(
-                                                                    '<option value="%1$s" %3$s>%2$s</option>',
-                                                                    esc_attr( $country_cod ),
-                                                                    esc_html( $country ),
-                                                                    selected( get_user_meta($assistant->ID, 'billing_country', true), esc_attr( $country_cod ), false )
-                                                                );
-                                                            }
+                                                            // $html_countries = '';
+                                                            // foreach ( $countries as $country_cod => $country ) {
+                                                            //     $html_countries .= sprintf(
+                                                            //         '<option value="%1$s" %3$s>%2$s</option>',
+                                                            //         esc_attr( $country_cod ),
+                                                            //         esc_html( $country ),
+                                                            //         selected( get_user_meta($assistant->ID, 'billing_country', true), esc_attr( $country_cod ), false )
+                                                            //     );
+                                                            // }
                                                             // Display Select element or tag
-                                                            echo '<select class="country" name="billing_country">' . $html_countries . '</select>';
+                                                            //echo '<select class="country" name="billing_country">' . $html_countries . '</select>';
                                                         ?><br><br>
                                                         </div>
                                                     </div>                                                    
-                                                    <label for="<?php echo $assistant->ID; ?>-email">Email:</label><br>
-                                                    <input type="email" id="<?php echo $assistant->ID; ?>-email" name="billing_email" value="<?php echo get_user_meta($assistant->ID, 'billing_email', true); ?>"><br><br>
-                                                    <label for="<?php echo $assistant->ID; ?>-first_year">Is this your first year?:</label><br>
-                                                    <input type="radio" id="<?php echo $assistant->ID; ?>-first_year_true" name="is_this_your_first_year" value="yes" <?php checked(get_user_meta($assistant->ID, 'is_this_your_first_year', true) == 'yes' ); ?> />
-                                                    <label for="<?php echo $assistant->ID; ?>-first_year_true">Yes</label><br>
-                                                    <input type="radio" id="<?php echo $assistant->ID; ?>-first_year_false" name="is_this_your_first_year" value="no" <?php checked(get_user_meta($assistant->ID, 'is_this_your_first_year', true) == 'no' ); ?> />
-                                                    <label for="<?php echo $assistant->ID; ?>-first_year_false">No</label><br><br>
-                                                    <label for="<?php echo $assistant->ID; ?>-special_role">SPECIAL ROLE? (Check all that apply):</label><br>
-                                                    <input type="checkbox" id="<?php echo $assistant->ID; ?>-speaker" name="special_role[0]" value="speaker" <?php checked($special_role[0], 'speaker'); ?>>
-                                                    <label for="<?php echo $assistant->ID; ?>-speaker">Are you a speaker at ASGMT?</label><br>
+                                                    <label for="<?php //echo $assistant->ID; ?>-email">Email:</label><br>
+                                                    <input type="email" id="<?php //echo $assistant->ID; ?>-email" name="billing_email" value="<?php //echo get_user_meta($assistant->ID, 'billing_email', true); ?>"><br><br>
+                                                    <label for="<?php //echo $assistant->ID; ?>-first_year">Is this your first year?:</label><br>
+                                                    <input type="radio" id="<?php //echo $assistant->ID; ?>-first_year_true" name="is_this_your_first_year" value="yes" <?php //checked(get_user_meta($assistant->ID, 'is_this_your_first_year', true) == 'yes' ); ?> />
+                                                    <label for="<?php //echo $assistant->ID; ?>-first_year_true">Yes</label><br>
+                                                    <input type="radio" id="<?php //echo $assistant->ID; ?>-first_year_false" name="is_this_your_first_year" value="no" <?php //checked(get_user_meta($assistant->ID, 'is_this_your_first_year', true) == 'no' ); ?> />
+                                                    <label for="<?php //echo $assistant->ID; ?>-first_year_false">No</label><br><br>
+                                                    <label for="<?php //echo $assistant->ID; ?>-special_role">SPECIAL ROLE? (Check all that apply):</label><br>
+                                                    <input type="checkbox" id="<?php //echo $assistant->ID; ?>-speaker" name="special_role[0]" value="speaker" <?php //checked($special_role[0], 'speaker'); ?>>
+                                                    <label for="<?php //echo $assistant->ID; ?>-speaker">Are you a speaker at ASGMT?</label><br>
                                                     
-                                                    <input type="checkbox" id="<?php echo $assistant->ID; ?>-committee_member" name="special_role[1]" value="committeemember" <?php checked($special_role[1], 'committeemember'); ?>>
-                                                    <label for="<?php echo $assistant->ID; ?>-committee_member">Are you an ASGMT Committee Member?</label><br>
+                                                    <input type="checkbox" id="<?php //echo $assistant->ID; ?>-committee_member" name="special_role[1]" value="committeemember" <?php //checked($special_role[1], 'committeemember'); ?>>
+                                                    <label for="<?php //echo $assistant->ID; ?>-committee_member">Are you an ASGMT Committee Member?</label><br>
                                                     
-                                                    <input type="checkbox" id="<?php echo $assistant->ID; ?>-board_member" name="special_role[2]" value="bodmember" <?php checked($special_role[2], 'bodmember'); ?>>
-                                                    <label for="<?php echo $assistant->ID; ?>-board_member">Are you a Board Member?</label><br><br>
+                                                    <input type="checkbox" id="<?php //echo $assistant->ID; ?>-board_member" name="special_role[2]" value="bodmember" <?php //checked($special_role[2], 'bodmember'); ?>>
+                                                    <label for="<?php //echo $assistant->ID; ?>-board_member">Are you a Board Member?</label><br><br> -->
                                                     
                                                     <input type="submit" class="assistants-billing-form-btn" data-id="<?php echo $assistant->ID; ?>" value="Update Assitant Information">
                                                 </div>
