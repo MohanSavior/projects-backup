@@ -84,7 +84,7 @@ if ( $customer_orders ) : ?>
 
 				if ( ! empty( $actions ) ) {
 					foreach ( $actions as $key => $action ) { // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
-						echo '<a href="' . esc_url( $action['url'] ) . '" class="button ' . sanitize_html_class( $key ) . '">View Invoice</a>';
+						echo '<a href="' . esc_url( $action['url'] ) . '" class="button ' . sanitize_html_class( $key ) . '">'.$action["name"].'</a>';
 						// echo  '<a href="javascript:void(0)" class="button dt-download-icon download' . sanitize_html_class( $key ) . '" id="download_invoice" data-orderId="'.$order_id.'"><i class="elementor-icons-manager__tab__item__icon fa fa-file-pdf-o"></i></a>';
 					}
 				}

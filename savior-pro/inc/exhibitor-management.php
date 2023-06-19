@@ -6,636 +6,83 @@ class ExhibitorManagement {
       add_action('admin_menu', array($this, 'add_exhibitor_management_page'));
   
       // Hook into admin_post action to handle CSV export
-      add_action('admin_post_export_exhibitors_csv', array($this, 'export_exhibitors_csv'));
       add_action('wp_ajax_get_exhibitor_members', array($this, 'get_exhibitor_members'));
-      add_action('wp_ajax_nopriv_get_exhibitor_members', array($this, 'get_exhibitor_members'));
-      add_filter( 'gform_confirmation_16', array($this, 'exhibitor_members_admin_confirmation'), 10, 4 );
-      // add_filter( 'gform_after_submission_16', array($this, 'remove_form_entry'), 10 );
+      add_filter( 'gform_confirmation_19', array($this, 'exhibitor_members_admin_confirmation'), 10, 4 );
+      add_filter( 'gform_confirmation_18', array($this, 'exhibitor_members_admin_confirmation'), 10, 4 );
+      // Hook into the 'gform_user_registration_validation' filter
+      add_filter( 'gform_user_registration_validation', array($this, 'bypass_existing_user_registration'), 5, 3 );
 
       add_filter( 'gform_user_registration_update_user_id', array($this, 'gform_user_registration_update_user_id'), 10, 4 );
       add_filter('woocommerce_payment_complete', array($this, 'exhibitor_members_payment_complete'));
 
-      add_action('admin_head', array($this, 'exhibitor_members_style'));
-      add_action('admin_footer', array($this, 'exhibitor_management_scripts'));
+      // add_action('admin_head', array($this, 'exhibitor_members_style'));
+      add_action( 'admin_enqueue_scripts', array($this, 'load_exhibitor_admin_style') );
       add_action('wp_ajax_update_user_status', array($this, 'update_user_status_callback'));
+      add_action('wp_ajax_update_plane_to_exhibitor_status', array($this, 'update_plane_to_exhibitor_status'));
       // add_action( 'woocommerce_order_status_completed', array( $this, 'exhibitor_members_payment_complete' ) );//order_status_completed
       add_action('wp_ajax_assign_booth_products', array($this, 'assign_booth_products'));
-      add_action('wp_ajax_booth_number_current_year', array($this, 'booth_number_current_year'));
-
-      add_filter('acf/validate_value/key=field_6477148a02f19', array($this, 'restrict_repeater_rows'), 10, 4);
-      add_action('acf/save_post', array($this, 'save_exhibitor_booth_data_yearly'));
-      // add_action('pre_get_posts', array($this, 'filter_repeater_data_yearly'));
-      add_filter('acf/load_value/key=field_6477148a02f19', array($this, 'filter_repeater_data_yearly'), 10, 3);
+      
+      add_filter('acf/prepare_field/name=booth_numbers', array($this, 'restrict_repeater_rows'), 10);
+      
+      add_filter('acf/load_value/name=booth_numbers', array($this, 'filter_repeater_field_value'), 10, 3);
+      add_filter('acf/update_value/name=booth_numbers', array($this, 'update_repeater_field_value'), 10, 4);
+      
+      // add_action('template_redirect', array($this, 'handle_account_activation'));
+      
+      add_action( 'wp_ajax_add_representative', array($this, 'add_representative_callback') );
+      add_action( 'wp_ajax_notes', array($this, 'notes_callback') );
+      add_shortcode('my_booth_status', array($this, 'my_booth_status'));
+      add_shortcode('get_booth_product_status', array($this, 'get_booth_product_status'));
+      
+      add_action( 'gform_after_submission_20', array($this, 'reset_password_exhibitor'), 10, 2 );
+      add_action( 'wp_ajax_add_booth_count', array($this, 'add_booth_count_callback'));
+      
+      add_shortcode('activate_user_account', array($this, 'activate_user_account'));
+      add_action( 'wp_ajax_check_email_exist', array($this, 'check_email_exist_callback'));
+      add_shortcode('my_orders', array($this, 'shortcode_my_orders'));
     }
 
-    public function exhibitor_members_style()
+    public function load_exhibitor_admin_style()
     {
-      ?>
-      <style>
-        #exhibitor-members-list_wrapper {
-              width: 95%;
-              background-color: #fff;
-              padding: 15px;
-              border-radius: 10px;
-              margin-top: 20px;
-          }
-          div.dt-buttons {
-              float: left;
-              margin-right: 10px;
-          }
-          .year-filter {
-              /* margin-top: 10px; */
-          }
-          .dt-buttons {
-              display: flex;
-              gap: 20px;
-          }
-          #exhibitor-members-list_length select {
-              width: 50%;
-          }
-          #exhibitor-members-list_wrapper .dt-btn-split-drop {
-              margin-left: -2px;
-              border: 1px solid rgba(0, 0, 0, 0.3);
-          }
-          #exhibitor-members-list_wrapper .dt-btn-split-drop:hover {
-              border: 1px solid #666;
-          }
-          #exhibitor-members-list_wrapper .dt-button.buttons-csv.buttons-html5 {
-              border-radius: 0;
-          }
-          #exhibitor-members-list_length {
-              width: 10%;
-          }
-          #exhibitor-container {
-            display: flex;gap: 25px;
-          }
-          #gravity-form-container {
-            width: 60%;
-          }
-          #exhibitor-container .gform_required_legend, #exhibitor-container .gfield--type-column_start, #exhibitor-container .gfield--type-column_end {
-              display: none;
-          }
-          #exhibitor-container .exhibitors-contact-res-heading em {
-              font-size: 22px;
-              line-height: 32px;
-              font-weight: 500;
-              font-style: normal;
-          }
-          #field_15_18 .registration-form-heading {
-              padding-bottom: 0;
-              background-color: transparent;
-          }
-
-          #exhibitor-container div#gform_wrapper_15, #exhibitor-profile div#gform_wrapper_16, #exhibitor-send-invitation div#gform_wrapper_17 {
-            background-color: #fff;
-            padding: 40px 30px 30px 30px;
-            border-radius: 10px;
-          }
-          #exhibitor-container .gform_title, #exhibitor-profile .gform_title, #exhibitor-send-invitation .gform_title {
-              font-size: 30px;
-              line-height: 1.5em;
-              margin-top: 0;
-              text-align: center;
-          }
-          #exhibitor-container .registration-form-heading, #exhibitor-profile .registration-form-heading {
-              font-size: 22px;
-              line-height: 32px;
-              margin: 0;
-              padding: 10px;
-              background: #bdbdbd70;
-          }
-          #exhibitor-container label, #exhibitor-profile label, #field_15_18 .registration-form-heading, #field_16_18 .registration-form-heading, #exhibitor-send-invitation label, #field_17_2 legend {
-              padding: 0 0 10px 0;
-              margin: 0;
-              font-size: 16px;
-              font-weight: 600;
-          }
-          p.exhibitors-contact-res-heading {
-              background-color: #bdbdbd70;
-              padding: 5px;
-          }
-          #exhibitor-profile p.gform_required_legend {
-              display: none;
-          }
-          #exhibitor-container .exhibitors-contact-res-heading em, #exhibitor-profile .exhibitors-contact-res-heading em {
-              font-size: 22px;
-              line-height: 32px;
-              font-weight: 400;
-              font-style: normal;
-          }
-          #field_15_18 .registration-form-heading, #field_16_18 .registration-form-heading {
-              background: transparent;
-              padding: 0;
-          }
-          #exhibitor-container .registration-required-heading, #exhibitor-profile .registration-required-heading {
-              position: absolute;
-              right: 0;
-              top: 65px;
-              font-size: 15px;
-              margin: 0;
-          }
-          #exhibitor-container #gform_submit_button_15, #exhibitor-profile #gform_submit_button_16, #exhibitor-send-invitation #gform_submit_button_17 {
-              background: #F7C338;
-              color: #080E41;
-              border: 0;
-              border-radius: 0;
-              font-size: 18px;
-              padding: 6px 50px;
-              margin-bottom: 0;
-          }
-          #exhibitor-container #gform_submit_button_15:hover, #exhibitor-profile #gform_submit_button_16:hover, #exhibitor-send-invitation #gform_submit_button_17:hover {
-              background: #080E41;
-              color: #F7C338;
-              transition: 0.25s all;
-          }
-          #exhibitor-container select, #exhibitor-profile select {
-              height: 48px;
-              padding: 8px;
-              box-shadow: 0 0 0 transparent;
-              border-radius: 4px;
-              border: 1px solid #8c8f94;
-              background-color: #fff;
-              color: #2c3338;
-          }
-          #exhibitor-container .gfield--type-choice label, #exhibitor-profile .gfield--type-choice label {
-              padding-bottom: 0;
-          }
-          #exhibitor-members-list_length select {
-              padding: 2.5px 5px;
-          }
-          .exhibitor-profile-wrap {
-              display: flex;
-              gap: 20px;
-          }
-          #exhibitor-assistant-container {
-              background-color: #fff;
-              padding: 40px 30px 30px 30px;
-              border-radius: 10px;
-          }
-          #exhibitor-assistant-container h1 {
-              font-size: 30px;
-              line-height: 1.5em;
-              font-weight: 600;
-              padding: 0;
-              margin: 0px auto 1em auto !important;
-              display: table !important;
-          }
-          #exhibitor-assistant-container .ui-accordion-header {
-              font-size: 16px;
-              line-height: 26px;
-              padding: 11px 20px;
-              margin: 10px 0 0 0;
-              background: #F7C338;
-              color: #252F86;
-              outline: none !important;
-              border: 0 !important;
-          }
-          #exhibitor-assistant-container .ui-accordion-header span {
-              padding-left: 2px;
-          }
-          #exhibitor-assistant-container .ui-accordion-content {
-              position: relative;
-              padding: 20px 20px !important;
-          }
-          #exhibitor-assistant-container .assistants-billing-address p, #exhibitor-assistant-container .assistants-billing-address label {
-              font-size: 16px;
-              line-height: 26px;
-              margin: 10px 0px;
-              color: #000000;
-              font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-          }
-          #exhibitor-assistant-container .assistants-billing-address p span {
-              font-weight: 600;
-          }
-          #exhibitor-assistant-container .assistants-billing-address input {
-              border-color: #000000;
-          }
-          #exhibitor-assistant-container .assistant-form label {
-              padding: 0 0 10px 0;
-              margin: 0;
-              font-size: 16px;
-              font-weight: 600;
-              color: #3c434a;
-              font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-          }
-          #exhibitor-assistant-container .assistant-form input[type="text"], #exhibitor-assistant-container .assistant-form input[type="email"], #exhibitor-assistant-container .assistant-form select {
-              font-size: 15px;
-              padding: 8px;
-              width: 100%;
-              margin-top: 9px;
-              outline: none !important;
-              box-shadow: none !important;
-          }
-          #exhibitor-assistant-container .assistant-form input[type="text"]:focus, #exhibitor-assistant-container .assistant-form input[type="email"]:focus, #exhibitor-assistant-container .assistant-form select:focus {
-              border-color: #2c3338;
-          }
-          .assistants-billing-address-update {
-              margin-top: 13px;
-          }
-          .assistants-billing-form-btn {
-              background: #F7C338;
-              color: #080E41;
-              border: 0;
-              border-radius: 0;
-              font-size: 18px !important;
-              padding: 16px 30px;
-              margin-bottom: 0;
-              cursor: pointer;
-          }
-          .assistants-billing-form-btn:hover {
-              background: #080E41;
-              color: #F7C338;
-              transition: 0.25s all;
-          }
-          #exhibitor-assistant-container .assistant-form select {
-              color: #2c3338;
-          }
-          #assistant-spinner {
-              position: absolute;
-              width: 96.5%;
-              height: 100%;
-              background: #898989a6;
-          }
-          #assistant-spinner:before {
-              content: "";
-              position: absolute;
-              width: 50px;
-              height: 50px;
-              border-radius: 50%;
-              border: 2px solid #333;
-              border-top-color: transparent;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-          }
-          #assistant-spinner:before {
-              animation: spin 1.5s linear infinite;
-              top: 44.8%;
-              left: 45.5%;
-          }
-
-          @keyframes spin {
-            0% {
-              transform: rotate(0);
-            }
-            100% {
-              transform: rotate(360deg);
-            }
-          }
-          .assign-booth-products {
-              background-color: #fff;
-              padding: 40px 30px 30px 30px;
-              border-radius: 10px;
-              height: max-content;
-          }
-          .assign-booth-products h1 {
-              font-size: 22px;
-              line-height: 1.5em;
-              font-weight: 600;
-              padding: 0;
-              margin: 0px auto 1em auto !important;
-          }
-          #assign-booth-product-exhibitor #booth-products {
-              font-size: 16px !important;
-              border: 1px solid;
-              padding: 10px 5px;
-              color: #000000;
-              box-shadow: none;
-          }
-          #send-invoice-assign-booth {
-              background: #F7C338;
-              color: #080E41;
-              border: 0;
-              border-radius: 0;
-              font-size: 18px !important;
-              padding: 6px 20px;
-              cursor: pointer;
-              margin-top: 20px;
-          }
-          #send-invoice-assign-booth:hover {
-              background: #080E41;
-              color: #F7C338;
-              transition: 0.25s all;
-          }
-          .exhibitor-profile-wrap {
-              flex-wrap: wrap;
-              justify-content: center;
-          }
-          .exhibitor-profile-wrap .assign-booth-products, .exhibitor-profile-wrap .assign-booth-number-current-year, .exhibitor-profile-wrap .booth-number-container {
-              width: 29% !important;
-          }
-          #exhibitor-profile, #exhibitor-assistant-container {
-              width: 45% !important;
-          }
-          .assign-booth-products {
-              background-color: #fff;
-              padding: 40px 30px 30px 30px;
-              border-radius: 10px;
-              height: max-content;
-              width: 33%;
-              max-width: 100%;
-          }
-          .assign-booth-products .select2-container--default .select2-selection--multiple {
-              padding-bottom: 0px !important;
-              width: 100% !important;
-          }
-          .assign-booth-number-current-year {
-              width: 33%;
-              background: #FFFFFF;
-              padding: 40px 30px 30px 30px;
-              border-radius: 10px;
-              max-width: 100%;
-          }
-          .assign-booth-number-current-year input.button , button#add-new-assistant {
-              background: #F7C338 !important;
-              color: #000000 !important;
-              font-weight: 400;
-              border: none !important;
-              border-radius: 0 !important;
-              padding: 4px 13px !important;
-              font-size: 13px !important;
-          }
-          .booth-number-container {
-              background: #fff;
-              width: 33%;
-              padding: 40px 30px 30px 30px;
-              border-radius: 10px;
-          }
-          .assign-booth-number-current-year h1, .booth-number-container h1 {
-              color: #1D2327;
-              font-size: 22px;
-              font-weight: 600;
-              line-height: 1.5em;
-          }
-          .assign-booth-number-current-year label, .assign-booth-number-current-year label, .assign-booth-products p {
-              font-size: 16px;
-              padding: 0px 0px 10px 0px !important;
-              font-weight: 600;
-              display: block;
-          }
-          .booth-number-container h2.booth-years {
-              font-size: 16px;
-              font-weight: 600;
-          }
-          div#exhibitor-profile {
-              width: 45% !important;
-          }
-          div#exhibitor-assistant-container {
-              width: 50% !important;
-          }
-          button#hide-new-assistant:hover {
-          background: #080E41  !important;
-          color:#F7C338 !important;
-          }
-          .assign-booth-number-current-year input.button:hover , button#add-new-assistant:hover{
-          background:#080E41;
-          color:#F7C338 !important;
-          }
-          #exhibitor-assistant-container button.add_repeater_item {
-              background: #F7C338;
-              color: #080E41;
-              font-size: 13px;
-              font-weight: 400 !important;
-              padding: 4px 13px;
-          }
-          #exhibitor-assistant-container button.add_repeater_item:hover
-          { background:#080E41;
-          color:#F7C338 !important;}
-          #exhibitor-assistant-container input#gform_submit_button_14 {
-              font-size: 18px;
-              padding: 6px 20px;
-              background: #F7C338;
-              border: 0;
-              border-radius: 0;
-              color: #080E41 !important;
-          }
-          #exhibitor-assistant-container input#gform_submit_button_14:hover
-          { background:#080E41;
-          color:#F7C338 !important;}
-          button#hide-new-assistant {
-              background: #F7C338;
-              padding: 5px 13px;
-              border: 0;
-              font-size: 13px !important;
-              font-weight: 400;
-              margin-left: 3px;
-          }
-          button#hide-new-assistant {
-              background: #F7C338 !important;
-              padding: 4px 13px !important;
-              border: 0 !important;
-              font-size: 13px !important;
-              font-weight: 400 !important;
-              margin-left: 3px !important;
-          }
-          .assign-booth-number-current-year input.button:hover , button#add-new-assistant:hover{
-          background:#080E41 !important;
-          color:#F7C338 !important;
-          }
-          .assign-booth-number-current-year input[type=checkbox]:focus, input[type=color]:focus, input[type=date]:focus, input[type=datetime-local]:focus, input[type=datetime]:focus, input[type=email]:focus, input[type=month]:focus, input[type=number]:focus, input[type=password]:focus, input[type=radio]:focus, input[type=search]:focus, input[type=tel]:focus, input[type=text]:focus, input[type=time]:focus, input[type=url]:focus, input[type=week]:focus, select:focus, textarea:focus {
-          box-shadow: none !important;
-          outline: 0 !important;
-          }
-          .assign-booth-number-current-year input {
-              font-size: 15px;
-              padding: 8px;
-          width:100% !important
-          }
-          .booth-number-container li {
-              font-size: 15px !important;
-              font-weight: 500;
-          }
-          input.select2-search__field {
-              font-size: 15px !important;
-              color: #2C3338 !important;
-          }
-          .assign-booth-number-current-year input:focus {
-              border-color: #2C3338;
-          }
-          #exhibitor-assistant-container .gform_wrapper.gravity-theme .gfield_repeater_wrapper input {
-              border: 1px solid #8C8F94;
-              border-radius: 4px;
-              width: 100%;
-          }
-          label.gfield_label.gform-field-label {
-          color: #1D2327 !important;
-              font-size: 16px !important;
-              font-weight: 600 !important;
-          }
-          span.select2.select2-container.select2-container--default {
-              width: 100% !important;
-          }
-
-          #exhibitor-assistant-container .gform_wrapper.gravity-theme .gfield_repeater_wrapper input:focus {
-              border-color: #2C3338;
-          }
-          li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active {
-              background: #F0F0F1;
-              border-bottom: 1px solid #F0F0F1 !important;
-          }
-          li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab.ui-tabs-active.ui-state-active a {
-              color: #000;
-          }
-          li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab {
-              font-size: 14px;
-              font-weight: 600;
-              padding: 5px 10px;
-              line-height:1.71428571;
-              margin-left:0.5em;
-              border-bottom: 0 !important;
-              border-radius: 0 !important;
-              border: solid 1px #C3C4C7;
-              background:#dcdcde;
-          }
-          li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab a {color:#50575e}
-          li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab a:hover {color:#3c434a}
-          li.ui-tabs-tab.ui-corner-top.ui-state-default.ui-tab a:focus {
-              box-shadow: none !important;
-              outline: 0 !important;
-          }
-          .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
-              padding: 0 !IMPORTANT;
-          }
-          ul.ui-tabs-nav.ui-corner-all.ui-helper-reset.ui-helper-clearfix.ui-widget-header {
-              padding-top: 25px;
-              border-bottom: 1px solid #C3C4C7;
-              border-radius: 0 !important;
-              background: transparent;
-              border-width: 0 0 1px 0 !important;
-          }
-          .exhibitor-profile-wrap {
-              display: block !important;
-          }
-          .exhibitor-profile-wrap .assign-booth-products, .exhibitor-profile-wrap .assign-booth-number-current-year, .exhibitor-profile-wrap .booth-number-container {
-              width: 45% !important;
-              display: inline-block;
-              vertical-align: top;
-          }
-          .assign-booth-products p {
-              padding: 0px !important;
-              margin: 11px 0px !important;
-          }
-          input[type="number"] {}
-          .assign-booth-products {
-              border: saddlebrown;
-          }
-          input[type="number"] {}
-          #assign-booth-product-exhibitor input[type="number"] {
-              padding: 8px;
-              width: 100px;
-              margin-top: 10px;
-              font-size: 15px;
-          }
-          input[type="hidden"] {
-              font-size: 16px !important;
-          }
-      </style>
-      <?php
+      wp_enqueue_style( 'exhibitor_admin_css', get_theme_file_uri('/inc/assets/css/exhibitor-admin.css'), false, '1.0.0' );
+      // Enqueue DataTables scripts and styles
+      $current_screen = get_current_screen();
+      if($current_screen->id == 'toplevel_page_exhibitor-management')
+      {
+        wp_enqueue_script('jquery');
+        wp_enqueue_style('datatables-management', '//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css', array(), '1.13.4');
+        wp_enqueue_style('datatables-management-buttons', '//cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css', array(), '2.3.6');
+        wp_enqueue_style('datatables-responsive', '//cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css', array(), '2.4.1');
+        
+        wp_enqueue_script('datatables-management', '//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js', array('jquery'), '1.13.4', true);
+        wp_enqueue_script('datatables-responsive', '//cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js', array(), '2.4.1', true);
+        
+        wp_enqueue_script('datatables-management-buttons', '//cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js', array('jquery'), '2.3.6', true);
+        wp_enqueue_script('datatables-management-pdfmake', '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js', array('jquery'), '0.1.53', true);
+        wp_enqueue_script('datatables-management-vfs_fonts', '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js', array('jquery'), '0.1.53', true);
+        wp_enqueue_script('datatables-management-jszip', '//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js', array('jquery'), '3.1.3', true);
+        wp_enqueue_script('datatables-management-buttons-html5', '//cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js', array('jquery'), '2.3.6', true);
+        
+      }
+      wp_enqueue_script('exhibitor-management-datatable', get_theme_file_uri('/inc/assets/js/exhibitor-management-datatable.js'), array('jquery'), time(), true);
+      wp_localize_script('exhibitor-management-datatable', 'exhibitor_object', array(
+        'ajax_url'        => admin_url('admin-ajax.php'),
+        'action'          => 'get_exhibitor_members',
+        'booth_admin'     => admin_url( 'admin.php?page=edit-exhibitor-profile' ),
+        'current_screen'  => $current_screen->id
+      ));
+      if( 
+        $current_screen->id == 'asgmt-exhibits_page_edit-exhibitor-profile' || 
+        $current_screen->id == 'toplevel_page_exhibitor-management' ||
+        $current_screen->id == 'asgmt-exhibits_page_add-new-exhibitor'
+      )
+      {
+        wp_enqueue_style('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css', array(), '11.7.10');
+        wp_enqueue_script('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js', array(), '11.7.10');
+      }
+      
     }
     
-    public function exhibitor_management_scripts()
-    {
-      ?>
-      <script>
-        jQuery(document).ready(function($){
-          let boothProducts = document.getElementById('booth-products');
-          if(typeof boothProducts !== "undefined")
-          {
-            $('#booth-products').select2({
-              placeholder: 'Select an booth', // Placeholder text
-              allowClear: true
-            });
-          }
-          //calculate price
-          $('#calculatePrice').on('change', function() {
-            var quantity = parseInt($(this).val());
-            var price = quantity * parseInt($(this).data('price'));
-            $('#totalValue').text(price);
-          });
-          $('#send-invoice-assign-booth').on('click', function(event){
-            event.preventDefault();
-            var productsValues = jQuery('#calculatePrice').val();
-            
-            if (productsValues > 0) {
-              $.ajax({
-                  url: ajax_object.ajax_url,
-                  method: 'POST',
-                  data: {
-                    action: 'assign_booth_products',
-                    products_ids: jQuery('#calculatePrice').data('product_id'),
-                    qty: productsValues,
-                    customer_id: $('input[name="customer_id"]').val()
-                  },
-                  beforeSend: function(){
-                      $('body').find(`.assign-booth-products`).prepend('<div id="assistant-spinner"></div>');
-                  },
-                  success: function(response) {
-                      if(response.success){
-                          $('body').find(`.assign-booth-products`).find('#assistant-spinner').remove();
-                          alert('Sent Invoice successfully!');
-                      }
-                  },
-                  error: function(xhr, status, error) {
-                      $('body').find(`.assign-booth-products`).find('#assistant-spinner').remove();
-                  }
-              });
-            }else{
-              alert('Please select one product at least');
-            }            
-          });
-          //booth_number
-          // $('#add_booth_number').on('click', function(event){
-          $("#booth_number_current_year").on('submit', function(event){
-            event.preventDefault();
-            var boothNumberValues = $('input[id*="booth_number_"]').map(function() {
-              return { [$(this).attr('name')]: $(this).val() };
-            }).get();
-            console.log(boothNumberValues);
-            if (boothNumberValues.length > 0) {
-              $.ajax({
-                  url: ajax_object.ajax_url,
-                  method: 'POST',
-                  data: {
-                    action: 'booth_number_current_year',
-                    booth_numbers: boothNumberValues,
-                    customer_id: $('input[name="customer_id"]').val()
-                  },
-                  beforeSend: function(){
-                      $('body').find(`.assign-booth-number-current-year`).prepend('<div id="assistant-spinner"></div>');
-                  },
-                  success: function(response) {
-                      if(response.success){
-                          $('#booth_number_current_year')[0].reset();
-                          $('body').find(`.assign-booth-number-current-year`).find('#assistant-spinner').remove();
-                          alert('Added Booth counts successfully!');
-                          $('body').find('.booth-number-log').html(response.data.data);
-                      }
-                  },
-                  error: function(xhr, status, error) {
-                      $('body').find(`.assign-booth-number-current-year`).find('#assistant-spinner').remove();
-                  }
-              });
-            }else{
-              alert('Please add one booth count at least');
-            }            
-          });
-          //Add new assistant 
-          $('#add-new-assistant').on('click', function(){
-              $('.add-assistant-form').slideDown();
-              $('#hide-new-assistant').show();
-          });
-          $('#hide-new-assistant').on('click', function(){
-              $('.add-assistant-form').slideUp();
-              $(this).hide();
-          });
-          
-          //Tabs
-          $( "#tabs" ).tabs();
-          $( "#booth-admin-tabs" ).tabs();//
-        });
-      </script>
-      <?php
-    }
     public function gform_user_registration_update_user_id( $user_id, $entry, $form, $feed )
     {
       $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $user_id;
@@ -692,25 +139,6 @@ class ExhibitorManagement {
     // Callback function to display the Exhibitor Management page content
     public function exhibitor_management_page_content() {
       // ob_start();
-      // Enqueue DataTables scripts and styles
-      wp_enqueue_script('jquery');
-      wp_enqueue_style('datatables-management', '//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css', array(), '1.13.4');
-      wp_enqueue_style('datatables-management-buttons', '//cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css', array(), '2.3.6');
-      wp_enqueue_style('datatables-responsive', '//cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css', array(), '2.4.1');
-      
-      wp_enqueue_script('datatables-management', '//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js', array('jquery'), '1.13.4', true);
-      wp_enqueue_script('datatables-responsive', '//cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js', array(), '2.4.1', true);
-      
-      wp_localize_script('datatables-management', 'ajax_object', array(
-        'ajax_url' => admin_url('admin-ajax.php'),
-        'action'   => 'get_exhibitor_members',
-      ));
-      wp_enqueue_script('datatables-management-buttons', '//cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js', array('jquery'), '2.3.6', true);
-      wp_enqueue_script('datatables-management-pdfmake', '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js', array('jquery'), '0.1.53', true);
-      wp_enqueue_script('datatables-management-vfs_fonts', '//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js', array('jquery'), '0.1.53', true);
-      wp_enqueue_script('datatables-management-jszip', '//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js', array('jquery'), '3.1.3', true);
-      wp_enqueue_script('datatables-management-buttons-html5', '//cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js', array('jquery'), '2.3.6', true);
-
       // Get all years of user registration
       $user_years = array();
       $exhibitor_members = get_users(array('role' => 'exhibitsmember'));
@@ -723,224 +151,75 @@ class ExhibitorManagement {
       $unique_years = array_unique($user_years);
       rsort($unique_years);
       // Exhibitor Members List
-      echo '<h2>Exhibitor List</h2>  <a href="'.admin_url( 'admin.php?page=add-new-exhibitor' ).'" class="btn button">Add New Exhibitor</a>';
-      // Year filter dropdown
-      echo '<div class="year-filter">';
-      echo '<label for="year">Select Year : </label>';
-      echo '<select id="year-filter" name="year">';
-      echo '<option value="">All</option>';
-
-      foreach ($unique_years as $year) {
-          echo '<option value="' . $year . '">' . $year . '</option>';
-      }
-
-      echo '</select>';
-      echo '</div>';
-      
-      echo '<table id="exhibitor-members-list" style="width:100%" class="display responsive nowrap">';
-      echo '<thead>
-              <tr>
-                <th>No.</th>
-                <th>Status</th>
-                <th>Company name</th>
-                <th>Plan to exhibit</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Booth counts</th>
-                <th>Booth number(s)</th>
-                <th>Exhibitor rep. first name</th>
-                <th>Exhibitor rep. last name</th>
-                <th>Participating Year</th>
-                <th>Exhibitor id</th>
-                <th>Date of registration</th>
-              </tr>
-            </thead>';
-      echo '<tbody>';
-      echo '</tbody>';
-      echo '</table>';
       ?>
-      <script>
-        // Initialize DataTables
-        jQuery(document).ready(function($) {
-          $(document).on('change', '.status-select', function() {
-            var selectedValue = $(this);
-            console.log(selectedValue.data('row'));
-            jQuery.ajax({
-              url: ajaxurl,
-              type: 'POST',
-              dataType: 'json',
-              data: {
-                  action: 'update_user_status',
-                  user_id: selectedValue.data('row'),
-                  new_status: $(this).val()
-              },
-              success: function(response) {
-                  // Handle successful response
-                  console.log(response.data); // Display success message or perform any other actions
-              },
-              error: function(xhr, status, error) {
-                  // Handle error response
-                  console.log(xhr.responseText); // Display error message or perform any other actions
-              }
-            });
-          });
-          let exhibitor_profile = '<?php echo admin_url( 'admin.php?page=edit-exhibitor-profile' );?>';
-          let exhibitorMembersList = document.getElementById('exhibitor-members-list');
-          if(typeof exhibitorMembersList !== "undefined")
-          {
-            var t = $("#exhibitor-members-list").DataTable({
-                  "ajax": {
-                    "url": ajax_object.ajax_url,
-                    "type": "POST",
-                    "data": {
-                        "action": "get_exhibitor_members"
-                    }
-                  },
-                  "columns": [
-                      { "data": "no" },
-                      { 
-                        "data": "status",
-                        render: function(data, type, row, meta) {
-                          // Array with key-value pairs
-                          var keyValueArray = [
-                            { key: '-', value: 'Select'},
-                            { key: 'confirm_contact', value: 'Confirm Contact'},
-                            { key: 'account_pending', value: 'Account Pending'},
-                            { key: 'account_activated', value: 'Account Activated'},
-                            { key: 'booth_pending', value: 'Booth Pending'},
-                            { key: 'pending_payment', value: 'Pending Payment'},
-                            { key: 'payment_complete', value: 'Payment Complete'},
-                            { key: 'complete', value: 'Complete'}
-                          ];
-  
-                          // Selected key
-                          var selectedKey = data; // Replace with the key you want to pre-select
-                          var dropdownHtml = `<select data-row="${row.id}" class="status-select">`;
-  
-                          keyValueArray.forEach(function(item, index) {
-                            var selected = (item.key === selectedKey) ? 'selected' : '';
-                            var disabled = (index > 0) ? 'disabled' : '';
-                            dropdownHtml += '<option value="' + item.key + '" ' + selected + '>' + item.value + '</option>';
-                          });
-  
-                          dropdownHtml += '</select>';
-  
-                          return dropdownHtml;
-                        }
-                      },
-                      { 
-                        "data": "company_name",
-                        render: function(data, type, row, meta) {
-                          return `<a href="${exhibitor_profile}&exhibitor_id=${row.id}">${data}</a>`;
-                        }
-                      },
-                      { 
-                        "data": "plan_to_exhibit",
-                        render: function(data, type, row, meta) {
-                          // Array with key-value pairs
-                          var keyValueArray = [
-                              { key: '-', value: 'Select'},
-                              { key: 'yes', value: 'Yes'},
-                              { key: 'no', value: 'No'},
-                              { key: 'no_reply', value: 'No Reply'},
-                              { key: 'maybe', value: 'maybe'},
-                          ];
-  
-                          // Selected key
-                          var selectedKey = data; // Replace with the key you want to pre-select
-                          var plan_to_exhibit = `<select data-row="${row.id}" class="status-select">`;
-  
-                          keyValueArray.forEach(function(item, index) {
-                            var selected = (item.key === selectedKey) ? 'selected' : '';
-                            var disabled = (index > 0) ? 'disabled' : '';
-                            plan_to_exhibit += '<option value="' + item.key + '" ' + selected + '>' + item.value + '</option>';
-                          });
-  
-                          plan_to_exhibit += '</select>';
-  
-                          return plan_to_exhibit;
-                        }
-                      },
-                      { "data": "first_name" },
-                      { "data": "last_name" },
-                      { "data": "email" },
-                      { "data": "booth_count" },
-                      { "data": "exhibit_booth_number" },
-                      { "data": "exhibit_rep_first_name" },
-                      { "data": "exhibit_rep_last_name" },
-                      { "data": "particepating_year" },
-                      { "data": "id" },
-                      { "data": "date_of_registration" }
-
-                      // Add more columns if needed
-                  ],
-                  pageLength: 25,
-                  aLengthMenu: [
-                      [25, 50, 100, 200, -1],
-                      [25, 50, 100, 200, "All"]
-                  ],
-                  dom: 'Blfrtip',
-                  buttons: [
-                    // {extend: 'pdf'},
-                    {
-                      extend: 'csv',
-                      split: [ 'csv', 'pdf', 'excel'],
-                      text: 'Export to CSV',
-                      filename: 'exhibitor-members-', // Rename the downloaded CSV file
-                      exportOptions: {
-                          columns: ':not(:last-child)',
-                          modifier: {
-                              search: 'applied'
-                          }
-                      }
-                    },
-                    // {extend: 'excel'} 
-                  ],
-                  columnDefs: [
-                    {
-                        searchable: false,
-                        orderable: false,
-                        targets: 0,
-                    },
-                  ],
-                  order: [[13, 'desc']],
-                  "processing": true,
-                  responsive: true
-              });
-              $(".dt-buttons").prepend($(".year-filter"));
-              t.on('order.dt search.dt', function () {
-                  let i = 1;
-                  t.cells(null, 0, { search: 'applied', order: 'applied' }).every(function (cell) {
-                      this.data(i++);
-                  });
-              }).draw();
-              var categoryIndex = 0;
-              $("#exhibitor-members-list th").each(function (i) {
-                if ($(this).html() == "Year") {
-                  categoryIndex = i; return false;
-                }
-              });
-              $.fn.dataTable.ext.search.push(
-                function (settings, data, dataIndex) {
-                  var selectedItem = $('#year-filter').val();
-                  var category = data[categoryIndex];
-                  if (selectedItem === "" || category.includes(selectedItem)) {
-                    return true;
-                  }
-                  return false;
-                }
-              );
-  
-              $("#year-filter").change(function (e) {
-                t.draw();
-              });
-  
-              t.draw();
-          }
-        });
-      </script>
+      <h2>Exhibitor List</h2>  <a href="<?php echo admin_url( 'admin.php?page=add-new-exhibitor' );?>" class="btn button">Add New Exhibitor</a>
+      <div class='booth-totalizer'>
+        <?php print_r($this->get_booth_totalizer()); ?>
+      </div>
+      <!-- // Year filter dropdown -->
+      <div class="year-filter">
+        <label for="year">Select Year : </label>
+        <select id="year-filter" name="year">
+        <option value="">All</option>
+          <?php
+            foreach ($unique_years as $year) {
+                echo '<option value="' . $year . '">' . $year . '</option>';
+            }
+          ?>
+        </select>
+      </div>
+      <div class="filter-by-status">
+        <label for="filter-by-status">Filter by status</label>
+        <select id="filter-by-status" name="filter-by-status">
+          <option value="">Select</option>
+          <option value="confirm_contact">Confirm Contact</option>
+          <option value="account_pending">Account Pending</option>
+          <option value="account_activated">Account Activated</option>
+          <option value="booth_pending">Booth Pending</option>
+          <option value="pending_payment">Pending Payment</option>
+          <option value="payment_complete">Payment Complete</option>
+          <option value="complete">Complete</option>        
+        </select>
+      </div>
+      <div class="filter_plan_to_exhibit">
+        <label for="filter_plan_to_exhibit">Filter by plan to exhibit</label>
+        <select id="filter_plan_to_exhibit" name="filter_plan_to_exhibit">
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+          <option value="no_reply">No Reply</option>
+          <option value="maybe">Maybe</option>       
+        </select>
+      </div>
+      <div class="reset-filter">
+        <button id="reset_filter">Reset Filter</button>
+      </div>
+      <table id="exhibitor-members-list" style="width:100%" class="display responsive nowrap">
+        <thead>
+          <tr>
+            <th>No.</th>
+            <th>Status</th>
+            <th>Company name</th>
+            <th>Plan to exhibit</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Email</th>
+            <th>Booth counts</th>
+            <th>Booth number(s)</th>
+            <th>Exhibitor rep. first name</th>
+            <th>Exhibitor rep. last name</th>
+            <th>Participating Year</th>
+            <th>Exhibitor id</th>
+            <th>Date of registration</th>
+            <th>Active status</th>
+            <th>Active plan to exhibit</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
       <?php
+
     }
   
     public function display_add_exhibitor_page()
@@ -953,7 +232,7 @@ class ExhibitorManagement {
         <div id="exhibitor-container">
           <div id="gravity-form-container">
             <?php
-              gravity_form(15, true, false, false, null, false, '', true ); // Replace 1 with the ID of your Gravity Form
+              gravity_form(18, true, false, false, null, true, true, true ); // Replace 1 with the ID of your Gravity Form
             ?>
           </div>
         </div>
@@ -985,20 +264,35 @@ class ExhibitorManagement {
               if(isset($_REQUEST['exhibitor_id']))
               {
                 $exhibitor_id = $_REQUEST['exhibitor_id'];
+                $_exhibitor_status = get_user_meta($exhibitor_id, '_exhibitor_status', true);
                 if(get_users( [ 'include' => $exhibitor_id, 'fields' => 'ID' ] ))
                 {
-                    wp_enqueue_style('select2', '//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', array(), '4.1.0');
-                    wp_enqueue_script('select2', '//cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', array('jquery'), '4.1.0', true);
                   ?>
                   <div id="booth-admin-tabs">
                     <ul>
                       <li><a href="#booth-admin-tabs-profile">Profile</a></li>
                       <li><a href="#booth-admin-tabs-assign-booth">Assign Booth(s)</a></li>
                       <li><a href="#booth-admin-tabs-assistant">Assistant(s)</a></li>
+                      <li><a href="#booth-admin-tabs-representative">Representative</a></li>
+                      <li><a href="#booth-admin-tabs-notes">Note(s)</a></li>
+                      <li><a href="#booth-admin-tabs-payment">Payment(s)</a></li>
                     </ul>
                     <div id="booth-admin-tabs-profile">
                       <div id="exhibitor-profile" style="width: 60%;">
-                        <?php gravity_form(16, true, false, false, null, false, '', true ); ?>
+                        <div class="exhibitor-status">
+                          <label for="" style="display:block;">Status</label>
+                          <select data-row="<?php echo $exhibitor_id;?>" data-assign_booth_number="<?php echo $this->get_booth_numbers_by_user_id( $exhibitor_id );?>" class="status-select" style="width:50%">
+                              <option value="-" disabled>Select</option>
+                              <option <?php selected( $_exhibitor_status, 'confirm_contact' ); ?> value="confirm_contact" selected="">Confirm Contact</option>
+                              <option <?php selected( $_exhibitor_status, 'account_pending' ); ?> value="account_pending">Account Pending</option>
+                              <option <?php selected( $_exhibitor_status, 'account_activated' ); ?> value="account_activated">Account Activated</option>
+                              <option <?php selected( $_exhibitor_status, 'booth_pending' ); ?> value="booth_pending">Booth Pending</option>
+                              <option <?php selected( $_exhibitor_status, 'pending_payment' ); ?> value="pending_payment">Pending Payment</option>
+                              <option <?php selected( $_exhibitor_status, 'payment_complete' ); ?> value="payment_complete">Payment Complete</option>
+                              <option <?php selected( $_exhibitor_status, 'complete' ); ?> value="complete">Complete</option>
+                          </select>
+                        </div>
+                        <?php gravity_form(19, true, false, false, null, false, '', true ); ?>
                       </div>
                     </div>
                     <div id="booth-admin-tabs-assign-booth">
@@ -1020,13 +314,18 @@ class ExhibitorManagement {
                               
                                   // Do something with the product information
                                   echo "<h3>".$product_name."</h3>";
-                                  echo "Booth Count : <input type='number' value='1' id='calculatePrice' min='1' step='1' max='99' data-product_id='". $product_id ."' data-price='". $product_price ."' />";
-                                  echo '<p>Total Value: $<span id="totalValue">'. $product_price .'</span></p>';
+                                  $boothCount = is_numeric(get_user_meta($exhibitor_id, 'booth_count', true)) ? get_user_meta($exhibitor_id, 'booth_count', true) : 0;
+                                  $boothCountPrice = $boothCount === 0 ? 0 : $boothCount * $product_price;
+                                  echo "Booth Count : <input type='number' value='".$boothCount."' id='calculatePrice' min='1' step='1' max='99' data-product_id='". $product_id ."' data-price='". $product_price ."' />";
+                                  echo '<p>Total Value: $<span id="totalValue">'. $boothCountPrice .'</span></p>';
                               }
                               
                             ?>
                           <!-- </select> -->
-                          <input type="submit" class="button" value="Send Invoice" id="send-invoice-assign-booth" />
+                          <div class="action-btn">
+                            <input type="submit" class="button" value="Save Count" id="save-count-booth" />  
+                            <input type="submit" class="button" value="Send Invoice" id="send-invoice-assign-booth" />
+                          </div>
                         </form>
                       </div>
                       <div class="assign-booth-number-current-year">
@@ -1037,38 +336,49 @@ class ExhibitorManagement {
                             <li><a href="#tabs-2">Previous Year</a></li>
                           </ul>
                           <div id="tabs-1">
-                                <?php
-                                  // $PurchasedQty = $this->getTotalQuantityPurchased(18792);
-                                  // echo "<pre>";
-                                  // print_r($PurchasedQty);
-                                  acf_form_head();
-                                  $current_year = date('Y');
-                                  acf_form(array(
-                                    'post_id'             => 'user_' . $exhibitor_id,
-                                    'field_groups'        => array('group_63c15781ab918'),
-                                    'fields'              => array('field_6477148a02f19'),
-                                    'form'                => true,
-                                    'return'              => add_query_arg('updated', 'true', site_url('wp-admin/admin.php?page=edit-exhibitor-profile&exhibitor_id='.$exhibitor_id.'#booth-admin-tabs-assign-booth')),
-                                    'html_before_fields'  => '',
-                                    'html_after_fields'   => '',
-                                    'submit_value'        => 'Assigned Booth Number',
-                                    'html_updated_message' => sprintf('Booth number successfully assigned for year %d', $current_year),
-                                ));
-
-                                
-                                  // echo "</pre>";
-                                ?>                            
+                              <h4><?php echo $this->getTotalQuantityPurchased($exhibitor_id, 18792); ?> Booths Purchased</h4>
+                              <?php
+                                  if($this->getTotalQuantityPurchased($exhibitor_id, 18792) > 0 )
+                                  {
+                                    // echo $this->get_booth_numbers_by_user_id( (int)$exhibitor_id );
+                                    acf_form_head();
+                                    $current_year = date('Y');
+                                    acf_form(array(
+                                      'post_id'             => 'user_' . $exhibitor_id,
+                                      'field_groups'        => array('group_63c15781ab918'),
+                                      'fields'              => array('booth_numbers'),
+                                      'form'                => true,
+                                      'return'              => add_query_arg('updated', 'true', site_url('wp-admin/admin.php?page=edit-exhibitor-profile&exhibitor_id='.$exhibitor_id.'#booth-admin-tabs-assign-booth')),
+                                      'html_before_fields'  => '',
+                                      'html_after_fields'   => '',
+                                      'submit_value'        => 'Assigned Booth Number',
+                                      'html_updated_message' => sprintf('Booth number successfully assigned for year %d', $current_year),
+                                    ));
+                                  }else{
+                                    echo "<p>No Booth Assigned Yet</p>";
+                                  }
+                                  
+                            ?>                            
                           </div>
                           <div id="tabs-2">
                             <div class="booth-number-container">
                               <h1>Booth Numbers History</h1>
                               <div class="booth-number-log">
                                 <?php 
-                                  echo "<pre>";
-                                  $variable = get_field('booth_numbers', 'user_'.$exhibitor_id.'_2022');
-                                  print_r($variable);
-                                  echo "</pre>";
-                                
+                                  $current_year = date('Y');
+                                  $Booth_numbers_history = get_user_meta($exhibitor_id, '_repeater_assigned_booth_numbers_'.$current_year -1, true);
+                                  if(!empty($Booth_numbers_history) && is_array($Booth_numbers_history))
+                                  {
+                                    echo "<ul>";
+                                    $i = 1;
+                                    foreach ($Booth_numbers_history as $key => $value) {
+                                      printf('<li>Booth #%s : %s</li>', $i, $value['field_647714c602f1a']);
+                                      $i++;
+                                    }
+                                    echo "</ul>";
+                                  }else{
+                                    echo __('<p>No record found!</p>');
+                                  }
                                 ?>
                               </div>
                             </div>
@@ -1077,7 +387,7 @@ class ExhibitorManagement {
                       </div>
                     </div>
                     <div id="booth-admin-tabs-assistant">
-                      <div id="exhibitor-assistant-container" style="width:40%;">';
+                      <div id="exhibitor-assistant-container" style="width:40%;">
                         <h1>Booth Admin Assistant</h1>
                         <div class="add-assistant-wrap">
                           <button id="add-new-assistant">Add Assistant</button>
@@ -1088,6 +398,63 @@ class ExhibitorManagement {
                         </div>
                         <?php echo do_shortcode( '[exhibit_assistant_list exhibitor_id="'.$exhibitor_id.'"]' ); ?>
                       </div>
+                    </div>
+                    <div id="booth-admin-tabs-representative">
+                      <h1>Representative</h1>
+                      <form id="representative-form">
+                        <?php 
+                        $exhibitor_id = get_user_meta( $_REQUEST['exhibitor_id'], '_representative_data', true );
+                        $representative_first_name = isset($exhibitor_id['representative_first_name']) ? $exhibitor_id['representative_first_name'] : '';
+                        $representative_last_name = isset($exhibitor_id['representative_last_name']) ? $exhibitor_id['representative_last_name'] : '';
+                        $representative_email = isset($exhibitor_id['representative_email']) ? $exhibitor_id['representative_email'] : '';
+                        $representative_contact = isset($exhibitor_id['representative_contact']) ? $exhibitor_id['representative_contact'] : '';
+                        ?>
+                        <input type="hidden" name="security" value="<?php echo wp_create_nonce( 'exhibitor_assistant' ); ?>" />
+                        <input type="hidden" name="booth_admin" value="<?php echo $_REQUEST['exhibitor_id'];?>">
+                        <input type="hidden" name="action" value="add_representative" />
+                        <div class="form-group">
+                          <label for="representative-first-name">First Name</label>
+                          <input type="text" name="representative_first_name" value="<?php echo $representative_first_name; ?>" class="form-control" id="representative-first-name" placeholder="First Name" />
+                        </div>
+                        <div class="form-group">
+                          <label for="representative-last-name">Last Name</label>
+                          <input type="text" name="representative_last_name" value="<?php echo $representative_last_name; ?>" class="form-control" id="representative-last-name" placeholder="Last Name" />
+                        </div>
+                        <div class="form-group">
+                          <label for="representative-email">Email</label>
+                          <input type="text" name="representative_email" value="<?php echo $representative_email; ?>" class="form-control" id="representative-email" placeholder="Email" />
+                        </div>
+                        <div class="form-group">
+                          <label for="representative-contact">Contact</label>
+                          <input type="text" name="representative_contact" value="<?php echo $representative_contact; ?>" class="form-control" id="representative-contact" placeholder="Contact no." />
+                        </div>
+                        <button type="submit" id="representative-save" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                    <div id="booth-admin-tabs-notes">
+                      <h1>Notes</h1>
+                      <form id="notes-form">
+                        <?php 
+                        $notes = get_user_meta( $_REQUEST['exhibitor_id'], '_notes', true );
+                        ?>
+                        <input type="hidden" name="security" value="<?php echo wp_create_nonce( 'exhibitor_assistant' ); ?>" />
+                        <input type="hidden" name="booth_admin" value="<?php echo $_REQUEST['exhibitor_id'];?>">
+                        <input type="hidden" name="action" value="notes" />
+                        <div class="form-group">
+                          <textarea name="notes"class="form-control" id="notes" rows="15" cols="100"><?php echo $notes; ?></textarea>
+                        </div>
+                        <button type="submit" id="notes-save" class="btn btn-primary">Submit</button>
+                      </form>
+                    </div>
+                    <div id="booth-admin-tabs-payment">
+                      <h1>Payment History </h1>
+                      <pre>
+                        <?php
+                          //$_REQUEST['exhibitor_id']
+                          //echo do_shortcode('[my_orders]' );
+
+                        ?>
+                      </pre>
                     </div>
                   </div>
                   <?php
@@ -1104,62 +471,155 @@ class ExhibitorManagement {
       <?php
     }
     
+    public function shortcode_my_orders( $atts ) {
+
+      extract( shortcode_atts( array(
+   
+          'order_count' => -1
+   
+      ), $atts ) );
+   
+    
+   
+      ob_start();
+   
+      wc_get_template( 'myaccount/my-orders.php', array(   
+          'current_user' => get_user_by( 'id', $_REQUEST['exhibitor_id'] ),   
+          'order_count'   => $order_count   
+      ) );
+   
+      return ob_get_clean();
+    
+    }
     // Callback function to handle AJAX request for retrieving exhibitor members
     public function get_exhibitor_members() {
-      $year = isset($_POST['year']) ? sanitize_text_field($_POST['year']) : '';
-
       $args = array(
         'role__in'  => array('exhibitsmember','exhibitpending'),
         'orderby'   => 'ID',
-        'order'     => 'ASC'
+        'order'     => 'ASC',
+        // 'number'  => 1
       );
 
-      if (!empty($year)) {
-          $args['meta_query'] = array(
-              array(
-                  'key'     => 'exhibitor_registration_year',
-                  'value'   => $year,
-                  'compare' => '=',
-              ),
-          );
-      }
       $exhibitor_members = get_users($args);
       $data = array();
       foreach ($exhibitor_members as $exhibitor_member) {
-        $username = $exhibitor_member->first_name.' '.$exhibitor_member->last_name;
-        $company_name = get_user_meta($exhibitor_member->ID, 'user_employer', true) ? get_user_meta($exhibitor_member->ID, 'user_employer', true) : get_field('billing_company', $exhibitor_member->ID);
-        $exhibit_booth_number = get_user_meta($exhibitor_member->ID, 'exhibit_booth_number', true);
-        $get_status   = get_user_meta($exhibitor_member->ID, '_exhibitor_status', true );    
+        $company_name         = get_user_meta($exhibitor_member->ID, 'user_employer', true) ? get_user_meta($exhibitor_member->ID, 'user_employer', true) : get_field('billing_company', $exhibitor_member->ID);
+        $get_status           = get_user_meta($exhibitor_member->ID, '_exhibitor_status', true );    
+        $representative_data  = get_user_meta( $exhibitor_member->ID, '_representative_data', true );
+        $_exhibitor_status    = get_user_meta( $exhibitor_member->ID, '_exhibitor_status', true ) ? get_user_meta($exhibitor_member->ID, '_exhibitor_status', true) : '';
+        $_plan_to_exhibit     = get_user_meta($exhibitor_member->ID, '_plan_to_exhibit', true) ? get_user_meta($exhibitor_member->ID, '_plan_to_exhibit', true) : '';
+        $representative_fname = isset($representative_data['representative_first_name']) ? $representative_data['representative_first_name'] : '-';
+        $representative_lname = isset($representative_data['representative_last_name']) ? $representative_data['representative_last_name'] : '-';
+        $particepating_year   = get_user_meta($exhibitor_member->ID, 'particepating_year', true) ? get_user_meta($exhibitor_member->ID, 'particepating_year', true) : '';
+        $booth_count          = is_numeric( get_user_meta($exhibitor_member->ID, 'booth_count', true)) ? get_user_meta($exhibitor_member->ID, 'booth_count', true) : 0;
+
         $data[] = array(
             'no'                    => '',
-            'status'                => $get_status ? $get_status : 'confirm_contact',
+            'status'                => $get_status ? $get_status : '',
             'company_name'          => $company_name,
-            'plan_to_exhibit'       => get_user_meta($exhibitor_member->ID, '_plan_to_exhibit', true) ? get_user_meta($exhibitor_member->ID, '_plan_to_exhibit', true) : '',
+            'plan_to_exhibit'       => $_plan_to_exhibit,
             'first_name'            => $exhibitor_member->first_name,
             'last_name'             => $exhibitor_member->last_name,
             'email'                 => $exhibitor_member->user_email,
-            'booth_count'           => '',
-            'exhibit_booth_number'  => $exhibit_booth_number ? $exhibit_booth_number : 0,
-            'exhibit_rep_first_name'=> get_user_meta($exhibitor_member->ID, 'first_name__manager_information', true) ? get_user_meta($exhibitor_member->ID, 'first_name__manager_information', true) : '-',
-            'exhibit_rep_last_name' => get_user_meta($exhibitor_member->ID, 'last_name__manager_information', true) ? get_user_meta($exhibitor_member->ID, 'last_name__manager_information', true) : '-',
-            'particepating_year'    => get_user_meta($exhibitor_member->ID, 'particepating_year', true) ? get_user_meta($exhibitor_member->ID, 'particepating_year', true) : '',
+            'booth_count'           => $booth_count,
+            'exhibit_booth_number'  => $this->getTotalQuantityPurchased($exhibitor_member->ID, 18792) == 0 ? $this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID ) : 'Not Assigned',
+            'exhibit_rep_first_name'=> $representative_fname,
+            'exhibit_rep_last_name' => $representative_lname,
+            'particepating_year'    => $particepating_year,
             'id'                    => $exhibitor_member->ID,
             'date_of_registration'  => $exhibitor_member->user_registered,
+            'active_status'         => $_exhibitor_status,
+            'active_plan_to_exhibit'=> $_plan_to_exhibit
         );
       }
       wp_send_json( array( 'data' => $data ) );
     }
 
+    public function get_booth_numbers_by_user_id( $user_id )
+    {
+      $booth_numbers = get_user_meta($user_id, '_repeater_assigned_booth_numbers_'.date('Y'), true);
+      if(!empty($booth_numbers))
+      {
+        $imploded = array_map(function($subArray) {
+          return implode(', ', $subArray);
+        }, $booth_numbers);        
+        $exhibit_booth_number = implode(', ', $imploded);
+      }else{
+        $exhibit_booth_number = 0;
+      }
+      return $exhibit_booth_number;
+    }
+
     public function exhibitor_members_admin_confirmation( $confirmation, $form, $entry, $ajax )
     {
       if(is_admin()){
+        if( $form['id'] == '19' )
+        {
+          $confirmation = array( 'redirect' => admin_url( 'admin.php?page=edit-exhibitor-profile&exhibitor_id='.rgar( $entry, '31' ) ) );
+          return $confirmation;
+        }
         $confirmation = array( 'redirect' => admin_url( 'admin.php?page=exhibitor-management' ) );
         return $confirmation;
       }
     }
 
-    public function remove_form_entry( $entry ) {
-        GFAPI::delete_entry( $entry['id'] );
+    public function bypass_existing_user_registration( $form, $config, $pagenum )
+    {
+      // Make sure we only run this code on the specified form ID
+      if($form['id'] != 18) {
+        return $form;
+      }
+      // Loop through the current form fields
+      foreach($form['fields'] as &$field) {
+
+        // confirm that we are on the current field ID and that it has failed validation because the email already exists
+        if($field->id == 13 && $field->validation_message == 'This email address is already registered')
+        {
+          $field->failed_validation = false;
+          $existing_user = get_user_by( 'email', $_POST['input_13'] );
+          if(isset($_POST) && $existing_user)
+          {
+            $user_registration = array(
+              'user_employer'                     => isset($_POST['input_7']) ? $_POST['input_7'] : '',
+              'type_of_the_company'               => isset($_POST['input_30']) ? $_POST['input_30'] : '',
+              'date_approved_on_exhibitors_list'  => isset($_POST['input_31']) ? $_POST['input_31'] : '',
+              'billing_first_name'                => isset($_POST['input_10_3']) ? $_POST['input_10_3'] : '',
+              'billing_last_name'                 => isset($_POST['input_10_6']) ? $_POST['input_10_6'] : '',
+              'billing_email'                     => isset($_POST['input_13']) ? $_POST['input_13'] : '',
+              'billing_company'                   => isset($_POST['input_7']) ? $_POST['input_7'] : '',
+              'billing_address_1'                 => isset($_POST['input_4_1']) ? $_POST['input_4_1'] : '',
+              'billing_address_2'                 => isset($_POST['input_4_2']) ? $_POST['input_4_2'] : '',
+              'billing_city'                      => isset($_POST['input_4_3']) ? $_POST['input_4_3'] : '',
+              'billing_state'                     => isset($_POST['input_4_4']) ? $_POST['input_4_4'] : '',
+              'billing_postcode'                  => isset($_POST['input_4_5']) ? $_POST['input_4_5'] : '',
+              'billing_country'                   => isset($_POST['input_4_6']) ? $_POST['input_4_6'] : '',
+              'billing_phone'                     => isset($_POST['input_15']) ? $_POST['input_15'] : '',
+              'primary_booth_admin_contact'       => isset($_POST['input_15']) ? $_POST['input_15'] : '',
+              'first_name'                        => isset($_POST['input_10_3']) ? $_POST['input_10_3'] : '',
+              'last_name'                         => isset($_POST['input_10_6']) ? $_POST['input_10_6'] : '',
+              'email'                             => isset($_POST['input_13']) ? $_POST['input_13'] : '',
+              'tp_phone_number'                   => isset($_POST['input_15']) ? $_POST['input_15'] : '',
+              'alternate_booth_admin_first_name'  => isset($_POST['input_25_3']) ? $_POST['input_25_3'] : '',
+              'alternate_booth_admin_last_name'   => isset($_POST['input_25_6']) ? $_POST['input_25_6'] : '',
+              'alternate_booth_admin_email'       => isset($_POST['input_27']) ? $_POST['input_27'] : '',
+              'alternate_booth_admin_contact'     => isset($_POST['input_32']) ? $_POST['input_32'] : ''
+            );
+
+            foreach ($user_registration as $user_meta_key => $meta_value) {
+              if(!empty($meta_value))
+              {
+                update_user_meta( $existing_user->ID, $user_meta_key, $meta_value );
+              }
+            }
+            $existing_user->add_role( 'exhibitpending' );
+            //status
+            update_user_meta( $existing_user->ID, '_exhibitor_status', 'account_activated' );
+            // wp_update_user( array( 'ID' => $existing_user->ID, 'role' => 'exhibitpending' ) );
+          }
+        }
+      }
+
+      return $form;
     }
 
     public function exhibitor_members_payment_complete( $order_id )
@@ -1167,28 +627,22 @@ class ExhibitorManagement {
       $order = wc_get_order($order_id);
       $items = $order->get_items();
       $main_user_id = get_post_meta($order_id, '_customer_user', true);
+      $user = get_userdata( $main_user_id );
 
-      //Check Order Items Related To Booth Products
-      if($this->order_has_product_category($order_id, 'booth-products'))
-      {
-        update_user_meta($main_user_id, '_exhibitor_status', 'payment_complete');
-      }
       foreach ($items as $item) {
         if ($item->get_product_id() == 18792) {
-          $main_user = get_user_by('id', $main_user_id);
-          $main_user->add_role('exhibitsmember');  
-          $main_user->remove_role('exhibitpending');  
+          $user->add_role('exhibitsmember');  
+          $user->remove_role('exhibitpending');  
+          update_user_meta($main_user_id, '_exhibitor_status', 'payment_complete');
         }
       }
         //===============>
       $gravity_form_entry_id = get_post_meta($order_id, '_gravity_form_entry_id', true);
       if (!empty($gravity_form_entry_id)) {
           $entry = GFAPI::get_entry($gravity_form_entry_id);
-          if (!empty($entry) && $entry['form_id'] == 15 ) {
+          if (!empty($entry) && $entry['form_id'] == 18 ) {
               //2023 EXHIBITOR REGISTRATION
-              $main_user_id = get_post_meta($order_id, '_customer_user', true);
-              $main_user = get_user_by('id', $main_user_id);
-              $main_user->add_role('exhibitsmember');                
+              $user->add_role('exhibitsmember');          
               update_user_meta($main_user_id, 'special_role', array($entry['29.1'],$entry['29.2'],$entry['29.3']));
           }
       }
@@ -1209,57 +663,6 @@ class ExhibitorManagement {
       }
       
       return false; // Category not found in the order
-  }
-  
-    // Callback function to handle CSV export
-    public function export_exhibitors_csv() {
-      $selected_year = isset($_GET['year']) ? $_GET['year'] : '';
-      $exhibitor_members = get_users(array(
-          'role'       => 'exhibitsmember',
-          'date_query' => array(
-              array(
-                  'year' => $selected_year,
-              ),
-          ),
-      ));
-  
-      // Generate CSV content
-      $csv_data = '';
-      if (!empty($exhibitor_members)) {
-
-        $csv_data .= 'Username,Email,Company Name,Booth Number,Year' . "\n";
-  
-        // Add user data
-        foreach ($exhibitor_members as $exhibitor_member) {
-          $username = $exhibitor_member->first_name.' '.$exhibitor_member->last_name;
-          $email = $exhibitor_member->user_email;
-          $company_name = get_user_meta($exhibitor_member->ID, 'billing_company', true) ? get_user_meta($exhibitor_member->ID, 'billing_company', true) : get_field('user_employer', $exhibitor_member->ID);
-          $exhibit_booth_number = get_field('exhibit_booth_number', $exhibitor_member->ID);
-          $role = 'exhibitsmember';
-          $year = date('Y', strtotime($exhibitor_member->user_registered));
-            $csv_data .= '"' . 
-            $username . '","' . 
-            $email . '","' . 
-            $company_name .'","' . 
-            $exhibit_booth_number .'","' . 
-            $year . '"' . "\n";
-        }
-      }
-      // Set CSV headers
-      header('Content-Type: text/csv; charset=utf-8');
-      header('Content-Disposition: attachment; filename=exhibitors-'.$year.'.csv');
-      // Output CSV data
-      echo $csv_data;
-      exit;
-    }
-
-    public function get_exhibitor_status_by_id( $exhibitor_id )
-    {
-      $exhibitor = get_user_by( 'id', $exhibitor_id );
-      $status = array();
-      if($exhibitor){
-
-      }
     }
 
     public function has_user_purchased_product( $user_id, $product_id )
@@ -1295,14 +698,52 @@ class ExhibitorManagement {
     {
       if(isset($_POST['user_id']) && get_user_by( 'id', $_POST['user_id'] )){
         // Get the user ID and new status value from the AJAX request
+        $user_id    = $_POST['user_id'];
+        $new_status = $_POST['new_status'];
+        // Update the user meta field with the new status value
+        $update_status = update_user_meta($user_id, '_exhibitor_status', $new_status);
+        if(is_wp_error( $update_status ))
+        {
+          wp_send_json_error('Something error please try again!!!');
+        }else{
+          $all_status = array(
+            'confirm_contact'   => 'Contact Information Confirmed Successfully!',
+            'account_pending'   => 'Account Activation Link sent to Exhibitor Successfully!',
+            'account_activated' => 'Account Activated Successfully. Please Assign Booth to the Exhibitor!',
+            'booth_pending'     => 'Booth Payment Request sent Successfully, Please Change Status to Pending Payment!',
+            'pending_payment'   => 'Status changed pending payment!',
+            'payment_complete'  => 'Payment Done by Exhibitor!',
+            'complete'          => 'Successfully Completed!'
+          );
+          if($new_status == 'account_pending')
+          {
+            $this->send_activation_email($user_id);
+          }
+          if(get_user_meta($user_id, '_exhibitor_status', true) == 'payment_complete')
+          {
+            $user = get_userdata( $user_id );
+            $user->add_role( 'exhibitsmember' );
+          }
+          wp_send_json_success($all_status[$new_status]);
+        }
+      }
+    }
+
+    public function update_plane_to_exhibitor_status()
+    {
+      if(isset($_POST['user_id']) && get_user_by( 'id', $_POST['user_id'] )){
+        // Get the user ID and new status value from the AJAX request
         $user_id = $_POST['user_id'];
         $new_status = $_POST['new_status'];
 
         // Update the user meta field with the new status value
-        update_user_meta($user_id, '_exhibitor_status', $new_status);
-
-        // Return a response
-        wp_send_json_success('User status updated successfully');
+        $new_status = update_user_meta($user_id, '_plan_to_exhibit', $new_status);
+        if(is_wp_error( $new_status ))
+        {
+          wp_send_json_error('Something error please try again!!!');
+        }else{
+          wp_send_json_success('Status has been changed successfully!');
+        }
       }
     }
 
@@ -1311,6 +752,7 @@ class ExhibitorManagement {
         if(!empty($_POST['products_ids']))
         {
           try {
+            WC()->cart->empty_cart(); 
             $order = wc_create_order();
             $customer_id = $_POST['customer_id'];
             $customer = new WC_Customer( $customer_id );
@@ -1354,35 +796,32 @@ class ExhibitorManagement {
         }
     }
 
-    public function getTotalQuantityPurchased( $product_id, $current_year= 0 ) {
+    public function getTotalQuantityPurchased($user_id, $product_id, $current_year= 0 ) {
         $current_year = date('Y');
         $total_quantity = 0;
 
         // Get all completed orders for the current year
         $orders = wc_get_orders([
-            'limit'      => -1,
-            'status'     => 'completed',
-            'date_after' => $current_year . '-01-01',
+          'limit'      => -1,
+          'customer_id'=> $user_id,
+          'status'     => 'completed',
+          'date_query' => [
+              [
+                  'after'     => $current_year . '-01-01',
+                  'inclusive' => true,
+              ],
+          ],
         ]);
-
-        // Loop through the orders
         foreach ($orders as $order) {
-            // Check if the order contains the product
-            if ($order->has_product($product_id)) {
-                // Get the order items
-                $order_items = $order->get_items();
-
-                // Loop through the order items
-                foreach ($order_items as $item) {
-                    if ($item->get_product_id() === $product_id) {
-                        // Get the quantity and add to the total
-                        $quantity = $item->get_quantity();
-                        $total_quantity += $quantity;
-                    }
+            $order_items = $order->get_items();
+            foreach ($order_items as $item) {
+                if ($item->get_product_id() === $product_id) {
+                    $quantity = $item->get_quantity();
+                    $total_quantity += $quantity;
+                    break;
                 }
             }
         }
-
         return $total_quantity;
     }
     public function custom_send_order_invoice($order, $sent_to_admin, $plain_text, $email) {
@@ -1392,126 +831,300 @@ class ExhibitorManagement {
       // }
     }
 
-    public function booth_number_current_year()
+    public function restrict_repeater_rows( $field  )
     {
-        // Validate and sanitize inputs
-        $customer_id = isset($_POST['customer_id']) ? absint($_POST['customer_id']) : 0;
-        $booth_numbers = isset($_POST['booth_numbers']) ? $_POST['booth_numbers'] : '';
-        // update_user_meta($customer_id, '_booth_numbers', '');
-        
-        // Check if required inputs are not empty
-        if (!empty($booth_numbers) && $customer_id) {
-            // Retrieve existing booth numbers
-            $existing_booth_numbers = get_user_meta($customer_id, '_booth_numbers', true);
-
-            if (is_array($existing_booth_numbers)) {
-                // Format the existing booth numbers by adding the current year as a key
-                $formatted_booth_numbers = $existing_booth_numbers;
-            } else {
-                $formatted_booth_numbers = [];
-            }
-
-            // Add the new booth numbers with the current year as a key
-            $formatted_booth_numbers[date('Y')] = $booth_numbers;
-
-            // Update the user meta data with the formatted booth numbers
-            $update_booth = update_user_meta($customer_id, '_booth_numbers', $formatted_booth_numbers);
-
-            $get_existing_booth_numbers = get_user_meta($customer_id, '_booth_numbers', true);
-            $get_existing_data = '';
-            if(!empty($get_existing_booth_numbers) && is_array($get_existing_booth_numbers))
-            {
-              foreach ($get_existing_booth_numbers as $booth_year => $booth_numbers) {
-                $get_existing_data .= "<h2 class='booth-years'>".$booth_year."</h2>";
-                $get_existing_data .= "<ul>";
-                foreach ($booth_numbers as $key => $value) {
-                  $get_existing_data .= sprintf('<li>Booth #%s</li>', ($key + 1).' : '.$value['booth_number_'.$key + 1]);
-                }
-                $get_existing_data .= "</ul>";
-              }
-            }
-            if (is_wp_error($update_booth)) {
-                wp_send_json_error($update_booth->get_error_message());
-            } else {
-                wp_send_json_success(array('data' => $get_existing_data), 201);
-            }
-        } else {
-            wp_send_json_error();
-        }
+      $exhibitor_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : '';
+      $max_rows = $this->getTotalQuantityPurchased($exhibitor_id, 18792) ? $this->getTotalQuantityPurchased($exhibitor_id, 18792) : 0;
+      $field ['max'] = $max_rows;
+      return $field ;
     }
 
-    public function restrict_repeater_rows( $valid, $value, $field, $input )
-    {
-      $max_rows = 5; // Specify the maximum number of rows you want to allow
-      if (isset($value) && is_array($value)) {
-          $total_rows = count($value);
-          if ($total_rows > $max_rows) {
-              $valid = false;
-              return 'You have reached the maximum number of rows allowed: '. $max_rows;
-          }
-      }
-      return $valid;
-    }
-    
-    public function save_exhibitor_booth_data_yearly( $post_id ) {
-      $current_year = date('Y');  
-      $repeater_data = get_field('field_6477148a02f19', $post_id);
-      update_user_meta($post_id, 'save_exhibitor_booth_data_yearly_'.$current_year, $repeater_data);
-      update_field('field_6477148a02f19', $repeater_data, $post_id . '_' . 2021);
-    }
-
-    public function filter_repeater_data_yearly($value, $post_id, $field) {
+    public function filter_repeater_field_value($value, $post_id, $field) {
       $current_year = date('Y');
-      $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : get_current_user_id(); // Get the current user ID
-      error_log(print_r('filter_repeater_data_yearly', true));
-      // error_log(print_r(get_field('booth_numbers', 'user_'.$user_id.'_2022'), true));
-      // Check if the query is for displaying user data
-      // error_log(print_r($query->is_main_query(), true));
-      error_log(print_r($user_id, true));
-      // error_log(print_r($field, true));
-      // if ($user_id) {
-        // $settings_values = get_field('booth_numbers', 'user_' . $user_id );//. '_' . $current_year
-        // error_log(print_r(get_user_meta($user_id), true));
-        // error_log(print_r('=======================', true));
-        // $value = array(
-        //   array(
-        //     'field_6477148a02f19' => 'Production',
-        //   ),
-        //   array(
-        //     'field_6477148a02f19' => 'Director',
-        //   ),
-        //   array(
-        //     'field_6477148a02f19' => 'Author',
-        //   ),
-        //   array(
-        //     'field_6477148a02f19' => 'Artist',
-        //   ),
-        //   array(
-        //     'field_6477148a02f19' => 'Etc'
-        //   )
-        // );
-        return $value;
-        // $i = 0;
-    
-        // foreach( $settings_values as $settings_value ){
-    
-        //   $value[$i]['field_6477148a02f19'] = $settings_value['type'];
-    
-        //   $i++;
-    
-        // }
-      //   //     // Get the repeater data for the user for the current year
-          // $value = get_field('field_6477148a02f19', 'user_' . $user_id . '_' . $current_year);//booth_numbers
-  
-      //     if ($repeater_data) {
-      //         // Store the repeater data in a query variable to use in the template
-      //         $query->set('repeater_data', $repeater_data);
-      //     }
-      // }
+      $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $post_id;
+      $meta_key = '_repeater_assigned_booth_numbers_' . $current_year;
+      $repeater_data = get_user_meta($user_id, $meta_key, true);
+      if ($repeater_data) {
+          $value = $repeater_data;
+      }else{
+        $value ='';
+      }
       return $value;
     }
   
+    public function update_repeater_field_value( $value, $post_id, $field, $original ) {
+        $current_year = date('Y');
+        $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $post_id;
+        $meta_key = '_repeater_assigned_booth_numbers_' . $current_year;
+        update_user_meta($user_id, $meta_key, $original);    
+        return $value;
+    }
 
+    public function send_activation_email($user_id) {
+      $user = get_userdata($user_id);
+      $user_email = $user->user_email;
+      $first_name = $user->first_name;
+      $last_name = $user->last_name;
+      $activation_key = wp_generate_password(20, false);
+      update_user_meta($user_id, 'activation_key', $activation_key);
+      // $active_link = '<a href="' . home_url().'/reset-password?user_id='.$user_id. '">Activate Account</a>';
+      $active_link = $this->exhibitor_create_activation_link($user_id);
+      $sign_in = '<a href="' . home_url('sign-in').'">Activate Account</a>';
+      $subject = 'ASGMT Account Activation';
+      $message = '<p>Dear '.$first_name.' '. $last_name .',</p>';
+      $message .= '<p>You\'re one step closer to creating your new ASGMT account. Please click the link to activate your account: <a href="'.$active_link.'">Activate Account</a><p>';
+      $message .= '<p>If you already have an ASGMT account you don\'t have to activate your account. Please click here to login: '.$sign_in.'<p>';
+      $message .= '<p>Best Regards,<br>ASGMT Committee<p>';
+      $headers = array('Content-Type: text/html; charset=UTF-8');
+      $mail = wp_mail($user_email, $subject, $message, $headers);
+    }
+
+    public function exhibitor_generate_activation_key($user_id) {
+      $activation_key = wp_generate_password(20, false);
+      update_user_meta($user_id, 'activation_key', $activation_key);
+      return $activation_key;
+    }
+    
+    public function exhibitor_create_activation_link($user_id) {
+      $activation_key = $this->exhibitor_generate_activation_key($user_id);
+      $activation_url = add_query_arg(
+          array(
+              'action' => 'activate',
+              'key' => $activation_key,
+              'user_id' => $user_id
+          ),
+          home_url('reset-password')
+      );
+  
+      return $activation_url;
+    }
+
+    public function activate_user_account() {
+      ob_start();
+      if (isset($_GET['action']) && $_GET['action'] === 'activate' && isset($_GET['key']) && isset($_GET['user_id'])) {
+          $activation_key = $_GET['key'];
+          $user_id = $_GET['user_id'];
+          $stored_key = get_user_meta($user_id, 'activation_key', true);
+          if ($activation_key === $stored_key) {
+            echo "<style>.reset-password-true { display: block !important;} .reset-password-false { display: none !important;}</style>";
+            delete_user_meta($user_id, 'activation_key');
+          }else{
+            echo "<style>.reset-password-true { display: none !important;}.reset-password-false { display: block !important;}</style>";
+          }
+      }
+      $oput = ob_get_contents();
+      return ob_get_clean();      
+    }
+
+    public function add_representative_callback()
+    {
+      $nonce = $_POST['security'];
+      if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
+          wp_send_json_error( 'Invalid nonce.' );
+      }
+      $representative_data = array(
+        'representative_first_name' => $_POST['representative_first_name'],
+        'representative_last_name'  => $_POST['representative_last_name'],
+        'representative_email'      => $_POST['representative_email'],
+        'representative_contact'    => $_POST['representative_contact']
+      );
+      $update = update_user_meta( $_POST['booth_admin'], '_representative_data', $representative_data );
+      if(is_wp_error( $update ))
+      {
+        wp_send_json_error();
+      }else{
+        wp_send_json_success();
+      }
+    }
+
+    public function notes_callback()
+    {
+      $nonce = $_POST['security'];
+      if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
+          wp_send_json_error( 'Invalid nonce.' );
+      }
+      $update = update_user_meta( $_POST['booth_admin'], '_notes', $_POST['notes'] );
+      if(is_wp_error( $update ))
+      {
+        wp_send_json_error();
+      }else{
+        wp_send_json_success();
+      }
+    }
+
+    public function my_booth_status( $atts, $content, $tag )
+    {
+      // ob_start();
+        if ( is_user_logged_in() ) :
+          $user_id = get_current_user_id(); // Get the current user ID
+          // echo $atts['booth_product'];
+          if($atts['booth_product'] == 'true')
+          {
+            $current_year = date('Y'); // Get the current year
+            $product_id = 18792; // Replace with the desired product ID
+            $args = array(
+              'status'        => array( 'completed', 'pending' ), // Retrieve orders with any status
+              'customer_id'   => $user_id, // Filter orders by user ID
+              'orderby'       => 'date', // Order by date
+              'order'         => 'DESC', // Sort in descending order
+              'limit'         => 1, // Retrieve only one order
+              'date_query'    => array(
+                'year'      => $current_year, // Filter orders by the current year
+              ),
+              'meta_query'    => array(
+                  array(
+                      'key'       => '_product_id', // Filter orders by product ID
+                      'value'     => $product_id,
+                      'compare'   => '=',
+                  ),
+              ),
+            );
+          
+          $query = new WC_Order_Query( $args );
+          $orders = $query->get_orders();
+          
+          if ( ! empty( $orders ) ) {
+              $latest_order = reset( $orders );
+              if($latest_order->get_status() === 'pending')
+              {
+                printf('<a href="%s">Pay Now</a>', esc_url( $latest_order->get_checkout_payment_url() ));
+              }
+              if($latest_order->get_status() === 'completed')
+              {
+                printf('<a href="javascript:void(0);">%s</a>', 'Paid');
+              }
+          } else {
+            $checkout_link = wc_get_checkout_url() . '?add-to-cart=18792&quantity=1';
+            printf('<a href="%s">Pay Now</a>', esc_url( $checkout_link ));
+          }
+        }
+        if($atts['company_name'])
+        {
+          if(get_user_meta( $user_id, 'user_employer', true ) || get_user_meta( $user_id, 'billing_company', true ))
+          {
+            echo get_user_meta( $user_id, 'user_employer', true ) ? get_user_meta( $user_id, 'user_employer', true ) : get_user_meta( $user_id, 'billing_company', true );
+          }          
+        }
+        if($atts['booth_numbers'] && !empty($this->get_booth_numbers_by_user_id( $user_id )))
+        {
+          echo $this->get_booth_numbers_by_user_id( $user_id );
+        }
+        if($atts['booth_managers'])
+        {//alternate_booth_admin_first_name
+          if(get_user_meta( $user_id, 'alternate_booth_admin_first_name', true ) || get_user_meta( $user_id, 'alternate_booth_admin_last_name', true ))
+          {
+            echo get_user_meta( $user_id, 'alternate_booth_admin_first_name', true ) .' '. get_user_meta( $user_id, 'alternate_booth_admin_last_name', true );
+          }
+          
+        }
+        //ASGMT Booth Representative
+        if($atts['booth_representative'])
+        {//alternate_booth_admin_first_name
+          $representative_data = get_user_meta( $user_id, '_representative_data', true );
+          if(!empty($representative_data))
+          {
+            $representative_first_name = isset($representative_data['representative_first_name']) ? $representative_data['representative_first_name'] : '';
+            $representative_last_name = isset($representative_data['representative_last_name']) ? $representative_data['representative_last_name'] : '';
+            $representative_email = isset($representative_data['representative_email']) ? $representative_data['representative_email'] : '';
+            $representative_contact = isset($representative_data['representative_contact']) ? $representative_data['representative_contact'] : '';
+            echo "<p>".$representative_first_name .' '. $representative_last_name."<br />". $representative_email."<br />".$representative_contact. "</p>";
+          }
+          
+        }
+      endif;
+      // $out = ob_get_contents();
+      // ob_get_clean();
+      // return $out;
+    }
+    public function get_booth_totalizer() {
+      $total_qty = 0;
+      $args = array(
+        'role__in'  => array('exhibitsmember','exhibitpending'),
+      );
+      $user_query = get_users($args);
+      if(!empty($user_query)) {
+        foreach ($user_query as $user) {
+          // $total_qty += $this->get_booth_numbers_by_user_id( (int)$user->ID );
+          $total_qty += is_numeric( get_user_meta($user->ID, 'booth_count', true)) ? get_user_meta($user->ID, 'booth_count', true) : 0;
+        }
+      }
+      echo (177 - $total_qty) .' of 177 Booths remains';
+    }
+
+    public function get_booth_product_status()
+    {
+      $current_year = date('Y'); // Get the current year
+      $product_id = 18792; // Replace with the desired product ID
+      $args = array(
+        'status'        => array( 'completed' ), // Retrieve orders with any status
+        'customer_id'   => get_current_user_id(), // Filter orders by user ID
+        'date_query'    => array(
+          'year'      => $current_year, // Filter orders by the current year
+        ),
+        'meta_query'    => array(
+            array(
+                'key'       => '_product_id', // Filter orders by product ID
+                'value'     => $product_id,
+                'compare'   => '=',
+            ),
+        ),
+      );
+    
+      $query = new WC_Order_Query( $args );
+      $orders = $query->get_orders();
+      if(!empty($orders))
+        return count($orders) > 0 ? 1 : 0;
+
+      return 0;
+    }
+
+    public function reset_password_exhibitor( $entry, $form )
+    {
+      $user_password  = rgar( $entry, '1' );
+      $user_id        = rgar( $entry, '2' );
+      $pass           = wp_set_password( $user_password, $user_id );
+      if(is_wp_error( $pass ))
+      {
+
+      }else{
+
+      }
+    }
+
+    public function add_booth_count_callback()
+    {
+      try {
+        $customer_id = $_POST['customer_id'];          
+        $update_booth_count = update_user_meta($customer_id, 'booth_count', $_POST['count']);    
+        if(is_wp_error( $update_booth_count ))      
+        {
+          wp_send_json_error();
+        }else{
+          wp_send_json_success();
+        }
+      } catch (\Throwable $th) {
+        wp_send_json_error();
+      }
+    }
+
+    public function exhibitor_after_user_registered( $user_id, $feed, $entry, $user_pass )//input_19_34
+    {
+      error_log(print_r('$entry', true));
+      error_log(print_r($entry, true));
+      update_user_meta( $user_id, 'type_of_the_company', rgar( $entry, '34' ) );
+    }
+    public function check_email_exist_callback()
+    {
+      if(!empty($_POST['email']))
+      {
+        $email = email_exists($_POST['email']);
+        if($email)
+        {
+          wp_send_json_success( array('message' => 'Registered') );
+        }
+      }
+      wp_send_json_error();
+    }
 }
 // Instantiate the ExhibitorManagement class
 function initialize_exhibitor_management() {

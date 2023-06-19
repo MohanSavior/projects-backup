@@ -1,3 +1,13 @@
+jQuery(document).ready(function(){
+setTimeout(function(){
+     //var tag_new = jQuery("template").eq(38).attr("id");
+     var tag_new = jQuery("template").last().attr("id");
+     //alert(tag_new);
+     jQuery("#" + tag_new).css("display", "none");
+     jQuery("#" + tag_new).next().next().css("display", "none");
+}, 100);
+});
+
 jQuery(document).ready(function ($) {
 	jQuery('#label_11_1027_1 .ceu-infor').hover(function(){
 		$('.ceu-tooltip').show();
@@ -99,10 +109,17 @@ jQuery(document).ready(function ($) {
 
 		jQuery('body').on('mouseleave', '.about-submenu, .school-submenu, .papers-submenu', function (e) {
 			if (!jQuery(this).is(e.target)) {
-				//console.log('Menu mouseleave');
 				jQuery(this).fadeOut();
 			}
 		});
+	}
+	
+	if (window.location.href.indexOf("gfur_activation") > -1) {
+		jQuery('.lead-in').prev().addClass('custom-email-confirmation-heading');
+		jQuery('#signup-welcome').prev().addClass('custom-email-confirmation-heading');
+		jQuery('.custom-email-confirmation-heading, .lead-in, .view, #signup-welcome').wrapAll('<div class="custom-email-confirmation"></div>');
+		jQuery('.ast-container').css('justify-content', 'center');
+		jQuery('.lead-in, .view').html('<span>Please <a href="https://asgmt.com/sign-in">login</a> with your account or go back to <a href="https://asgmt.com/">homepage</a>.</span>')
 	}
 
 });
@@ -136,10 +153,13 @@ jQuery(document).on('gform_post_render', function (event, form_id, current_page)
 			if(jQuery(this).val() == 22101 || jQuery(this).val() == 22102)
 			{
 				field_13_1028.slideDown();
+				setTimeout(() => {
+					jQuery('#label_13_1028_0').trigger('click');
+				}, 300);
 			}else{
 				field_13_1028.slideUp();
 			}
-		})
+		});
 	}
 
 	if (jQuery('input[name="input_1034"]:checked').val() === 'yes') {
@@ -149,9 +169,7 @@ jQuery(document).on('gform_post_render', function (event, form_id, current_page)
 		jQuery('#field_11_1000').hide();
 		jQuery('.gchoice_11_1034_1').hide();
 	}
-	console.log(form_id)
 	jQuery('input[name="input_1034"]').change(function () {
-		console.log(this)
 		if (jQuery(this).val() === 'yes') {
 			jQuery('#field_11_1000').slideDown();
 			jQuery('.gchoice_11_1034_1').show()
@@ -214,3 +232,12 @@ if(typeof gform !== 'undefined' && (jQuery('body').hasClass('page-id-20551') || 
 		return clone;
 	});
 }
+
+/** Gform after submission **/
+jQuery(document).on('gform_post_render', function(event, form_id, current_page){    
+	if ((form_id == 7)) {
+		if(typeof current_page  === "undefined") {
+			jQuery(".elementor-element.elementor-element-62c25d9").css('display', 'none');
+		}
+	}
+});

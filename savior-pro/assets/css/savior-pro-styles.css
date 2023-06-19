@@ -70,6 +70,9 @@ padding: 30px 0px;
 	padding: 0 !important;
 	border: 0 !important;
 }
+#menu-main-menu .svr-mobile-meu, #menu-main-menu-1 .svr-mobile-meu {
+	display: none;
+}
 /* Header css end */
 
 /* Footer css start */
@@ -730,10 +733,13 @@ line-height: 34px !important;
 	margin-bottom: 20px;
 }
 .page .sign-in-cls form .tp-remember-me .remember-me-label:after {
-	top: 8px !important;
-	width: 16px !important;
-	height: 16px !important;
-	left: -10px !important;
+	width: 30px;
+	height: 30px;
+	top: 0px;
+	left: -17px;
+}
+#tp-user-loginlr16fc8bf .theplus-notification {
+	background: transparent !important;
 }
 .page .sign-in-cls .tp-field-group.tp-remember-me .tp-form-label .remember-me-label {
 	padding-left: 25px !important;
@@ -1161,14 +1167,14 @@ max-width: 1288px;
 .dashboard-sidebar-menu li:last-child {
 	position: relative;
 }
-.dashboard-sidebar-menu li:last-child:after, #menu-in-person-dashboard-menu .menu-item-19406:after, #menu-instructor-dashboard-menu .menu-item-19692:after, #menu-exhibitors-dashboard-menu .menu-item-19704:after, #menu-my-asgmt-dashboard-menu .menu-item-19807:after, #menu-gmf-dashboard-menu .menu-item-20385:after, #menu-lmf-dashboard-menu .menu-item-20387:after, #menu-bod-dashboard-menu .menu-item-20131:after {
+.dashboard-sidebar-menu li:last-child:after, #menu-in-person-dashboard-menu .menu-item-19406:after, #menu-instructor-dashboard-menu .menu-item-19692:after, #menu-exhibitors-dashboard-menu .menu-item-19704:after, #menu-my-asgmt-dashboard-menu .menu-item-19807:after, #menu-gmf-dashboard-menu .menu-item-20385:after, #menu-lmf-dashboard-menu .menu-item-20387:after, #menu-bod-dashboard-menu .menu-item-20131:after, #menu-bod-dashboard-menu-2 .menu-item-20131:after, .dashboard-sidebar-menu .menu-item-24991:after, .dashboard-sidebar-menu .menu-item-20130:after {
 	content: '';
 	border-top: 1px solid #D9D9D9;
 	position: absolute;
 	top: -10px;
 	width: 77%;
 }
-.dashboard-sidebar-menu li:last-child, #menu-in-person-dashboard-menu .menu-item-19406, #menu-instructor-dashboard-menu .menu-item-19692, #menu-exhibitors-dashboard-menu .menu-item-19704, #menu-my-asgmt-dashboard-menu .menu-item-19807, #menu-gmf-dashboard-menu .menu-item-20385, #menu-lmf-dashboard-menu .menu-item-20387, #menu-bod-dashboard-menu .menu-item-20131 {
+.dashboard-sidebar-menu li:last-child, #menu-in-person-dashboard-menu .menu-item-19406, #menu-instructor-dashboard-menu .menu-item-19692, #menu-exhibitors-dashboard-menu .menu-item-19704, #menu-my-asgmt-dashboard-menu .menu-item-19807, #menu-gmf-dashboard-menu .menu-item-20385, #menu-lmf-dashboard-menu .menu-item-20387, #menu-bod-dashboard-menu .menu-item-20131, #menu-bod-dashboard-menu-2 .menu-item-20131, .dashboard-sidebar-menu .menu-item-24991, .dashboard-sidebar-menu .menu-item-20130 {
 	position: relative;
 	margin-top: 20px;
 	padding-top: 15px !important;
@@ -1331,6 +1337,7 @@ max-width: 1288px;
 	line-height: 32px;
 	text-transform: capitalize;
 	color: #9E9E9E;
+	display:block;
 }
 .elementor-element.elementor-element-ebd0be5 .gform_required_legend .gfield_required_asterisk {
 	color: #9E9E9E;
@@ -1521,6 +1528,7 @@ a.dt-download-icon i {
 }
 td.order-actions {
 	display: flex;
+	column-gap: 10px;
 }
 a.dt-download-icon i:hover {
 	color: #252F86;
@@ -1601,6 +1609,43 @@ div#input_11_1034 {
 #field_14_1003 label {
 	margin-bottom: 5px;
 }
+.elementor-element.elementor-element-697dce4 .elementor-widget-container p {
+	font-family: "Montserrat", Sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	text-transform: uppercase;
+	line-height: 26px;
+	margin-bottom: 0px;
+	color: #252F86;
+	text-align: right;
+}
+.custom-register-btn {
+	font-family: roboto,Sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	color: #080e41;
+	background-color: #f7c338;
+	padding: 15.5px 20px;
+	transition: all .3s;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.custom-register-btn i {
+	padding-left: 5px;
+}
+.custom-register-btn:hover {
+	color: #f7c338;
+	background-color: #080e41;
+}
+.elementor-element.elementor-element-25da768 .elementor-heading-title p {
+	text-transform: uppercase;
+}
+/** Daypass hide CSS **/
+.gchoice_11_1027_4, .gchoice_11_1005_4, .gchoice_13_1005_4 {
+	display: none;
+}
+
 
 /** Dashboard Pages CSS Ends **/
 
@@ -1610,7 +1655,7 @@ input#input_7_21_1, input#input_11_1015_1, #choice_11_21_1 {
 	height: 43px !important;
 	margin-right: 18px;
 }
-.elementor-element.elementor-element-43777cd .gform_required_legend, .elementor-element.elementor-element-4a1ed10 .gform_required_legend, .gform_required_legend {
+.elementor-element.elementor-element-43777cd .gform_required_legend, .elementor-element.elementor-element-4a1ed10 .gform_required_legend {
 	display: none;
 }
 .registration-form-heading {
@@ -1692,7 +1737,7 @@ input#input_7_21_1, input#input_11_1015_1, #choice_11_21_1 {
 	line-height: 30px;
 	cursor: pointer;
 	padding: 48px 10px 23px 14px;
-	height: -webkit-fill-available;
+	/* 	height: -webkit-fill-available; */
 	z-index: 1;
 }
 #field_11_1027 .gchoice .gfield-choice-input {
@@ -1912,7 +1957,7 @@ div#field_11_9, .gfield_repeater_cell:nth-child(2) {
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
-.theplus-notification.active {
+.theplus-notification, .theplus-notification.active {
 	background: transparent !important;
 }
 #gform_7 .gfmc-container, #gform_15 .gfmc-container {
@@ -1959,6 +2004,16 @@ div#field_11_9, .gfield_repeater_cell:nth-child(2) {
 }
 #field_13_1005 {
 	margin-top: 30px;
+}
+
+#gform_fields_7 p.registration-form-heading {
+	font-size: 20px;
+}
+p.gform_required_legend {
+	display: none;
+}
+#field_5_9 label.gform-field-label.gform-field-label--type-inline.gfield_consent_label {
+	text-transform: capitalize;
 }
 
 /** Registration Pages CSS Ends **/
@@ -2048,7 +2103,7 @@ body.page-id-684.logged-in .papers-logged-out, body.page-id-684.logged-in .eleme
 }
 
 /** Exhibitors CSS Start **/
-.elementor-element.elementor-element-32e4441 .pp-dual-heading-block .pp-dual-heading {
+.elementor-element.elementor-element-32e4441 .pp-dual-heading-block .pp-dual-heading, .elementor-element.elementor-element-b907971 .pp-dual-heading-block .pp-dual-heading {
 	line-height: 0;
 }
 .exhibit-tab-cls .pp-tab-active.pp-advanced-tabs-title {
@@ -2124,6 +2179,16 @@ p.exhibitors-contact-res-heading {
 #input_15_19 {
 	padding-top: 15px;
 }
+fieldset#field_15_17 {
+	margin-top: 85px;
+}
+div#field_15_18 {
+	margin-top: 20px;
+}
+#field_15_17 #input_15_17 label, fieldset#field_15_28 label, fieldset#field_15_29 label {
+	text-transform: capitalize;
+}
+
 
 /** Exhibitors CSS Ends **/
 
@@ -2132,13 +2197,136 @@ p.exhibitors-contact-res-heading {
 	padding-bottom: 50px !important;
 }/**Exhibit Assistant Registration popups  **/
 
+
+/** check box start **/
+
+/*  input[type="checkbox"] {
+position: relative;
+}
+
+input[type="checkbox"]:checked:after {
+content: "\f00c";
+font-family: "Font Awesome 5 Free" !important;
+color: #fff;
+position: absolute;
+top: 0px;
+left: 0;
+z-index: 999999;
+height: 100%;
+width: 100%;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+#input_11_14 input[type="checkbox"]:checked:after {
+background-size: 57%;
+} */
+.elementor-1582 .elementor-element.elementor-element-16fc8bf .theplus-notification.active .tp-lr-response {
+	background: #ebebeb;
+	position: absolute;
+	top: -20px;
+	width: 100%;
+}
+.elementor-698 .elementor-element.elementor-element-293b31d .elementor-icon-list-item {
+	position: relative;
+}
+.elementor-698 .elementor-element.elementor-element-293b31d .elementor-icon-list-items.elementor-inline-items .elementor-icon-list-item:not(:last-child):after {
+	border-left-style: solid;
+	position: absolute;
+	height: 14px;
+	top: 7px;
+	right: 0;
+}
+.custom-email-confirmation {
+    text-align: center;
+    padding: 30px 50px 30px 50px;
+    background: #FFFFFF;
+    box-shadow: 0px 5px 20px rgba(8, 14, 65, 0.05);
+    border-radius: 10px;
+    margin: 50px 0;
+}
+.custom-email-confirmation-heading {
+	color: #080E41;
+	font-size: 32px;
+	line-height: 42px;
+	font-weight: 500;
+	text-transform: capitalize;
+}
+.custom-email-confirmation .lead-in, .custom-email-confirmation .view {
+	font-size: 18px;
+	line-height: 28px;
+	margin: 15px 0 0 0;
+	color: #000000;
+}
+.custom-email-confirmation .lead-in a, .custom-email-confirmation .view a {
+	color: #F7C338;
+	text-decoration: underline;
+}
+#signup-welcome p {
+	font-size: 16px;
+	line-height: 30px;
+	color: #000000;
+	margin-bottom: 0;
+}
+#signup-welcome p span {
+    font-weight: unset;
+    font-size: 16px;
+    line-height: 30px;
+    color: #000000;
+}
+#signup-welcome {
+    margin-top: 10px;
+}
+div#gform_confirmation_message_7 p {
+    margin-bottom: 0;
+}
+.elementor-element.elementor-element-aca2b37 > .elementor-element-populated {
+    justify-content: flex-end !important;
+}
+body.page-id-19579 .dashboard-sec-cls > .elementor-container {
+	height: unset !important;
+}
+.elementor-element.elementor-element-582f79c a {
+	font-family: "Roboto", Sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	color: #080E41;
+	background-color: #F7C338;
+	padding: 10px 10px;
+}
+.elementor-element.elementor-element-582f79c a:hover {
+	color: #F7C338;
+	background-color: #080E41;
+}
+.elementor-element.elementor-element-f8f102f .pp-second-text a {
+    color: #5a5a5a;
+}
+input#gform_submit_button_20 {
+    border-color: #f7c338 !important;
+}
+input#gform_submit_button_20:hover {
+    border-color: #080e41 !important;
+}
+/** check box Ends **/
+
+/** Height CSS **/
 @media (min-height: 1020px) and (min-width: 1920px) {
 	.elementor-element.elementor-element-0da747c > .elementor-container {
 		height: 100vh;
 	}
 }
-@media (min-height: 850px) and (min-width: 1920px) {
-	.dashboard-sec-cls > .elementor-container {
+@media (min-height: 800px) and (max-width: 1920px) {
+	body.page-id-19579 .dashboard-sec-cls > .elementor-container {
+		height: 100vh;
+	}
+}
+@media (min-height: 600px) and (min-width: 768px) and (max-width: 1024px) {
+	body.page-id-19579 .dashboard-top-section > .elementor-container {
+		height: 100vh;
+	}
+}
+@media (min-height: 800px) and (max-width: 767px) {
+	body.page-id-19579 .dashboard-top-section > .elementor-container {
 		height: 100vh;
 	}
 }

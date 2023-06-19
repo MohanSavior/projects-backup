@@ -9,7 +9,7 @@ jQuery(document).ready(function($){
         }
         const options = {
             margin: 0.3,
-            filename: `invice-${orderId}.pdf`,
+            filename: `Invoice-${orderId}.pdf`,
             image: {
                 type: 'jpeg',
                 quality: 0.98

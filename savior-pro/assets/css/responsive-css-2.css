@@ -51,6 +51,9 @@
 	.elementor-19099 .elementor-element.elementor-element-ba0573e > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-6d13a15 > .elementor-element-populated {
 		padding: 48px 25px 48px 25px !important;
 	}
+	.elementor-19723 .elementor-element.elementor-element-75f78da .elementor-button, .elementor-19723 .elementor-element.elementor-element-6ed41e5 .elementor-button {
+		padding: 13px 30px !important;
+	}
 }
 @media screen and (max-width: 1596px) {
 	.elementor-684 .elementor-element.elementor-element-77466cb .elementor-heading-title, .elementor-882 .elementor-element.elementor-element-1eb3dba .elementor-heading-title, .elementor-801 .elementor-element.elementor-element-94690e1 .elementor-heading-title {
@@ -330,6 +333,9 @@
 	.elementor-element.elementor-element-ef88f27 .elementor-col-100 > .elementor-element-populated {
 		padding: 30px 20px 26px 20px !important;
 	}
+	.elementor-element.elementor-element-6a49ae3 > .elementor-element-populated {
+		padding: 74px 20px 20px 20px !important;
+	}
 }
 @media screen and (max-width: 1300px) {
 	.elementor-19099 .elementor-element.elementor-element-f680571 .elementor-heading-title, .elementor-19185 .elementor-element.elementor-element-4fd0437 .elementor-heading-title {
@@ -417,7 +423,7 @@
 		width: 100% !important;
 	}
 	.dashboard-sec-cls {
-		padding: 20px 0px 0px 20px !important;
+		padding: 0px 0px 20px 20px !important;
 	}
 	.dashboard-sidebar-menu > .elementor-widget-container {
 		padding: 0px 0px 0px 0px !important;
@@ -551,7 +557,23 @@
 	.elementor-24687 .elementor-element.elementor-element-6e7ea6a, .elementor-24687 .elementor-element.elementor-element-c400df8 {
 		margin-top: 30px !important;
 	}
+	.dashboard-dropdown {
+		top: 20px !important;
+	}
+	.elementor-19875 .elementor-element.elementor-element-8ebd62e > .elementor-widget-container {
+		margin: 23px 0px 0px 0px !important;
+	}
+	body.page-id-20128 {
+		background: #F5F5F966;
+	}
 }
+
+@media screen and (max-width: 884px) {
+.vgmf-date-time span {
+    font-size: 14px !important;
+}
+}
+
 @media screen and (max-width: 767px) {
 	.dashboard-welcome-heading h2 {
 		font-size: 22px !important;
@@ -674,8 +696,7 @@
 		overflow-x: scroll;
 	}
 	.custom-order-table table {
-		width: 500px !important;
-		overflow-x: scroll;
+		width: 600px !important;
 	}
 	.elementor-element.elementor-element-ecefe2b.elementor-column > .elementor-widget-wrap {
 		justify-content: center !important;
@@ -787,6 +808,16 @@
 	}
 	.elementor-18659 .elementor-element.elementor-element-a53baca > .elementor-widget-container {
 		margin: 30px 0px 0px 0px;
+	}
+	.custom-email-confirmation-heading {
+		font-size: 25px;
+		line-height: 35px;
+	}
+	.custom-email-confirmation .lead-in, .custom-email-confirmation .view {
+		margin: 11px 0 0 0;
+	}
+	.custom-email-confirmation {
+		padding: 50px 20px 50px 20px;
 	}
 }
 @media screen and (max-width: 767px) {

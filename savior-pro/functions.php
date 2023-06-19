@@ -212,20 +212,26 @@ function dashboard_url_fn() {
 		if ( 0 == $current_user->ID ) {
 			return site_url("sign-in");
 		} else {
+			$role_exist = array(
+				'student', 'virtualgmfstudent', 'virtuallmfstudent', 'instructormember', 'exhibitsmember', 'bodmember', 'lmf_in_person', 'gmf_in_person', 'gmf_virtual', 'lmf_virtual'
+			);
 			$user_roles = $current_user->roles;
-			if(in_array('student', $user_roles)){
+			$result=array_intersect($role_exist, $user_roles);
+			if(array_intersect($role_exist, $user_roles)){
 				return site_url("/members-dashboard/");
-			}elseif(in_array('virtualgmfstudent', $user_roles)){
-				return site_url("/members-dashboard/");
-			}elseif(in_array('virtuallmfstudent',$user_roles)){
-				return site_url("/members-dashboard/");
-			}elseif(in_array('instructormember',$user_roles)){
-				return site_url("/members-dashboard/");
-			}elseif(in_array('exhibitsmember',$user_roles)){
-				return site_url("/members-dashboard/");
-			}elseif(in_array('bodmember',$user_roles)){
-				return site_url("/members-dashboard/");
-			}else
+// 				return site_url("/members-dashboard/");
+// 			}elseif(in_array('virtualgmfstudent', $user_roles)){
+// 				return site_url("/members-dashboard/");
+// 			}elseif(in_array('virtuallmfstudent',$user_roles)){
+// 				return site_url("/members-dashboard/");
+// 			}elseif(in_array('instructormember',$user_roles)){
+// 				return site_url("/members-dashboard/");
+// 			}elseif(in_array('exhibitsmember',$user_roles)){
+// 				return site_url("/members-dashboard/");
+// 			}elseif(in_array('bodmember',$user_roles)){
+// 				return site_url("/members-dashboard/");
+			}
+			else
 			{
 				return site_url("/my-asgmt-dashboard/");
 			}
@@ -260,7 +266,20 @@ function restrict_pages_by_role() {
 				}elseif( in_array('bodmember',$user_roles)){
 					wp_redirect( home_url("/members-dashboard/"));
 					exit;
-				}else{
+				}elseif( in_array('lmf_in_person',$user_roles)){
+					wp_redirect( home_url("/members-dashboard/"));
+					exit;
+				}elseif( in_array('gmf_in_person',$user_roles)){
+					wp_redirect( home_url("/members-dashboard/"));
+					exit;
+				}elseif( in_array('gmf_virtual',$user_roles)){
+					wp_redirect( home_url("/members-dashboard/"));
+					exit;
+				}elseif( in_array('lmf_virtual',$user_roles)){
+					wp_redirect( home_url("/members-dashboard/"));
+					exit;
+				}
+				else{
 					wp_redirect(home_url('/my-asgmt-dashboard/'));
 					exit;
 				}
@@ -277,7 +296,7 @@ add_action('template_redirect','my_non_logged_redirect');
 function my_non_logged_redirect() {
 	/* get current page or post ID */
 	$page_id = get_queried_object_id();	
-	if(!current_user_can('administrator') && is_user_logged_in()) {
+	if(is_user_logged_in()) {  // (!current_user_can('administrator') &&)
 		$current_user = wp_get_current_user();
 		$user_roles = $current_user->roles;
 
@@ -288,7 +307,11 @@ function my_non_logged_redirect() {
 				'virtuallmfstudent' => home_url("/members-dashboard/"),//lmf-courses-dashboard
 				'instructormember' 	=> home_url("/members-dashboard/"),//instructor-dashboard
 				'exhibitsmember' 	=> home_url("/members-dashboard/"),//exhibitors-dashboard
-				'bodmember' 		=> home_url("/members-dashboard/")//bod-members-dashboard
+				'bodmember' 		=> home_url("/members-dashboard/"),//bod-members-dashboard
+				'lmf_in_person' 	=> home_url("/members-dashboard/"),
+				'gmf_in_person' 	=> home_url("/members-dashboard/"),
+				'gmf_virtual' 		=> home_url("/members-dashboard/"),
+				'lmf_virtual' 		=> home_url("/members-dashboard/")
 			);
 
 			$intersect = array_intersect(array_keys($login_redirect), $user_roles);
@@ -314,13 +337,13 @@ function my_non_logged_redirect() {
 /**
  * 
  */
-function hide_admin_bar_for_non_admins() {
-	if (!current_user_can('administrator') && !is_admin()) {
-		add_filter('show_admin_bar', '__return_false');
-	}
-}
+// function hide_admin_bar_for_non_admins() {
+// 	if (!current_user_can('administrator') && !is_admin()) {
+// 		add_filter('show_admin_bar', '__return_false');
+// 	}
+// }
 
-add_action('after_setup_theme', 'hide_admin_bar_for_non_admins');
+//add_action('after_setup_theme', 'hide_admin_bar_for_non_admins');
 
 
 
@@ -373,7 +396,7 @@ function savior_create_invoice_ajax() {
 			<div style="font-family: Helvetica;">
 				<div style="display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 35px;">
 					<div>
-					<img style="width: 160px;" src="https://asgmt.mysites.io/wp-content/uploads/2019/01/asgmtlogo.png">
+					<img style="width: 160px;" src="https://asgmt.com/wp-content/uploads/2019/01/asgmtlogo.png">
 					<div class="shop_info" style="margin-top: 20px;">
 						$shop_address
 						<h6 style="color: rgb(37, 47, 134);">Order Date: <span style="font-size: 85%; font-weight: ligher; color: #444;">$order_date</span> </h6>
@@ -406,15 +429,19 @@ function savior_create_invoice_ajax() {
 							<td style="width: 75%;">Sub Total</td>
 							<td style="width: 25%;">$currency_symbol$subtotal</td>
 						</tr>
-						<tr>
-							<td style="width: 75%;">Shipping</td>
-							<td style="width: 25%;">$shipping_cost</td>
-						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<td style="width: 75%;"><strong>Total: </strong></td>
+							<td style="width: 75%;"><strong>Total </strong></td>
 							<td style="width: 25%;"><strong>$currency_symbol$order_total</strong></td>
+						</tr>
+						<tr>
+							<td style="width: 75%;">Paid </td>
+							<td style="width: 25%;">$currency_symbol$order_total</td>
+						</tr>
+						<tr>
+							<td style="width: 75%;"><strong>Amount Due </strong></td>
+							<td style="width: 25%;"><strong>$0.00</strong></td>
 						</tr>
 					</tfoot>
 				</table>
@@ -680,6 +707,8 @@ include_once 'inc/create-attendees.php';
 include_once 'inc/exhibitor-management.php';
 //Exhibit Assistant Registration
 include_once 'inc/exhibit-assistant-registration.php';
+//Registration Reports
+include_once 'inc/registration-reports.php';
 /** Shortcode to get user's billing address **/
 add_shortcode('users_billing_address', 'users_billing_address_fn');
 function users_billing_address_fn() {
@@ -921,71 +950,83 @@ function hide_admin_bar_based_on_email() {
 		show_admin_bar(false);
 	}
 }
-add_action('after_setup_theme', 'hide_admin_bar_based_on_email');
+// add_action('after_setup_theme', 'hide_admin_bar_based_on_email');
 
 
 /** Shortcode for Purchase CEU **/
 function ceu_registered_fn() {
-	$ceu_product_ids = array(22100, 22101, 22102, 18785);
-	$current_user = wp_get_current_user();
-	$current_user_id = get_current_user_id();
+	$product_ids = array(22100, 22101, 22102, 18785);
+	$user_id = get_current_user_id();
 	$args = array(
-		'numberposts' => -1,
-		'meta_key'    => '_customer_user',
-		'meta_value'  => $current_user->ID,
-		'post_type'   => wc_get_order_types(),
-		'post_status' => array_keys( wc_get_is_paid_statuses() ),
-		'fields'	  => 'ids'	
+		'limit' => -1,
+		'status' => array('wc-completed'), // Replace with the desired order statuses
+		'customer_id' => $user_id,
+		'meta_query' => array(
+			array(
+				'key' => '_product_id',
+				'value' => $product_ids,
+				'compare' => 'IN',
+			),
+		),
 	);
-	$customer_orders = get_posts( $args );
+	
+	$orders = wc_get_orders($args);
 	$attendee_names = array();
-	if(!empty($customer_orders))
-	{
-		foreach ($customer_orders as $orders_id) {
-			$order = wc_get_order($orders_id);
-			$items = $order->get_items();
-			if(empty($order->get_meta('_attendees_order_meta')))
-			{
-				$attendees_count = 0;
-			}else{
-				$attendees_count = count($order->get_meta('_attendees_order_meta'));
-			}
-			if(count($items) > $attendees_count)
-			{
-				foreach ($items as $item) {
-					if(in_array($item->get_id(), $ceu_product_ids))
-					{
-						$attendee_names[] = $item->get_id();
-					}
-					break;
-				}
-			}	
+	foreach ($orders as $order) {
+		$items = $order->get_items();
+		$total_quantity = 0;
+
+		foreach ($items as $item_id => $item) {
+			$qty = $item->get_quantity();
+			$total_quantity += $qty;
 		}
+		if(empty($order->get_meta('_attendees_order_meta')))
+		{
+			$attendees_count = 0;
+		}else{
+			$attendees_count = count($order->get_meta('_attendees_order_meta'));
+		}
+		if($total_quantity > $attendees_count)
+		{
+
+			foreach ($items as $item_id => $item) {
+				$product_id = $item->get_product_id();
+				if(in_array($product_id, $product_ids))
+				{
+					$attendee_names[] = $product_id;
+				}
+				break;
+			}
+		}	
 	}
-	unset($args['meta_key']);
-	unset($args['meta_value']);
+	
+	// unset($args['meta_key']);
+	unset($args['customer_id']);
 	$args['meta_query']  = array(
 		array(
 			'key'     => '_attendees_order_meta', 
 			'compare' => '=',
 		),
 	);
-	$attendees_orders = get_posts( $args );
-	if(!empty($attendees_orders))
+	$orders = wc_get_orders($args);
+	if(!empty($orders))
 	{
-		foreach ($attendees_orders as $orders_id) {
-			$order = wc_get_order($orders_id);
+		foreach ($orders as $order) {
 			$user_meta = $order->get_meta('_attendees_order_meta');
-
-			$filtered_meta_value = array_filter($user_meta, function($item) use ($current_user_id) {
-				return $item['user_id'] === $current_user_id;
-			});
-			if(!empty($filtered_meta_value))
+			// print_r($user_meta);
+			if(!empty($user_meta))
 			{
-				foreach ($filtered_meta_value as $filtered_data) {
-					if(in_array($filtered_data['product_id'], $ceu_product_ids))
-					{
-						$attendee_names[] = $filtered_data['product_id'];
+				$filtered_meta_value = array_filter($user_meta, function($item) use ($user_id) {
+					return $item['user_id'] === $user_id;
+				});
+				// $filtered_meta_value = array();
+				if(!empty($filtered_meta_value))
+				{
+					foreach ($filtered_meta_value as $filtered_data) {
+						if(in_array($filtered_data['product_id'], $product_ids))
+						{
+							$attendee_names[] = $filtered_data['product_id'];
+						}
 					}
 				}
 			}
@@ -1009,14 +1050,32 @@ function ceu_registered(){
 
 // Add a custom function to redirect users after successful checkout
 function redirect_after_checkout($order_id) {
+	// $order = wc_get_order($order_id);
+	// if ($order->has_status('failed')) {
+	// }else{
+	// 	wp_redirect(dashboard_url_fn());
+	// 	exit;
+	// }
+	// Get the order object
 	$order = wc_get_order($order_id);
-	// Check if the order is failed
-	if ($order->has_status('failed')) {
-		// Get the dashboard URL
-		// Redirect the user to the dashboard
+
+	// Get the order status
+	$order_status = $order->get_status();
+	
+	// Check if the order status is "processing" or "completed"
+	if (in_array($order_status, array('processing', 'completed'))) {
+		// Enqueue the JavaScript file for the confirmation popup
+		wp_enqueue_style( 'sweetalert2', get_stylesheet_directory_uri() . '/assets/css/sweetalert2.min.css', array(), time(), 'all' );
+		wp_enqueue_script('sweetalert2', get_stylesheet_directory_uri() . '/assets/js/sweetalert2.all.min.js', array('jquery'), time(), true);
+		wp_enqueue_script('confirmation-popup', get_stylesheet_directory_uri() . '/assets/js/confirmation-popup.js', array('jquery'), time(), true);
+		
+		// Pass the redirect URL to the JavaScript file
+		// $redirect_url = get_permalink(get_option('woocommerce_myaccount_page_id'));
+		wp_localize_script('confirmation-popup', 'confirmationPopupParams', array(
+			'redirectURL' => dashboard_url_fn()
+		));
 	}else{
-		wp_redirect(dashboard_url_fn());
-		exit;
+
 	}
 }
 add_action('woocommerce_thankyou', 'redirect_after_checkout', 10, 1);
@@ -1042,67 +1101,117 @@ function custom_confirmation( $confirmation, $form, $entry, $ajax ) {
 }
 // Define the shortcode function
 function get_purchased_product_name_shortcode($atts) {
-	$current_user = wp_get_current_user();
-	$current_user_id = get_current_user_id();
-	$args = array(
-		'numberposts' => -1,
-		'meta_key'    => '_customer_user',
-		'meta_value'  => $current_user->ID,
-		'post_type'   => wc_get_order_types(),
-		'post_status' => array_keys( wc_get_is_paid_statuses() ),
-		'fields'	  => 'ids'	
+	$atts = shortcode_atts(
+		array(
+			'registerd' => false,
+		), $atts, 'purchased_product_name' 
 	);
-	$customer_orders = get_posts( $args );
-	
-	if(!empty($customer_orders))
+	$customer_id = get_current_user_id(); // Replace with the customer ID
+	$args = array(
+		'limit' => -1,
+		'status'         => 'wc-completed', // Retrieve completed orders
+		'customer_id'    => $customer_id,
+		// 'date_query'     => array(
+		// 	array(
+		// 		'after'     => date('Y-01-01'), // Start of the current year
+		// 		'before'    => date('Y-12-31'), // End of the current year
+		// 		'inclusive' => true,
+		// 	),
+		// ),
+	);
+
+	$Order_Query = new WC_Order_Query($args);
+
+	$orders = $Order_Query->get_orders();
+	$product_title = array();
+	if(!empty($orders))
 	{
-		foreach ($customer_orders as $orders_id) {
-			$order = wc_get_order($orders_id);
+		foreach ($orders as $order) {
 			$items = $order->get_items();
 			$attendees_cont = 0;
+
 			if(!empty($order->get_meta('_attendees_order_meta'))){
-				// echo $order->get_meta('_attendees_order_meta');
 				$attendees_cont = count($order->get_meta('_attendees_order_meta'));
 			}
-			if(count($items) > $attendees_cont)
+			$total_quantity = 0;
+
+			foreach ($items as $item_id => $item) {
+				$qty = $item->get_quantity();
+				$total_quantity += $qty;
+			}
+			if($total_quantity > $attendees_cont)
 			{
 				foreach ($items as $item) {
-					echo $item->get_name();
+					$product_id = $item->get_product_id();
+					if($product_id != 18792 ) {
+						$product 		 = $item->get_product();
+						$product_title[] = $product->get_name();	
+					}
 					break;
 				}
 			}	
 		}
-	}else{
-		unset($args['meta_key']);
-		unset($args['meta_value']);
+	}
+	// else{
+		// unset($args['meta_key']);
+		unset($args['customer_id']);
 		$args['meta_query']  = array(
             array(
                 'key'     => '_attendees_order_meta', 
-                // 'value'   => array(array('user_id'=> $current_user->ID)),
-                'compare' => '=',
+				'value' => '',
+				'compare' => '!=',
             ),
         );
-		$attendees_orders = get_posts( $args );
-		if(!empty($attendees_orders))
+		$orders = wc_get_orders( array(
+			'limit'        => -1, // Query all orders
+			'orderby'      => 'date',
+			'order'        => 'DESC',
+			'meta_key'     => '_attendees_order_meta',
+			'meta_compare' => '!=',
+			'meta_value'   => '',
+			// 'meta_key'     => '_attendees_order_meta', // The postmeta key field
+			// 'meta_compare' => 'NOT EXISTS', // The comparison argument
+		));
+		// $attendees_orders = new WC_Order_Query($args);
+		if(!empty($orders))
 		{
 			$attendee_names = array();
-			foreach ($attendees_orders as $orders_id) {
-				$order = wc_get_order($orders_id);
+			foreach ($orders as $order) {
+				// echo "<pre>";
+				// print_r($order);
+				// echo"</pre>";
 				$user_meta = $order->get_meta('_attendees_order_meta');
 
-				$filtered_meta_value = array_filter($user_meta, function($item) use ($current_user_id) {
-					return $item['user_id'] === $current_user_id;
-				});
-				if(!empty($filtered_meta_value))
+				if(!empty($user_meta))
 				{
-					foreach ($filtered_meta_value as $filtered_data) {
-						echo get_the_title($filtered_data['product_id']);
+					$filtered_meta_value = array_filter($user_meta, function($item) use ($customer_id) {
+						return $item['user_id'] === $customer_id;
+					});
+					if(!empty($filtered_meta_value))
+					{
+						foreach ($filtered_meta_value as $filtered_data) {
+							if($filtered_data['product_id'] != 18792 ) {
+								$product_title[] = get_the_title($filtered_data['product_id']);					
+							}						
+						}
 					}
 				}
 			}
 		}
-	}
-	// print_r(implode(', ', $product_names));
+	// }
+	if($atts['registerd']){
+		if(!empty($product_title)) {
+			echo '<p>Registered <i aria-hidden="true" class="asgmtsf-01 asgmt-sf-01Check-mark"></i></p>';
+		}else{
+			echo '<a href="'. site_url("school-registration").'" class="custom-register-btn">Register for School <i aria-hidden="true" class="fas fa-plus"></i></a>';
+		}
+	}else{
+		if(!empty($product_title)) {
+			print_r(implode(', ', $product_title));
+		}else{
+			echo "<p>Not Registered</p>";
+		}
+	}	
 }
 add_shortcode('purchased_product_name', 'get_purchased_product_name_shortcode');
 
@@ -1124,5 +1233,16 @@ function add_custom_column_to_order_table_items($order) {
 		}
 	}
 }
-
-add_shortcode( 'test', 'get_purchased_product_name_shortcode');
+add_filter( 'woocommerce_add_to_cart_validation', 'remove_cart_item_before_add_to_cart', 20, 3 );
+function remove_cart_item_before_add_to_cart( $passed, $product_id, $quantity ) {
+    if( ! WC()->cart->is_empty() )
+        WC()->cart->empty_cart();
+    return $passed;
+}
+// add_shortcode( 'test', function(){
+// 	$entry = GFAPI::get_entry(857);
+// 	echo"<pre>";
+// 	echo "Gravity Entry";
+// 	print_r($entry);
+// 	echo"</pre>";
+// });

@@ -1,0 +1,115 @@
+.registration-reports-container {
+    background-color: #fff;
+    padding: 18px;
+    border-radius: 10px;
+    /* box-shadow: 5px 2px 11px 2px #888888; */
+}
+
+form#registration-reports {
+    display: flex;
+    width: 100% !important;
+    justify-content: center;
+}
+
+select#registration_type {
+    border-radius: 4px;
+    margin-right: 10px;
+    border: solid 1px #8C8F94;
+    padding: 8px;
+    /* width: 196px; */
+    font-size: 15px;
+    color: #2C3338;
+}
+
+select#registration_year {
+    border-radius: 4px;
+    margin-right: 20px;
+    border: solid 1px #8C8F94;
+    padding: 8px;
+    width: 73px;
+    font-size: 15px;
+    color: #2C3338;
+}
+
+input#export-report {
+    background: #F7C338;
+    color: #080E41;
+    border: 0;
+    border-radius: 0;
+    font-size: 18px;
+    padding: 4px 50px;
+    margin-left: 20px;
+    transition: 0.2s all;
+}
+
+input#custom_date_from {
+    border-radius: 4px !important;
+    border: solid 1px #8C8F94;
+    padding: 8px;
+    color: #2C3338;
+    font-size: 15px;
+}
+
+input#custom_date_to {
+    border-radius: 4px;
+    border: solid 1px #8C8F94;
+    padding: 8px;
+    font-size: 15px;
+    color: #2C3338;
+}
+
+.analytic-views-container {
+    display: flex;
+    margin: 30px 0px;
+    padding: 0% 15%;
+    width: 100%;    
+}
+
+.analytic-views-container div {
+    width: 14%;
+    text-align: center;
+    border: solid 2px #8C8F94;
+    margin: 0% 1%;
+    border-radius: 4px;
+    padding: 10px 10px 30px 10px;
+}
+
+.analytic-views-container div div {
+    border: 0;
+    text-align: center;
+    width: 100%;
+    padding: 0;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.analytic-views-container h4 {
+    font-size: 16px;
+    color: #333333;
+    font-weight: 600;
+}
+
+.registration-custom-date label {
+    color: #333333;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.registration-reports-container h2 {
+    text-align: center;
+    margin-bottom: 48px;
+    font-size: 30px;
+    line-height: 1.5em;
+    color: #1D2327 !important;
+}
+
+input#export-report:hover {
+    color: #F7C338;
+    background: #080E41;
+}
+.registration-reports-container h3 {
+    text-align: center;
+    font-size: 25px;
+    line-height: 1em;
+    margin: 50px 0 0px 0 !important;
+}

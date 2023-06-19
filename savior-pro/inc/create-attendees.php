@@ -4,7 +4,7 @@ class CreateAttendees
     public function __construct()
     {
         add_filter('woocommerce_checkout_update_order_meta', array($this, 'save_gravity_form_entry_id'), 10, 2);
-        add_filter('woocommerce_checkout_fields', array($this, 'add_gravity_form_entry_id_field'));
+        // add_filter('woocommerce_checkout_fields', array($this, 'add_gravity_form_entry_id_field'));
         add_filter('woocommerce_payment_complete', array($this, 'payment_complete'));
         add_action( 'woocommerce_order_status_completed', array( $this, 'payment_complete' ) );//order_status_completed
         add_action('woocommerce_email_order_meta', array($this, 'add_attendees_information_in_email_order_meta'), 10, 3);
@@ -14,6 +14,7 @@ class CreateAttendees
         add_filter( 'gform_form_update_meta_13', array($this, 'remove_attendees_repeater_fields'), 10, 3 );
         // After Submit attendees form
         add_action( 'gform_after_submission_13', array($this, 'attendees_after_submission'), 100, 2 );
+        add_shortcode( 'add_gravity_form_entry_id_field', array($this, 'add_gravity_form_entry_id_field'));
     }
 
     public function save_gravity_form_entry_id($order_id, $posted)
@@ -24,15 +25,10 @@ class CreateAttendees
         }
     }
 
-    public function add_gravity_form_entry_id_field($fields)
+    public function add_gravity_form_entry_id_field()
     {
         $entry_id = isset($_SESSION['entry_id']) ? $_SESSION['entry_id'] : (isset($_REQUEST['entry_id']) ? $_REQUEST['entry_id'] : '');
-        woocommerce_form_field('_gravity_form_entry_id', array(
-            'type'          => 'hidden',
-            'class'         => array('gravity-form-entry-id'),
-            'label'         => 'Gravity Form Entry ID',
-        ), $entry_id);
-        return $fields;
+        return $entry_id;
     }
 
     public function payment_complete($order_id)
@@ -48,7 +44,7 @@ class CreateAttendees
             '18784' => 'daypass'
         );
         $main_user_id = get_post_meta($order_id, '_customer_user', true);
-        $main_user = get_user_by('id', $main_user_id);
+        $main_user = new WP_User($main_user_id); 
         $gravity_form_entry_id = get_post_meta($order_id, '_gravity_form_entry_id', true);
         if (!empty($gravity_form_entry_id)) {
             $entry = GFAPI::get_entry($gravity_form_entry_id);
@@ -56,22 +52,33 @@ class CreateAttendees
             if (!empty($entry)) {
                 //Add attendees with school registration
                 if($entry['form_id']  == 11 ){
-
+                    update_post_meta($order_id, '_gravity_entry_data', json_encode($entry));
                     if ($main_user) {
                         if (isset($entry['1027'])) {
                             $main_user_role = $product_id_with_role[$entry['1027']];
-                            $main_user->add_role($main_user_role);
-                            // if (!empty($entry['14.1'])) {
-                            //     $main_user->add_role($entry['14.1']);
-                            // }
-                            // if (!empty($entry['14.2'])) {
-                            //     $main_user->add_role($entry['14.2']);
-                            // }
+                                    
+                            if($entry['1027'] !== 22101 || $entry['1027'] !== 22102){
+                                $main_user->add_role($main_user_role);
+                            }
+                            if ( $entry['1027'] == 22101) {
+                                if($entry['1006'])
+                                {
+                                    $course_type_role = $entry['1006'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
+                                    $main_user->add_role($course_type_role);
+                                }
+                            }
+                            if ($entry['1027'] == 22102 ) {
+                                if($entry['1006'])
+                                {
+                                    $course_type_role = $entry['1006'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
+                                    $main_user->add_role($course_type_role);
+                                }
+                            }
                             update_user_meta($main_user_id, 'special_role', array($entry['14.2'],$entry['14.1']));
                         }
                     }
                     if (isset($entry['1034']) && $entry['1034'] == 'yes') {
-                        $repeater_field_attendees = $entry[1000];
+                        $repeater_field_attendees = $entry['1000'];
                         $_attendees_order_meta = array();
                         $attendees_users= array();
                         $random_password = wp_generate_password(12, false);
@@ -81,15 +88,25 @@ class CreateAttendees
                                 if (is_wp_error($attendee_user_id)) {
                                 } else {
                                     $role = $product_id_with_role[$attendees_data['1005']]; // replace with the role you want to assign
-                                    $user = get_user_by('id', $attendee_user_id);
+                                    $user = new WP_User($attendee_user_id); 
                                     if ($user) {
-                                        $user->add_role($role);
-                                        // if (!empty($attendees_data['1029.1'])) {
-                                        //     $user->add_role($attendees_data['1029.1']);
-                                        // }
-                                        // if (!empty($attendees_data['1029.2'])) {
-                                        //     $user->add_role($attendees_data['1029.2']);
-                                        // }
+                                        if($attendees_data['1005'] !== 22101 || $attendees_data['1005'] !== 22102){
+                                            $user->add_role($role);
+                                        }
+                                        if ( $attendees_data['1005'] == 22101) {
+                                            if($attendees_data['1028'])
+                                            {
+                                                $course_type_role = $attendees_data['1028'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
+                                                $user->add_role($course_type_role);
+                                            }
+                                        }
+                                        if ($attendees_data['1005'] == 22102 ) {
+                                            if($attendees_data['1028'])
+                                            {
+                                                $course_type_role = $attendees_data['1028'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
+                                                $user->add_role($course_type_role);
+                                            }
+                                        }
                                         update_user_meta($main_user_id, 'special_role', array($attendees_data['1029.2'],$attendees_data['1029.1']));
                                         update_user_meta($attendee_user_id, 'first_name', $attendees_data['1002']);
                                         update_user_meta($attendee_user_id, 'last_name', $attendees_data['1003']);
@@ -109,33 +126,47 @@ class CreateAttendees
 
                 if($entry['form_id'] == 13)
                 {
-                    $repeater_field_attendees = $entry[1000];
+                    $repeater_field_attendees = $entry['1000'];
                     $_attendees_order_meta = array();
                     $attendees_users= array();
                     $main_user = get_user_by('id', $entry['created_by']);//
                     $random_password = wp_generate_password(12, false);
                     foreach ($repeater_field_attendees as $attendees_data) {
                         if (!empty($attendees_data['1001'])) {
+                            $email_exists_attendee = email_exists($attendees_data['1001']);
                             $attendee_user_id = $this->get_or_create_user_by_email( $attendees_data['1001'], $random_password );
                             if (is_wp_error($attendee_user_id)) {
                             } else {
                                 $role = $product_id_with_role[$attendees_data['1005']]; // replace with the role you want to assign
-                                $user = get_user_by('id', $attendee_user_id);
+                                // $user = get_user_by('id', $attendee_user_id);
+                                $user = new WP_User($attendee_user_id); 
                                 if ($user) {
-                                    $user->add_role($role);
-                                    // if (!empty($attendees_data['1029.1'])) {
-                                    //     $user->add_role($attendees_data['1029.1']);
-                                    // }
-                                    // if (!empty($attendees_data['1029.2'])) {
-                                    //     $user->add_role($attendees_data['1029.2']);
-                                    // }
+                                    if($attendees_data['1005'] !== 22101 || $attendees_data['1005'] !== 22102){
+                                        $user->add_role($role);
+                                    }
+                                    if ( $attendees_data['1005'] == 22101 ) {
+                                        if($attendees_data['1028'])
+                                        {
+                                            $course_type_role = $attendees_data['1028'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
+                                            $user->add_role($course_type_role);
+                                        }
+                                    }
+                                    if ( $attendees_data['1005'] == 22102 ) {
+                                        if($attendees_data['1028'])
+                                        {
+                                            $course_type_role = $attendees_data['1028'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
+                                            $user->add_role($course_type_role);
+                                        }
+                                    }
                                     update_user_meta($main_user_id, 'special_role', array($attendees_data['1029.2'],$attendees_data['1029.1']));
                                     update_user_meta($attendee_user_id, 'first_name', $attendees_data['1002']);
                                     update_user_meta($attendee_user_id, 'last_name', $attendees_data['1003']);
                                 }
                                 $_attendees_order_meta[] = array('user_id' => $attendee_user_id, 'product_id' => $attendees_data['1005'], 'roles' => $user->roles);
                                 $attendees_users[] = array('email' => $attendees_data['1001'], 'password' => $random_password);
-                                $this->send_email_to_attendees(array('email' => $attendees_data['1001'], 'password' => $random_password), $main_user->user_email);                                
+                                if(!$email_exists_attendee){
+                                    $this->send_email_to_attendees(array('email' => $attendees_data['1001'], 'password' => $random_password), $main_user->user_email);                                
+                                }
                             }
                         }
                     }
@@ -210,7 +241,7 @@ class CreateAttendees
                 $message .= '<b>Email:</b> ' . $sub_user['email'] . ', <b>Password:</b> ' . $sub_user['password']."<br>";
             }
         
-            $message .= '<h6>Note: If the email is already registered on this site, providing the password will not work.</h6><br>
+            $message .= '<h6>Note: If the email is already registered on this site, provided the password will not work.</h6><br>
         
         <br>Regards,<br>
         Your Website: <a href="'.site_url().'">'.site_url().'</a>';
@@ -314,6 +345,7 @@ class CreateAttendees
             'formId' => $form['id'],
             'label' => 'Select Course Type',
             'pageNumber' => 1, 
+            'setDefaultValues' => 'in_person',
             'choices' => array(
                 array(
                     'text' => 'In-person',
@@ -326,6 +358,7 @@ class CreateAttendees
                 ),
             ) 
         ) );
+        $course_type['choices'][1]['isSelected'] = true;
         $special_role = GF_Fields::create( 
             array(
                 'type' => 'checkbox',
