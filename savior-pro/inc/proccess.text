@@ -1,0 +1,14 @@
+Create Companies CPT add icon "network"
+Add plugin "Gravity forms advanced post creation"
+Create new post creation feeds
+    name => Company Post Type
+    Visibility => Public
+    Type => Company
+    Status => Published
+    Post Title => {Company Name:7}
+    Post Content => .
+Other Custom fields mapping to other
+    https://prnt.sc/B245GSPqv4DC
+
+Import acf fields using json
+

@@ -1,3 +1,4 @@
+
 /* Responsive CSS 2 */
 
 /** Dashboard Pages Responsive CSS Starts **/
@@ -233,9 +234,9 @@
 		font-size: 22px !important;
 		line-height: 30px !important;
 	}
-	.registration-inner-box .elementor-col-100 > .elementor-element-populated, .registration-inner-box .elementor-col-50 > .elementor-element-populated {
+/* 	.registration-inner-box .elementor-col-100 > .elementor-element-populated, .registration-inner-box .elementor-col-50 > .elementor-element-populated {
 		padding: 74px 20px 100px 20px !important;
-	}
+	} */
 	.elementor-19526 .elementor-element.elementor-element-5cc6333 {
 		margin-bottom: 50px !important;
 	}

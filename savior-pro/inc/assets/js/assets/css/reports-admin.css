@@ -187,12 +187,25 @@ select#registration_year options {
 	padding: 8px 15px 8px 15px;
 	margin-right: 20px;
 }
+#registration-reports-result-table {
+    margin: 0 auto;
+    width: 1070px;
+    border: 1px solid rgba(0, 0, 0, 0.3) !important;
+    padding: 10px 0px;
+    border-radius: 5px !important;
+	border-spacing: 0 !important;
+}
+
+#reports-result-headerRow th {
+    padding: 10px 10px !important;
+}
+
+#registration-reports-result-table tbody td {
+    padding: 8px 10px !important;
+    font-size: 15px !important;
+}
 #registration-reports-result-table thead tr th {border-bottom: 1px solid rgba(0, 0, 0, 0.3) !important;text-align: left !important;}
 
 #registration-reports-result-table tbody tr:nth-child(even) {
     background: #FFFFFF;
-}
-
-#registration-reports-result-table tbody tr:nth-child(even) td {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }

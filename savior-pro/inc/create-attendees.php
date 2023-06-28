@@ -51,8 +51,8 @@ class CreateAttendees
 
             if (!empty($entry)) {
                 //Add attendees with school registration
+                update_post_meta($order_id, '_gravity_entry_data', json_encode($entry));
                 if($entry['form_id']  == 11 ){
-                    update_post_meta($order_id, '_gravity_entry_data', json_encode($entry));
                     if ($main_user) {
                         if (isset($entry['1027'])) {
                             $main_user_role = $product_id_with_role[$entry['1027']];

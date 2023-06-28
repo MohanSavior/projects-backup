@@ -589,7 +589,6 @@ function repeater_registration_form( $form ) {
 		'setDefaultValues' => '18783'
 	) );
 	// Set the default selected option
-	$product_choices['choices'][1]['isSelected'] = true;
 	// create the radio field
 	$course_type = GF_Fields::create( array(
 		'type' => 'radio',
@@ -1050,27 +1049,14 @@ function ceu_registered(){
 
 // Add a custom function to redirect users after successful checkout
 function redirect_after_checkout($order_id) {
-	// $order = wc_get_order($order_id);
-	// if ($order->has_status('failed')) {
-	// }else{
-	// 	wp_redirect(dashboard_url_fn());
-	// 	exit;
-	// }
-	// Get the order object
 	$order = wc_get_order($order_id);
-
-	// Get the order status
 	$order_status = $order->get_status();
-	
 	// Check if the order status is "processing" or "completed"
 	if (in_array($order_status, array('processing', 'completed'))) {
-		// Enqueue the JavaScript file for the confirmation popup
 		wp_enqueue_style( 'sweetalert2', get_stylesheet_directory_uri() . '/assets/css/sweetalert2.min.css', array(), time(), 'all' );
 		wp_enqueue_script('sweetalert2', get_stylesheet_directory_uri() . '/assets/js/sweetalert2.all.min.js', array('jquery'), time(), true);
 		wp_enqueue_script('confirmation-popup', get_stylesheet_directory_uri() . '/assets/js/confirmation-popup.js', array('jquery'), time(), true);
 		
-		// Pass the redirect URL to the JavaScript file
-		// $redirect_url = get_permalink(get_option('woocommerce_myaccount_page_id'));
 		wp_localize_script('confirmation-popup', 'confirmationPopupParams', array(
 			'redirectURL' => dashboard_url_fn()
 		));
@@ -1111,13 +1097,6 @@ function get_purchased_product_name_shortcode($atts) {
 		'limit' => -1,
 		'status'         => 'wc-completed', // Retrieve completed orders
 		'customer_id'    => $customer_id,
-		// 'date_query'     => array(
-		// 	array(
-		// 		'after'     => date('Y-01-01'), // Start of the current year
-		// 		'before'    => date('Y-12-31'), // End of the current year
-		// 		'inclusive' => true,
-		// 	),
-		// ),
 	);
 
 	$Order_Query = new WC_Order_Query($args);
@@ -1152,8 +1131,6 @@ function get_purchased_product_name_shortcode($atts) {
 			}	
 		}
 	}
-	// else{
-		// unset($args['meta_key']);
 		unset($args['customer_id']);
 		$args['meta_query']  = array(
             array(
@@ -1169,17 +1146,11 @@ function get_purchased_product_name_shortcode($atts) {
 			'meta_key'     => '_attendees_order_meta',
 			'meta_compare' => '!=',
 			'meta_value'   => '',
-			// 'meta_key'     => '_attendees_order_meta', // The postmeta key field
-			// 'meta_compare' => 'NOT EXISTS', // The comparison argument
 		));
-		// $attendees_orders = new WC_Order_Query($args);
 		if(!empty($orders))
 		{
 			$attendee_names = array();
 			foreach ($orders as $order) {
-				// echo "<pre>";
-				// print_r($order);
-				// echo"</pre>";
 				$user_meta = $order->get_meta('_attendees_order_meta');
 
 				if(!empty($user_meta))
@@ -1239,10 +1210,171 @@ function remove_cart_item_before_add_to_cart( $passed, $product_id, $quantity ) 
         WC()->cart->empty_cart();
     return $passed;
 }
-// add_shortcode( 'test', function(){
-// 	$entry = GFAPI::get_entry(857);
-// 	echo"<pre>";
-// 	echo "Gravity Entry";
-// 	print_r($entry);
-// 	echo"</pre>";
-// });
+
+/** Woo remove footer app text **/
+function woo_disable_mobile_messaging( $mailer ) {
+	remove_action( 'woocommerce_email_footer', array( $mailer->emails['WC_Email_New_Order'], 'mobile_messaging' ), 9 );
+}
+add_action( 'woocommerce_email', 'woo_disable_mobile_messaging' );
+
+// Add "Billing Company" value to Stripe metadata
+function add_custom_metadata_to_stripe_payment($meta_data, $order) {
+    foreach ( $order->get_items( 'line_item' ) as $item ) {
+		$product 	= $item->get_product();
+		if($item->get_product_id() !== 22101 && $item->get_product_id() !== 22102)
+		{
+			$key   		= 'product_sku_' . $item->get_product_id();
+			$meta_data[ $key ] = $product->get_sku();		
+		}
+	}
+	$meta_data = sku_on_stripe($order, $meta_data);
+	return $meta_data;
+}
+add_filter('wc_stripe_order_meta_data', 'add_custom_metadata_to_stripe_payment', 10, 2);
+
+
+function sku_on_stripe($order, $meta_data){
+	// $_gravity_entry_data = get_post_meta($order->get_id(), '_gravity_entry_data', true);
+	$gravity_form_entry_id = get_post_meta($order->get_id(), '_gravity_form_entry_id', true);
+	$course_type_role = [];
+	if(isset($gravity_form_entry_id) && !empty($gravity_form_entry_id))
+	{
+		$entry = GFAPI::get_entry($gravity_form_entry_id);
+		if(!empty($entry))
+		{
+			if( $entry['form_id'] == 11 )
+			{
+				if (isset($entry[1027])) {
+					if ( $entry[1027] == 22101) {
+						if($entry[1006])
+						{
+							if($entry[1006] == 'in_person'){
+								$course_type_role['product_sku_22101'][] = '124 LMF On Site';
+							}else{
+								$course_type_role['product_sku_22101'][] = '125 LMF Virtual';
+							} 
+						}
+					}
+					if ($entry[1027] == 22102 ) {
+						if($entry[1006])
+						{
+							// $course_type_role[] = $entry['1006'] == 'in_person' ? '120-GMF-On-Site' : '126-GMF-Virtual';
+							if($entry[1006] == 'in_person'){
+								$course_type_role['product_sku_22102'][] = '120 GMF On Site';
+							}else{
+								$course_type_role['product_sku_22102'][] = '126 GMF Virtual';
+							} 
+						}
+					}
+				}
+				if (isset($entry[1034]) && $entry[1034] == 'yes') 
+				{
+					$repeater_field_attendees = $entry[1000];
+					foreach ($repeater_field_attendees as $attendees_data) 
+					{
+						if (!empty($attendees_data[1001])) 
+						{
+							if ( $attendees_data[1005] == 22101) {
+								if($attendees_data[1028])
+								{
+									// $course_type_role[] = $attendees_data['1028'] == 'in_person' ? '124-LMF-On-Site' : '125-LMF-Virtual';
+									if($attendees_data[1028] == 'in_person'){
+										$course_type_role['product_sku_22101'][] = '124 LMF On Site';
+									}else{
+										$course_type_role['product_sku_22101'][] = '125 LMF Virtual';
+									} 
+								}
+							}
+							if ($attendees_data[1005] == 22102 ) {
+								if($attendees_data[1028])
+								{
+									// $course_type_role[] = $attendees_data['1028'] == 'in_person' ? '120-GMF-On-Site' : '126-GMF-Virtual';
+									if($attendees_data[1028] == 'in_person'){
+										$course_type_role['product_sku_22102'][] = '120 GMF On Site';
+									}else{
+										$course_type_role['product_sku_22102'][] = '126 GMF Virtual';
+									} 
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			//Form 13
+			if( $entry['form_id'] == 13 )
+			{
+				$repeater_field_attendees = $entry[1000];
+				foreach ($repeater_field_attendees as $attendees_data) 
+				{
+					if (!empty($attendees_data[1001])) 
+					{
+						if ( $attendees_data[1005] == 22101 ) {
+							if($attendees_data[1028])
+							{
+								if($attendees_data[1028] == 'in_person'){
+									$course_type_role['product_sku_22101'][] = '124 LMF On Site';
+								}else{
+									$course_type_role['product_sku_22101'][] = '125 LMF Virtual';
+								} 
+							}
+						}
+						if ( $attendees_data[1005] == 22102 ) {
+							if($attendees_data[1028])
+							{
+								if($attendees_data[1028] == 'in_person'){
+									$course_type_role['product_sku_22102'][] = '120 GMF On Site';
+								}else{
+									$course_type_role['product_sku_22102'][] = '126 GMF Virtual';
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		foreach ($course_type_role as $product_key => $value_with_key) {
+			foreach ($value_with_key as $key => $value) {
+				$meta_data[$product_key.'_'.$key] 	= $value;
+			}
+		}
+
+	}
+	return $meta_data;
+}
+add_action('admin_menu', function(){
+	add_menu_page(
+        'My ASGMT', // $page_title
+        'My ASGMT', // $menu_title 
+        'manage_options', // $capability
+        'my-asgmt-dashboard', // $menu_slug 
+        'my_asgmt_dashboard', // $callback 
+        'dashicons-admin-users', // $icon_url
+        150 // $position
+    );
+});
+
+function my_asgmt_dashboard()
+{
+    $redirect_url = site_url('members-dashboard');
+    wp_redirect($redirect_url);
+    exit();
+}
+
+add_action('init', 'load_companies_post_type_class');
+
+function load_companies_post_type_class() {
+    if (!is_admin()) {
+        return; // Exit if not in the admin area
+    }
+	include_once 'inc/companies.php';
+}
+
+add_shortcode( 'test', function(){
+	
+	echo "<pre>";
+	// print_r( get_post_meta( 25943 ) );
+	print_r( get_field('booth_numbers', 25950) );
+	
+	echo "</pre>";
+});

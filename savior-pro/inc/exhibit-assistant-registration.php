@@ -19,7 +19,7 @@ class ExhibitAssistantRegistration
     public function exhibitor_assistant_scripts()
     {
         $screen = get_current_screen();
-        if($screen->id == 'asgmt-exhibits_page_edit-exhibitor-profile' || is_page(19755)){
+        if(isset($screen->id) && $screen->id == 'asgmt-exhibits_page_edit-exhibitor-profile' || is_page(19755)){
 
             ?>
             <script type="text/javascript">

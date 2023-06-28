@@ -2307,6 +2307,20 @@ input#gform_submit_button_20 {
 input#gform_submit_button_20:hover {
     border-color: #080e41 !important;
 }
+body.single-post .elementor-widget-theme-post-content a {
+    color: #252f86;
+}
+.registration-btn p {
+    color: #252F86;
+    font-family: "Montserrat", Sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 26px;
+    text-align: right;
+	padding-top: 38px;
+	margin-bottom: 0;
+}
 /** check box Ends **/
 
 /** Height CSS **/

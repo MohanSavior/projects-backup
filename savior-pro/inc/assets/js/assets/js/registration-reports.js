@@ -2,21 +2,26 @@ jQuery(document).ready(function ($) {
     'use strict'
     function showAlert(icon, title) {
         Swal.fire({
+            // position: 'top-end',
             icon: icon,
             text: title,
-            showConfirmButton: true
+            showConfirmButton: true,
+            // timer: 1500
         })
     }
     var dateFormat = "mm-dd-yy";
     var currentDate = new Date();
     var from = $("#custom_date_from").datepicker({
+        // defaultDate: "+1w",
         changeMonth: true,
         maxDate: currentDate,
         dateFormat: dateFormat,
         numberOfMonths: 3
     }).on("change", function () {
         var selectedDate = getDate(this);
-        to.datepicker("option", "minDate", selectedDate);
+        to.datepicker("option", "minDate", selectedDate); // Set the minimum date for "to" datepicker
+
+        // Additional validation to check if "from" date is greater than "to" date
         var toDate = getDate(to[0]);
         if (selectedDate && toDate && selectedDate > toDate) {
             to.datepicker("setDate", selectedDate); // Set "to" date to "from" date
@@ -31,7 +36,7 @@ jQuery(document).ready(function ($) {
         numberOfMonths: 3
     }).on("change", function () {
         var selectedDate = getDate(this);
-        to.datepicker("option", "minDate", selectedDate);
+        to.datepicker("option", "minDate", selectedDate); // Set the minimum date for "to" datepicker
 
         // Additional validation to check if "from" date is greater than "to" date
         var toDate = getDate(to[0]);
@@ -62,7 +67,7 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 $('body').find(`.registration-reports-container`).find('#assistant-spinner').remove();
                 if (response.success) {
-                    jsonToCsv(response.data.data, response.data.filename);
+                    // jsonToCsv(response.data.data, response.data.filename);
                     $('.registration-reports-result').html(`
                         <table id="registration-reports-result-table">
                             <thead>
