@@ -122,15 +122,16 @@ jQuery(document).ready(function ($) {
         let exhibitor_profile = exhibitor_object?.booth_admin;
         var buttonCommon = {
             exportOptions: {
-                columns: [0, 14, 2, 15, 4, 5, 6, 7, 8, 9, 10, 13],
+                columns: [0, 16, 2, 17, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15],
                 modifier: {
                     search: 'applied'
                 },
                 format: {
                     body: function (data, row, column, node) {
-                        data = $.fn.DataTable.Buttons.stripData(data, null)
-                        if ((column === 1 || column === 3) && data.includes('_')) {
-                            var stringArray = data.split("_");
+                        console.log(column);
+                        data = $.fn.DataTable.Buttons.stripData(data, null);            
+                        if ((column === 1 || column === 3)) {
+                            var stringArray = data.replaceAll('_', ' ').split(" ");
                             var capitalizedArray = stringArray.map(function (element) {
                                 return element.charAt(0).toUpperCase() + element.slice(1);
                             });
@@ -215,14 +216,17 @@ jQuery(document).ready(function ($) {
                         return plan_to_exhibit;
                     }
                 },
-                { "data": "first_name" },
-                { "data": "last_name" },
-                { "data": "email" },
+                { "data": "primary_first_name" },
+                { "data": "primary_last_name" },
+                { "data": "primary_email" },
+                { "data": "alternate_first_name" },
+                { "data": "alternate_last_name" },
+                { "data": "alternate_email" },
                 { "data": "booth_count" },
                 { "data": "exhibit_booth_number" },
                 { "data": "exhibit_rep_first_name" },
                 { "data": "exhibit_rep_last_name" },
-                { "data": "particepating_year" },
+                // { "data": "particepating_year" },
                 { "data": "id" },
                 { "data": "date_of_registration" },
                 { "data": "active_status" },
@@ -232,8 +236,8 @@ jQuery(document).ready(function ($) {
             ],
             pageLength: 25,
             aLengthMenu: [
-                [25, 50, 100, 200, -1],
-                [25, 50, 100, 200, "All"]
+                [10, 25, 50, 100, 200, -1],
+                [10, 25, 50, 100, 200, "All"]
             ],
             buttons: [
                 {
@@ -243,16 +247,18 @@ jQuery(document).ready(function ($) {
                         $.extend(true, {}, buttonCommon, {
                             extend: 'csvHtml5',
                             text: 'Export to CSV',
+                            // download: 'open',
                         }),
                         $.extend(true, {}, buttonCommon, {
                             extend: 'pdfHtml5',
                             text: 'Export to PDF',
                             orientation: 'landscape',
-                            pageSize: 'LEGAL',
+                            pageSize: 'A2',
                         }),
                         $.extend(true, {}, buttonCommon, {
                             extend: 'excelHtml5',
                             text: 'Export to Excel',
+                            // download: 'open',
                         }),
                     ]
                 }
@@ -266,7 +272,8 @@ jQuery(document).ready(function ($) {
             ],
             order: [[2, 'asc']],
             "processing": true,
-            responsive: true
+            scrollX: true
+            // responsive: true
         });
         $(".dt-buttons").prepend($(".year-filter"));
         $(".dataTables_filter").prepend($(".filter-by-status"));
@@ -502,7 +509,7 @@ jQuery(document).ready(function ($) {
         });
     }
     //Disabled Assigned Booth Numbers
-    if(typeof exhibitor_object.assigned_booth_number != 'undefined')
+    if(typeof exhibitor_object.assigned_booth_numbers != 'undefined')
     {
         let booth_numbers = exhibitor_object?.assigned_booth_numbers?.replace(/\s+/g, '');
         if (typeof acf != 'undefined') {
@@ -510,7 +517,8 @@ jQuery(document).ready(function ($) {
                 var $selectField = $el.find('[data-key="field_64801320c46f0"] select');
                 if (typeof booth_numbers != 'undefined') {
                     booth_numbers.split(',').forEach((element) => {
-                        $selectField.find(`option[value="${element}"]`).prop('disabled', true);
+                        // $selectField.find(`option[value="${element}"]`).prop('disabled', true);
+                        $selectField.find(`option[value="${element}"]`).remove();
                     });
                 }
             });

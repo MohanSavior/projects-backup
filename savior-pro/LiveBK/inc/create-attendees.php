@@ -58,7 +58,7 @@ class CreateAttendees
                             $main_user_role = $product_id_with_role[$entry['1027']];
                                     
                             if($entry['1027'] !== 22101 || $entry['1027'] !== 22102){
-                                $main_user->add_role('student');
+                                $main_user->add_role($main_user_role);
                             }
                             if ( $entry['1027'] == 22101) {
                                 if($entry['1006'])
@@ -87,35 +87,31 @@ class CreateAttendees
                                 $attendee_user_id = $this->get_or_create_user_by_email( $attendees_data['1001'], $random_password );
                                 if (is_wp_error($attendee_user_id)) {
                                 } else {
-                                    $attendees_product_id = '';
                                     $role = $product_id_with_role[$attendees_data['1005']]; // replace with the role you want to assign
                                     $user = new WP_User($attendee_user_id); 
                                     if ($user) {
+                                        if($attendees_data['1005'] !== 22101 || $attendees_data['1005'] !== 22102){
+                                            $user->add_role($role);
+                                        }
                                         if ( $attendees_data['1005'] == 22101) {
                                             if($attendees_data['1028'])
                                             {
                                                 $course_type_role = $attendees_data['1028'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
                                                 $user->add_role($course_type_role);
-                                                $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22101 : 25972;
                                             }
-                                        }elseif($attendees_data['1005'] == 22102 ) {
+                                        }
+                                        if ($attendees_data['1005'] == 22102 ) {
                                             if($attendees_data['1028'])
                                             {
                                                 $course_type_role = $attendees_data['1028'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
                                                 $user->add_role($course_type_role);
-                                                $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22102 : 25971;
                                             }
-                                        }else{
-                                            $user->add_role('student');
-                                            $attendees_product_id = $attendees_data['1005'];
                                         }
                                         update_user_meta($main_user_id, 'special_role', array($attendees_data['1029.2'],$attendees_data['1029.1']));
                                         update_user_meta($attendee_user_id, 'first_name', $attendees_data['1002']);
                                         update_user_meta($attendee_user_id, 'last_name', $attendees_data['1003']);
                                     }
-                                    // error_log(print_r('Attendees with Role and Product'));
-                                    // error_log(print_r(array('user_id' => $attendee_user_id, 'product_id' => $attendees_product_id, 'roles' => $user->roles), true));
-                                    $_attendees_order_meta[] = array('user_id' => $attendee_user_id, 'product_id' => $attendees_product_id, 'roles' => $user->roles);
+                                    $_attendees_order_meta[] = array('user_id' => $attendee_user_id, 'product_id' => $attendees_data['1005'], 'roles' => $user->roles);
                                     $attendees_users[] = array('email' => $attendees_data['1001'], 'password' => $random_password);
                                     $this->send_email_to_attendees(array('email' => $attendees_data['1001'], 'password' => $random_password), $main_user->user_email);
                                 }
@@ -136,7 +132,6 @@ class CreateAttendees
                     $main_user = get_user_by('id', $entry['created_by']);//
                     $random_password = wp_generate_password(12, false);
                     foreach ($repeater_field_attendees as $attendees_data) {
-                        $attendees_product_id = '';
                         if (!empty($attendees_data['1001'])) {
                             $email_exists_attendee = email_exists($attendees_data['1001']);
                             $attendee_user_id = $this->get_or_create_user_by_email( $attendees_data['1001'], $random_password );
@@ -145,31 +140,29 @@ class CreateAttendees
                                 $role = $product_id_with_role[$attendees_data['1005']]; // replace with the role you want to assign
                                 // $user = get_user_by('id', $attendee_user_id);
                                 $user = new WP_User($attendee_user_id); 
-                                
                                 if ($user) {
-                                    if ( $attendees_data['1005'] == 22101) {
+                                    if($attendees_data['1005'] !== 22101 || $attendees_data['1005'] !== 22102){
+                                        $user->add_role($role);
+                                    }
+                                    if ( $attendees_data['1005'] == 22101 ) {
                                         if($attendees_data['1028'])
                                         {
                                             $course_type_role = $attendees_data['1028'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
                                             $user->add_role($course_type_role);
-                                            $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22101 : 25972;
                                         }
-                                    }elseif($attendees_data['1005'] == 22102 ) {
+                                    }
+                                    if ( $attendees_data['1005'] == 22102 ) {
                                         if($attendees_data['1028'])
                                         {
                                             $course_type_role = $attendees_data['1028'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
                                             $user->add_role($course_type_role);
-                                            $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22102 : 25971;
                                         }
-                                    }else{
-                                        $user->add_role('student');
-                                        $attendees_product_id = $attendees_data['1005'];
                                     }
                                     update_user_meta($main_user_id, 'special_role', array($attendees_data['1029.2'],$attendees_data['1029.1']));
                                     update_user_meta($attendee_user_id, 'first_name', $attendees_data['1002']);
                                     update_user_meta($attendee_user_id, 'last_name', $attendees_data['1003']);
                                 }
-                                $_attendees_order_meta[] = array('user_id' => $attendee_user_id, 'product_id' => $attendees_product_id, 'roles' => $user->roles);
+                                $_attendees_order_meta[] = array('user_id' => $attendee_user_id, 'product_id' => $attendees_data['1005'], 'roles' => $user->roles);
                                 $attendees_users[] = array('email' => $attendees_data['1001'], 'password' => $random_password);
                                 if(!$email_exists_attendee){
                                     $this->send_email_to_attendees(array('email' => $attendees_data['1001'], 'password' => $random_password), $main_user->user_email);                                
@@ -218,9 +211,7 @@ class CreateAttendees
 
         $entry = GFAPI::get_entry($_gravity_form_entry_id);
 
-        if( !empty($entry) && ($entry['form_id'] == 13 || $entry['form_id'] == 11) ){
-            // $user_order_metadata = $order->get_meta('_attendees_order_meta');
-
+        if($entry['1034'] == 'yes' || $entry['form_id'] == 13){
             echo"<style>
             .discount-info table{width: 100%; font-family: \'Helvetica Neue\', Helvetica, Roboto, Arial, sans-serif;
                 color: #737373; border: 1px solid #e4e4e4; margin-bottom:8px;}
@@ -230,20 +221,8 @@ class CreateAttendees
             </style><h2>Attendees Information</h2><div class='discount-info'>";
             // print_r($entry['1000']);
             echo"<table><thead><tr><th>Attendee name</th><th>Attendee email</th><th>Attendee product</th></tr></thead><tbody>";
-            foreach ($entry['1000'] as $key => $attendee) {
-                // $product_title = $user_order_metadata[$key]['product_id'];
-                if( isset($attendee[1028]) && $attendee[1005] == 22101 )
-                {
-                    $attendees_product_id = $attendee[1028] == 'in_person' ? 22101 : 25972;
-                }
-                elseif( isset($attendee[1028]) && $attendee[1005] == 22102 )
-                {
-                    $attendees_product_id = $attendee[1028] == 'in_person' ? 22102 : 25971;
-                }
-                else{
-                    $attendees_product_id = $attendee[1005];
-                }
-                printf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $attendee['1002'].' '.$attendee['1003'], $attendee['1001'], get_the_title( $attendees_product_id ));
+            foreach ($entry['1000'] as $attendee) {
+                printf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $attendee['1002'].' '.$attendee['1003'], $attendee['1001'], get_the_title( $attendee['1005'] ));
             }
             echo"</tbody></table></div>";
         }
@@ -436,18 +415,9 @@ class CreateAttendees
 
     public function attendees_after_submission( $entry, $form )
     {
-		$get_all_attendees = rgar( $entry, 1000 );
+		$get_all_attendees = rgar( $entry, '1000' );
 		foreach ($get_all_attendees as $attendees) {
-            if( $attendees[1005] == 22101 )
-            {
-                $attendee_product_id = $attendees[1028] == 'in_person' ? 22101 : 25972;
-            }elseif( $attendees[1005] == 22102 )
-            {
-                $attendee_product_id = $attendees[1028] == 'in_person' ? 22102 : 25971;
-            }else{
-                $attendee_product_id = $attendees[1005];
-            }
-			$products_addto_cart[] = array( 'id' =>$attendee_product_id, 'quantity' => 1 );
+			$products_addto_cart[] = array( 'id' => $attendees['1005'], 'quantity' => 1 );
 		}
         // Empty the cart
         WC()->cart->empty_cart();

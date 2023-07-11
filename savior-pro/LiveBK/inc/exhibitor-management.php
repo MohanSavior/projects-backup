@@ -4,21 +4,20 @@ class ExhibitorManagement {
     public function __construct() {
       // Hook into WordPress admin_menu to add the Exhibitor Management page
       add_action('admin_menu', array($this, 'add_exhibitor_management_page'));
-      add_action( 'admin_enqueue_scripts', array($this, 'load_exhibitor_admin_style') );
   
       // Hook into admin_post action to handle CSV export
       add_action('wp_ajax_get_exhibitor_members', array($this, 'get_exhibitor_members'));
       add_filter( 'gform_confirmation_19', array($this, 'exhibitor_members_admin_confirmation'), 10, 4 );
-
       add_filter( 'gform_confirmation_18', array($this, 'exhibitor_members_admin_confirmation'), 10, 4 );
       // Hook into the 'gform_user_registration_validation' filter
       add_filter( 'gform_user_registration_validation', array($this, 'bypass_existing_user_registration'), 5, 3 );
 
-      // add_filter( 'gform_user_registration_update_user_id', array($this, 'gform_user_registration_update_user_id'), 10, 4 );
+      add_filter( 'gform_user_registration_update_user_id', array($this, 'gform_user_registration_update_user_id'), 10, 4 );
       add_filter('woocommerce_payment_complete', array($this, 'exhibitor_members_payment_complete'));
 
       // add_action('admin_head', array($this, 'exhibitor_members_style'));
-      add_action('wp_ajax_update_company_status', array($this, 'update_company_status_callback'));
+      add_action( 'admin_enqueue_scripts', array($this, 'load_exhibitor_admin_style') );
+      add_action('wp_ajax_update_user_status', array($this, 'update_user_status_callback'));
       add_action('wp_ajax_update_plane_to_exhibitor_status', array($this, 'update_plane_to_exhibitor_status'));
       // add_action( 'woocommerce_order_status_completed', array( $this, 'exhibitor_members_payment_complete' ) );//order_status_completed
       add_action('wp_ajax_assign_booth_products', array($this, 'assign_booth_products'));
@@ -41,14 +40,11 @@ class ExhibitorManagement {
       add_shortcode('activate_user_account', array($this, 'activate_user_account'));
       add_action( 'wp_ajax_check_email_exist', array($this, 'check_email_exist_callback'));
       add_shortcode('payment_history', array($this, 'view_payment_history_exhibitor'));
-
-      add_action( 'admin_enqueue_scripts', array($this, 'jquery_tab_ui_admin_scripts') );
-      add_action( 'wp_enqueue_scripts', array($this, 'jquery_tab_ui_admin_scripts') );
     }
 
     public function load_exhibitor_admin_style()
     {
-      wp_enqueue_style( 'exhibitor_admin_css', get_theme_file_uri('/inc/assets/css/exhibitor-admin.css'), false, time() );
+      wp_enqueue_style( 'exhibitor_admin_css', get_theme_file_uri('/inc/assets/css/exhibitor-admin.css'), false, '1.0.0' );
       // Enqueue DataTables scripts and styles
       $current_screen = get_current_screen();
       if($current_screen->id == 'toplevel_page_exhibitor-management')
@@ -84,18 +80,13 @@ class ExhibitorManagement {
       {
         wp_enqueue_style('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css', array(), '11.7.10');
         wp_enqueue_script('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js', array(), '11.7.10');
-      }      
+      }
+      
     }
-
-    public function jquery_tab_ui_admin_scripts() {
-      wp_enqueue_style('jquery-tab-ui', '//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css', array(), '1.13.2');
-      wp_enqueue_script('jquery-tab-ui', '//code.jquery.com/ui/1.13.2/jquery-ui.js', array('jquery'), '1.13.2', true);
-    }
-  
     
     public function gform_user_registration_update_user_id( $user_id, $entry, $form, $feed )
     {
-      $user_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : $user_id;
+      $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $user_id;
       $key = 'ID';
       $query_arg = 'exhibitor_id';
       $field_id = '31';
@@ -274,13 +265,12 @@ class ExhibitorManagement {
         <h1>Exhibitor Profile</h1>
         <div class="exhibitor-profile-wrap">
             <?php
-              if(isset($_REQUEST['company_id']))
+              if(isset($_REQUEST['exhibitor_id']))
               {
-                $company_post_id = $_REQUEST['company_id'];
-                if(get_post( $company_post_id ))
+                $exhibitor_id = $_REQUEST['exhibitor_id'];
+                $_exhibitor_status = get_user_meta($exhibitor_id, '_exhibitor_status', true);
+                if(get_users( [ 'include' => $exhibitor_id, 'fields' => 'ID' ] ))
                 {
-                  $company_post_meta_data = (object)$this->get_field_values_post_id( $company_post_id );
-                  $company_post_status = get_post_meta($company_post_id, '_exhibitor_status', true);
                   ?>
                   <div id="booth-admin-tabs">
                     <ul>
@@ -295,27 +285,25 @@ class ExhibitorManagement {
                       <div id="exhibitor-profile" style="width: 60%;">
                         <div class="exhibitor-status">
                           <label for="" style="display:block;">Status</label>
-                          <select data-row="<?php echo $company_post_id;?>" data-assign_booth_number="<?php echo $this->get_booth_numbers_by_user_id( $company_post_id );?>" class="status-select" style="width:50%">
-                              <option value="-">Select</option>
-                              <option <?php selected( $company_post_status, 'confirm_contact' ); ?> value="confirm_contact" selected="">Confirm Contact</option>
-                              <option <?php selected( $company_post_status, 'account_pending' ); ?> value="account_pending">Account Pending</option>
-                              <option <?php selected( $company_post_status, 'account_activated' ); ?> value="account_activated">Account Activated</option>
-                              <option <?php selected( $company_post_status, 'booth_pending' ); ?> value="booth_pending">Booth Pending</option>
-                              <option <?php selected( $company_post_status, 'pending_payment' ); ?> value="pending_payment">Pending Payment</option>
-                              <option <?php selected( $company_post_status, 'payment_complete' ); ?> value="payment_complete">Payment Complete</option>
-                              <option <?php selected( $company_post_status, 'complete' ); ?> value="complete">Complete</option>
+                          <select data-row="<?php echo $exhibitor_id;?>" data-assign_booth_number="<?php echo $this->get_booth_numbers_by_user_id( $exhibitor_id );?>" class="status-select" style="width:50%">
+                              <option value="-" disabled>Select</option>
+                              <option <?php selected( $_exhibitor_status, 'confirm_contact' ); ?> value="confirm_contact" selected="">Confirm Contact</option>
+                              <option <?php selected( $_exhibitor_status, 'account_pending' ); ?> value="account_pending">Account Pending</option>
+                              <option <?php selected( $_exhibitor_status, 'account_activated' ); ?> value="account_activated">Account Activated</option>
+                              <option <?php selected( $_exhibitor_status, 'booth_pending' ); ?> value="booth_pending">Booth Pending</option>
+                              <option <?php selected( $_exhibitor_status, 'pending_payment' ); ?> value="pending_payment">Pending Payment</option>
+                              <option <?php selected( $_exhibitor_status, 'payment_complete' ); ?> value="payment_complete">Payment Complete</option>
+                              <option <?php selected( $_exhibitor_status, 'complete' ); ?> value="complete">Complete</option>
                           </select>
                         </div>
-                        <?php 
-                          gravity_form(19, true, false, false, '', false, '', true ); 
-                        ?>
+                        <?php gravity_form(19, true, false, false, null, false, '', true ); ?>
                       </div>
                     </div>
                     <div id="booth-admin-tabs-assign-booth">
                       <div class="assign-booth-products">
                         <h1>Assign Booths</h1>
                         <form action="" id="assign-booth-product-exhibitor">
-                          <input type="hidden" name="customer_id" value="<?php echo $company_post_id;?>" />
+                          <input type="hidden" name="customer_id" value="<?php echo $exhibitor_id;?>" />
                           <!-- <select id="booth-products" multiple="multiple"> -->
                             <?php 
                               $args = array(
@@ -330,7 +318,7 @@ class ExhibitorManagement {
                               
                                   // Do something with the product information
                                   echo "<h3>".$product_name."</h3>";
-                                  $boothCount = is_numeric(get_post_meta($company_post_id, 'booth_count', true)) ? get_post_meta($company_post_id, 'booth_count', true) : 0;
+                                  $boothCount = is_numeric(get_user_meta($exhibitor_id, 'booth_count', true)) ? get_user_meta($exhibitor_id, 'booth_count', true) : 0;
                                   $boothCountPrice = $boothCount === 0 ? 0 : $boothCount * $product_price;
                                   echo "Booth Count : <input type='number' value='".$boothCount."' id='calculatePrice' min='1' step='1' max='99' data-product_id='". $product_id ."' data-price='". $product_price ."' />";
                                   echo '<p>Total Value: $<span id="totalValue">'. $boothCountPrice .'</span></p>';
@@ -352,18 +340,19 @@ class ExhibitorManagement {
                             <li><a href="#tabs-2">Previous Year</a></li>
                           </ul>
                           <div id="tabs-1">
-                              <h4><?php echo $this->getTotalQuantityPurchased($company_post_id, 18792); ?> Booths Purchased</h4>
+                              <h4><?php echo $this->getTotalQuantityPurchased($exhibitor_id, 18792); ?> Booths Purchased</h4>
                               <?php
-                                  if($this->getTotalQuantityPurchased($company_post_id, 18792) > 0 )
+                                  if($this->getTotalQuantityPurchased($exhibitor_id, 18792) > 0 )
                                   {
+                                    // echo $this->get_booth_numbers_by_user_id( (int)$exhibitor_id );
                                     acf_form_head();
                                     $current_year = date('Y');
                                     acf_form(array(
-                                      'post_id'             => $company_post_id,
-                                      'field_groups'        => array('group_649950635643a'),
+                                      'post_id'             => 'user_' . $exhibitor_id,
+                                      'field_groups'        => array('group_63c15781ab918'),
                                       'fields'              => array('booth_numbers'),
                                       'form'                => true,
-                                      'return'              => add_query_arg('updated', 'true', site_url('wp-admin/admin.php?page=edit-exhibitor-profile&company_id='.$company_post_id.'#booth-admin-tabs-assign-booth')),
+                                      'return'              => add_query_arg('updated', 'true', site_url('wp-admin/admin.php?page=edit-exhibitor-profile&exhibitor_id='.$exhibitor_id.'#booth-admin-tabs-assign-booth')),
                                       'html_before_fields'  => '',
                                       'html_after_fields'   => '',
                                       'submit_value'        => 'Assigned Booth Number',
@@ -381,7 +370,7 @@ class ExhibitorManagement {
                               <div class="booth-number-log">
                                 <?php 
                                   $current_year = date('Y');
-                                  $Booth_numbers_history = get_post_meta($company_post_id, '_repeater_assigned_booth_numbers_'.$current_year -1, true);
+                                  $Booth_numbers_history = get_user_meta($exhibitor_id, '_repeater_assigned_booth_numbers_'.$current_year -1, true);
                                   if(!empty($Booth_numbers_history) && is_array($Booth_numbers_history))
                                   {
                                     echo "<ul>";
@@ -407,37 +396,25 @@ class ExhibitorManagement {
                         <div class="add-assistant-wrap">
                           <button id="add-new-assistant">Add Assistant</button>
                           <button id="hide-new-assistant" style="display:none;">Hide</button>
-                          <div class="add-assistant-form">
-                              <?php 
-                                // gravity_form(14, false, false, false, null, true, '', true );
-                                acf_form_head();
-                                acf_form(array(
-                                  'post_id'             => $company_post_id,
-                                  'field_groups'        => array('group_64994a6feb53a'),
-                                  'fields'              => array('assistants'),
-                                  'form'                => true,
-                                  'return'              => add_query_arg('updated', 'true', site_url('wp-admin/admin.php?page=edit-exhibitor-profile&company_id='.$company_post_id.'#booth-admin-tabs-assistant')),
-                                  'submit_value'        => 'Register Assistant Now',
-                                  'html_updated_message' => __('Assistant successfully updated', 'savior-pro'),
-                                )); 
-                              ?>
+                          <div class="add-assistant-form" style="display:none;">
+                              <?php gravity_form(14, false, false, false, null, true, '', true ); ?>
                           </div>
                         </div>
-                        <?php echo $this->list_company_assistants( $company_post_id ); ?>
-                        <?php //echo do_shortcode( '[exhibit_assistant_list exhibitor_id="'.$company_post_id.'"]' ); ?>
+                        <?php echo do_shortcode( '[exhibit_assistant_list exhibitor_id="'.$exhibitor_id.'"]' ); ?>
                       </div>
                     </div>
                     <div id="booth-admin-tabs-representative">
                       <h1>Representative</h1>
                       <form id="representative-form">
                         <?php 
-                          $representative_first_name = $company_post_meta_data->representative_first_name;
-                          $representative_last_name = $company_post_meta_data->representative_last_name;
-                          $representative_email = $company_post_meta_data->representative_email;
-                          $representative_contact = $company_post_meta_data->representative_contact;
+                        $exhibitor_id = get_user_meta( $_REQUEST['exhibitor_id'], '_representative_data', true );
+                        $representative_first_name = isset($exhibitor_id['representative_first_name']) ? $exhibitor_id['representative_first_name'] : '';
+                        $representative_last_name = isset($exhibitor_id['representative_last_name']) ? $exhibitor_id['representative_last_name'] : '';
+                        $representative_email = isset($exhibitor_id['representative_email']) ? $exhibitor_id['representative_email'] : '';
+                        $representative_contact = isset($exhibitor_id['representative_contact']) ? $exhibitor_id['representative_contact'] : '';
                         ?>
                         <input type="hidden" name="security" value="<?php echo wp_create_nonce( 'exhibitor_assistant' ); ?>" />
-                        <input type="hidden" name="booth_admin" value="<?php echo $company_post_id;?>">
+                        <input type="hidden" name="booth_admin" value="<?php echo $_REQUEST['exhibitor_id'];?>">
                         <input type="hidden" name="action" value="add_representative" />
                         <div class="form-group">
                           <label for="representative-first-name">First Name</label>
@@ -461,11 +438,14 @@ class ExhibitorManagement {
                     <div id="booth-admin-tabs-notes">
                       <h1>Notes</h1>
                       <form id="notes-form">
+                        <?php 
+                        $notes = get_user_meta( $_REQUEST['exhibitor_id'], '_notes', true );
+                        ?>
                         <input type="hidden" name="security" value="<?php echo wp_create_nonce( 'exhibitor_assistant' ); ?>" />
-                        <input type="hidden" name="booth_admin" value="<?php echo $company_post_id;?>">
+                        <input type="hidden" name="booth_admin" value="<?php echo $_REQUEST['exhibitor_id'];?>">
                         <input type="hidden" name="action" value="notes" />
                         <div class="form-group">
-                          <textarea name="notes"class="form-control" id="notes" rows="15" cols="100"><?php echo $company_post_meta_data->notes; ?></textarea>
+                          <textarea name="notes"class="form-control" id="notes" rows="15" cols="100"><?php echo $notes; ?></textarea>
                         </div>
                         <button type="submit" id="notes-save" class="btn btn-primary">Submit</button>
                       </form>
@@ -480,7 +460,7 @@ class ExhibitorManagement {
                   </div>
                   <?php
                 }else{
-                  echo "<div class='notice notice-error'><p><b> Exhibitor doesn't exists with the ID ".$company_post_id." </b></p></div>";
+                  echo "<div class='notice notice-error'><p><b> Exhibitor doesn't exists with the ID ".$exhibitor_id." </b></p></div>";
                 }
               }else{
                 wp_redirect( admin_url( 'admin.php?page=exhibitor-management' ) );
@@ -492,56 +472,8 @@ class ExhibitorManagement {
       <?php
     }
     
-    public function get_field_values_post_id( $post_id )
-    {
-      $post_meta = array();
-      if($post_data = get_post_meta( $post_id ))
-      {
-        foreach($post_data as $key => $post)
-        {
-          $post_meta[$key] = is_serialized($post[0]) ? maybe_unserialize($post[0]) : $post[0];
-        }
-      }
-      return $post_meta;
-    }
-
-    public function list_company_assistants( $post_id )
-    {
-      ob_start();
-      $get_assistants_ids = get_post_meta( $post_id, 'assistants', true );
-      if(!empty($get_assistants_ids))
-      {
-        wp_enqueue_script( 'jquery-tab-ui' );
-        wp_enqueue_style( 'jquery-tab-ui' );
-        ?>
-        <div id="accordion">
-            <?php foreach ($get_assistants_ids as $assistant_id) : 
-                $assistant = get_userdata($assistant_id);
-                ?>
-                <h3><?php echo $assistant->first_name.' '.$assistant->last_name; ?></h3>
-                <div id="tab-<?php echo $assistant_id;?>" class="accordion-content">                        
-                    <div class="assistants-billing-address assistant-addres-view-<?php echo $assistant_id; ?>">
-                        <?php                                                                 
-                            echo '<p><span>First Name: </span>' . $assistant->first_name . '</p>';
-                            echo '<p><span>Last Name: </span>' . $assistant->last_name . '</p>';
-                            echo '<p><span>Email: </span>' . $assistant->user_email . '</p>';
-                        ?>                                
-                    </div>                        
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <?php
-      }else{
-          echo "<p>No assistants added yet.</p>";
-      }
-      $out = ob_get_contents();
-      ob_get_clean();
-      return $out;
-    }
-
     public function view_payment_history_exhibitor( $atts ) {
-      if(isset($_REQUEST['company_id']))
+      if(isset($_REQUEST['exhibitor_id']))
       {
         $my_orders_columns = apply_filters(
           'woocommerce_my_account_my_orders_columns',
@@ -554,18 +486,16 @@ class ExhibitorManagement {
             // 'order-actions' => esc_html__( 'Action', 'woocommerce' ),
           )
         );
+        
         $customer_orders = get_posts(
-          array(
-            'numberposts' => -1,
-            'post_status' => 'publish',
-            'post_type'   => 'shop_order',
-            'post_status' => 'all',
-            'meta_query' => array(
-              array(
-                  'key' => '_customer_user',
-                  'value' => get_post_meta($_REQUEST['company_id'], 'payment_history', true),
-                  'compare' => 'IN'
-              )
+          apply_filters(
+            'woocommerce_my_account_my_orders_query',
+            array(
+              'numberposts' => -1,
+              'meta_key'    => '_customer_user',
+              'meta_value'  => $_REQUEST['exhibitor_id'],
+              'post_type'   => 'shop_order',
+              'post_status' => 'all',
             )
           )
         );
@@ -648,64 +578,57 @@ class ExhibitorManagement {
 
     public function get_exhibitor_members() {
       if(is_admin())
-      {
+      {      
         $args = array(
-          'post_type'      => 'companies',
-          'post_status'    => 'publish',
-          'posts_per_page' => -1,
-          'no_found_rows'  => true,
-          'fields'         => 'ids',
+          'role__in'  => array('exhibitsmember','exhibitpending'),
+          'orderby'   => 'ID',
+          'order'     => 'ASC',
+          // 'number'  => 1
         );
-        
-        $query = new WP_Query($args);        
-        $post_ids = $query->posts;        
-        if(!empty($post_ids))
-        {
-          $companies_data = array();
-          foreach ($post_ids as $post_id) {
-            $primary_booth_admin_id = get_post_meta($post_id, 'primary_booth_admin', true);
-            $primary_user           = new WP_User( $primary_booth_admin_id );
-            $alternate_booth_admin_id = get_post_meta($post_id, 'alternate_booth_admin', true);
-            $alternate_user         = new WP_User( $alternate_booth_admin_id );
-            $exhibit_booth_number   = get_post_meta( $post_id, 'booth_numbers', true);
-            if($exhibit_booth_number)
-            {
-              foreach ($exhibit_booth_number as $key => $value) {
-                $assigned_booth_number = $value['assigned_booth_number'];
-                $assigned_booth_number = implode(',', $assigned_booth_number);
-              }
-            }else{
-              $assigned_booth_number = 0;
-            }
-            $companies_data[] = array(
-                'no'                    => '',
-                'status'                => get_post_meta( $post_id, '_exhibitor_status', true ),
-                'company_name'          => get_post_meta( $post_id, 'user_employer', true ),
-                'plan_to_exhibit'       => get_post_meta( $post_id, '_plan_to_exhibit', true ),
-                'primary_first_name'    => $primary_user->first_name,
-                'primary_last_name'     => $primary_user->last_name,
-                'primary_email'         => $primary_user->user_email,
-                'alternate_first_name'  => $alternate_user->first_name,
-                'alternate_last_name'   => $alternate_user->last_name,
-                'alternate_email'       => $alternate_user->user_email,
-                'booth_count'           => get_post_meta( $post_id, 'booth_count', true ),
-                'exhibit_booth_number'  => $assigned_booth_number,//'exhibit_booth_number'  => $this->getTotalQuantityPurchased($exhibitor_member->ID, 18792) == 0 ? 0 : ($this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID ) ? $this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID ) :'Not Assigned'),
-                'exhibit_rep_first_name'=> get_post_meta( $post_id, 'representative_first_name', true ),
-                'exhibit_rep_last_name' => get_post_meta( $post_id, 'representative_last_name', true ),
-                // 'particepating_year'    => '',
-                'id'                    => $post_id,
-                'date_of_registration'  => get_post_meta( $post_id, 'date_approved_on_exhibitors_list', true ) ? date('Y-m-d', strtotime(get_post_meta( $post_id, 'date_approved_on_exhibitors_list', true ))) : '',
-                'active_status'         => get_post_meta( $post_id, '_exhibitor_status', true ),
-                'active_plan_to_exhibit'=> get_post_meta( $post_id, '_plan_to_exhibit', true )
-            );
-          }
-          wp_reset_postdata();
-          wp_send_json( array( 'data' => $companies_data ) );
-        }else{
-          wp_send_json_error( array( 'data' => [] ) );
-        }      
+
+        $exhibitor_members = get_users($args);
+        $data = array();
+        foreach ($exhibitor_members as $exhibitor_member) {
+          $company_name         = get_user_meta($exhibitor_member->ID, 'user_employer', true) ? get_user_meta($exhibitor_member->ID, 'user_employer', true) : get_field('billing_company', $exhibitor_member->ID);
+          $get_status           = get_user_meta($exhibitor_member->ID, '_exhibitor_status', true );    
+          $representative_data  = get_user_meta( $exhibitor_member->ID, '_representative_data', true );
+          $_exhibitor_status    = get_user_meta( $exhibitor_member->ID, '_exhibitor_status', true ) ? get_user_meta($exhibitor_member->ID, '_exhibitor_status', true) : '';
+          $_plan_to_exhibit     = get_user_meta($exhibitor_member->ID, '_plan_to_exhibit', true) ? get_user_meta($exhibitor_member->ID, '_plan_to_exhibit', true) : '';
+          $representative_fname = isset($representative_data['representative_first_name']) ? $representative_data['representative_first_name'] : '-';
+          $representative_lname = isset($representative_data['representative_last_name']) ? $representative_data['representative_last_name'] : '-';
+          $particepating_year   = get_user_meta($exhibitor_member->ID, 'particepating_year', true) ? get_user_meta($exhibitor_member->ID, 'particepating_year', true) : '';
+          $booth_count          = is_numeric( get_user_meta($exhibitor_member->ID, 'booth_count', true)) ? get_user_meta($exhibitor_member->ID, 'booth_count', true) : 0;
+          $active_plan_to_exhibit = get_user_meta($exhibitor_member->ID, 'date_approved_on_exhibitors_list', true );
+
+          $alternate_first_name = get_user_meta($exhibitor_member->ID, 'alternate_booth_admin_first_name', true);
+          $alternate_last_name = get_user_meta($exhibitor_member->ID, 'alternate_booth_admin_last_name', true);
+          $alternate_email = get_user_meta($exhibitor_member->ID, 'alternate_booth_admin_email', true);
+
+          $data[] = array(
+              'no'                    => '',
+              'status'                => $get_status ? $get_status : '',
+              'company_name'          => $company_name,
+              'plan_to_exhibit'       => $_plan_to_exhibit,
+              'primary_first_name'    => $exhibitor_member->first_name,
+              'primary_last_name'     => $exhibitor_member->last_name,
+              'primary_email'         => $exhibitor_member->user_email,
+              'alternate_first_name'  => $alternate_first_name,
+              'alternate_last_name'   => $alternate_last_name,
+              'alternate_email'       => $alternate_email,
+              'booth_count'           => $booth_count,
+              'exhibit_booth_number'  => $this->getTotalQuantityPurchased($exhibitor_member->ID, 18792) == 0 ? 0 : ($this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID ) ? $this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID ) :'Not Assigned'),
+              'exhibit_rep_first_name'=> $representative_fname,
+              'exhibit_rep_last_name' => $representative_lname,
+              // 'particepating_year'    => $particepating_year,
+              'id'                    => $exhibitor_member->ID,
+              'date_of_registration'  => $active_plan_to_exhibit ? date('Y-m-d', strtotime($active_plan_to_exhibit)) : '',
+              'active_status'         => $_exhibitor_status,
+              'active_plan_to_exhibit'=> $_plan_to_exhibit
+          );
+        }
+        wp_send_json( array( 'data' => $data ) );
       }else{
-          wp_send_json_error( array( 'data' => [] ) );
+          wp_send_json_error();
       }
     }
 
@@ -729,7 +652,7 @@ class ExhibitorManagement {
       if(is_admin()){
         if( $form['id'] == '19' )
         {
-          $confirmation = array( 'redirect' => admin_url( 'admin.php?page=edit-exhibitor-profile&company_id='.rgar( $entry, '31' ) ) );
+          $confirmation = array( 'redirect' => admin_url( 'admin.php?page=edit-exhibitor-profile&exhibitor_id='.rgar( $entry, '31' ) ) );
           return $confirmation;
         }
         $confirmation = array( 'redirect' => admin_url( 'admin.php?page=exhibitor-management' ) );
@@ -824,6 +747,22 @@ class ExhibitorManagement {
       }
         
     }
+    public function order_has_product_category($order_id, $category_slug) {
+      $order = wc_get_order($order_id); // Get the order object
+      $items = $order->get_items(); // Get the order items
+      
+      foreach ($items as $item) {
+          $product_id = $item->get_product_id(); // Get the product ID
+          $product = wc_get_product($product_id); // Get the product object
+          $categories = $product->get_category_ids(); // Get the product categories
+          
+          if (in_array($category_slug, $categories)) {
+              return true; // Category found in the order
+          }
+      }
+      
+      return false; // Category not found in the order
+    }
 
     public function has_user_purchased_product( $user_id, $product_id )
     {
@@ -854,15 +793,14 @@ class ExhibitorManagement {
       return false;
     }
 
-    public function update_company_status_callback()
+    public function update_user_status_callback()
     {
-      if(isset($_POST['company_id']) && get_post_type($_POST['company_id']) == 'companies' ){
+      if(isset($_POST['user_id']) && get_user_by( 'id', $_POST['user_id'] )){
         // Get the user ID and new status value from the AJAX request
-        $company_id    = $_POST['company_id'];
+        $user_id    = $_POST['user_id'];
         $new_status = $_POST['new_status'];
         // Update the user meta field with the new status value
-        $old_status = update_post_meta($company_id, '_exhibitor_status', true);
-        $update_status = update_post_meta($company_id, '_exhibitor_status', $new_status);
+        $update_status = update_user_meta($user_id, '_exhibitor_status', $new_status);
         if(is_wp_error( $update_status ))
         {
           wp_send_json_error('Something error please try again!!!');
@@ -876,27 +814,29 @@ class ExhibitorManagement {
             'payment_complete'  => 'Payment Done by Exhibitor!',
             'complete'          => 'Successfully Completed!'
           );
-          $primary_booth_admin_id = get_post_meta($company_id, 'primary_booth_admin', true);
-          $alternate_booth_admin_id = get_post_meta($company_id, 'alternate_booth_admin', true);
           if($new_status == 'account_pending')
           {
-            if(!empty($primary_booth_admin_id))
-              $this->send_activation_email($primary_booth_admin_id);
-              error_log(print_r('Mail Sent Successfully'. $primary_booth_admin_id, true));
-              
-            if(!empty($alternate_booth_admin_id))
-              $this->send_activation_email($alternate_booth_admin_id);            
-              error_log(print_r('Mail Sent Successfully'. $alternate_booth_admin_id, true));
+            $this->send_activation_email($user_id);
+            $alternate_booth_admin_email = get_user_meta($user_id, 'alternate_booth_admin_email', true);
+            if($alternate_booth_admin_id = email_exists($alternate_booth_admin_email)){
+              $this->send_activation_email($alternate_booth_admin_id);
+            }else{
+              $random_password = wp_generate_password(12, false);
+              $userId = wp_create_user($alternate_booth_admin_email, $random_password, $alternate_booth_admin_email);
+              wp_update_user([
+                'ID' => $userId, // this is the ID of the user you want to update.
+                'first_name'  => get_user_meta($user_id, 'alternate_booth_admin_first_name', true),
+                'last_name'   => get_user_meta($user_id, 'alternate_booth_admin_last_name', true),
+              ]);
+              $this->send_activation_email($userId);
+            }
           }
-          if(get_post_meta($company_id, '_exhibitor_status', true) == 'payment_complete')
+          if(get_user_meta($user_id, '_exhibitor_status', true) == 'payment_complete')
           {
-            $primary_user = get_userdata( $primary_booth_admin_id );
-            $primary_user->add_role( 'exhibitsmember' );
-
-            $alternate_user = get_userdata( $alternate_booth_admin_id );
-            $alternate_user->add_role( 'exhibitsmember' );
+            $user = get_userdata( $user_id );
+            $user->add_role( 'exhibitsmember' );
           }
-          wp_send_json_success(array('status' => $new_status, 'old_status' => $old_status, 'message' => $all_status[$new_status]));
+          wp_send_json_success($all_status[$new_status]);
         }
       }
     }
@@ -926,7 +866,7 @@ class ExhibitorManagement {
           try {
             WC()->cart->empty_cart(); 
             $order = wc_create_order();
-            $customer_id = get_post_meta( $_POST['customer_id'], 'primary_booth_admin', true );
+            $customer_id = $_POST['customer_id'];
             $customer = new WC_Customer( $customer_id );
             $billing_address = array(
               'first_name' => $customer->get_billing_first_name(),
@@ -968,16 +908,15 @@ class ExhibitorManagement {
         }
     }
 
-    public function getTotalQuantityPurchased($company_post_id, $product_id, $current_year= 0 ) {
+    public function getTotalQuantityPurchased($user_id, $product_id, $current_year= 0 ) {
         $current_year = date('Y');
         $total_quantity = 0;
-        $payment_history = get_post_meta( $company_post_id, 'payment_history', true );
 
         // Get all completed orders for the current year
         $orders = wc_get_orders([
           'limit'      => -1,
-          'customer'   => $payment_history,
-          'status'     => array('wc-completed'),//'wc-processing','wc-pending'
+          'customer_id'=> $user_id,
+          'status'     => 'completed',
           'date_query' => [
               [
                   'after'     => $current_year . '-01-01',
@@ -997,8 +936,7 @@ class ExhibitorManagement {
         }
         return $total_quantity;
     }
-    public function custom_send_order_invoice($order, $sent_to_admin, $plain_text, $email) 
-    {
+    public function custom_send_order_invoice($order, $sent_to_admin, $plain_text, $email) {
       // if (!$sent_to_admin && $order->has_status('pending')) {
           $mailer = WC()->mailer();
           $mailer->emails['WC_Email_Customer_Invoice']->trigger($order->get_id());//customer_invoice
@@ -1007,7 +945,7 @@ class ExhibitorManagement {
 
     public function restrict_repeater_rows( $field  )
     {
-      $exhibitor_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : '';
+      $exhibitor_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : '';
       $max_rows = $this->getTotalQuantityPurchased($exhibitor_id, 18792) ? $this->getTotalQuantityPurchased($exhibitor_id, 18792) : 0;
       $field ['max'] = $max_rows;
       return $field ;
@@ -1015,9 +953,9 @@ class ExhibitorManagement {
 
     public function filter_repeater_field_value($value, $post_id, $field) {
       $current_year = date('Y');
-      $user_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : $post_id;
+      $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $post_id;
       $meta_key = '_repeater_assigned_booth_numbers_' . $current_year;
-      $repeater_data = get_post_meta($user_id, $meta_key, true);
+      $repeater_data = get_user_meta($user_id, $meta_key, true);
       if ($repeater_data) {
           $value = $repeater_data;
       }else{
@@ -1028,9 +966,9 @@ class ExhibitorManagement {
   
     public function update_repeater_field_value( $value, $post_id, $field, $original ) {
         $current_year = date('Y');
-        $user_id = isset($_REQUEST['company_id']) ? $_REQUEST['company_id'] : $post_id;
+        $user_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $post_id;
         $meta_key = '_repeater_assigned_booth_numbers_' . $current_year;
-        update_post_meta($user_id, $meta_key, $original);    
+        update_user_meta($user_id, $meta_key, $original);    
         return $value;
     }
 
@@ -1096,16 +1034,18 @@ class ExhibitorManagement {
       if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
           wp_send_json_error( 'Invalid nonce.' );
       }
-      $post_type = get_post_type($_POST['booth_admin']);
-
-      if ($post_type === 'companies') {
-          update_post_meta( $_POST['booth_admin'], 'representative_first_name', $_POST['representative_first_name'] );
-          update_post_meta( $_POST['booth_admin'], 'representative_last_name', $_POST['representative_last_name'] );
-          update_post_meta( $_POST['booth_admin'], 'representative_email', $_POST['representative_email'] );
-          update_post_meta( $_POST['booth_admin'], 'representative_contact', $_POST['representative_contact'] );
-          wp_send_json_success();
-      }else{
+      $representative_data = array(
+        'representative_first_name' => $_POST['representative_first_name'],
+        'representative_last_name'  => $_POST['representative_last_name'],
+        'representative_email'      => $_POST['representative_email'],
+        'representative_contact'    => $_POST['representative_contact']
+      );
+      $update = update_user_meta( $_POST['booth_admin'], '_representative_data', $representative_data );
+      if(is_wp_error( $update ))
+      {
         wp_send_json_error();
+      }else{
+        wp_send_json_success();
       }
     }
 
@@ -1115,7 +1055,7 @@ class ExhibitorManagement {
       if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
           wp_send_json_error( 'Invalid nonce.' );
       }
-      $update = update_post_meta( $_POST['booth_admin'], 'notes', $_POST['notes'] );
+      $update = update_user_meta( $_POST['booth_admin'], '_notes', $_POST['notes'] );
       if(is_wp_error( $update ))
       {
         wp_send_json_error();
@@ -1216,16 +1156,13 @@ class ExhibitorManagement {
     public function get_booth_totalizer() {
       $total_qty = 0;
       $args = array(
-        'numberposts' => -1,
-        'post_status' => 'publish',
-        'post_type'   => 'companies',
-        'fields'      => 'ids',
+        'role__in'  => array('exhibitsmember','exhibitpending'),
       );
-      $user_query = get_posts($args);
+      $user_query = get_users($args);
       if(!empty($user_query)) {
-        foreach ($user_query as $company_post_id) {
+        foreach ($user_query as $user) {
           // $total_qty += $this->get_booth_numbers_by_user_id( (int)$user->ID );
-          $total_qty += is_numeric( get_post_meta($company_post_id, 'booth_count', true)) ? get_post_meta($company_post_id, 'booth_count', true) : 0;
+          $total_qty += is_numeric( get_user_meta($user->ID, 'booth_count', true)) ? get_user_meta($user->ID, 'booth_count', true) : 0;
         }
       }
       echo (177 - $total_qty) .' of 177 Booths remains';
@@ -1275,7 +1212,7 @@ class ExhibitorManagement {
     {
       try {
         $customer_id = $_POST['customer_id'];          
-        $update_booth_count = update_post_meta($customer_id, 'booth_count', $_POST['count']);    
+        $update_booth_count = update_user_meta($customer_id, 'booth_count', $_POST['count']);    
         if(is_wp_error( $update_booth_count ))      
         {
           wp_send_json_error();
@@ -1285,6 +1222,11 @@ class ExhibitorManagement {
       } catch (\Throwable $th) {
         wp_send_json_error();
       }
+    }
+
+    public function exhibitor_after_user_registered( $user_id, $feed, $entry, $user_pass )//input_19_34
+    {
+      update_user_meta( $user_id, 'type_of_the_company', rgar( $entry, '34' ) );
     }
 
     public function check_email_exist_callback()
@@ -1300,63 +1242,35 @@ class ExhibitorManagement {
       wp_send_json_error();
     }
 
-    public function get_assigned_booth_numbers_by_post_id( $post_id )
-    {
-      $booth_numbers = get_post_meta($post_id, '_repeater_assigned_booth_numbers_'.date('Y'), true);
-      if(!empty($booth_numbers))
-      {
-        $imploded = array_map(function($subArray) {
-          return implode(',', $subArray);
-        }, $booth_numbers);        
-        $exhibit_booth_number = implode(',', $imploded);
-      }else{
-        $exhibit_booth_number = 0;
-      }
-      return $exhibit_booth_number;
-    }
-
     public function get_all_assigned_booth_numbers()
     {
-      $company_posts_ids = get_posts(
-        array(
-          'numberposts' => -1,
-          'post_status' => 'publish',
-          'post_type'   => 'companies',
-          'fields'      => 'ids',
-          'meta_query' => array(
-            array(
-                'key' => 'booth_numbers',
-                'value' => '',
-                'compare' => '!='
-            )
-          )
-        )
+      $args = array(
+        'role__in'  => array('exhibitsmember','exhibitpending'),
+        'orderby'   => 'ID',
+        'order'     => 'ASC',
+        // 'number'  => 1
       );
-      $data = [];
-      if(!empty($company_posts_ids))
-      {
-        foreach ($company_posts_ids as $company_post_id) {
-          if($assigned_booth_numbers = $this->get_assigned_booth_numbers_by_post_id( $company_post_id ))
-          {
-            $data[] = $assigned_booth_numbers;
-          }
+
+      $exhibitor_members = get_users($args);
+      $data = array();
+      foreach ($exhibitor_members as $exhibitor_member) {
+        if($this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID ))
+        {
+          $data[] = $this->get_booth_numbers_by_user_id( (int)$exhibitor_member->ID );
         }
       }
       if(!empty($data) && is_array($data)) 
       {
         return implode(',',$data);
-      }else{
-        return '';
       }
+      return $data;
     }
 }
 // Instantiate the ExhibitorManagement class
-// function initialize_exhibitor_management() {
-//   global $exhibitor_management;
-//   $exhibitor_management = new ExhibitorManagement();
-// }
+function initialize_exhibitor_management() {
+  global $exhibitor_management;
+  $exhibitor_management = new ExhibitorManagement();
+}
 
 // Hook into the 'plugins_loaded' action to initialize the Exhibitor Management functionality
-// add_action('init', 'initialize_exhibitor_management');
-
-new ExhibitorManagement();
+add_action('init', 'initialize_exhibitor_management');

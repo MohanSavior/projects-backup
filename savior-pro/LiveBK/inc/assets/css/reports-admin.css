@@ -209,3 +209,10 @@ select#registration_year options {
 #registration-reports-result-table tbody tr:nth-child(even) {
     background: #FFFFFF;
 }
+.registration-reports-result p {
+    text-align: center;
+    font-size: 20px;
+    background: #fff;
+    padding: 10px;
+    color: #ff0000;
+}

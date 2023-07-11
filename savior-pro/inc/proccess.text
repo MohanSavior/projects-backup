@@ -12,3 +12,11 @@ Other Custom fields mapping to other
 
 Import acf fields using json
 
+Active to Inactive user update add-ons in form 19
+    add HTML input type radio for is primary
+
+files need to be updated
+    function.php
+    inc/create-attendees.php
+    
+

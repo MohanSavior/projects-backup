@@ -237,6 +237,7 @@ p.exhibitors-contact-res-heading {
 
 #exhibitor-assistant-container .ui-accordion-header span {
     padding-left: 2px;
+    display: inline-block;
 }
 
 #exhibitor-assistant-container .ui-accordion-content {
@@ -333,14 +334,15 @@ p.exhibitors-contact-res-heading {
     border-top-color: transparent;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    animation: spin 1.5s linear infinite;
+    /* transform: translate(-50%, -50%); */
 }
 
-#assistant-spinner:before {
-    animation: spin 1.5s linear infinite;
-    top: 44.8%;
-    left: 45.5%;
-}
+/* #assistant-spinner:before { */
+    /* animation: spin 1.5s linear infinite; */
+    /* top: 44.8%; */
+    /* left: 45.5%; */
+/* } */
 @keyframes spin {
     0% {
         transform: rotate(0);
@@ -804,4 +806,8 @@ button#reset_filter:hover {
 }
 [data-name="assigned_booth_number"] option:disabled {
     background: #b1aaaab0;
+}
+#gform_19 .wrapper-div-setting {
+    display: flex;
+    column-gap: 20px;
 }

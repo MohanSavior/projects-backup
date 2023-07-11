@@ -665,14 +665,7 @@ add_action( 'gform_after_submission_11', 'add_to_cart_and_redirect_checkout', 10
 
 function add_to_cart_and_redirect_checkout( $entry, $form ) {	
 	$main_product_id = rgar( $entry, '1027' );
-	if( $main_product_id == 22101 )
-	{
-		$main_product_id = rgar( $entry, '1006' ) == 'in_person' ? 22101 : 25972;
-	}
-	if( $main_product_id == 22102 )
-	{
-		$main_product_id = rgar( $entry, '1006' ) == 'in_person' ? 22102 : 25971;
-	}
+	// array of products to add with their IDs and quantities
 	$products_addto_cart = array(
 		array( 'id' => $main_product_id, 'quantity' => 1 )
 	);
@@ -682,16 +675,7 @@ function add_to_cart_and_redirect_checkout( $entry, $form ) {
 	{
 		$get_all_attendees = rgar( $entry, '1000' );
 		foreach ($get_all_attendees as $attendees) {
-			if( $attendees[1005] == 22101 )
-			{
-				$attendees_product_id = $attendees[1028] == 'in_person' ? 22101 : 25972;
-			}elseif( $attendees[1005] == 22102 )
-			{
-				$attendees_product_id = $attendees[1028] == 'in_person' ? 22102 : 25971;
-			}else{
-				$attendees_product_id = $attendees[1005];
-			}
-			$products_addto_cart[] = array( 'id' => $attendees_product_id, 'quantity' => 1 );
+			$products_addto_cart[] = array( 'id' => $attendees['1005'], 'quantity' => 1 );
 		}
 	}
 	// Empty the cart
@@ -812,7 +796,7 @@ function user_profile_image_fn($atts){
 		$user_img = wp_get_attachment_image_src( $image_id, array(112,112) );
 		$user_img = $user_img[0];
 	}else{
-		$user_img = esc_url('https://gravatar.com/avatar?s=150&d=mm');
+		$user_img = esc_url('https://asgmt.com/wp-content/uploads/2023/07/avator.jpg');
 	}
 ?>
 <div class="elementor-widget-container user_profile_image">
@@ -1210,13 +1194,11 @@ function add_custom_column_to_order_table_items($order) {
 	if (!empty($_gravity_form_entry_id)) {
 		$entry = GFAPI::get_entry($_gravity_form_entry_id);
 		if($entry['1034'] == 'yes' || $entry['form_id'] == 13){
-			$user_order_metadata = $order->get_meta('_attendees_order_meta');
 			echo"<h2 class='attendees-info-heading' style='border-top: 1px solid #252F86;'>Attendees Information</h2><div class='attendee-info'>";
 			// print_r($entry['1000']);
 			echo"<table class='attendee-info'><thead><tr><th>Attendee name</th><th>Attendee email</th><th>Attendee product</th></tr></thead><tbody>";
-			foreach ($entry['1000'] as $key => $attendee) {
-				$product_title = $user_order_metadata[$key]['product_id'];
-				printf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $attendee['1002'].' '.$attendee['1003'], $attendee['1001'], get_the_title( $product_title ));
+			foreach ($entry['1000'] as $attendee) {
+				printf("<tr><td>%s</td><td>%s</td><td>%s</td></tr>", $attendee['1002'].' '.$attendee['1003'], $attendee['1001'], get_the_title( $attendee['1005'] ));
 			}
 			echo"</tbody></table></div>";
 		}
@@ -1248,7 +1230,7 @@ function add_custom_metadata_to_stripe_payment($meta_data, $order) {
 	$meta_data = sku_on_stripe($order, $meta_data);
 	return $meta_data;
 }
-// add_filter('wc_stripe_order_meta_data', 'add_custom_metadata_to_stripe_payment', 10, 2);
+add_filter('wc_stripe_order_meta_data', 'add_custom_metadata_to_stripe_payment', 10, 2);
 
 
 function sku_on_stripe($order, $meta_data){
@@ -1379,43 +1361,28 @@ function my_asgmt_dashboard()
     exit();
 }
 
-add_action('init', 'load_companies_post_type_class');
+function sort_roles_alphabetically($roles) {
+	$user_obj = isset($_REQUEST['user_id']) ? $user_meta = get_userdata($_REQUEST['user_id']) : false;
+	if($user_obj && !in_array('student', $user_obj->roles))
+	{
+		unset($roles['exhibits_committee_member']);
+	}
+    uasort($roles, function($a, $b) {
+        return strcasecmp($b['name'], $a['name']);
+    });
 
-function load_companies_post_type_class() {
-    if (!is_admin()) {
-        return; // Exit if not in the admin area
-    }
-	include_once 'inc/companies.php';
+    return $roles;
 }
+add_filter('editable_roles', 'sort_roles_alphabetically');
 
-function check_committe_member_role($errors, $update, $user) {
-    if ($update) {
-        $user = new WP_User($user->ID);
-        
-        $isExhibitsCommitteeMember = $_POST['role'] === 'exhibits_committee_member';
-        $hasStudentRole = in_array('student', $user->roles);
-
-        if (!$hasStudentRole && $isExhibitsCommitteeMember) {
-            $errors->add('committe_member', __('Committe member should be registered as a student', 'savior-pro'));
-        } else {
-            $newRoles = !empty($_POST['ure_other_roles']) ? explode(', ', $_POST['ure_other_roles']) : array();
-
-            if (in_array('exhibits_committee_member', $newRoles) && !$hasStudentRole) {
-                $errors->add('committe_member', __('Committe member should be registered as a student', 'savior-pro'));
-            }
-        }
-    }
-}
-
-add_action('user_profile_update_errors', 'check_committe_member_role', 10, 3);
-
-add_shortcode( 'test', function(){
+// add_shortcode( 'test', function(){
 	
-	echo "<pre>";
-	#25984 Warren Leblanc
-	$entry = GFAPI::get_entry(get_post_meta(25984, '_gravity_form_entry_id', true));
-	print_r( $entry );
-	print_r( get_post_meta(25984, '_gravity_form_entry_id', true) );
-	
-	echo "</pre>";
-});
+	// echo "<pre>";
+	// print_r( $course_type_role );
+	// $_gravity_entry_data = get_post_meta(25429, '_gravity_entry_data', true);
+	// $entry = json_decode($_gravity_entry_data, true);
+	// print_r( get_post_meta( 25823 ) );
+	// print_r( json_decode( get_post_meta( 25823, '_gravity_entry_data', true ) ));
+	// print_r( get_post_meta( 25823, '_attendees_order_meta', true ) );
+	// echo "</pre>";
+// });
