@@ -337,7 +337,9 @@ p.exhibitors-contact-res-heading {
     animation: spin 1.5s linear infinite;
     /* transform: translate(-50%, -50%); */
 }
-
+.dtfh-floatingparent.dtfh-floatingparenthead {
+    top: 32px !important;
+}
 /* #assistant-spinner:before { */
     /* animation: spin 1.5s linear infinite; */
     /* top: 44.8%; */
@@ -754,15 +756,18 @@ em.primary-exhibitors-email-exist {
     color: #080e41;
     border: 0;
     border-radius: 0;
-    padding: 2px 25px;
+    padding: 2px 15px;
     margin-bottom: 0;
+    position: absolute;
+    left: 345px;
 }
-em.primary-exhibitors-email-exist .dashicons-yes:before {
+
+em.primary-exhibitors-email-exist .dashicons-yes::before {
     color: green;
-    font-size: 34px;
+    font-size: 20px;
 }
 .primary-exhibitors-contact span.dashicons-before.dashicons-yes {
-    padding-right: 15px;
+    padding-right: 0px;
 }
 button#reset_filter {
     background: #F7C338;
@@ -784,7 +789,7 @@ button#reset_filter:hover {
     border-bottom: 1px solid #8f8f8f;
 }
 #booth-admin-tabs-payment th, #booth-admin-tabs-payment td {
-    width: 20% !important;
+    width: 16% !important;
     text-align: center;
     padding: 10px 10px;
 }

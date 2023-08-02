@@ -16,8 +16,8 @@ jQuery(document).ready(function ($) {
 	});
 
 	/** On Click Show/Hide Social Icons **/
-	jQuery(this).find('.social-share-btn .elementor-icon').click(function () {
-		jQuery(".social-share-icons").toggle();
+	jQuery('body').on('click', '.social-share-btn .elementor-icon', function () {
+		jQuery(this).parents('.social-share-btn').next(".social-share-icons").toggle();
 	});
 	jQuery("body").on("click", ".paper-by-year-drop", function (e) {
 		e.preventDefault();
@@ -145,13 +145,24 @@ jQuery(window).on("load", function () {
  * Repeater fields on registration page
  */
 jQuery(document).on('gform_post_render', function (event, form_id, current_page) {
+	let available_seats = asgmt_ajax_object?.stock_quantities;
+	jQuery('body').on('change', 'input[value="22101"], input[value="22102"]', function(){
+		let stock_quantity = jQuery(this).val() == 22101 ? available_seats?.stock_quantity_22101 : available_seats?.stock_quantity_22102;
+		let labelColor = stock_quantity > 0 ? '#008000' : '#FF0000';
+		let labelText = stock_quantity > 0 ? `In-person - <b style="color:${labelColor};">Available seats ${stock_quantity}</b>` : `In-person - <b style="color:${labelColor};">Sold Out, you can not book!</b>`;
+	  	let $this = jQuery(this);
+		let parentElement = $this.parents('#field_11_1027').length > 0 ? '.choose-registration-row' : '.gfield_repeater_item';
+		setTimeout(() => {
+			$this.parents(parentElement).find('input[value="in_person"]').next('label').html(labelText);
+		}, 300);
+	});
 	if( form_id == 13 )
 	{
 		let field_13_1028 =  jQuery('.gfield_repeater_items #field_13_1028').parent('.gfield_repeater_cell');
 		field_13_1028.slideUp();
 		jQuery('input[name="input_1005[0]"]').on('change', function(){
 			if(jQuery(this).val() == 22101 || jQuery(this).val() == 22102)
-			{
+			{				
 				field_13_1028.slideDown();
 				setTimeout(() => {
 					jQuery('#label_13_1028_0').trigger('click');
@@ -204,6 +215,11 @@ jQuery(document).on('gform_post_render', function (event, form_id, current_page)
 });
 if(typeof gform !== 'undefined' && (jQuery('body').hasClass('page-id-20551') || jQuery('body').hasClass('page-id-24902'))){
 	gform.addFilter('gform_repeater_item_pre_add', function (clone, item) {
+		let available_seats = asgmt_ajax_object?.stock_quantities;
+		// clone.find('input[value="22101"], input[value="22102"]').on('change', function(){
+		// 	let seats = jQuery(this).val() == 22101 ? `In-person - Available seats ${available_seats?.stock_quantity_22101}` : `In-person - Available seats ${available_seats?.stock_quantity_22102}`;
+		// 	jQuery('input[value="in_person"]').next('label').text(seats);
+		// });
 		let choice_11_1005_ = clone.find("[name^='input_1005']");
 		clone.find('.gfield_repeater_cell:eq(4)').hide();
 		if (typeof choice_11_1005_ !== undefined) {

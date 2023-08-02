@@ -11,7 +11,8 @@ function showAlert(icon, title) {
 // Initialize DataTables
 jQuery(document).ready(function ($) {
     //Check email is already exists.
-    $("#input_18_13").blur(function () {
+    $("#input_18_13, #input_18_27").on('blur', function () {
+        let $this = $(this);
         jQuery.ajax({
             url: exhibitor_object.ajax_url,
             type: 'POST',
@@ -27,7 +28,7 @@ jQuery(document).ready(function ($) {
                 $('body').find(`#gravity-form-container #assistant-spinner`).remove();
                 $('body').find('.primary-exhibitors-email-exist').remove();
                 if (response.success) {
-                    $('.primary-exhibitors-contact').append(`<em class="primary-exhibitors-email-exist"><span class="dashicons-before dashicons-yes"></span>${response.data.message}</em>`);
+                    $(`[for="${$this.attr('id')}"]`).append(`<em class="primary-exhibitors-email-exist"><span class="dashicons-before dashicons-yes"></span>${response.data.message}</em>`);
                 }
             },
             error: function (xhr, status, error) {
@@ -80,7 +81,7 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 $('body').find(`#exhibitor-members-list_wrapper #assistant-spinner`).remove();
                 if (response.success) {
-                    $(`select[data-row="${selectedValue.data('row')}"] option[value='${response.data.old_status}']`).prop('disabled', false).prop('selected', false);
+                    $(`select[data-row="${selectedValue.data('row')}"] option`).prop('disabled', false).prop('selected', false);
                     showAlert('success', response.data.message); //'warning','error'
                     $(`select[data-row="${selectedValue.data('row')}"] option[value='${response.data.status}']`).prop('disabled', true).prop('selected', true);
                 } else {
@@ -94,7 +95,6 @@ jQuery(document).ready(function ($) {
         });
     }
     if (typeof exhibitor_object !== "undefined" && exhibitor_object?.current_screen == "toplevel_page_exhibitor-management") {
-        //Plan to Exhibitor
         $(document).on('change', '.plane-to-exhibitor', function () {
             var selectedValue = $(this);
             jQuery.ajax({
@@ -103,7 +103,7 @@ jQuery(document).ready(function ($) {
                 dataType: 'json',
                 data: {
                     action: 'update_plane_to_exhibitor_status',
-                    user_id: selectedValue.data('row'),
+                    company_id: selectedValue.data('row'),
                     new_status: $(this).val()
                 },
                 beforeSend: function () {
@@ -146,6 +146,7 @@ jQuery(document).ready(function ($) {
         };
         var t = $("#exhibitor-members-list").DataTable({
             // dom: '<"top"i>rt<"bottom"flp><"clear">',
+            fixedHeader: true,
             dom: 'Blfrtip',
             "ajax": {
                 "url": exhibitor_object.ajax_url,
@@ -218,14 +219,14 @@ jQuery(document).ready(function ($) {
                         return plan_to_exhibit;
                     }
                 },
+                { "data": "booth_count" },
+                { "data": "exhibit_booth_number" },
                 { "data": "primary_first_name" },
                 { "data": "primary_last_name" },
                 { "data": "primary_email" },
                 { "data": "alternate_first_name" },
                 { "data": "alternate_last_name" },
                 { "data": "alternate_email" },
-                { "data": "booth_count" },
-                { "data": "exhibit_booth_number" },
                 { "data": "exhibit_rep_first_name" },
                 { "data": "exhibit_rep_last_name" },
                 { "data": "id" },
@@ -286,17 +287,17 @@ jQuery(document).ready(function ($) {
             });
         }).draw();
         //Filter By Year
-        var categoryIndex = 0;
+        var yearIndex = 0;
         $("#exhibitor-members-list th").each(function (i) {
-            if ($(this).html() == "Date of registration") {
-                categoryIndex = i; return false;
+            if ($(this).text() == "Date Approved Exhibitor List") {
+                yearIndex = i; return false;
             }
         });
         $.fn.dataTable.ext.search.push(
             function (settings, data, dataIndex) {
                 var selectedItem = $('#year-filter').val();
-                var category = data[categoryIndex];
-                if (selectedItem === "" || category.includes(selectedItem)) {
+                let year = data[yearIndex];
+                if (selectedItem === "" || year.includes(selectedItem)) {
                     return true;
                 }
                 return false;
@@ -307,17 +308,11 @@ jQuery(document).ready(function ($) {
         });
         //End Filter By Year
         //Filter By Current Status"
-        var StatusIndex = 0;
-        $("#exhibitor-members-list th").each(function (i) {
-            if ($(this).html() == "Active status") {
-                StatusIndex = i; return false;
-            }
-        });
         $.fn.dataTable.ext.search.push(
             function (settings, data, dataIndex) {
-                var currentStatus = $('#filter-by-status').val();
-                var category = data[StatusIndex];
-                if (currentStatus === "" || category === currentStatus) {
+                var currentStatus = $('#filter-by-status').val();  
+                var category = data.filter(el => el == currentStatus );
+                if ( currentStatus === "" || category.length > 0 ) {
                     return true;
                 }
                 return false;
@@ -328,17 +323,11 @@ jQuery(document).ready(function ($) {
         });
         //End Filter by Current Status
         //Filter by plan to exhibit
-        var PlanToIndex = 0;
-        $("#exhibitor-members-list th").each(function (i) {
-            if ($(this).html() == "Active plan to exhibit") {
-                PlanToIndex = i; return false;
-            }
-        });
         $.fn.dataTable.ext.search.push(
             function (settings, data, dataIndex) {
                 var currentPlanTo = $('#filter_plan_to_exhibit').val();
-                var category = data[PlanToIndex];
-                if (currentPlanTo === "" || category === currentPlanTo) {
+                var category = data.filter(el => el == currentPlanTo );
+                if ( currentPlanTo === "" || category.length > 0 ) {
                     return true;
                 }
                 return false;
@@ -372,7 +361,19 @@ jQuery(document).ready(function ($) {
             event.preventDefault();
             var productsValues = jQuery('#calculatePrice').val();
             productsValues = isNaN(productsValues) ? 0 : productsValues;
-            if (productsValues > 0) {
+            console.log(jQuery(this).data('status'));
+            if(jQuery(this).data('status') == 0)
+            {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sorry!',
+                    text: 'Previous Invoices are still in Pending Status, We are unable to process new Invoices at the moment',
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                  })
+                // showAlert('warning', 'Sorry! Previous Invoices are still in Pending Status, You can not send any New Invoices at the moment!');//'warning','error'   
+            }
+            else if (productsValues > 0) 
+            {
                 $.ajax({
                     url: exhibitor_object.ajax_url,
                     method: 'POST',
@@ -380,7 +381,7 @@ jQuery(document).ready(function ($) {
                         action: 'assign_booth_products',
                         products_ids: jQuery('#calculatePrice').data('product_id'),
                         qty: productsValues,
-                        customer_id: $('input[name="customer_id"]').val()
+                        company_id: $('input[name="company_id"]').val()
                     },
                     beforeSend: function () {
                         $('body').find(`.assign-booth-products`).prepend('<div id="assistant-spinner"></div>');
@@ -388,6 +389,8 @@ jQuery(document).ready(function ($) {
                     success: function (response) {
                         $('body').find(`.assign-booth-products`).find('#assistant-spinner').remove();
                         if (response.success) {
+                            $('#send-invoice-assign-booth').attr('data-status', '0');
+                            $('#send-invoice-assign-booth').prop('disabled', true);
                             showAlert('success', 'Sent Invoice successfully!');//'warning','error'
                         } else {
                             showAlert('error', 'Something went wrong please try again!');//'warning','error'
@@ -412,7 +415,7 @@ jQuery(document).ready(function ($) {
                 method: 'POST',
                 data: {
                     action: 'add_booth_count',
-                    customer_id: $('input[name="customer_id"]').val(),
+                    company_id: $('input[name="company_id"]').val(),
                     count: productsValues
                 },
                 beforeSend: function () {
@@ -512,12 +515,15 @@ jQuery(document).ready(function ($) {
         let booth_numbers = exhibitor_object?.assigned_booth_numbers?.replace(/\s+/g, '');
         if (typeof acf != 'undefined') {
             acf.addAction('append', function ($el) {
-                var $selectField = $el.find('[data-key="field_64801320c46f0"] select');
+                var $selectField = $el.find('[data-name="assigned_booth_number"] select');
                 if (typeof booth_numbers != 'undefined') {
-                    booth_numbers.split(',').forEach((element) => {
-                        // $selectField.find(`option[value="${element}"]`).prop('disabled', true);
-                        $selectField.find(`option[value="${element}"]`).remove();
-                    });
+                    if (booth_numbers.includes(',')) {
+                        booth_numbers.split(',').forEach((element) => {
+                            $selectField.find(`option[value="${element}"]`).remove();
+                        });
+                    }else{
+                        $selectField.find(`option[value="${booth_numbers}"]`).remove();
+                    }
                 }
             });
         }
@@ -544,5 +550,31 @@ jQuery(document).ready(function ($) {
         }else{
             $('#primary').prop('checked', true);
         }
+    });   
+    $('#filter-by-status').on('change', function(){
+        $('body').find('#total-booth-count-by-companies-status').find('p').hide();
+        $('body').find(`.${$(this).val()}`).show();
     });
 });
+jQuery(window).load(function($){
+    jQuery.ajax({
+        url: exhibitor_object.ajax_url,
+        method: 'POST',
+        data: {action: 'get_total_booth_count_by_companies_status'},
+        success: function (response) {
+            if (response.success) {
+                Object.keys(response.data).forEach( (item) => {
+                    // `<p class="${item}">${capitalizeWordsAndJoin(item, '_')} : Booths of ${response.data[item]}</p>`
+                    jQuery('body').find(`#total-booth-count-by-companies-status`).append(`<p class="${item}" style="display:none;">Total <b>${capitalizeWordsAndJoin(item, '_')}</b> Booths <b>${response.data[item]}</b></p>`);
+                });
+            }
+        }
+    });
+})
+
+function capitalizeWordsAndJoin(str, explodeBy) {
+    const words = str.split(`${explodeBy}`);
+    const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+    const capitalizedString = capitalizedWords.join(' ');
+    return capitalizedString;
+}

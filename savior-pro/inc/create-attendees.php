@@ -6,7 +6,7 @@ class CreateAttendees
         add_filter('woocommerce_checkout_update_order_meta', array($this, 'save_gravity_form_entry_id'), 10, 2);
         // add_filter('woocommerce_checkout_fields', array($this, 'add_gravity_form_entry_id_field'));
         add_filter('woocommerce_payment_complete', array($this, 'payment_complete'));
-        add_action( 'woocommerce_order_status_completed', array( $this, 'payment_complete' ) );//order_status_completed
+        // add_action( 'woocommerce_order_status_completed', array( $this, 'payment_complete' ) );//order_status_completed
         add_action('woocommerce_email_order_meta', array($this, 'add_attendees_information_in_email_order_meta'), 10, 3);
         //Add Attendees via Dashboard
         add_filter( 'gform_form_post_get_meta_13', array($this, 'show_attendees_repeater_fields') );
@@ -96,14 +96,14 @@ class CreateAttendees
                                             {
                                                 $course_type_role = $attendees_data['1028'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
                                                 $user->add_role($course_type_role);
-                                                $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22101 : 25972;
+                                                $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22101 : 27011;
                                             }
                                         }elseif($attendees_data['1005'] == 22102 ) {
                                             if($attendees_data['1028'])
                                             {
                                                 $course_type_role = $attendees_data['1028'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
                                                 $user->add_role($course_type_role);
-                                                $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22102 : 25971;
+                                                $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22102 : 27010;
                                             }
                                         }else{
                                             $user->add_role('student');
@@ -113,8 +113,6 @@ class CreateAttendees
                                         update_user_meta($attendee_user_id, 'first_name', $attendees_data['1002']);
                                         update_user_meta($attendee_user_id, 'last_name', $attendees_data['1003']);
                                     }
-                                    // error_log(print_r('Attendees with Role and Product'));
-                                    // error_log(print_r(array('user_id' => $attendee_user_id, 'product_id' => $attendees_product_id, 'roles' => $user->roles), true));
                                     $_attendees_order_meta[] = array('user_id' => $attendee_user_id, 'product_id' => $attendees_product_id, 'roles' => $user->roles);
                                     $attendees_users[] = array('email' => $attendees_data['1001'], 'password' => $random_password);
                                     $this->send_email_to_attendees(array('email' => $attendees_data['1001'], 'password' => $random_password), $main_user->user_email);
@@ -152,14 +150,14 @@ class CreateAttendees
                                         {
                                             $course_type_role = $attendees_data['1028'] == 'in_person' ? 'lmf_in_person' : 'lmf_virtual';
                                             $user->add_role($course_type_role);
-                                            $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22101 : 25972;
+                                            $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22101 : 27011;
                                         }
                                     }elseif($attendees_data['1005'] == 22102 ) {
                                         if($attendees_data['1028'])
                                         {
                                             $course_type_role = $attendees_data['1028'] == 'in_person' ? 'gmf_in_person' : 'gmf_virtual';
                                             $user->add_role($course_type_role);
-                                            $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22102 : 25971;
+                                            $attendees_product_id = $attendees_data['1028'] == 'in_person' ? 22102 : 27010;
                                         }
                                     }else{
                                         $user->add_role('student');
@@ -183,6 +181,59 @@ class CreateAttendees
                     }
                 }
             }
+        }
+        //Update Company Status If Order Has Product ID 18792==> Booth ADMIN
+        $order = wc_get_order( $order_id );
+        $items = $order->get_items();
+        foreach ( $items as $item ) {
+            if( $item->get_product_id() == 18792 )
+            {
+                $_company_id = get_post_meta($order_id, '_company_id', true);
+                if($_company_id)
+                {
+                    update_post_meta($_company_id, '_exhibitor_status', 'payment_complete');
+                }else{
+                    $args = array(
+                        'posts_per_page' => 1,
+                        'post_type'   => 'companies',
+                        'fields' => 'ids',
+                        'meta_query' => array(
+                            array(
+                            'key'     => 'payment_history',
+                            'value'   => $main_user_id,
+                            'compare' => 'LIKE',
+                            // 'type'    => 'NUMERIC'
+                            )
+                        )
+                    );
+                    $company_query = new WP_Query( $args );
+                    $company_id =  (!empty($company_query->posts) && is_array($company_query->posts)) ? $company_query->posts[0] : false;   
+                    if($company_id)
+                    {
+                        update_post_meta($_company_id, '_exhibitor_status', 'payment_complete');
+                    }
+                }
+            }
+        }
+        //Cancel sibling order if one order has already been paid
+        $_relation_between_orders = get_post_meta($order_id, '_relation_between_orders', true);
+        if($_relation_between_orders)
+        {
+            $query_args = array(
+                'limit' 		=> -1,
+                'return' 		=> 'ids',
+                '_relation_between_orders' => $_relation_between_orders
+            );
+            $orders = wc_get_orders( $query_args );
+            if ( $orders ) {
+                $other_unpaid_orders = array_diff($orders, [$order_id]);
+                foreach ( $other_unpaid_orders as $unpaid_order ) {
+                    $order = new WC_Order( $unpaid_order );
+                    $cancelled_text = __($main_user->user_email." Booth Admin Already Paid", "woocommerce");
+                    $order->update_status( 'cancelled', $cancelled_text);
+                }
+            }
+        
         }
     }
 
@@ -234,11 +285,11 @@ class CreateAttendees
                 // $product_title = $user_order_metadata[$key]['product_id'];
                 if( isset($attendee[1028]) && $attendee[1005] == 22101 )
                 {
-                    $attendees_product_id = $attendee[1028] == 'in_person' ? 22101 : 25972;
+                    $attendees_product_id = $attendee[1028] == 'in_person' ? 22101 : 27011;
                 }
                 elseif( isset($attendee[1028]) && $attendee[1005] == 22102 )
                 {
-                    $attendees_product_id = $attendee[1028] == 'in_person' ? 22102 : 25971;
+                    $attendees_product_id = $attendee[1028] == 'in_person' ? 22102 : 27010;
                 }
                 else{
                     $attendees_product_id = $attendee[1005];
@@ -440,10 +491,10 @@ class CreateAttendees
 		foreach ($get_all_attendees as $attendees) {
             if( $attendees[1005] == 22101 )
             {
-                $attendee_product_id = $attendees[1028] == 'in_person' ? 22101 : 25972;
+                $attendee_product_id = $attendees[1028] == 'in_person' ? 22101 : 27011;
             }elseif( $attendees[1005] == 22102 )
             {
-                $attendee_product_id = $attendees[1028] == 'in_person' ? 22102 : 25971;
+                $attendee_product_id = $attendees[1028] == 'in_person' ? 22102 : 27010;
             }else{
                 $attendee_product_id = $attendees[1005];
             }

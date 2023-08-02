@@ -10,9 +10,8 @@ class ExhibitAssistantRegistration
         add_action('gform_after_submission_14', array( $this, 'crete_new_exhibit_assistants' ), 10, 2);
         add_filter( 'gform_confirmation_14', array($this, 'exhibit_assistant_registration_confirmation'), 10, 4 );
         add_shortcode( 'exhibit_assistant_list', array( $this, 'exhibit_assistant_list_ajax' ) );
-        add_action('admin_footer', array($this, 'exhibitor_assistant_scripts'));
+        // add_action('admin_footer', array($this, 'exhibitor_assistant_scripts'));
         add_action('wp_footer', array($this, 'exhibitor_assistant_scripts'));
-        add_action('wp_ajax_update_exhibitor_assistant', array($this, 'update_exhibitor_assistant'));
         add_action('wp_ajax_delete_exhibitor_assistant', array($this, 'delete_exhibitor_assistant'));
     }
 
@@ -20,8 +19,82 @@ class ExhibitAssistantRegistration
     {
         $screen = get_current_screen();
         if(isset($screen->id) && $screen->id == 'asgmt-exhibits_page_edit-exhibitor-profile' || is_page(19755)){
-
+            // wp_enqueue_style('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css', array(), '11.7.10');
+            wp_enqueue_script('sweetalert2', 'https://cdn.jsdelivr.net/npm/sweetalert2@11', array(), '');
             ?>
+            <style type="text/css">
+                #assistant-spinner {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background: #898989a6;
+                    z-index: 9;
+                    border-radius: 10px;
+                    top: 0;
+                    left: 0;
+                }
+
+                #assistant-spinner:before {
+                    content: "";
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: 2px solid #333;
+                    border-top-color: transparent;
+                    top: 45%;
+                    left: 45%;
+                    animation: spin 1s linear infinite;
+                }
+                @keyframes spin {
+                    0% {
+                        transform: rotate(0);
+                    }
+                    100% {
+                        transform: rotate(360deg);
+                    }
+                }
+                .elementor-element.elementor-element-1992996 h3.ui-accordion-header span {
+                    margin-right: 5px;
+                }
+                .elementor-element.elementor-element-1992996 h3.ui-accordion-header {
+                    color: #080E41;
+                    background-color: #F7C338;
+                    border: 0;
+                    padding: 15px 20px;
+                    font-family: "Roboto", Sans-serif;
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+                .elementor-element.elementor-element-1992996 .accordion-content {
+                    padding: 20px 20px;
+                }
+                .elementor-element.elementor-element-1992996 .accordion-content .assistant-actions a {
+                    color: 5a5a5a;
+                }
+                .elementor-element.elementor-element-1992996 .accordion-content .assistant-actions a:hover {
+                    color: red;
+                }
+                .elementor-element.elementor-element-1992996 .accordion-content .assistants-billing-address p {
+                    color: #5a5a5a;
+                    font-family: montserrat,Sans-serif;
+                    font-size: 16px;
+                    font-weight: 600;
+                    line-height: 28px;
+                    margin-bottom: 5px;
+                }
+                .elementor-element.elementor-element-1992996 .accordion-content .assistants-billing-address {
+                    margin-top: 10px;
+                    text-align: left;
+                }
+                .elementor-element.elementor-element-1992996 .accordion-content .delete-assistants-billing-address {
+                    text-align: left;
+                }
+
+                .elementor-element.elementor-element-1992996 .accordion-content .assistants-billing-address span {
+                    color: #252f86;
+                }
+            </style>
             <script type="text/javascript">
                 jQuery( function() {
                     jQuery( "#accordion" ).accordion(
@@ -37,65 +110,13 @@ class ExhibitAssistantRegistration
                     );
                 } );
                 jQuery(document).ready(function($) {
-                    jQuery('#accordion').on('click', '.show-assistants-billing-address a', function(){
-                        let assistantID = jQuery(this).attr('data-id');
-                        jQuery(`.assistant-addres-view-${assistantID}`).toggle();
-                        jQuery(`.assistant-addres-form-${assistantID}`).toggle();           
-                        if(jQuery(`.assistant-addres-form-${assistantID}`).is(":visible"))
-                        {
-                            $(`#tab-${assistantID}`).css('height','auto')
-                        }
-                    });
-                    jQuery('.assistants-billing-form-btn').click(function(event) {
-                        event.preventDefault();
-                        let formID = $(this).attr('data-id');
-                        var formData = $(`#assistant-addres-form-${formID}`).serialize();
-                        $.ajax({
-                            url: ajax_object.ajax_url,
-                            method: 'POST',
-                            data: formData,
-                            beforeSend: function(){
-                                $('body').find(`#tab-${formID}`).prepend('<div id="assistant-spinner"></div>');
-                            },
-                            success: function(response) {
-                                if(response.success){
-                                    $(`.show-assistants-billing-address a[data-id="${formID}"]`).trigger('click');
-                                    setTimeout(() => {
-                                        $(`.assistant-addres-view-${formID}`).html(response.data);
-                                        $('body').find(`#tab-${formID}`).find('#assistant-spinner').remove();
-                                    }, 200);
-                                    Swal.fire({
-                                        icon: 'success',
-                                        text: 'Successfully updated!',
-                                        showConfirmButton: true,
-                                        timer: 1500
-                                    })
-                                }else{
-                                    Swal.fire({
-                                        icon: 'error',
-                                        text: 'Something went wrong please try again!',
-                                        showConfirmButton: true,
-                                        timer: 1500
-                                    })
-                                }
-                            },
-                            error: function(xhr, status, error) {
-                                $('body').find(`#tab-${formID}`).find('#assistant-spinner').remove();
-                                Swal.fire({
-                                    icon: 'error',
-                                    text: 'Something went wrong please try again!',
-                                    showConfirmButton: true,
-                                    timer: 1500
-                                })
-                            }
-                        });
-                    });
+                    
                     //Delete Assistant
                     jQuery('#accordion').on('click', '.delete-assistants-billing-address a', function(event){
                         event.preventDefault();
-                        let formID = $(this).attr('data-id');                        
-                        var formData = $(`#assistant-addres-form-${formID}`).serialize();
-                        var formData = formData.replace("action=update_exhibitor_assistant", "action=delete_exhibitor_assistant");
+                        let formID = $(this).attr('data-id');  
+                        let fomData = $(this).data();  
+                        fomData.nonce = ajax_object.security;  
                         Swal.fire({
                             title: 'Are you sure?',
                             text: "You won't be able to revert this!",
@@ -109,7 +130,7 @@ class ExhibitAssistantRegistration
                                 $.ajax({
                                     url: ajax_object.ajax_url,
                                     method: 'POST',
-                                    data: formData,
+                                    data: fomData,
                                     beforeSend: function(){
                                         $('body').find(`#tab-${formID}`).prepend('<div id="assistant-spinner"></div>');
                                     },
@@ -130,6 +151,8 @@ class ExhibitAssistantRegistration
                                         $(`#tab-${formID}`).remove();
                                         $(`[aria-controls="tab-${formID}"]`).remove();  
                                         $('body').find(`#tab-${formID}`).find('#assistant-spinner').remove();
+                                        if(!response.data.result)
+                                            $('body').find(`#assistant-container`).html('<p>No assistants added yet.</p>');
                                     },
                                     error: function(xhr, status, error) {
                                         Swal.fire(
@@ -235,30 +258,15 @@ class ExhibitAssistantRegistration
         if (!empty($repeater_field_assistants) && !empty($entry['created_by'])) {
             $_assistants_ids = array();
             foreach ($repeater_field_assistants as $assistants_data) {
-                $attendee_user_id = $this->get_or_create_assistant_user_by_email($assistants_data['1004']);
-                if (is_wp_error($attendee_user_id)) {
-                } else {
-                    $assistant_metas = array(
-                        'first_name'                => isset($assistants_data['1001']) ? $assistants_data['1001'] : '',
-                        'last_name'                 => isset($assistants_data['1002']) ? $assistants_data['1002'] : '',
-                        'email'                     => isset($assistants_data['1004']) ? $assistants_data['1004'] : '',
-                    );
-                    foreach ($assistant_metas as $key => $value) {
-                        if (empty(get_user_meta($attendee_user_id, $key, true))) {
-                            update_user_meta($attendee_user_id, $key, $value);
-                        }
-                    }
-                    $user = get_user_by('id', $attendee_user_id);
-                    if ($user) {
-                        $user->add_role('exhibitassistant');
-                    }
-                    $_assistants_ids[] = $attendee_user_id;
+                if($user_id = email_exists($assistants_data['1004']))
+                {
+                    $_assistants_ids[] = $user_id;
                 }
             }
-            $exhibitor_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : $entry['created_by'];
-            $get_assistants_ids = get_user_meta($exhibitor_id, '_assistants_ids', true);
-            $update_assistants_ids = is_array($get_assistants_ids) ? array_unique(array_merge($get_assistants_ids, $_assistants_ids)) : $_assistants_ids;
-            update_user_meta($exhibitor_id, '_assistants_ids', $update_assistants_ids);
+            $company_id = $this->get_company_id_by_primary_or_alternate_admin();
+            $get_assistants_ids = get_post_meta($company_id, 'assistants', true);
+            $update_assistants_ids = is_array($get_assistants_ids) && !empty($get_assistants_ids) ? array_unique(array_merge($get_assistants_ids, $_assistants_ids)) : $_assistants_ids;
+            update_post_meta($company_id, 'assistants', $update_assistants_ids);
         }
     }
 
@@ -272,6 +280,7 @@ class ExhibitAssistantRegistration
 
     public function exhibit_assistant_list_ajax( $atts )
     {
+        ob_start();
         $atts = shortcode_atts(
             array(
                 'exhibitor_id' => get_current_user_id(),
@@ -284,74 +293,36 @@ class ExhibitAssistantRegistration
             'action'   => 'update_exhibitor_assistant',
             'security' => wp_create_nonce( 'exhibitor_assistant' )
         ));
-        $get_assistants_ids = get_user_meta($atts['exhibitor_id'], '_assistants_ids', true);
-        if(!empty($get_assistants_ids))
+        $company_id =  $this->get_company_id_by_primary_or_alternate_admin(); // Get the company id   
+        echo "<div id='assistant-container'>";
+        if(isset($company_id) && $get_assistants_ids = get_post_meta($company_id, 'assistants', true))
         {
-              $assistants = get_users( array('include' => $get_assistants_ids) );
-              ?>
+            $assistants = get_users( array('include' => $get_assistants_ids) );
+            ?>
                 <div id="accordion">
-                    <?php foreach ($assistants as $assistant) : 
-                        $user_info = get_userdata($assistant->ID);
-                        $user_email = $user_info->user_email;
-                        ?>
-                        <h3><?php echo $assistant->first_name.' '.$assistant->last_name; ?></h3>
-                        <div id="tab-<?php echo $assistant->ID ;?>" class="accordion-content">
-                            <?php
-                                if(is_admin())
-                                {
-                                    ?>
-                                    <div class="assistant-actions">
-                                        <div class="show-assistants-billing-address">
-                                            <a data-id="<?php echo $assistant->ID ;?>" class="dashicons dashicons-edit-large" href="javascript:void(0)"></a>
-                                        </div> 
-                                        <div class="delete-assistants-billing-address">
-                                            <a data-id="<?php echo $assistant->ID ;?>" class="dashicons dashicons-trash" href="javascript:void(0)"></a>
-                                        </div> 
-                                    </div>
-                                    <?php 
-                                }    
-                            ?>
-                            <div class="assistants-billing-address assistant-addres-view-<?php echo $assistant->ID; ?>">
+                    <?php foreach ($assistants as $assistant_user) : 
+                        $user_email = $assistant_user->user_email;
+                    ?>
+                        <h3><?php echo $assistant_user->first_name.' '.$assistant_user->last_name; ?></h3>
+                        <div id="tab-<?php echo $assistant_user->ID ;?>" class="accordion-content">
+                            <div class="assistant-actions">
+                                <div class="delete-assistants-billing-address">
+                                    <a  href="javascript:void(0)" 
+                                        class="dashicons dashicons-trash" 
+                                        data-id="<?php echo $assistant_user->ID ;?>" 
+                                        data-assistant_id="<?php echo $assistant_user->ID ;?>" 
+                                        data-company_id="<?php echo $company_id ;?>" 
+                                        data-action="delete_exhibitor_assistant" 
+                                    ></a>
+                                </div> 
+                            </div>
+                            <div class="assistants-billing-address assistant-addres-view-<?php echo $assistant_user->ID; ?>">
                                 <?php                                                                 
-                                    echo '<p><span>First Name: </span>' . $user_info->first_name . '</p>';
-                                    echo '<p><span>Last Name: </span>' . $user_info->last_name . '</p>';
+                                    echo '<p><span>First Name: </span>' . $assistant_user->first_name . '</p>';
+                                    echo '<p><span>Last Name: </span>' . $assistant_user->last_name . '</p>';
                                     echo '<p><span>Email: </span>' . $user_email . '</p>';
                                 ?>                                
                             </div>
-                            <?php
-                                if(is_admin())
-                                {
-                                    $exhibitor_id = isset($_REQUEST['exhibitor_id']) ? $_REQUEST['exhibitor_id'] : 0;
-                                    ?>                            
-                                        <div class="assistants-billing-address-update assistant-addres-form-<?php echo $assistant->ID; ?>" style="display:none;">   
-                                            <form id="assistant-addres-form-<?php echo $assistant->ID; ?>">
-                                                <input type="hidden" name="action" value="update_exhibitor_assistant" />
-                                                <input type="hidden" name="assistants-user-id" value="<?php echo $assistant->ID; ?>" />
-                                                <input type="hidden" name="security" value="<?php echo wp_create_nonce( 'exhibitor_assistant' ); ?>" />
-                                                <input type="hidden" name="booth_admin" value="<?php echo $_REQUEST['exhibitor_id'];?>">
-                                                <div class="assistant-form">
-                                                    <div class="assitant-col-100">
-                                                        <div class="assitant-form-col-50">
-                                                            <label for="<?php echo $assistant->ID; ?>-first_name">First Name:</label><br>
-                                                            <input type="text" id="<?php echo $assistant->ID; ?>-first_name" name="first_name" value="<?php echo $user_info->first_name; ?>"><br><br>
-                                                        </div>
-
-                                                        <div class="assitant-form-col-50">
-                                                            <label for="<?php echo $assistant->ID; ?>-last_name">Last Name:</label><br>
-                                                            <input type="text" id="<?php echo $assistant->ID; ?>-last_name" name="last_name" value="<?php echo $user_info->last_name; ?>"><br><br>
-                                                        </div>
-                                                        <div class="assitant-form-col-100">
-                                                            <label for="<?php echo $assistant->ID; ?>-email">Email:</label><br>
-                                                            <input type="email" id="<?php echo $assistant->ID; ?>-email" name="email" value="<?php echo $user_email; ?>"><br><br>
-                                                        </div>
-                                                    </div>
-                                                    <input type="submit" class="assistants-billing-form-btn" data-id="<?php echo $assistant->ID; ?>" value="Update Assitant Information">
-                                                </div>
-                                            </form>
-                                        </div>
-                                    <?php
-                                }
-                            ?>
                         </div>
                     <?php endforeach; ?>
                 </div>
@@ -359,69 +330,55 @@ class ExhibitAssistantRegistration
         }else{
             echo "<p>No assistants added yet.</p>";
         }
+        echo "</div>";
+        $out = ob_get_contents();
+        ob_get_clean();
+        return $out;
     }
-    public function get_or_create_assistant_user_by_email( $email, $random_password = 0 )
+    
+    public function get_company_id_by_primary_or_alternate_admin()
     {
-        $user_id = email_exists($email);
-
-        if ($user_id) {
-            // User already exists, return user ID
-            return $user_id;
-        } else {
-            $random_password = $random_password ? $random_password : wp_generate_password(12, false);
-            // User doesn't exist, create new user and return user ID
-            $user_id = wp_create_user($email, $random_password, $email);
-            return $user_id;
-        }
-    }
-
-    public function update_exhibitor_assistant()
-    {
-        $nonce = $_POST['security'];
-        if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
-            wp_send_json_error( 'Invalid nonce.' );
-        }
-        try {
-            $user_data = get_userdata($_POST['assistants-user-id']);
-            if($user_data->first_name !== $_POST['first_name']){
-                $user_data->first_name = $_POST['first_name'];
-            }
-            if($user_data->last_name !== $_POST['last_name']){
-                $user_data->last_name = $_POST['last_name'];
-            }
-            if($user_data->user_email !== $_POST['email']){
-                $user_data->user_email = $_POST['email'];
-            }
-
-            $assistant_id = wp_update_user( $user_data );
-            if(is_wp_error( $assistant_id ))
-            {
-                wp_send_json_error( $assistant_id->get_error_message(), 400 );
-            }else{
-                $html = '<p><span>First Name: </span>' . $_POST['first_name'] . '</p>
-                        <p><span>Last Name: </span>' . $_POST['last_name'] . '</p>
-                        <p><span>Email: </span>' . $_POST['email'] . '</p>';
-                wp_send_json_success($html, 202);
-            }
-        }catch (Exception $e) {  
-            wp_send_json_error( 'Exception Message: ' .$e->getMessage() );
-        }  
+        $args = array(
+            'posts_per_page'    => 1,
+            'post_type'         => 'companies',
+            'fields'            => 'ids',
+            'meta_query' => array(
+                'relation' => 'OR',
+                array(
+                    'key'     => 'primary_booth_admin',
+                    'value'   => get_current_user_id(),
+                    'compare' => 'LIKE',
+                ),
+                array(
+                    'key'     => 'alternate_booth_admin',
+                    'value'   => get_current_user_id(),
+                    'compare' => 'LIKE',
+                )
+            )
+        );
+        $company_query = new WP_Query( $args );
+        $company_id = (!empty($company_query->posts) && is_array($company_query->posts)) ? $company_query->posts[0] : false; 
+        return $company_id;
     }
 
     public function delete_exhibitor_assistant()
     {
-        $nonce = $_POST['security'];
+        $nonce = $_POST['nonce'];
         if ( ! wp_verify_nonce( $nonce, 'exhibitor_assistant' ) ) {
             wp_send_json_error( 'Invalid nonce.' );
         }
-        $get_assistants_ids = get_user_meta($_REQUEST['booth_admin'], '_assistants_ids', true);
-        if (is_array($get_assistants_ids) && in_array($_POST['assistants-user-id'], $get_assistants_ids)) {
-            $updated_assistants_ids = array_diff($get_assistants_ids, array($_POST['assistants-user-id']));
-            update_user_meta($_REQUEST['booth_admin'], '_assistants_ids', $updated_assistants_ids);
-            wp_send_json_success();
-        }else{
+        try {
+            $get_assistants_ids = get_post_meta($_REQUEST['company_id'], 'assistants', true);
+            if (is_array($get_assistants_ids) && in_array($_POST['assistant_id'], $get_assistants_ids)) {
+                $updated_assistants_ids = array_diff($get_assistants_ids, array($_POST['assistant_id']));
+                $assistants = update_post_meta($_REQUEST['company_id'], 'assistants', $updated_assistants_ids);
+                if(!is_wp_error( $assistants ))
+                    wp_send_json_success(array('result' => count(get_post_meta($_REQUEST['company_id'], 'assistants', true))));
+            }
+        } catch (\Throwable $th) {
             wp_send_json_error();
         }
+        wp_send_json_error();
     }
 }
 

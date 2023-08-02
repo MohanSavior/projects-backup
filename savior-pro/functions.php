@@ -25,9 +25,10 @@ function child_enqueue_styles() {
 	wp_enqueue_script( 'savior-pro-scripts', get_stylesheet_directory_uri() . '/assets/js/savior-pro-scripts.js', array('jquery'), time(), true );
 	wp_localize_script('savior-pro-scripts','asgmt_ajax_object', 
 					   [
-						   'ajax_url'  => admin_url( 'admin-ajax.php' ), 
-						   'security'  => wp_create_nonce( 'asgmt-security-nonce' ),
-						   'profile'   => site_url( 'my-asgmt-dashboard/my-profile/' )
+							'ajax_url'  => admin_url( 'admin-ajax.php' ), 
+							'security'  => wp_create_nonce( 'asgmt-security-nonce' ),
+							'profile'   => site_url( 'my-asgmt-dashboard/my-profile/' ),
+							'stock_quantities'	=> is_page(20551) || is_page(24902) ? get_all_product_stock_quantities() : '',
 					   ]
 					  );
 	/** Scrollbar JS **/
@@ -84,28 +85,29 @@ add_shortcode('paper_by_year', function(){
 	<form action="<?php echo ($action_url);?>" method="get">
 		<h2 class="drop-heading">Papers by year</h2>
 		<?php 
-	if(isset($_GET['ee_search_query']) && !empty($_GET['ee_search_query'])): 
-	$ee_search_query_string = str_replace('\\', '/', $_GET['ee_search_query']);
-	$ee_search_query_string = str_replace('\\', '/', '{"post_type":["product","paper","vendor_exhibit","wswebinars"],"s":"ASGMT"}');
+		if(isset($_GET['ee_search_query']) && !empty($_GET['ee_search_query'])): 
+		$ee_search_query_string = str_replace('\\', '/', $_GET['ee_search_query']);
+		$ee_search_query_string = str_replace('\\', '/', '{"post_type":["product","paper","vendor_exhibit","wswebinars"],"s":"ASGMT"}');
 		?>
 		<input type="hidden" name="ee_search_query" value='<?php echo ($ee_search_query_string); ?>'>
 		<?php
-	endif;
-	if(isset($_GET['ee_search_id']) && !empty($_GET['ee_search_id'])): ?>
+		endif;
+		if(isset($_GET['ee_search_id']) && !empty($_GET['ee_search_id'])): ?>
 		<input type="hidden" name="ee_search_id" value="<?php echo esc_attr($_GET['ee_search_id']); ?>">
 		<?php 
-	endif;
-	if(isset($_GET['s']) && !empty($_GET['s'])): ?>
+			endif;
+			if(isset($_GET['s']) && !empty($_GET['s'])): ?>
 		<input type="hidden" name="s" value="<?php echo esc_attr($_GET['s']); ?>">
 		<?php endif;?>			
 		<ul class="years">	
 			<?php
-	$postlink = isset($_REQUEST['paper_by_year']) ? $_REQUEST['paper_by_year'] : [];
-	foreach( array_keys(posts_by_year()) as $year )
-	{
-		$ch = in_array( $year, $postlink ) ? 'checked="checked"' : '';
-		printf('<li><label><input type="checkbox" name="paper_by_year[]" value="%s" %s/>%s</label></li>', $year, $ch, $year);
-	}
+				$postlink = isset($_REQUEST['paper_by_year']) ? $_REQUEST['paper_by_year'] : [];
+				foreach( array_keys(posts_by_year()) as $year )
+				{
+					$ch = in_array( $year, $postlink ) ? 'checked="checked"' : '';
+					if(!is_admin())
+						printf('<li><label><input type="checkbox" name="paper_by_year[]" value="%s" %s/>%s</label></li>', $year, $ch, $year);
+				}
 			?>
 		</ul>
 		<div id="paper_by_year_filter" style="display:none;"><button type="submit" class="btn btn-sm" onclick="this.form.submit(); this.disabled = true;">Filter</button></div>
@@ -140,21 +142,18 @@ function posts_by_year() {
 
 //[elementor-template id="698"]
 add_action( 'powerpack/query/papers_by_years', function($query){
-
+	$query->set( 'post_type', [ 'paper' ] );
 	if(!is_user_logged_in())
 	{
-		//$date_query[] = array('day'   => date('d', strtotime('midnight 15 days ago')));
-		//$date_query[] = array ( array( 'before' => '15 days ago' ) );
-		//$query->set( 'date_query' , array ( array( 'before' => '15 days ago' ) ));
 		$query->set( 'date_query', array(
 			array(
 				'column' => 'post_date',
 				'before' => '15 days ago'
 			),
-			array(
-				'column' => 'post_modified',
-				'before' => '15 days ago'
-			),
+			// array(
+			// 	'column' => 'post_modified',
+			// 	'before' => '15 days ago'
+			// ),
 		) ); 
 	}
 	if(isset($_GET['paper_by_year']) && !empty($_GET['paper_by_year'])){
@@ -165,7 +164,9 @@ add_action( 'powerpack/query/papers_by_years', function($query){
 		}
 		$query->set( 'date_query' , $a);
 	}
-
+	if(isset($_GET['s']) && !empty($_GET['s'])){
+		$query->set( 's' , $_GET['s']);
+	}
 });
 
 /** Custom Logout Shortcode **/
@@ -667,11 +668,11 @@ function add_to_cart_and_redirect_checkout( $entry, $form ) {
 	$main_product_id = rgar( $entry, '1027' );
 	if( $main_product_id == 22101 )
 	{
-		$main_product_id = rgar( $entry, '1006' ) == 'in_person' ? 22101 : 25972;
+		$main_product_id = rgar( $entry, '1006' ) == 'in_person' ? 22101 : 27011;
 	}
 	if( $main_product_id == 22102 )
 	{
-		$main_product_id = rgar( $entry, '1006' ) == 'in_person' ? 22102 : 25971;
+		$main_product_id = rgar( $entry, '1006' ) == 'in_person' ? 22102 : 27010;
 	}
 	$products_addto_cart = array(
 		array( 'id' => $main_product_id, 'quantity' => 1 )
@@ -684,10 +685,10 @@ function add_to_cart_and_redirect_checkout( $entry, $form ) {
 		foreach ($get_all_attendees as $attendees) {
 			if( $attendees[1005] == 22101 )
 			{
-				$attendees_product_id = $attendees[1028] == 'in_person' ? 22101 : 25972;
+				$attendees_product_id = $attendees[1028] == 'in_person' ? 22101 : 27011;
 			}elseif( $attendees[1005] == 22102 )
 			{
-				$attendees_product_id = $attendees[1028] == 'in_person' ? 22102 : 25971;
+				$attendees_product_id = $attendees[1028] == 'in_person' ? 22102 : 27010;
 			}else{
 				$attendees_product_id = $attendees[1005];
 			}
@@ -709,7 +710,7 @@ function add_to_cart_and_redirect_checkout( $entry, $form ) {
 }
 function register_my_session()
 {
-	if( !session_id() )
+	if( session_start()  === PHP_SESSION_NONE)
 	{
 		session_start();
 	}
@@ -727,12 +728,17 @@ include_once 'inc/registration-reports.php';
 /** Shortcode to get user's billing address **/
 add_shortcode('users_billing_address', 'users_billing_address_fn');
 function users_billing_address_fn() {
-	$billing_address_1  = WC()->customer->get_billing_address_1();
-	$billing_city       = WC()->customer->get_billing_city();
-	$billing_state      = WC()->customer->get_billing_state();
-	$billing_country    = WC()->customer->get_billing_country();
-
-	echo $billing_address_1." ".$billing_city." ".$billing_state.", ". $billing_country;
+	if(is_user_logged_in())
+	{
+		$customer = new WC_Customer( get_current_user_id() );
+		$billing_address_1  = $customer->get_billing_address_1();
+		$billing_city       = $customer->get_billing_city();
+		$billing_state      = $customer->get_billing_state();
+		$billing_country    = $customer->get_billing_country();
+		echo $billing_address_1." ".$billing_city." ".$billing_state.", ". $billing_country;
+	}else{
+		echo "No billing address found";
+	}
 }
 
 /** Password update **/
@@ -1235,131 +1241,6 @@ function woo_disable_mobile_messaging( $mailer ) {
 }
 add_action( 'woocommerce_email', 'woo_disable_mobile_messaging' );
 
-// Add "Billing Company" value to Stripe metadata
-function add_custom_metadata_to_stripe_payment($meta_data, $order) {
-    foreach ( $order->get_items( 'line_item' ) as $item ) {
-		$product 	= $item->get_product();
-		if($item->get_product_id() !== 22101 && $item->get_product_id() !== 22102)
-		{
-			$key   		= 'product_sku_' . $item->get_product_id();
-			$meta_data[ $key ] = $product->get_sku();		
-		}
-	}
-	$meta_data = sku_on_stripe($order, $meta_data);
-	return $meta_data;
-}
-// add_filter('wc_stripe_order_meta_data', 'add_custom_metadata_to_stripe_payment', 10, 2);
-
-
-function sku_on_stripe($order, $meta_data){
-	// $_gravity_entry_data = get_post_meta($order->get_id(), '_gravity_entry_data', true);
-	$gravity_form_entry_id = get_post_meta($order->get_id(), '_gravity_form_entry_id', true);
-	$course_type_role = [];
-	if(isset($gravity_form_entry_id) && !empty($gravity_form_entry_id))
-	{
-		$entry = GFAPI::get_entry($gravity_form_entry_id);
-		if(!empty($entry))
-		{
-			if( $entry['form_id'] == 11 )
-			{
-				if (isset($entry[1027])) {
-					if ( $entry[1027] == 22101) {
-						if($entry[1006])
-						{
-							if($entry[1006] == 'in_person'){
-								$course_type_role['product_sku_22101'][] = '124 LMF On Site';
-							}else{
-								$course_type_role['product_sku_22101'][] = '125 LMF Virtual';
-							} 
-						}
-					}
-					if ($entry[1027] == 22102 ) {
-						if($entry[1006])
-						{
-							// $course_type_role[] = $entry['1006'] == 'in_person' ? '120-GMF-On-Site' : '126-GMF-Virtual';
-							if($entry[1006] == 'in_person'){
-								$course_type_role['product_sku_22102'][] = '120 GMF On Site';
-							}else{
-								$course_type_role['product_sku_22102'][] = '126 GMF Virtual';
-							} 
-						}
-					}
-				}
-				if (isset($entry[1034]) && $entry[1034] == 'yes') 
-				{
-					$repeater_field_attendees = $entry[1000];
-					foreach ($repeater_field_attendees as $attendees_data) 
-					{
-						if (!empty($attendees_data[1001])) 
-						{
-							if ( $attendees_data[1005] == 22101) {
-								if($attendees_data[1028])
-								{
-									// $course_type_role[] = $attendees_data['1028'] == 'in_person' ? '124-LMF-On-Site' : '125-LMF-Virtual';
-									if($attendees_data[1028] == 'in_person'){
-										$course_type_role['product_sku_22101'][] = '124 LMF On Site';
-									}else{
-										$course_type_role['product_sku_22101'][] = '125 LMF Virtual';
-									} 
-								}
-							}
-							if ($attendees_data[1005] == 22102 ) {
-								if($attendees_data[1028])
-								{
-									// $course_type_role[] = $attendees_data['1028'] == 'in_person' ? '120-GMF-On-Site' : '126-GMF-Virtual';
-									if($attendees_data[1028] == 'in_person'){
-										$course_type_role['product_sku_22102'][] = '120 GMF On Site';
-									}else{
-										$course_type_role['product_sku_22102'][] = '126 GMF Virtual';
-									} 
-								}
-							}
-						}
-					}
-				}
-			}
-			
-			//Form 13
-			if( $entry['form_id'] == 13 )
-			{
-				$repeater_field_attendees = $entry[1000];
-				foreach ($repeater_field_attendees as $attendees_data) 
-				{
-					if (!empty($attendees_data[1001])) 
-					{
-						if ( $attendees_data[1005] == 22101 ) {
-							if($attendees_data[1028])
-							{
-								if($attendees_data[1028] == 'in_person'){
-									$course_type_role['product_sku_22101'][] = '124 LMF On Site';
-								}else{
-									$course_type_role['product_sku_22101'][] = '125 LMF Virtual';
-								} 
-							}
-						}
-						if ( $attendees_data[1005] == 22102 ) {
-							if($attendees_data[1028])
-							{
-								if($attendees_data[1028] == 'in_person'){
-									$course_type_role['product_sku_22102'][] = '120 GMF On Site';
-								}else{
-									$course_type_role['product_sku_22102'][] = '126 GMF Virtual';
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-		foreach ($course_type_role as $product_key => $value_with_key) {
-			foreach ($value_with_key as $key => $value) {
-				$meta_data[$product_key.'_'.$key] 	= $value;
-			}
-		}
-
-	}
-	return $meta_data;
-}
 add_action('admin_menu', function(){
 	add_menu_page(
         'My ASGMT', // $page_title
@@ -1379,6 +1260,19 @@ function my_asgmt_dashboard()
     exit();
 }
 
+function sort_roles_alphabetically($roles) {
+	$user_obj = isset($_REQUEST['user_id']) ? $user_meta = get_userdata($_REQUEST['user_id']) : false;
+	if($user_obj && !in_array('student', $user_obj->roles))
+	{
+		unset($roles['exhibits_committee_member']);
+	}
+    uasort($roles, function($a, $b) {
+        return strcasecmp($b['name'], $a['name']);
+    });
+
+    return $roles;
+}
+add_filter('editable_roles', 'sort_roles_alphabetically');
 add_action('init', 'load_companies_post_type_class');
 
 function load_companies_post_type_class() {
@@ -1391,31 +1285,84 @@ function load_companies_post_type_class() {
 function check_committe_member_role($errors, $update, $user) {
     if ($update) {
         $user = new WP_User($user->ID);
-        
         $isExhibitsCommitteeMember = $_POST['role'] === 'exhibits_committee_member';
         $hasStudentRole = in_array('student', $user->roles);
 
         if (!$hasStudentRole && $isExhibitsCommitteeMember) {
             $errors->add('committe_member', __('Committe member should be registered as a student', 'savior-pro'));
+
         } else {
             $newRoles = !empty($_POST['ure_other_roles']) ? explode(', ', $_POST['ure_other_roles']) : array();
 
             if (in_array('exhibits_committee_member', $newRoles) && !$hasStudentRole) {
                 $errors->add('committe_member', __('Committe member should be registered as a student', 'savior-pro'));
+
             }
         }
     }
+	return $errors;
 }
 
-add_action('user_profile_update_errors', 'check_committe_member_role', 10, 3);
+// add_action('user_profile_update_errors', 'check_committe_member_role', 10, 3);
+// Add "Billing Company" value to Stripe metadata
+function add_custom_metadata_to_stripe_payment($meta_data, $order) {
+    foreach ( $order->get_items( 'line_item' ) as $item ) {
+		$product 	= $item->get_product();
+		// if($item->get_product_id() !== 22101 && $item->get_product_id() !== 22102)
+		// {
+			$key   		= 'product_sku_' . $item->get_product_id();
+			$meta_data[ $key ] = $product->get_sku();		
+		// }
+	}
+	return $meta_data;
+}
+
+function get_all_product_stock_quantities(){
+    global $wpdb;
+    $query = "
+        SELECT p.ID, p.post_title, pm.meta_value AS stock_quantity
+        FROM {$wpdb->prefix}posts AS p
+        LEFT JOIN {$wpdb->prefix}postmeta AS pm ON p.ID = pm.post_id AND pm.meta_key = '_stock'
+        WHERE p.post_type = 'product' AND p.post_status = 'publish'
+    ";
+    $results = $wpdb->get_results($query);
+    $stock_quantities = array();
+    foreach ($results as $result) {
+        $product_id = $result->ID;
+        $product_title = $result->post_title;
+        $stock_quantity = $result->stock_quantity;
+
+        $stock_quantities['stock_quantity_'.$product_id] = $stock_quantity;
+    }
+    return (object)$stock_quantities;
+}
+add_filter('wc_stripe_order_meta_data', 'add_custom_metadata_to_stripe_payment', 10, 2);
+
+// Profile updates using the gravity form
+add_action( 'gform_user_updated', 'change_role', 10, 4 );
+function change_role( $user_id, $feed, $entry, $user_pass ) {
+	global $wpdb;
+	$user_id = get_current_user_id();
+	if(!empty(rgar( $entry, '18' )))
+		$wpdb->update($wpdb->users, array('user_login' => rgar( $entry, '18' )), array('ID' => $user_id));
+}
+
+function handle_relation_between_orders( $query, $query_vars ) {
+	if ( ! empty( $query_vars['_relation_between_orders'] ) ) {
+		$query['meta_query'][] = array(
+			'key' => '_relation_between_orders',
+			'value' => esc_attr( $query_vars['_relation_between_orders'] ),
+		);
+	}
+
+	return $query;
+}
+add_filter( 'woocommerce_order_data_store_cpt_get_orders_query', 'handle_relation_between_orders', 10, 2 );
+
 
 add_shortcode( 'test', function(){
 	
 	echo "<pre>";
-	#25984 Warren Leblanc
-	$entry = GFAPI::get_entry(get_post_meta(25984, '_gravity_form_entry_id', true));
-	print_r( $entry );
-	print_r( get_post_meta(25984, '_gravity_form_entry_id', true) );
-	
+	// print_r(get_post_meta(25949));
 	echo "</pre>";
 });

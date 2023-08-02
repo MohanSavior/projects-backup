@@ -12,11 +12,19 @@ class RegistrationReports
     }
     public function load_reports_admin_style()
     {
+        wp_enqueue_style('font-awesome', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css', array(), '5.14.0');
+        wp_enqueue_script('jspdf', '//cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js', array(), '2.5.1', true);
+        wp_enqueue_script('jspdf-autotable', '//cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js', array(), '3.5.31', true);
+        wp_enqueue_script('xlsx', '//cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.3/xlsx.full.min.js', array(), '0.17.3', true);
+
         wp_enqueue_style('reports_admin_css', get_theme_file_uri('/inc/assets/css/reports-admin.css'), false, time());
+
         wp_enqueue_style('jquery-ui', '//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css', false, '1.13.2');
         wp_enqueue_script('jquery-ui', '//code.jquery.com/ui/1.13.2/jquery-ui.js', array('jquery'), '1.13.2', true);
+
         wp_enqueue_style('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.min.css', array(), '11.7.10');
         wp_enqueue_script('sweetalert2', '//cdn.jsdelivr.net/npm/sweetalert2@11.7.10/dist/sweetalert2.all.min.js', array(), '11.7.10');
+
         wp_enqueue_script('registration-reports', get_theme_file_uri('/inc/assets/js/registration-reports.js'), array('jquery'), time(), true);
         wp_localize_script('registration-reports', 'reports_obj', array('ajax_url' => admin_url('admin-ajax.php')));
     }
@@ -29,14 +37,14 @@ class RegistrationReports
     public function report_page()
     {
         $years = $this->get_years_for_export_data();
-
-        if (empty($years)) return;
+        $analytics_report = json_decode($this->analytics_registration_report_callback()); 
+        $analytics = $analytics_report->analytics;
         ?>
         <div class="registration-reports-wrap">
             <div class="registration-reports-container">
                 <h2>Registration Reports</h2>
                 <div class="report-filters-cls">
-                    <form action="<?php echo admin_url('admin.php?page=reports'); ?>" method="post" id="registration-reports">
+                    <form onsubmit="event.preventDefault();" action="<?php echo admin_url('admin.php?page=reports'); ?>" method="post" id="registration-reports">
                         <input type="hidden" name="action" value="analytics_registration_report">
                         <div id="product-container" class="multiselect">
                             <div id="select-product" class="selectBox" onclick="toggleCheckboxArea()">
@@ -48,9 +56,9 @@ class RegistrationReports
                             <div id="product-select-options">
                                 <label for="selectAll"><input type="checkbox" id="selectAll" onchange="toggleSelectAllCheckboxes(this)" value="0" />Select All</label>
                                 <?php
-                                    $registration_type = get_field('products', 'option');
-                                    if (!empty($registration_type)) {
-                                        foreach ($registration_type as $products_obj) :
+                                    $registration_products = get_field('products', 'option');
+                                    if (!empty($registration_products)) {
+                                        foreach ($registration_products as $products_obj) :
                                             printf('<label for="%1$s"><input type="checkbox" id="%1$s" name="registration_type[]" onchange="checkboxStatusChange()" value="%1$s" />%2$s</label>', $products_obj->ID, $products_obj->post_title);
                                         endforeach;
                                     }
@@ -72,29 +80,38 @@ class RegistrationReports
                             <input type="text" id="custom_date_to" name="custom_date_to" placeholder="mm-dd-yyyy">
                         </div>
                         <div class="action-btn">
-                            <input type="submit" class="button" value="Export Report" id="export-report" />
-                        </div>
+                            <!-- <input type="submit" class="button" value="Export Report" id="export-report" /> -->
+                            <ul class="share-icons">
+                                <li class="share-icons__item" id="reports-pdf"><i class="fas fa-file-pdf" title="PDF Export"></i></li>
+                                <li class="share-icons__item" id="reports-csv"><i class="fas fa-file-excel" title="CSV Export"></i></li>
+                                <li class="share-icons__item" id="reports-excel"><i class="far fa-file-excel" title="EXCEL Export"></i></li>
+                                <li class="share-icons__block">
+                                    <div class="share-icons__block-left"><i class="fas fa-file-export"></i></div>
+                                    <div class="share-icons__block-right"><i class="fas fa-file-export"></i></div>
+                                </li>
+                            </ul>
+                        </div>                        
                     </form>
                 </div>
                 <div class="analytics-overview-heading">
-                    <h3>Analytics Overview</h3>
+                    <h3>Registration Type Analytics</h3>
                 </div>
                 <div class="analytic-views-container">
                     <div class="analytic-views-today">
                         <h4>Today</h4>
-                        <div id="analytic-views-today"><?php echo $this->analytics_overview('orders_today_count'); ?></div>
+                        <div id="analytic-views-today"><?php echo $analytics->count_today; ?></div>
                     </div>
                     <div class="analytic-views-last-seven-days">
                         <h4>Last 7 Days</h4>
-                        <div id="analytic-views-last-seven-days"><?php echo $this->analytics_overview('orders_last_7_days_count'); ?></div>
+                        <div id="analytic-views-last-seven-days"><?php echo $analytics->count_last_7_days; ?></div>
                     </div>
                     <div class="analytic-views-this-month">
                         <h4>This Month</h4>
-                        <div id="analytic-views-this-month"><?php echo $this->analytics_overview('orders_this_month_count'); ?></div>
+                        <div id="analytic-views-this-month"><?php echo $analytics->count_current_month; ?></div>
                     </div>
                     <div class="analytic-views-this-year">
                         <h4>This Year</h4>
-                        <div id="analytic-views-this-year"><?php echo $this->analytics_overview('orders_this_year_count'); ?></div>
+                        <div id="analytic-views-this-year"><?php echo $analytics->count_current_year; ?></div>
                     </div>
                 </div>
                 <div class="registration-reports-result">
@@ -102,33 +119,39 @@ class RegistrationReports
                         <thead>
                             <tr id="reports-result-headerRow">
                                 <th scope="col">No.</th>
+                                <th scope="col">Registration Type</th>
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Company</th>
                                 <th scope="col">Transaction Date</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Registration Type</th>
                             </tr>
                         </thead>
                         <tbody>
+                            <?php                                 
+                                if(isset($analytics_report->data) && is_array($analytics_report->data) && !empty($analytics_report->data)) : 
+                            ?>
                             <tr>
                                 <?php
                                     $i =1;
-                                    foreach ($this->analytics_registration_report_callback() as $products_obj) : //%1$s
+                                    foreach ($analytics_report->data as $products_obj) : //%1$s
                                         if (
-                                            $products_obj['first_name'] || 
-                                            $products_obj['last_name'] || 
-                                            $products_obj['company'] || 
-                                            $products_obj['status'] || 
-                                            $products_obj['product_name']
+                                            $products_obj->first_name || 
+                                            $products_obj->last_name || 
+                                            $products_obj->company || 
+                                            $products_obj->status || 
+                                            $products_obj->product_name
                                         ) {
-                                            printf('<tr><td>%1$s</td><td>%2$s</td><td>%3$s</td><td>%4$s</td><td>%5$s</td><td>%6$s</td><td>%7$s</td></tr>', $i, $products_obj['first_name'], $products_obj['last_name'], $products_obj['company'], date('m-d-Y', strtotime($products_obj['order_date'])), $products_obj['status'], $products_obj['product_name']);
+                                            printf('<tr><td>%1$s</td><td>%2$s</td><td>%3$s</td><td>%4$s</td><td>%5$s</td><td>%6$s</td><td>%7$s</td></tr>', $i, $products_obj->product_name, $products_obj->first_name, $products_obj->last_name, $products_obj->company, date('m-d-Y', strtotime($products_obj->order_date)), $products_obj->status);
                                             // print_r($products_obj);
                                         }
                                         $i++;
                                     endforeach;
                                 ?>
                             </tr>
+                            <?php else : ?>
+                                <tr><td colspan="7" style="text-align: center;color:red;">No record found</td></tr>
+                            <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
@@ -317,6 +340,21 @@ class RegistrationReports
     public function analytics_registration_report_callback()
     {
         global $wpdb;
+        //================================================
+        // Get the current date
+        $current_date = date('Y-m-d');
+
+        // Calculate the date 7 days ago
+        $seven_days_ago = date('Y-m-d', strtotime('-7 days'));
+
+        // Get the start and end dates for the current month
+        $month_start_date = date('Y-m-01');
+        $month_end_date = date('Y-m-t');
+
+        // Get the start and end dates for the current year
+        $year_start_date = date('Y-01-01');
+        $year_end_date = date('Y-12-31');
+        //================================================
 
         $product_ids        = isset($_POST['registration_type']) ? $_POST['registration_type'] : false;
         $year               = isset($_POST['registration_year']) ? $_POST['registration_year'] : false;
@@ -341,10 +379,15 @@ class RegistrationReports
             }
             $query .= " AND (".implode(' OR', $p_ids).")";
         }
-        if(!wp_doing_ajax())
-        {
-            $query .= " AND (order_item_meta.meta_key = '_product_id' AND order_item_meta.meta_value != 18792)";
+        if (!wp_doing_ajax()) {
+            $registration_products = get_field('products', 'option');
+            if (!empty($registration_products) && is_array($registration_products)) {
+                $product_ids = wp_list_pluck($registration_products, 'ID');
+                $product_ids = array_map('intval', $product_ids); // Ensure product IDs are integers
+                $query .= " AND (order_item_meta.meta_key = '_product_id' AND order_item_meta.meta_value IN (" . implode(',', $product_ids) . "))";
+            }
         }
+        
 
         if ($start_date && $end_date) {
             $start_date = explode('-', $start_date); 
@@ -376,6 +419,7 @@ class RegistrationReports
 
         if (!empty($order_ids) && count($order_ids) > 0) {
             $order_data     = array();
+            $report_order_data     = array();
             $customer_ids   = array();
             foreach (array_unique($order_ids) as $key => $order_id) {
                 $order                  = wc_get_order($order_id);
@@ -387,30 +431,93 @@ class RegistrationReports
                 foreach ($order->get_items() as $item_id => $item) {
                     $item_quantity += $item->get_quantity();
                 }
-                $_gravity_entry_data  = $order->get_meta('_gravity_entry_data');
-                if (!empty($_gravity_entry_data)) {
-                    $get_gravity_form_data = json_decode($_gravity_entry_data);
-                    if ($get_gravity_form_data->form_id == 11)
-                        $order_data[]           = $this->get_customer_details_by_id($order);
-                }else{
-                    $order_data[]           = $this->get_customer_details_by_id($order);
-                }
-                $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
-                if ($item_quantity > 1 && !empty($_attendees_order_meta) && is_array($_attendees_order_meta)) {
-                    foreach ($_attendees_order_meta as $_attendees) {
-                        $order_data[] = $this->get_customer_details_by_id($order, (int)$_attendees['product_id'], (int)$_attendees['user_id']);
+
+                //================================================================================================
+                $_gravity_form_entry_id = $order->get_meta('_gravity_form_entry_id');
+                if( isset($_gravity_form_entry_id) && GFAPI::entry_exists($_gravity_form_entry_id) )
+                {
+                    $entry = GFAPI::get_entry($_gravity_form_entry_id);
+                    if($entry['form_id'] == 11)
+                    {
+                        $order_data[] = $this->get_customer_details_by_id($order);
                     }
+                    $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
+                    if (($item_quantity > 1 && !empty($_attendees_order_meta) || $entry['form_id'] == 13)) {
+                        foreach ($_attendees_order_meta as $_attendees) {
+                            $order_data[] = $this->get_customer_details_by_id($order, (int)$_attendees['product_id'], (int)$_attendees['user_id']);
+                        }
+                    }
+                    // wp_send_json_error();
+                }else{
+                    $order_data[] = $this->get_customer_details_by_id($order);
+                }
+                //================================================================================================
+            }
+            // Get the counts for each date range
+            $count_today = 0;
+            $count_last_7_days = 0;
+            $count_current_month = 0;
+            $count_current_year = 0;
+            if( !empty($order_data) && is_array($order_data) && $product_ids)
+            {
+                foreach ($order_data as $_orders_arr)
+                {
+                    if(in_array((int)$_orders_arr['product_id'], $product_ids))
+                    {
+                        $report_order_data[] = $_orders_arr;
+
+                        $order_date = strtotime($_orders_arr['order_date']);
+    
+                        if ($order_date == strtotime($current_date)) {
+                            $count_today++;
+                        }
+                        if ($order_date >= strtotime($seven_days_ago) && $order_date <= strtotime($current_date)) {
+                            $count_last_7_days++;
+                        }
+                        if ($order_date >= strtotime($month_start_date) && $order_date <= strtotime($month_end_date)) {
+                            $count_current_month++;
+                        } 
+                        if($order_date >= strtotime($year_start_date) && $order_date <= strtotime($year_end_date)) {
+                            $count_current_year++;
+                        }                        
+                    }                        
+                }
+            }elseif(!empty($order_data) && is_array($order_data)){
+                $report_order_data = $order_data;
+                foreach ($order_data as $_orders_arr)
+                {
+                    $order_date = strtotime($_orders_arr['order_date']);
+                    if ($order_date == strtotime($current_date)) {
+                        $count_today++;
+                    }
+                    if ($order_date >= strtotime($seven_days_ago) && $order_date <= strtotime($current_date)) {
+                        $count_last_7_days++;
+                    }
+                    if ($order_date >= strtotime($month_start_date) && $order_date <= strtotime($month_end_date)) {
+                        $count_current_month++;
+                    } 
+                    if($order_date >= strtotime($year_start_date) && $order_date <= strtotime($year_end_date)) {
+                        $count_current_year++;
+                    }                   
                 }
             }
             
-            if(!empty($order_data) && wp_doing_ajax()) {
-                wp_send_json_success(array('data' => $order_data, 'filename' => $csv_file_name));
-            }elseif(!empty($order_data) && !wp_doing_ajax()){
-                return $order_data;
+            $analytics = array(
+                'count_today' => $count_today,
+                'count_last_7_days' => $count_last_7_days,
+                'count_current_month' => $count_current_month,
+                'count_current_year' => $count_current_year,
+            );
+            if(!empty($report_order_data) && wp_doing_ajax()) {
+                wp_send_json_success(array('data' => $report_order_data, 'filename' => $csv_file_name, 'analytics' => $analytics));
+            }elseif(!empty($report_order_data) && !wp_doing_ajax()){
+                return json_encode(array('data' => $report_order_data, 'analytics' => $analytics), true);
             }else {
                 wp_send_json_error();
             }
-        } else {
+        } elseif(!wp_doing_ajax()) {
+            return false;
+        }else{
             wp_send_json_error();
         }
     }
@@ -420,8 +527,8 @@ class RegistrationReports
         $product_data = array();
         foreach ($order->get_items() as $item_id => $item) {
             $product_data[$item->get_product_id()] = array(
+                'product_id'    => $item->get_product_id(),
                 'product_name'  => $item->get_name(),
-                // 'quantity'      => $item->get_quantity(),
                 'item_total'    => ($item->get_total() / $item->get_quantity())
             );
         }
@@ -434,7 +541,8 @@ class RegistrationReports
             'last_name'             => $user_data->last_name,
             'customer_email'        => ($a = get_userdata($order->get_user_id())) ? $a->user_email : '',
             'company'               => wp_slash(get_user_meta($order->get_user_id(), 'user_employer', true)),
-            'order_date'            => date('Y-m-d H:i:s', strtotime(get_post($order->get_id())->post_date)),
+            'date_created'          => $order->get_date_paid()->date("Y-m-d"),
+            'order_date'            => $order->get_date_created()->date("Y-m-d"),//date('Y-m-d H:i:s', strtotime(get_post($order->get_id())->post_date)),
             'status'                => $order->get_status(),
             'cart_discount'         => (defined('WC_VERSION') && (WC_VERSION >= 2.3)) ? wc_format_decimal($order->get_total_discount(), 2) : wc_format_decimal($order->get_cart_discount(), 2),
             'order_discount'        => (defined('WC_VERSION') && (WC_VERSION >= 2.3)) ? wc_format_decimal($order->get_total_discount(), 2) : wc_format_decimal($order->get_order_discount(), 2),
@@ -490,6 +598,7 @@ class RegistrationReports
 
         return $res;
     }
+
 }
 if (is_admin()) {
     global $registrationreports;
