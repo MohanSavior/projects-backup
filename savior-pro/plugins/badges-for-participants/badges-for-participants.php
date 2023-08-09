@@ -146,8 +146,8 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
             return;
         }
         // scripts
-        wp_enqueue_script('sumoselect', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js', array('jquery'), time(), true);
-        wp_enqueue_script('ofi', plugins_url('assets/js/ofi.min.js', __FILE__), array('jquery'), time(), true);
+        // wp_enqueue_script('sumoselect', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/jquery.sumoselect.min.js', array('jquery'), time(), true);
+        // wp_enqueue_script('ofi', plugins_url('assets/js/ofi.min.js', __FILE__), array('jquery'), time(), true);
         wp_enqueue_script('jspdf', plugins_url('assets/js/jsPDF/jspdf.min.js', __FILE__), array('jquery'), time(), true);
         wp_enqueue_script('jspdf-autotable', plugins_url('assets/js/jsPDF/jspdf-autotable.min.js', __FILE__), array('jquery'), time(), true);
         wp_enqueue_script('dom-to-image', plugins_url('assets/js/dom-to-image.js', __FILE__), array('jquery'), time(), true);
@@ -155,10 +155,10 @@ DEFAULT CHARACTER SET=utf8 COLLATE=utf8_general_ci
         wp_enqueue_script('participants-jsoneditor', plugins_url('assets/js/jsoneditor.min.js', __FILE__), array('jquery'), time(), true);
         wp_enqueue_script('participants-app', plugins_url('assets/js/app.js', __FILE__), array('jquery'), time(), true);
         // styles
-        wp_enqueue_style('sumoselect', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/sumoselect.min.css', null, time());
+        // wp_enqueue_style('sumoselect', 'https://cdnjs.cloudflare.com/ajax/libs/jquery.sumoselect/3.0.2/sumoselect.min.css', null, time());
         wp_enqueue_style('custom-select', plugins_url('assets/css/custom-select.css', __FILE__), null, time());
         wp_enqueue_style('participants-styles', plugins_url('assets/css/styles.css', __FILE__), null, null);
-        wp_enqueue_style('participants-jsoneditor-styles', plugins_url('assets/css/bootstrap-combined.min.css', __FILE__), null, time());
+        // wp_enqueue_style('participants-jsoneditor-styles', plugins_url('assets/css/bootstrap-combined.min.css', __FILE__), null, time());
     }
 
     public function load()

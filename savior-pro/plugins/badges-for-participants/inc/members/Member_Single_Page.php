@@ -362,14 +362,14 @@ FROM ' . $wpdb->prefix . 'qr_bage_data WHERE id=' . $user_id;
         if (isset($_POST) && isset($_POST['action']) && $_POST['action'] === 'action_printed_in_ids' && isset($_POST['ids'])) {
             $ids = (array)$_POST['ids'];
             $get_user_ids_printed = get_option( 'badge_print_ids' );
-            // update_option( 'badge_print_ids','');
+            // update_option( 'badge_print_ids',array());
             $get_user_ids_printed = isset($get_user_ids_printed) && is_array($get_user_ids_printed) ? $get_user_ids_printed : array($get_user_ids_printed);
             $user_ids_printed = update_option( 'badge_print_ids', array_filter(array_unique(array_merge($ids,$get_user_ids_printed))) );
             if(is_wp_error($user_ids_printed))
             {
                 wp_send_json_error( $user_ids_printed->get_error_message() );
             }else{
-                wp_send_json_success(get_option( 'badge_print_ids' ));
+                wp_send_json_success();
             }
         }
         wp_send_json_error();

@@ -43,6 +43,7 @@ class Member_Listing
         wp_register_script('datatables-management-jszip', '//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js', array('jquery'), '3.1.3', true);
 
         //Custom Script
+        wp_register_style('member-listing', plugins_url('badges-for-participants/assets/css/member-listing.css'), array(), time());
         wp_register_script('member-listing', plugins_url('badges-for-participants/assets/js/member-listing.js'), array('jquery'), time(), true);
         wp_localize_script('member-listing', 'member_object', array('ajax_url'=> admin_url('admin-ajax.php')));
     }
@@ -180,11 +181,29 @@ class Member_Listing
         wp_enqueue_script('datatables-management-pdfmake');
         wp_enqueue_script('datatables-management-vfs_fonts');
         wp_enqueue_script('datatables-management-jszip');
+        wp_enqueue_style('member-listing');
         wp_enqueue_script('member-listing');
         ?>
         <div class="wrap" id="badges">
             <h2>Badges</h2>
-            <div class="member-list" >             
+            <div class="member-list" >      
+                <div class="filter-wrapper">
+                    <div class="filter-checkbox">
+                        <input type="checkbox" id="filter-checkbox" name="filter" value="Printed" />
+                        <label for="filter-checkbox" class="filter-label">Hide Printed Badges</label>
+                    </div>
+                    <div class="print-action-btn">
+                        <ul class="share-icons">
+                            <li class="share-icons__item buttons-pdf" data-id="pdf" id="reports-pdf"><i class="fas fa-file-pdf" title="PDF Export"></i></li>
+                            <li class="share-icons__item buttons-csv" data-id="csv"  id="reports-csv"><i class="fas fa-file-excel" title="CSV Export"></i></li>
+                            <li class="share-icons__item buttons-excel" data-id="excel"  id="reports-excel"><i class="far fa-file-excel" title="EXCEL Export"></i></li>
+                            <li class="share-icons__block">
+                                <div class="share-icons__block-left"><i class="fas fa-file-export"></i></div>
+                                <div class="share-icons__block-right"><i class="fas fa-file-export"></i></div>
+                            </li>
+                        </ul>       
+                    </div>
+                </div>
                 <!-- Table -->
                 <table id='member-listing' class='display nowrap'>
                     <thead>
@@ -201,6 +220,7 @@ class Member_Listing
                             <th>Committee member</th>
                             <th>Speaker</th>
                             <th>Exhibitor</th>
+                            <th>Customer ID</th>
                         </tr>
                     </thead>      
                     <tbody>
@@ -218,29 +238,32 @@ class Member_Listing
                                 ++$key;
                                 printf(
                                     '
-                                    <tr>
-                                        <td>%s</td><td data-printed="%s" id="user_badge_print_%s">%s</td><td><button type="button" data-customer_id="%s" data-order_id="%s" data-product_id="%s" id="member_print_%s">Print</button></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>
+                                    <tr data-id="row_id_%s" data-printed="%s">
+                                        <td>%s</td><td id="user_badge_print_%s">%s</td><td><button type="button" data-customer_id="%s" data-order_id="%s" data-product_id="%s" id="member_print_%s">%s</button></td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td>
                                     </tr>
                                     ',
+                                    $key.'_'.$members_list->customer_id,
+                                    !empty($get_user_ids_printed) && in_array($members_list->customer_id, $get_user_ids_printed) ? '1' : '0',
                                     $key,
-                                    in_array($members_list->customer_id, $get_user_ids_printed) ? '1' : '0',
                                     $members_list->customer_id,
-                                    in_array($members_list->customer_id, $get_user_ids_printed) ? '<b style="color:green;">Printed</b>' : '<b style="color:red;">Not printed</b>',
+                                    !empty($get_user_ids_printed) && in_array($members_list->customer_id, $get_user_ids_printed) ? '<b style="color:green;">Printed</b>' : '<b style="color:red;">Not printed</b>',
                                     $members_list->customer_id,
                                     $members_list->order_id,
                                     $members_list->product_id,
                                     $members_list->order_id.'_'.$members_list->customer_id,
+                                    !empty($get_user_ids_printed) && in_array($members_list->customer_id, $get_user_ids_printed) ? 'Printed' : 'Print',
                                     $members_list->first_name,
                                     $members_list->last_name,
                                     $members_list->customer_email,
                                     $members_list->company,
                                     $members_list->product_name,
-                                    $this->user_has_role($members_list->customer_id, 'bodmember') ? 'Y' : 'N',
-                                    $this->user_has_role($members_list->customer_id, 'exhibits_committee_member') ? 'Y' : 'N',
-                                    $this->user_has_role($members_list->customer_id, 'instructormember') ? 'Y' : 'N',
-                                    $this->user_has_role($members_list->customer_id, 'exhibitsmember') ? 'Y' : 'N'
+                                    $this->user_has_role($members_list->customer_id, 'bodmember') ? '<b style="color:green;">Y</b>' : '<b style="color:red;">N</b>',
+                                    $this->user_has_role($members_list->customer_id, 'exhibits_committee_member') ? '<b style="color:green;">Y' : '<b style="color:red;">N</b>',
+                                    $this->user_has_role($members_list->customer_id, 'instructormember') ? '<b style="color:green;">Y' : '<b style="color:red;">N</b>',
+                                    $this->user_has_role($members_list->customer_id, 'exhibitsmember') ? '<b style="color:green;">Y' : '<b style="color:red;">N</b>',
+                                    $members_list->customer_id,
                                 );
-                                // if($key == 10) break;
+                                // if($key == 20) break;
                             }
                         }else{
                             echo "<tr></tr>";
@@ -266,9 +289,7 @@ class Member_Listing
     public function print_badges( $atts )
     {
         ob_start();
-        $user_ids       = isset($_POST['customer_id']) && is_array($_POST['customer_id']) ? $_POST['customer_id'] : array($_POST['customer_id']);
-        $order_id       = isset($_POST['order_id']) ? intval($_POST['order_id']) : 0;
-        $product_id     = isset($_POST['product_id']) ? intval($_POST['product_id']) : 0;
+        $user_ids       = isset($_POST['customer_ids']) && !empty($_POST['customer_ids']) ? explode(',', $_POST['customer_ids']) : array($_POST['customer_ids']);
         $format_type    = intval($_POST['format_type']);
         
         if(empty($user_ids))
@@ -322,7 +343,7 @@ class Member_Listing
                 "first_name"        => $first_name ? $first_name : $billing_first_name,
                 "last_name"         => $last_name ? $last_name : $billing_last_name,
                 "friendly_name"     => $nickname ? $nickname : '',
-                "company"           => $billing_company,
+                "company"           => get_user_meta($user_id, 'user_employer', true) ? get_user_meta($user_id, 'user_employer', true) : $billing_company,
                 "email"             => $user_email,
                 "job"               => get_user_meta($user_id, 'user_title', true),
                 "phone_daytime"     => $billing_phone,
@@ -338,13 +359,14 @@ class Member_Listing
                 "addr_addr_1"       => $billing_address_1,
                 "addr_addr_2"       => $billing_address_2,
             );
+            $size = $this->word_font_size_reduce( $user->nickname, $default_size = 35 );
             ?>
             <div class="badge_1 <?php echo 'tpl-' . $format_type; ?> daypass <?php echo $format_type == 2 ? 'ready' : ''; ?>"
                 data-id="<?php echo $k; ?>"
                 data-reg-id="<?php echo $user_id; ?>">
                 <?php if ($format_type == 2): ?>
                     <div class="top">
-                        <div class="user-friendly-name"><span class="full-width"><?= $user->nickname ?></span></div>
+                        <div class="user-friendly-name"><span class="full-width" style="font-size: <?=$size?>px;"><?= $user->nickname ?></span></div>
                         <div class="left">
                             <div class="flex-block">
                                 <div class="top">
@@ -354,13 +376,16 @@ class Member_Listing
                                         </span>
                                     </div>
                                     <div class="user-job">
-                                        <span class="full-width">
-                                            <?php //= $rec['job'] ?>
+                                        <?php $bps = strlen($rec['job']) > 20 ? 14 : 16; ?>
+                                        <span class="full-width" style="font-size: <?=$bps?>px !important;">
+                                            <?php echo $rec['job']; ?>
                                         </span>
                                     </div>
                                 </div>
                                 <div class="user-company-address">
-                                    <div class="user-company"><span class="full-width"><?php echo $billing_company; ?></span>
+                                    <div class="user-company">
+                                        <?php $ps = strlen($billing_company) > 24 ? 13 : 14; ?>
+                                        <span class="full-width" style="font-size: <?=$ps?>px !important;"><?php echo $billing_company; ?></span>
                                     </div>
                                     <div class="user-address">
                                         <span class="full-width">
@@ -381,47 +406,19 @@ class Member_Listing
                             </div>
                             <div class="bottom-qr">
                                 <div class="b-label"><?php if(!empty($role_labels) && is_array($role_labels)){echo implode(', ', $role_labels);} ?></div>
-                                <div class="b-date">SEPTEMBER 11-14, 2023</div>
                             </div>
                         </div>
                     </div>
+                    <div class="b-date latter-print">SEPTEMBER 11-14, 2023</div>
                     <div class="bottom">
-                        <img src="<?= BADGES_PLUGIN_URL ?>assets/images/logo.jpg"/>
+                        <?php $file = file_get_contents(BADGES_PLUGIN_URL."assets/images/logo-base64.txt");?>
+                        <img src="<?php echo $file; ?>"/>
                     </div>
                 <?php else: ?>
-                    <?php if ($daypass == true): ?>
-                    <div class="daypass-tpl print-qr">
-                        <div class="tp">
-                            <div class="left-block">
-                                <div class="user-friendly-name-alt">
-                                    <span class="full-width"><?= $nickname ?></span>
-                                </div>
-                                <div class="user-name-alt">
-                                    <span class="full-width"><?php echo $first_name . ' ' . $last_name ?></span>
-                                </div>
-                                <div class="user-title-alt">
-                                    <span class="full-width"><?php //job ?></span>
-                                </div>
-                            </div>
-                            <div class="qr-code">                                                    
-                                <?= $this->print_qr_code($rec) ?>
-                            </div>
-                        </div>
-                        <div class="bt">
-                            <div class="user-company-alt">
-                                <span class="full-width">
-                                    <?php echo $billing_company; ?>
-                                </span>
-                            </div>
-                            <div class="b-date">SEPTEMBER 11-14, 2024</div>
-                            <?php //if(!empty($role_labels) && is_array($role_labels)){echo implode(', ', $role_labels);} ?>
-                        </div>
-                    </div>
-                    <?php else: ?>
                         <div class="top">
                             <div class="left">
                                 <div class="user-friendly-name"><span
-                                            class="full-width"><?= $rec['friendly_name'] ?></span>
+                                            class="full-width" style="font-size: <?=$size?>px;"><?= $rec['friendly_name'] ?></span>
                                 </div>
                                 <div class="flex-block">
                                     <div class="top">
@@ -430,8 +427,9 @@ class Member_Listing
                                                 <?php echo $first_name . ' ' . $last_name ?>
                                             </span>
                                         </div>
-                                        <div class="user-job"><span
-                                                    class="full-width"><?php //= $rec['job'] ?></span>
+                                        <?php $ps = strlen($rec['job']) > 24 ? 13 : 14; ?>
+                                        <div class="user-job">
+                                            <span class="full-width"><?php echo $rec['job']; ?></span>
                                         </div>
                                     </div>
                                     <div class="user-company-address">
@@ -462,10 +460,10 @@ class Member_Listing
                                 </div>
                             </div>
                         </div>
-                        <div class="bottom">
-                            <img src="<?= BADGES_PLUGIN_URL ?>assets/images/logo.jpg"/>
+                        <div class="daypass-footer">
+                            <h2>DAY PASS - <?=date('l')?></h2>
+                            <h4>EXHIBITS ONLY</h4>
                         </div>
-                    <?php endif; ?>
                 <?php endif; ?>
             </div>
             <?php
@@ -480,6 +478,24 @@ class Member_Listing
         $img = GenerateQRCode::render($user_info);
 
         return '<img src="' . $img . '"/>';
+    }
+
+    public function word_font_size_reduce( $string, $default_size = 35 )
+    {
+        switch (strlen($string)) {
+            case (strlen($string) > 10 || strlen($string) <= 16 ):
+                return $default_size - 19;
+                break;
+            case (strlen($string) > 17 || strlen($string) <= 23 ):
+                return $default_size - 16;
+                break;
+            case (strlen($string) > 23 ):
+                return 10;
+                break;
+            default:
+                return $default_size;
+                break;
+        }
     }
     public function user_has_role($user_id, $role_name)
     {

@@ -834,9 +834,11 @@ table.session-ticketed td.session-value {
 }
 
 #templates .badge_1.tpl-1.daypass .user-friendly-name-alt {
-    font-size: 34.56px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 700;
     text-transform: uppercase;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 #templates .badge_1.tpl-1.daypass .daypass-tpl.print-qr {

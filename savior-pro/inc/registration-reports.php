@@ -599,6 +599,49 @@ class RegistrationReports
         return $res;
     }
 
+    public function insert_order_data_with_order_items( $order_id )
+    {
+        $order_data     = array();
+        $customer_ids   = array();
+        // foreach (array_unique($order_ids) as $key => $order_id) {
+            $order                  = wc_get_order( $order_id );
+            // Get the Customer ID (User ID)
+            $customer_ids[$order->get_id()][] = $order->get_customer_id();
+    
+            $item_quantity = 0;
+    
+            foreach ($order->get_items() as $item_id => $item) {
+                $item_quantity += $item->get_quantity();
+            }
+    
+            //================================================================================================
+            $_gravity_form_entry_id = $order->get_meta('_gravity_form_entry_id');
+            if( isset($_gravity_form_entry_id) && GFAPI::entry_exists($_gravity_form_entry_id) )
+            {
+                $entry = GFAPI::get_entry($_gravity_form_entry_id);
+                if($entry['form_id'] == 11)
+                {
+                    $order_data[] = $this->get_customer_details_by_id($order);
+                }
+                $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
+                if (($item_quantity > 1 && !empty($_attendees_order_meta) || $entry['form_id'] == 13)) {
+                    foreach ($_attendees_order_meta as $_attendees) {
+                        $order_data[] = $this->get_customer_details_by_id($order, (int)$_attendees['product_id'], (int)$_attendees['user_id']);
+                    }
+                }
+                // wp_send_json_error();
+            }else{
+                $order_data[] = $this->get_customer_details_by_id($order);
+                error_log(print_r('else', true));
+            }
+            //================================================================================================
+            error_log(print_r('if', true));
+            // error_log(print_r($order, true));
+        // }
+        error_log(print_r($order_data, true));
+        
+        return $order_data;
+    }
 }
 if (is_admin()) {
     global $registrationreports;

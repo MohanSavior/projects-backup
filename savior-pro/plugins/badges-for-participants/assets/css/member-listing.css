@@ -1,7 +1,315 @@
-.member-list__wrappe {
-    width: 97% !important;
-    background-color: #fff;
-    padding: 18px;
-    border-radius: 10px;
-    margin-top: 20px;
+.member-list .share-icons {
+	background: #F7C338 !important;
+	font-size: 20px;
+	padding: 4px 22px;
+	margin-left: 67px;
+	position: relative;
+	display: flex;
+	box-shadow: inset 0 -6px 10px -8px rgba(0, 0, 0, 0.3), inset 0 6px 10px -8px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	width: fit-content;
 }
+
+.member-list .share-icons__block-left {
+	background: #F7C338;
+	color: #080E41 !important;
+}
+
+.member-list .share-icons__block-right {
+	background: #F7C338;
+	color: #080E41 !important;
+}
+
+.member-list .share-icons:hover .share-icons__item {
+	z-index: 99;
+}
+
+.member-list ul.share-icons:hover .share-icons__block-left,
+.member-list ul.share-icons:hover .share-icons__block-right {
+	background: #080E41;
+	color: #F7C338 !important;
+}
+
+.member-list .share-icons__item {
+	padding: 10px 10px 10px 10px;
+	margin: 0;
+}
+
+.member-list .share-icons:hover .share-icons__block {
+	filter: drop-shadow(0 0 0px rgba(0, 0, 0, 0.0)) !important;
+}
+
+.member-list li.share-icons__item i {
+	font-size: 20px !important;
+	color: #080E41 !important;
+}
+
+.member-list ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.member-list .share-icons__block {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: translateZ(0);
+	transition: transform 0.3s, filter 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.member-list .share-icons__block-left,
+.member-list .share-icons__block-right {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: white;
+	transition: 0.6s;
+	background: #F7C338;
+}
+
+.member-list .share-icons__block-left {
+	clip-path: inset(0 50% 0 0);
+}
+
+.member-list .share-icons__block-right {
+	clip-path: inset(0 0 0 50%);
+}
+
+.member-list .share-icons:hover .share-icons__block {
+	filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+}
+
+.member-list .share-icons:hover .share-icons__block-left {
+	transform: translateX(-40%) scale(1.075);
+}
+
+.member-list .share-icons:hover .share-icons__block-right {
+	transform: translateX(40%) scale(1.075);
+}
+
+.member-list button.dt-button.buttons-collection {
+	display: none;
+}
+
+.member-list div#member-listing_length label {
+	display: inline;
+	font-size: 14px !important;
+	line-height: 3.4em;
+}
+
+.member-list .filter-wrapper {
+	display: inline;
+	margin-left: 15px;
+}
+
+.member-list .filter-checkbox {
+	display: inline;
+}
+
+.member-list .print-action-btn {
+	display: inline-block;
+}
+
+.member-list input#filter-checkbox {
+	margin-top: -1px;
+	margin-right: 5px;
+}
+
+.member-list div#member-listing_length select {
+	width: 55px;
+	padding: 0.5px 5px !important;
+}
+
+.member-list div#member-listing_length label {
+	margin-top: -5px !important;
+}
+
+.member-list label {
+	display: inline;
+}
+
+.member-list button.dt-button {
+	margin-left: 16px;
+	margin-top: 7px;
+	font-size: 14px;
+	padding: 5px 15px;
+}
+
+div#member-listing_wrapper {
+	width: 97%;
+	background-color: #FFFFFF;
+	padding: 18px;
+	border-radius: 10px;
+	margin-top: 20px;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#templates .badge_1 .user-friendly-name {
+	font-weight: 700;
+	font-size: 34.56px;
+	line-height: 26px;
+	text-align: left;
+}
+
+#templates .badge_1 .left .flex-block {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
+	text-align: left;
+}
+
+#templates .badge_1 .right .bottom-qr {
+	width: 160px;
+	position: absolute;
+	right: 15px;
+	font-size: 13.29px;
+	bottom: 63px;
+	text-align: right;
+	line-height: 1.35;
+}
+
+#templates .badge_1.tpl-1.daypass {
+	display: flex;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	flex-wrap: wrap;
+	padding: 10px 15px 10px 15px;
+	;
+}
+
+.daypass-footer,
+.top {
+	width: 100%;
+}
+
+#templates .badge_1 .left .user-company {
+	font-size: 18px !important;
+}
+
+#templates .badge_1 .user-address {
+	font-size: 15px !important;
+}
+
+.daypass-footer h2 {
+	font-size: 21px !important;
+	padding: 0 !important;
+}
+
+.daypass-footer h4 {
+	font-size: 18px !important;
+	margin: 0 !important;
+}
+
+#templates .badge_1>.top {
+	padding: 0 !important;
+	height: unset !important;
+}
+
+/* #templates .badge_1 {
+	height: 230px !important;
+} */
+#templates .badge_1.tpl-1.daypass {
+    height: 241px !important;
+}
+.user-name .full-width,
+.user-job .full-width {
+	font-size: 16px !important;
+	word-break: break-all;
+	display: block;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+#templates .badge_1.tpl-2 .bottom {
+	margin-top: 15px;
+}
+
+#templates .badge_1.tpl-2 .right .bottom-qr {
+	display: unset;
+	position: unset !important;
+}
+
+#templates .badge_1.tpl-2 {
+	height: unset !important;
+	padding: 15px !important;
+}
+
+#templates .badge_1.tpl-2 .user-friendly-name {
+	margin-bottom: 10px !important;
+}
+
+#templates .badge_1>.top .right {
+	width: 100px !important;
+}
+
+#templates .badge_1.tpl-2>.top .left {
+	width: calc(100% - 100px) !important;
+}
+
+#templates .badge_1.tpl-2>.top .left {
+	font-size: 16px !important;
+}
+
+#templates .badge_1 .left .flex-block {
+	height: 120px !important;
+}
+
+#templates .badge_1.tpl-2>.top {
+	display: block;
+}
+
+#templates .badge_1.tpl-2 .right .qr-code {
+	margin-bottom: 10px !important;
+}
+
+.badge_1.tpl-2 .user-company span.full-width {
+	display: block;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+.badge_1.tpl-2 .b-date.latter-print {
+	text-align: right;
+	font-size: 14px;
+	font-weight: 600 !important;
+}
+
+#templates .badge_1.tpl-1.daypass .right {
+	width: 100px;
+}
+
+#templates .badge_1.tpl-1.daypass .left {
+	width: calc(100% - 100px);
+}
+
+#templates .badge_1.tpl-1.daypass .qr-code img {
+	width: 100px;
+}
+
+/* .badge_1.tpl-1.daypass:nth-child(4n+1),
+.badge_1.tpl-2.daypass:nth-child(4n+1) {
+	border-left: 1px solid black;
+}
+
+.badge_1.tpl-1.daypass:nth-child(-n+4),
+.badge_1.tpl-2.daypass:nth-child(-n+4) {
+	border-top: 1px solid black;
+}
+
+.badge_1.tpl-1.daypass,
+.badge_1.tpl-2.daypass {
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+} */

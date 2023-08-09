@@ -865,14 +865,7 @@ class ExhibitorManagement {
               update_user_meta($main_user_id, 'special_role', array($entry['29.1'],$entry['29.2'],$entry['29.3']));
           }
       }
-      //Insert attendee order data
-      $this->create_table_order_data();
-      $attendees_order_data = $this->insert_order_data_with_order_items( $order_id );
-      if(!empty($attendees_order_data))
-      {
-        $this->insert_attendees_order_data_payment_complete( $attendees_order_data );
-      }
-
+        
     }
 
     public function has_user_purchased_product( $user_id, $product_id )
@@ -1287,7 +1280,20 @@ class ExhibitorManagement {
         }
         if($atts['booth_numbers'] && !empty($this->get_booth_numbers_by_company_id( $company_id ))) // 
         {
-          echo $this->get_booth_numbers_by_company_id( $company_id );
+          // echo $this->get_booth_numbers_by_company_id( $company_id );
+          $booth_numbers = get_post_meta($company_id, '_repeater_assigned_booth_numbers_'.date('Y'), true);
+          $booth_num = array();
+          if(!empty($booth_numbers))
+          {
+            echo "<table><thead><tr><td>Booth Number</td><td>Description</td></tr></thead><tbody>";
+            foreach($booth_numbers as $key => $booth_number)
+            {
+              $booth_num = $booth_number['field_64995177d5025'];
+              $booth_description = $booth_number['field_64b7b93c380fd'];
+              printf('<tr><td>%s</td><td>%s</td></tr>', $booth_num, $booth_description);
+            }
+            echo "</tbody></table>";
+          }
         }
         if($atts['booth_managers'])
         {
@@ -1538,136 +1544,7 @@ class ExhibitorManagement {
       }
       return false;
     }
-
-    public function insert_attendees_order_data_payment_complete( $attendees_order_data )
-    {
-      global $wpdb;
-      $attendees_order_data['printed'] = 'Not Printed';
-      // Insert data into the custom table
-      $table_name = $wpdb->prefix . 'attendees_order_data';
-      $wpdb->insert(
-          $table_name,
-          $attendees_order_data,
-          array(
-              '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s',
-              '%s', '%s', '%d', '%s', '%d', '%f', '%d' // Adjust the data types accordingly
-          )
-      );
-    }
   
-    public function create_table_order_data()
-    {
-      global $wpdb;
-      $table_name = $wpdb->prefix . 'attendees_order_data';
-      if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
-        // Define the table name
-    
-        // Create the SQL query to create the custom table
-        $sql = "CREATE TABLE $table_name (
-            id INT NOT NULL AUTO_INCREMENT,
-            order_id INT NOT NULL,
-            customer_id INT NOT NULL,
-            first_name VARCHAR(255) NOT NULL,
-            last_name VARCHAR(255) NOT NULL,
-            customer_email VARCHAR(255) NOT NULL,
-            company VARCHAR(255),
-            date_created DATETIME NOT NULL,
-            order_date DATE NOT NULL,
-            status VARCHAR(100) NOT NULL,
-            cart_discount DECIMAL(10,2),
-            order_discount DECIMAL(10,2),
-            discount_total DECIMAL(10,2),
-            order_currency CHAR(3) NOT NULL,
-            payment_method VARCHAR(100) NOT NULL,
-            product_id INT NOT NULL,
-            product_name VARCHAR(255) NOT NULL,
-            item_total DECIMAL(10,2) NOT NULL,
-            order_total DECIMAL(10,2) NOT NULL,
-            printed BOOLEAN NOT NULL DEFAULT 0,
-            PRIMARY KEY (id)
-        ) $wpdb->charset_collate;";
-        // Include the necessary upgrade file
-        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-        // Create the table
-        dbDelta($sql);
-      }
-    }
-
-    public function insert_order_data_with_order_items( $order_id )
-    {
-        $order_data     = array();
-        $customer_ids   = array();
-            $order                  = wc_get_order( $order_id );    
-            $item_quantity = 0;
-            foreach ($order->get_items() as $item_id => $item) {
-                $item_quantity += $item->get_quantity();
-            }
-            $_gravity_form_entry_id = $order->get_meta('_gravity_form_entry_id');
-            if( isset($_gravity_form_entry_id) && GFAPI::entry_exists($_gravity_form_entry_id) )
-            {
-                $entry = GFAPI::get_entry($_gravity_form_entry_id);
-                if($entry['form_id'] == 11)
-                {
-                    $order_data[] = $this->get_order_customer_details_by_id($order);
-                }
-                $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
-                if (($item_quantity > 1 && !empty($_attendees_order_meta) || $entry['form_id'] == 13)) {
-                    foreach ($_attendees_order_meta as $_attendees) {
-                        $order_data[] = $this->get_order_customer_details_by_id($order, (int)$_attendees['product_id'], (int)$_attendees['user_id']);
-                    }
-                }
-            }else{
-                $order_data[] = $this->get_order_customer_details_by_id($order);
-            }        
-        return $order_data;
-    }
-
-    public function get_order_customer_details_by_id($order, $product_id = null, $customer_id = null)
-    {
-        $product_data = array();
-        foreach ($order->get_items() as $item_id => $item) {
-            $product_data[$item->get_product_id()] = array(
-                'product_id'    => $item->get_product_id(),
-                'product_name'  => $item->get_name(),
-                'item_total'    => ($item->get_total() / $item->get_quantity())
-            );
-        }
-        $first_value    = reset($product_data);
-        $user_data = get_userdata($order->get_user_id());
-        $defaults_order_data = array(
-            'order_id'              => $order->get_id(),
-            'customer_id'           => $order->get_user_id(),
-            'first_name'            => $user_data->first_name,
-            'last_name'             => $user_data->last_name,
-            'customer_email'        => ($a = get_userdata($order->get_user_id())) ? $a->user_email : '',
-            'company'               => wp_slash(get_user_meta($order->get_user_id(), 'user_employer', true)),
-            'date_created'          => $order->get_date_paid()->date("Y-m-d"),
-            'order_date'            => $order->get_date_created()->date("Y-m-d"),//date('Y-m-d H:i:s', strtotime(get_post($order->get_id())->post_date)),
-            'status'                => $order->get_status(),
-            'cart_discount'         => (defined('WC_VERSION') && (WC_VERSION >= 2.3)) ? wc_format_decimal($order->get_total_discount(), 2) : wc_format_decimal($order->get_cart_discount(), 2),
-            'order_discount'        => (defined('WC_VERSION') && (WC_VERSION >= 2.3)) ? wc_format_decimal($order->get_total_discount(), 2) : wc_format_decimal($order->get_order_discount(), 2),
-            'discount_total'        => wc_format_decimal($order->get_total_discount(), 2),
-            'order_currency'        => $order->get_currency(),
-            'payment_method'        => $order->get_payment_method()            
-        );
-        $order_total = array('order_total' => wc_format_decimal($order->get_total(), 2));
-
-        $defaults_order_data = $defaults_order_data  + $first_value + $order_total;
-        if ($customer_id && $product_id) {
-            $user_data = get_userdata($customer_id);
-            $args = array(
-                'first_name'            => $user_data->first_name,
-                'last_name'             => $user_data->last_name,
-                'customer_id'           => $customer_id,
-                'customer_email'        => ($user_data) ? $user_data->user_email : '',
-                'company'               => wp_slash(get_user_meta($customer_id, 'user_employer', true))                
-            );
-            $order_data_new = wp_parse_args($args, $defaults_order_data);
-            return wp_parse_args($product_data[$product_id], $order_data_new);
-        } else {
-            return $defaults_order_data;
-        }
-    }
 }
 
 // if (is_admin()) {
