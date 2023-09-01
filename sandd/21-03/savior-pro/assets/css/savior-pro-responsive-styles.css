@@ -1,0 +1,178 @@
+/* Header responsive CSS Start */
+
+@media (max-width:767px) {
+	.elementor-element.user-info-cls.elementor-widget .elementor-image-box-wrapper .elementor-image-box-content {
+		display: none;
+	}
+	.elementor-element.user-info-cls.elementor-widget .elementor-image-box-wrapper {
+		text-align: left;
+	}
+	.elementor-element.user-info-cls.elementor-widget .elementor-image-box-wrapper figure.elementor-image-box-img {
+		width: 39%;
+	}
+	.elementor-element.user-pg-list>.elementor-widget-container {
+		width: 150px;
+	}
+	.mbl-menu-cls.menu-item {
+		display: block !important;
+	}
+}
+
+/* Header responsive CSS End */
+
+/* Footer responsive CSS Start */
+
+@media (max-width:1024px) {
+	.elementor-element.bottom-footer-list-cls.elementor-widget ul.elementor-icon-list-items {
+		justify-content: end;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-element.footer-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item,
+	.elementor-element.bottom-footer-list-cls.elementor-widget ul.elementor-icon-list-items,
+	.elementor-element.footer-product-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		justify-content: center;
+	}
+	.elementor-82 .elementor-element.elementor-element-4709a7e .elementor-widget-container {
+		max-width: 280px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+/* Footer responsive CSS End */
+
+/* Home page responsive css start */
+
+@media (max-width:1542px) {
+	.elementor-357 .elementor-element.elementor-element-b9671fb,
+	.elementor-357 .elementor-element.elementor-element-ec36569 {
+		width: 50% !important;
+	}
+}
+
+@media (max-width:1024px) {
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 46px;
+		line-height: 51px;
+	}
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-second-text {
+		font-size: 16px;
+		line-height: 27px;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 32px;
+		line-height: 36px;
+	}
+	.metric-sec-left-col-cls:before {
+		width: 100%;
+		left: -93px;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-right: 10px !important;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item span.elementor-icon-list-text {
+		font-size: 16px;
+		line-height: 27px;
+	}
+	.elementor-element.seller-feat-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-right: 5px !important;
+		min-height: 81px;
+	}
+	.elementor-element.profitable-startups-sec-cls.elementor-widget .elementor-widget-container {
+		padding: 40px 20px;
+	}
+	.elementor-element.profitable-startups-sec-cls.elementor-widget .elementor-widget-container .elementor-image-box-title {
+		font-size: 20px;
+		line-height: 26px;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-left: 30px !important;
+	}
+	.data-sec-inner-col-cls:after {
+		width: 240px;
+		height: 240px;
+		right: -114px;
+	}
+}
+
+@media (max-width:900px) {
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 38px;
+		line-height: 43px;
+	}
+}
+
+@media (max-width:834px) {
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 30px;
+		line-height: 35px;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 26px;
+		line-height: 30px;
+	}
+	.newsletter-main-sec-cls:before {
+		width: 400px;
+		height: 300px;
+	}
+}
+
+@media (max-width:767px) {
+	.hero-sec-col-let {
+		justify-content: left;
+		width: 100%;
+	}
+	.data-sec-inner-col-cls {
+		margin: 0 auto;
+	}
+	.elementor-114 .elementor-element.elementor-element-a23dab9 {
+		max-width: 280px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 22px;
+		line-height: 26px;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-second-text {
+		font-size: 16px;
+		line-height: 27px;
+	}
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 26px;
+		line-height: 31px;
+	}
+}
+
+@media (max-width:641px) {
+	.elementor-element.newsletter-form-cls form .gform_footer input {
+		min-height: auto;
+		line-height: 24px !important;
+	}
+}
+
+@media (max-width:390px) {
+	.elementor-element.newsletter-form-cls form {
+		flex-direction: column;
+	}
+	.elementor-element.newsletter-form-cls form .gform_footer {
+		width: 100%;
+	}
+	.elementor-element.newsletter-form-cls form .gform_footer input {
+		width: 100%;
+	}
+}
+
+/* Home page responsive css end */
+
+/* About us page responsive css start */
+
+@media (max-width:1024px) {
+	.elementor-element.testimonial-sec-cls.elementor-widget .pp-testimonials-wrap .pp-testimonials .pp-slider-arrow.pp-arrow {
+		bottom: -60px;
+	}
+}
+
+/* About us page responsive css end */

@@ -1,0 +1,878 @@
+/* Responsive CSS 2 */
+
+/** Dashboard Pages Responsive CSS Starts **/
+@media screen and (max-width: 1680px) {
+	.dashboard-sidebar {
+		width: 350px !important;
+	}
+	.dashboard-main-section {
+		width: calc(100% - 350px) !important;
+	}
+	.dashboard-top-section {
+		background-size: 25% 100% !important;
+	}
+	.dashboard-welcome-heading h2 {
+		font-size: 32px !important;
+		line-height: 42px !important;
+	}
+	.dashboard-welcome-heading {
+		padding: 30px 30px 30px 30px !important;
+	}
+	.elementor-element.elementor-element-52dfb8f .elementor-heading-title {
+		font-size: 25px !important;
+		line-height: 30px !important;
+	}
+	.elementor-18321 .elementor-element.elementor-element-605ee2d {
+		padding: 20px 30px 20px 30px !important;
+	}
+	.dash-profile-col > .elementor-element-populated, .dash-invoices-col > .elementor-element-populated, .dash-badge-col > .elementor-element-populated {
+		padding: 30px 20px 30px 20px !important;
+	}
+	.elementor-element.elementor-element-1d5152d .pp-dual-heading-block > .elementor-widget-container {
+		padding: 0px 10px 0px 0px !important;
+	}
+	.elementor-element.elementor-element-03a6b73 .pp-dual-heading-block > .elementor-widget-container {
+		padding: 0px 0px 0px 10px !important;
+	}
+	.elementor-element.elementor-element-5ca4214 > .elementor-element-populated {
+		padding: 0px 20px 0px 0px !important;
+	}
+	.dash-two-col > .elementor-element-populated {
+		margin-left: 20px !important;
+	}
+	.elementor-19579 .elementor-element.elementor-element-ff31ebd {
+		width: 100%;
+		max-width: 387px;
+	}
+	.elementor-19099 .elementor-element.elementor-element-f680571 .elementor-heading-title, .elementor-19185 .elementor-element.elementor-element-4fd0437 .elementor-heading-title {
+		font-size: 42px !important;
+		line-height: 52px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-ba0573e > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-6d13a15 > .elementor-element-populated {
+		padding: 48px 25px 48px 25px !important;
+	}
+	.elementor-19723 .elementor-element.elementor-element-75f78da .elementor-button, .elementor-19723 .elementor-element.elementor-element-6ed41e5 .elementor-button {
+		padding: 13px 30px !important;
+	}
+}
+@media screen and (max-width: 1596px) {
+	.elementor-684 .elementor-element.elementor-element-77466cb .elementor-heading-title, .elementor-882 .elementor-element.elementor-element-1eb3dba .elementor-heading-title, .elementor-801 .elementor-element.elementor-element-94690e1 .elementor-heading-title {
+		margin-bottom: 12px;
+	}
+	body.page-id-684.logged-in .drop-hide-cls, body.search-results.logged-in .drop-hide-cls, body.single-paper.logged-in .drop-hide-cls {
+		top: 118px;
+	}
+}
+@media screen and (max-width: 1440px) {
+	.elementor .elementor-element.dashboard-sec-cls .dashboard-sidebar-menu .menu-item .menu-link {
+		font-size: 18px;
+		line-height: 26px !important;
+	}
+	.dashboard-sidebar-menu li::before {
+		font-size: 25px;
+		padding: 1px 12px 0 0;
+	}
+	.elementor-19875 .elementor-element.elementor-element-8ebd62e > .elementor-widget-container {
+		margin: 33px 0px 0px 0px !important;
+	}
+	.elementor-19875 .elementor-element.elementor-element-5690771 .elementor-image-box-title {
+		font-size: 22px !important;
+		line-height: 30px !important;
+	}
+	.dashboard-sidebar-menu > .elementor-widget-container {
+		padding: 0px 0px 0px 20px !important;
+	}
+	.dashboard-sidebar {
+		width: 300px !important;
+	}
+	.dashboard-main-section {
+		width: calc(100% - 300px) !important;
+	}
+	.elementor .elementor-element.dashboard-sec-cls .elementor-widget-divider>.elementor-widget-container {
+		margin: 22px 0 30px 0 !important;
+	}
+	.dashboard-sidebar-menu li, .dashboard-sidebar-menu .current_page_item {
+		padding: 12px 20px 12px 30px !important;
+	}
+	.elementor-element.elementor-element-52dfb8f .elementor-heading-title {
+		font-size: 22px !important;
+		line-height: 28px !important;
+	}
+	.elementor-element.elementor-element-31e8b37 img {
+		width: 45px;
+	}
+	.elementor-18321 .elementor-element.elementor-element-605ee2d {
+		padding: 15px 20px 15px 20px !important;
+	}
+	.dashboard-welcome-heading h2 {
+		font-size: 28px !important;
+		line-height: 38px !important;
+	}
+	.dashboard-welcome-heading {
+		padding: 30px 20px 30px 20px !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-0b9448e, .elementor-19579 .elementor-element.elementor-element-5591b41, .elementor-684 .elementor-element.elementor-element-02123ec, .elementor-882 .elementor-element.elementor-element-766605c, .elementor-801 .elementor-element.elementor-element-8d719bf, .elementor-801 .elementor-element.elementor-element-d9b7a0f, .elementor-19679 .elementor-element.elementor-element-613c455, .elementor-19087 .elementor-element.elementor-element-e74c240, .elementor-19597 .elementor-element.elementor-element-78519b1, .elementor-19697 .elementor-element.elementor-element-0947d7c, .elementor-19723 .elementor-element.elementor-element-674eb59 {
+		padding: 0px 20px 0px 20px;
+	}
+	.elementor-18297 .elementor-element.elementor-element-e573538, .elementor-19679 .elementor-element.elementor-element-d9154a6, .elementor-19087 .elementor-element.elementor-element-01d56fa, .elementor-19597 .elementor-element.elementor-element-62c5384, .elementor-19697 .elementor-element.elementor-element-bcf0126, .elementor-19723 .elementor-element.elementor-element-4bc54a5 {
+		margin-top: 30px;
+		padding: 0px 20px 0px 20px;
+	}
+	.elementor-18297 .elementor-element.elementor-element-be2a2a7, .elementor-19579 .elementor-element.elementor-element-c5069b2, .elementor-19679 .elementor-element.elementor-element-a5afa23, .elementor-19087 .elementor-element.elementor-element-4f91bcb, .elementor-19597 .elementor-element.elementor-element-2351294, .elementor-19697 .elementor-element.elementor-element-bf49ef0, .elementor-19723 .elementor-element.elementor-element-a8936f5, .elementor-19723 .elementor-element.elementor-element-98212a8 {
+		margin-top: 30px;
+		padding: 0px 20px 50px 20px;
+	}
+	.dash-profile-col > .elementor-element-populated, .dash-invoices-col > .elementor-element-populated, .dash-badge-col > .elementor-element-populated {
+		padding: 35px 20px 31px 20px !important;
+	}
+	.dash-two-col .elementor-icon {
+		font-size: 35px !important;
+		padding: 25px !important;
+	}
+	.dash-two-col > .elementor-element-populated {
+		padding: 35px 20px 35px 20px !important;
+	}
+	.dash-two-col .elementor-icon-box-title, .dash-two-col .elementor-icon-box-title a {
+		font-size: 22px !important;
+		line-height: 34px !important;
+	}
+	.dash-two-col .elementor-icon-box-icon {
+		--icon-box-icon-margin: 36px !important;
+	}
+	.dash-two-col .elementor-widget-heading > .elementor-widget-container {
+		margin: 32px 0px 0px 0px !important;
+	}
+	.elementor-element.elementor-element-5ca4214 {
+		width: 30%;
+	}
+	.elementor-element.elementor-element-1d5152d, .elementor-element.elementor-element-03a6b73 {
+		width: 35% !important;
+	}
+	.elementor-19875 .elementor-element.elementor-element-15b9ce4 .elementor-divider-separator {
+		width: 250px !important;
+	}
+	.dashboard-heading h2 {
+		font-size: 22px !important;
+		line-height: 30px !important;
+	}
+	.dash-profile-col .elementor-widget-template > .elementor-widget-container {
+		margin: 22px 0px 0px 0px !important;
+	}
+	.recent-order-short > .elementor-widget-container {
+		margin: 25px 0px 0px 0px !important;
+	}
+	.elementor-element.elementor-element-bb7dd38 .elementor-image-box-content {
+		padding: 12px 0px;
+	}
+	.elementor-18332 .elementor-element.elementor-element-904acf9, .elementor-18334 .elementor-element.elementor-element-54f65f2, .elementor-19349 .elementor-element.elementor-element-163929b, .elementor-18601 .elementor-element.elementor-element-1ff4297, .elementor-18338 .elementor-element.elementor-element-9b38c0f, .elementor-18660 .elementor-element.elementor-element-2734390, .ps-20-bt-50 {
+		padding: 0px 20px 50px 20px !important;
+	}
+	.elementor-element.elementor-element-fd30cec .elementor-button {
+		padding: 9px 44px 9px 44px !important;
+	}
+	.elementor-18601 .elementor-element.elementor-element-b09dd7a > .elementor-widget-container {
+		margin: 55px 0px 52px 0px;
+	}
+	#gform_9 label {
+		font-size: 18px;
+		line-height: 30px;
+		margin-bottom: 5px;
+		padding: 0;
+	}
+	.elementor-18601 .elementor-element.elementor-element-2c03449 .pp-gravity-form .gform_wrapper input:not([type=radio]):not([type=checkbox]):not([type=submit]):not([type=button]):not([type=image]):not([type=file]), select#input_9_10_6 {
+		height: 50px;
+		font-size: 18px;
+	}
+	.elementor-18601 .elementor-element.elementor-element-2c03449 .pp-gravity-form .gform_wrapper.gravity-theme .gform_fields {
+		grid-row-gap: 22px;
+	}
+	#input_9_10 .ginput_container_address span:not(.ginput_full):not(:last-of-type):not(:nth-last-of-type(2)), #input_9_10 .ginput_full:not(:last-of-type), #input_9_10_3_container, #input_9_10_4_container {
+		margin-bottom: 22px !important;
+	}
+	input#gform_submit_button_9 {
+		padding: 17px 20px;
+		margin-top: 30px;
+	}
+	.elementor-684 .elementor-element.elementor-element-a5d7eb4, .elementor-882 .elementor-element.elementor-element-8251d09 {
+		margin-top: 50px;
+		padding: 0px 20px 50px 20px;
+	}
+	.elementor-684 .elementor-element.elementor-element-c31e949 .pp-posts-pagination-bottom .pp-posts-pagination, .elementor-684 .elementor-element.elementor-element-dc5f7e7 .pp-posts-pagination-bottom .pp-posts-pagination, .elementor-882 .elementor-element.elementor-element-07f67b1 .pp-posts-pagination-bottom .pp-posts-pagination {
+		margin-top: 50px;
+	}
+	.elementor-element.elementor-element-77466cb .elementor-heading-title, .elementor-element.elementor-element-1eb3dba .elementor-heading-title, .elementor-element.elementor-element-94690e1 .elementor-heading-title {
+		margin-bottom: 12px;
+	}
+	.elementor-element.elementor-element-d9b7a0f {
+		margin: 50px 0 0 0 !important;
+	}
+	.elementor-element.elementor-element-6f29e8a.paper-str-cls {
+		padding: 0 0 !important;
+	}
+	.elementor-801 .elementor-element.elementor-element-d74667a {
+		padding: 50px 20px 50px 20px;
+	} 
+	.elementor-18338 .elementor-element.elementor-element-d2a6fba > .elementor-element-populated {
+		padding: 28px 20px 18px 20px;
+	}
+	.custom-invoice-no, .custom-invoice-no mark, .woocommerce-customer-details h2 {
+		font-size: 22px;
+		line-height: 30px;
+		margin-bottom: 26px;
+	}
+	.elementor-18660 .elementor-element.elementor-element-b60c327 > .elementor-element-populated {
+		padding: 35px 20px 35px 20px;
+	}
+	.registration-box > .elementor-element-populated {
+		padding: 30px 20px 35px 20px !important;
+	}
+	.registration-inner-box {
+		margin-top: 42px !important;
+	}
+	.registration-title h2 {
+		font-size: 22px !important;
+		line-height: 30px !important;
+	}
+	/* 	.registration-inner-box .elementor-col-100 > .elementor-element-populated, .registration-inner-box .elementor-col-50 > .elementor-element-populated {
+	padding: 74px 20px 100px 20px !important;
+} */
+	.elementor-19526 .elementor-element.elementor-element-5cc6333 {
+		margin-bottom: 50px !important;
+	}
+	.elementor-19087 .elementor-element.elementor-element-66689df .elementor-button, .elementor-19597 .elementor-element.elementor-element-54b963e .elementor-button, .elementor-19723 .elementor-element.elementor-element-a5f2a52 .elementor-button, .elementor-19723 .elementor-element.elementor-element-3c686c3 .elementor-button, .elementor-element.elementor-element-586a197 .elementor-button, .elementor-19099 .elementor-element.elementor-element-329ff1d .elementor-button {
+		padding: 11px 20px 11px 20px !important;
+		width: 100% !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-f680571 .elementor-heading-title, .elementor-19185 .elementor-element.elementor-element-4fd0437 .elementor-heading-title {
+		font-size: 38px !important;
+		line-height: 48px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-ba0573e > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-6d13a15 > .elementor-element-populated {
+		padding: 40px 20px 50px 20px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-e4db5c0 .pp-first-text, .elementor-19185 .elementor-element.elementor-element-658a901 .pp-first-text {
+		font-size: 22px !important;
+		line-height: 30px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-aec71d5 > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-6f4f43a > .elementor-element-populated {
+		padding: 33px 20px 50px 20px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-3383125 > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-2b59177 > .elementor-element-populated {
+		margin: 0px 0px 0px 30px !important;
+		padding: 45px 20px 18px 20px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-1827569 > .elementor-widget-container, .elementor-19185 .elementor-element.elementor-element-6644837 > .elementor-widget-container {
+		margin: 0px 0px 15px 0px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-2e9274a > .elementor-widget-container, .elementor-19185 .elementor-element.elementor-element-33e03ac > .elementor-widget-container {
+		margin: 16px 0px 15px 0px !important;
+	}
+	.elementor-element.elementor-element-feb91dc .elementor-col-50 > .elementor-element-populated {
+		padding: 30px 30px 30px 30px !important;
+	}
+	.elementor-20156 .elementor-element.elementor-element-ee0b3b6 > .elementor-widget-container {
+		margin: 42px 0px 0px 0px;
+	}
+	.elementor-element.elementor-element-feb91dc .elementor-col-50 .pp-info-list-icon-left > .elementor-widget-container {
+		margin: 42px 0px 0px 0px !important;
+	}
+	.elementor-20156 .elementor-element.elementor-element-faae41a > .elementor-element-populated {
+		margin: 0px 20px 0px 0px !important;
+	}
+	.elementor-20156 .elementor-element.elementor-element-a00408f > .elementor-element-populated {
+		margin: 0px 0px 0px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-tab-title {
+		font-size: 22px !important;
+		line-height: 32px !important;
+		padding: 28px 30px 28px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-item .pp-accordion-tab-content {
+		font-size: 16px !important;
+		line-height: 30px !important;
+		padding: 20px 30px 20px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-tab-title .pp-accordion-toggle-icon {
+		font-size: 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 > .elementor-widget-container {
+		margin: 42px 0px 0px 0px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-4d8ac97 > .elementor-element-populated {
+		padding: 0px 0px 0px 50px !important;
+	}
+	#gform_5 .gfield_label {
+		font-size: 18px !important;
+		line-height: 30px !important;
+		margin-bottom: 10px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-ebd0be5 > .elementor-widget-container {
+		margin: 40px 0px 0px 0px !important;
+	}
+	.elementor-element.elementor-element-ebd0be5 .gform_required_legend {
+		top: 45px;	
+	}
+	#field_5_9 .gform-field-label {
+		font-size: 18px !important;
+		line-height: 30px !important;
+	}
+	input#input_5_9_1 {
+		width: 35px;
+		height: 35px;
+	}
+	input#gform_submit_button_5 {
+		padding: 12px 20px 12px 20px;
+	}
+	.elementor-19220 .elementor-element.elementor-element-afb626c .pp-first-text {
+		font-size: 22px !important;
+		line-height: 30px !important;
+	}
+	.elementor-element.elementor-element-afb626c .pp-dual-heading {
+		line-height: 0;
+	}
+	.elementor-element.elementor-element-ef88f27 .elementor-col-100 > .elementor-element-populated {
+		padding: 30px 20px 26px 20px !important;
+	}
+	.elementor-element.elementor-element-6a49ae3 > .elementor-element-populated {
+		padding: 74px 20px 20px 20px !important;
+	}
+	.elementor-19723 .elementor-element.elementor-element-15d50fb.elementor-column>.elementor-widget-wrap {
+		justify-content: center;
+		gap: 10px;
+	}
+}
+@media screen and (max-width: 1300px) {
+	.elementor-19099 .elementor-element.elementor-element-f680571 .elementor-heading-title, .elementor-19185 .elementor-element.elementor-element-4fd0437 .elementor-heading-title {
+		font-size: 35px !important;
+		line-height: 45px !important;
+	}
+}
+@media screen and (max-width: 1200px) {
+	.elementor-19875 .elementor-element.elementor-element-15b9ce4 .elementor-divider-separator {
+		width: 220px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-f680571 .elementor-heading-title, .elementor-19185 .elementor-element.elementor-element-4fd0437 .elementor-heading-title {
+		font-size: 28px !important;
+		line-height: 38px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-4d8ac97 > .elementor-element-populated {
+		padding: 0px 0px 0px 20px !important;
+	}
+	.elementor-element.elementor-element-ebd0be5 .gform_required_legend {
+		top: 10px;
+	}
+	.dash-profile-col, .dash-invoices-col {
+		width: 100% !important;
+	}
+	.dash-two-col {
+		display: none;
+	}
+	.dash-col-two-mobile {
+		display: block;
+	}
+	.dash-col-two-mobile, .dash-col-two-mobile .dash-two-col {
+		display: block !important;
+	}
+	.dash-profile-col, .dash-invoices-col {
+		width: 100% !important;
+		max-width: 722px !important;
+		margin: 0 auto;
+	}
+	.dash-badge-col > .elementor-element-populated {
+		max-width: 532px;
+		margin: 0 auto !important;
+	}
+	.elementor-19723 .elementor-element.elementor-element-ad59c2a > .elementor-container {
+		max-width: 800px !important;
+	}
+	.dash-col-two-mobile .dash-two-col {
+		width: 100% !important;
+		max-width: 250px;
+	}
+	.dash-col-two-mobile > .elementor-container {
+		column-gap: 20px !important;
+		grid-gap: 30px !important;
+		justify-content: center !important;
+		flex-wrap: wrap !important;
+	}
+	.dash-badge-col {
+		width: 100% !important;
+	}
+	.elementor-19723 .elementor-element.elementor-element-98212a8 {
+		margin-top: 30px;
+		padding: 0px 20px 30px 20px !important;
+	}
+	.dash-two-col > .elementor-element-populated {
+		margin-left: 0px !important;
+	}
+	.elementor-element.elementor-element-91e2073, .elementor-element.elementor-element-278facb, .elementor-element.elementor-element-b1c72be, .elementor-element.elementor-element-d90fafb, .elementor-element.elementor-element-0b10819 {
+		display: none !important;
+	}
+}
+@media screen and (max-width: 1024px) {
+	body.page-id-19579 #menu-my-asgmt-dashboard-menu-2 .menu-item-20853, body.page-id-18297 #menu-in-person-dashboard-menu-2 .menu-item-20850, body.page-id-19697 .menu-item-20848 {
+		background: #FFFFFF;
+	}
+	body.page-id-19579 .menu-item-20853 a, body.page-id-19579 .menu-item-20853:before, body.page-id-18297 .menu-item-20850 a, body.page-id-18297 .menu-item-20850:before, body.page-id-19679 .menu-item-20851 a, body.page-id-19087 .menu-item-20849 a, body.page-id-19597 .menu-item-20852 a, body.page-id-19697 .menu-item-20848:before, body.page-id-19697 .menu-item-20848 a, body.page-id-19723 .menu-item-20847 a {
+		color: #252F86 !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-be2a2a7, .elementor-19679 .elementor-element.elementor-element-a5afa23, .elementor-19087 .elementor-element.elementor-element-4f91bcb, .elementor-19597 .elementor-element.elementor-element-2351294, .elementor-19697 .elementor-element.elementor-element-bf49ef0, .elementor-19723 .elementor-element.elementor-element-98212a8 {
+		margin-top: 30px;
+		padding: 0px 20px 30px 20px !important;
+	}
+	.dashboard-sidebar {
+		display: none;
+	}
+	.dashboard-main-section {
+		width: 100% !important;
+	}
+	.dashboard-sec-cls {
+		padding: 0px 0px 20px 20px !important;
+	}
+	.dashboard-sidebar-menu > .elementor-widget-container {
+		padding: 0px 0px 0px 0px !important;
+	}
+	.elementor-element.elementor-element-52dfb8f .elementor-heading-title {
+		font-size: 20px !important;
+		line-height: 25px !important;
+	}
+	.elementor-element.elementor-element-31e8b37 img {
+		width: 40px;
+	}
+	.elementor-element.elementor-element-bb7dd38 .elementor-image-box-content {
+		padding: 10px 0px;
+	}
+	.dashboard-welcome-heading h2 {
+		font-size: 25px !important;
+		line-height: 35px !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-0fc0fba {
+		padding: 20px 20px 20px 20px;
+	}
+	.dashboard-top-section {
+		background-size: 0 !important;
+	}
+	.elementor-19875 .elementor-element.elementor-element-5690771 .elementor-image-box-title {
+		font-size: 20px !important;
+		line-height: 28px !important;
+	}
+	.elementor-element.elementor-element-c5069b2 > .elementor-container {
+		justify-content: center;
+	}
+	.dashboard-sidebar-menu li, .dashboard-sidebar-menu .current_page_item {
+		padding: 12px 20px 12px 25px !important;
+	}
+	.elementor-684 .elementor-element.elementor-element-a5d7eb4, .elementor-882 .elementor-element.elementor-element-8251d09 {
+		margin-top: 40px;
+		padding: 0px 20px 50px 20px;
+	}
+	.elementor-684 .elementor-element.elementor-element-c31e949 .pp-posts-pagination-bottom .pp-posts-pagination, .elementor-684 .elementor-element.elementor-element-dc5f7e7 .pp-posts-pagination-bottom .pp-posts-pagination, .elementor-882 .elementor-element.elementor-element-07f67b1 .pp-posts-pagination-bottom .pp-posts-pagination {
+		margin-top: 40px;
+	}
+	.elementor-element.elementor-element-d9b7a0f {
+		margin: 40px 0 0 0 !important;
+	}
+	body.page-id-684.logged-in .drop-hide-cls, body.search-results.logged-in .drop-hide-cls, body.single-paper.logged-in .drop-hide-cls {
+		top: 110px;
+	}
+	.elementor-801 .elementor-element.elementor-element-d74667a {
+		padding: 30px 20px 50px 20px;
+	}
+	.elementor-19526 .elementor-element.elementor-element-5cc6333 {
+		margin-bottom: 40px !important;
+	}
+	.registration-title h2 {
+		font-size: 20px !important;
+		line-height: 28px !important;
+	}
+	.registration-inner-box {
+		margin-top: 32px !important;
+	}
+	.elementor-19087 .elementor-element.elementor-element-0f214cc .elementor-button, .elementor-19597 .elementor-element.elementor-element-a15cfbb .elementor-button, .elementor-19723 .elementor-element.elementor-element-c683fbb .elementor-button, .elementor-19723 .elementor-element.elementor-element-421911e .elementor-button, .join-btn .elementor-button {
+		padding: 11px 20px 11px 20px !important;
+		width: 100%;
+	}
+	.elementor-19723 .elementor-element.elementor-element-98212a8 > .elementor-container {
+		justify-content: center;
+	}
+	.elementor-19723 .elementor-element.elementor-element-0b10819 > .elementor-element-populated {
+		height: 100%;
+	}
+	.elementor-19099 .elementor-element.elementor-element-f680571 .elementor-heading-title, .elementor-19185 .elementor-element.elementor-element-4fd0437 .elementor-heading-title {
+		font-size: 25px !important;
+		line-height: 35px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-ba0573e > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-6d13a15 > .elementor-element-populated {
+		padding: 32px 20px 40px 20px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-40530e7 > .elementor-widget-container, .elementor-19185 .elementor-element.elementor-element-492758b > .elementor-widget-container {
+		margin: 51px 0px 0px 0px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-aec71d5 > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-6f4f43a > .elementor-element-populated {
+		padding: 23px 20px 40px 20px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-3383125 > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-2b59177 > .elementor-element-populated {
+		margin: 0px 0px 0px 20px !important;
+		padding: 35px 20px 8px 20px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-1827569 > .elementor-widget-container, .elementor-19185 .elementor-element.elementor-element-6644837 > .elementor-widget-container {
+		margin: 0px 0px 10px 0px !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-2e9274a > .elementor-widget-container, .elementor-19185 .elementor-element.elementor-element-33e03ac > .elementor-widget-container {
+		margin: 16px 0px 10px 0px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-4d8ac97 > .elementor-element-populated {
+		padding: 0px 0px 0px 10px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-666f44c > .elementor-element-populated {
+		padding: 0px 10px 0px 0px !important;
+	}
+	.elementor-element.elementor-element-b0bd0e9 .elementor-heading-title {
+		text-align: center !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-tab-title {
+		font-size: 20px !important;
+		line-height: 30px !important;
+		padding: 20px 20px 20px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-item .pp-accordion-tab-content {
+		font-size: 16px !important;
+		line-height: 30px !important;
+		padding: 20px 20px 20px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 > .elementor-widget-container {
+		margin: 32px 0px 0px 0px !important;
+	}
+	#gform_5 .gfield_label {
+		font-size: 16px !important;
+		line-height: 28px !important;
+		margin-bottom: 11px !important;
+	}
+	#field_5_9 .gform-field-label {
+		font-size: 16px !important;
+		line-height: 28px !important;
+	}
+	#menu-bod-dashboard-menu-2 .menu-item-20125, #menu-bod-dashboard-menu-2 .menu-item-20126, #menu-bod-dashboard-menu-2 .menu-item-20127 {
+		padding-left: 100px !important;
+	}
+	.elementor-element.elementor-element-ef88f27 .dashboard-heading > .elementor-widget-container {
+		margin: 0px 0px 25px 0px !important;
+	}
+	.elementor-24687 .elementor-element.elementor-element-6e7ea6a, .elementor-24687 .elementor-element.elementor-element-c400df8 {
+		margin-top: 30px !important;
+	}
+	.dashboard-dropdown {
+		top: 20px !important;
+	}
+	.elementor-19875 .elementor-element.elementor-element-8ebd62e > .elementor-widget-container {
+		margin: 23px 0px 0px 0px !important;
+	}
+	body.page-id-20128 {
+		background: #F5F5F966;
+	}
+}
+
+@media screen and (max-width: 884px) {
+	.vgmf-date-time span {
+		font-size: 14px !important;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.dashboard-welcome-heading h2 {
+		font-size: 22px !important;
+		line-height: 30px !important;
+	}
+	.elementor-element.elementor-element-d371c90 h2 span {
+		line-height: 24px;
+	}
+	.elementor-684 .elementor-element.elementor-element-c31e949 .pp-posts-pagination-bottom .pp-posts-pagination, .elementor-684 .elementor-element.elementor-element-dc5f7e7 .pp-posts-pagination-bottom .pp-posts-pagination, .elementor-882 .elementor-element.elementor-element-07f67b1 .pp-posts-pagination-bottom .pp-posts-pagination {
+		margin-top: 30px;
+	}
+	.custom-order-table .dt-buttons {
+		text-align: right;
+	}
+	.elementor-19526 .elementor-element.elementor-element-5cc6333 {
+		margin-bottom: 30px !important;
+	}
+	.registration-inner-box .elementor-col-50 > .elementor-element-populated {
+		max-width: 448px;
+		margin: 0 !important;
+	}
+	.elementor-element.elementor-element-b8e5757 > .elementor-element-populated {
+		margin-top: 30px !important;
+	}
+	.elementor-19526 .elementor-element.elementor-element-5cc6333 > .elementor-container, .elementor-19526 .elementor-element.elementor-element-6cd6e33 > .elementor-container {
+		max-width: 488px !important;
+		margin: auto;
+	}
+	.registration-title h2 {
+		text-align: center;
+	}
+	.registration-btn .elementor-icon-box-wrapper {
+		display: flex !important;
+		flex-direction: row-reverse !important;
+	}
+	.registration-btn .elementor-icon-box-icon {
+		display: inline-flex !important;
+		margin-left: 6px !important;
+		margin-top: 5px !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-aacd9f4 .elementor-heading-title br {
+		display: none;
+	}
+	.elementor-19099 .elementor-element.elementor-element-329ff1d, .elementor-19099 .elementor-element.elementor-element-3383125, .elementor-19185 .elementor-element.elementor-element-586a197, .elementor-19185 .elementor-element.elementor-element-2b59177 {
+		width: 100% !important;
+	}
+	.elementor-19099 .elementor-element.elementor-element-3383125 > .elementor-element-populated, .elementor-19185 .elementor-element.elementor-element-2b59177 > .elementor-element-populated {
+		margin: 30px 0px 0px 0px !important;
+		padding: 35px 20px 8px 20px !important;
+	}
+	.elementor-20156 .elementor-element.elementor-element-a00408f > .elementor-element-populated {
+		margin: 30px 0px 0px 0px !important;
+	}
+	.elementor-20156 .elementor-element.elementor-element-faae41a > .elementor-element-populated {
+		margin: 0px 0px 0px 0px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 > .elementor-widget-container {
+		margin: 22px 0px 0px 0px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-tab-title {
+		font-size: 18px !important;
+		line-height: 28px !important;
+		padding: 16px 20px 16px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-3ab59b2 .pp-advanced-accordion .pp-accordion-item .pp-accordion-tab-content {
+		font-size: 16px !important;
+		line-height: 30px !important;
+		padding: 15px 20px 15px 20px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-666f44c > .elementor-element-populated {
+		padding: 0px 0px 0px 0px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-4d8ac97 > .elementor-element-populated {
+		padding: 14px 0px 0px 0px !important;
+	}
+	.elementor-19220 .elementor-element.elementor-element-afb626c.pp-dual-heading-block .pp-second-text {
+		font-size: 16px !important;
+		line-height: 26px !important;
+		margin-top: 16px !important;
+	}
+	input#gform_submit_button_5 {
+		padding: 10px 20px 10px 20px;
+	}
+	.gfmc-field.student-info-row {
+		display: unset;
+	}
+	div#field_11_8, div#field_11_9 {
+		padding: 0;
+	}
+	.gfield_repeater_cell:first-child, .gfield_repeater_cell:nth-child(2) {
+		width: 100% !important;
+		display: unset;
+	}
+	.elementor-19755 .elementor-element.elementor-element-81a7a5d > .elementor-element-populated {
+		padding: 50px 0px 0px 0px;
+	}
+	.elementor-element.elementor-element-ef88f27 .elementor-col-100 > .elementor-element-populated {
+		max-width: 368px !important;
+		padding: 30px 20px 26px 20px !important;
+		margin: auto;
+	}
+}
+@media screen and (max-width: 600px) {
+	.elementor-element.elementor-element-e221680, .elementor-element.elementor-element-f7552f3, .elementor-element.elementor-element-1d5152d, .elementor-element.elementor-element-03a6b73 {
+		width: 50% !important;
+	}
+	.elementor-18321 .elementor-element.elementor-element-31e8b37 > .elementor-widget-container {
+		padding: 0px 10px 0px 0px;
+	}
+	.elementor-element.elementor-element-5ca4214, .elementor-element.elementor-element-aacd9f4, .elementor-element.elementor-element-be005e6, .elementor-element.elementor-element-a6fee9f, .elementor-element.elementor-element-2d26ba0 {
+		width: 100% !important;
+	}
+	.elementor-element.elementor-element-5ca4214 > .elementor-element-populated {
+		padding: 0px 0px 24px 0px !important;
+	}
+	.elementor-18474 .elementor-element.elementor-element-73e6a64 > .elementor-widget-container {
+		margin: 17px 0px 0px 0px !important;
+	}
+	.custom-order-table, .custom-order-table .woocommerce-order-details {
+		overflow-x: scroll;
+	}
+	.custom-order-table table {
+		width: 600px !important;
+	}
+	.elementor-element.elementor-element-ecefe2b.elementor-column > .elementor-widget-wrap {
+		justify-content: center !important;
+	}
+	.user-badge-preview {
+		margin: auto;
+	}
+	.elementor-18297 .elementor-element.elementor-element-aacd9f4 .elementor-heading-title {
+		text-align: center;
+	}
+	.elementor-18601 .elementor-element.elementor-element-b09dd7a > .elementor-widget-container {
+		margin: 35px 0px 32px 0px;
+	}
+	input#gform_submit_button_9 {
+		padding: 9px 20px;
+		margin-top: 30px;
+	}
+	.elementor-18297 .elementor-element.elementor-element-aacd9f4 > .elementor-widget-container {
+		padding: 0px 0px 22px 0px;
+	}
+}
+@media screen and (max-width: 420px) {
+	.elementor-18332 .elementor-element.elementor-element-904acf9, .elementor-18334 .elementor-element.elementor-element-54f65f2, .elementor-19349 .elementor-element.elementor-element-163929b, .elementor-18601 .elementor-element.elementor-element-1ff4297, .elementor-18338 .elementor-element.elementor-element-9b38c0f, .elementor-18660 .elementor-element.elementor-element-2734390, .ps-20-bt-50 {
+		padding: 0px 12px 50px 12px !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-0b9448e, .elementor-19579 .elementor-element.elementor-element-5591b41, .elementor-19679 .elementor-element.elementor-element-613c455, .elementor-19087 .elementor-element.elementor-element-e74c240, .elementor-19597 .elementor-element.elementor-element-78519b1, .elementor-19697 .elementor-element.elementor-element-0947d7c, .elementor-19723 .elementor-element.elementor-element-674eb59 {
+		padding: 0px 12px 0px 12px;
+	}
+	.dashboard-welcome-heading {
+		padding: 30px 12px 30px 12px !important;
+	}
+	.elementor-18321 .elementor-element.elementor-element-605ee2d {
+		padding: 15px 12px 15px 12px !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-e573538, .elementor-19679 .elementor-element.elementor-element-d9154a6, .elementor-19087 .elementor-element.elementor-element-01d56fa, .elementor-19597 .elementor-element.elementor-element-62c5384, .elementor-19697 .elementor-element.elementor-element-bcf0126, .elementor-19723 .elementor-element.elementor-element-4bc54a5 {
+		margin-top: 30px;
+		padding: 0px 12px 0px 12px !important;
+	}
+	.elementor-18297 .elementor-element.elementor-element-be2a2a7, .elementor-19679 .elementor-element.elementor-element-a5afa23, .elementor-19087 .elementor-element.elementor-element-4f91bcb, .elementor-19597 .elementor-element.elementor-element-2351294, .elementor-19697 .elementor-element.elementor-element-bf49ef0, .elementor-19723 .elementor-element.elementor-element-98212a8 {
+		margin-top: 30px;
+		padding: 0px 12px 30px 12px !important;
+	}
+	.elementor-19579 .elementor-element.elementor-element-c5069b2 {
+		margin-top: 30px;
+		padding: 0px 12px 50px 12px !important;
+	}
+	.elementor-19579 .elementor-element.elementor-element-30b1563 > .elementor-widget-container {
+		padding: 15px 0px 11px 0px;
+	}
+
+}
+/** Dashboard Pages Responsive CSS End **/
+
+/** Checkout Page Responsive CSS Start **/
+@media screen and (min-width: 2000px) {
+	.elementor-element.elementor-element-5fb60a7b > .elementor-element-populated, .elementor-element.elementor-element-3f116f64 > .elementor-element-populated {
+		display: grid;
+	}
+}
+@media screen and (max-width: 1440px) {
+	.checkout-heading h2, .custom-aero-checkout h2 {
+		font-size: 22px !important;
+		line-height: 32px !important;
+	}
+	.elementor-22067 .elementor-element.elementor-element-5fb60a7b > .elementor-element-populated {
+		padding: 52px 30px 44px 30px;
+	}
+	.wfacp-section.wfacp-hg-by-box.step_1.form_section_single_step_1_elementor-shopcheckout-step-2, .wfacp-section.wfacp_payment.form_section_your_order_0_elementor-shopcheckout-step-2.wfacp-section-title.wfacp-hg-by-box {
+		margin: 28px 0 0 0 !important;
+	}
+	h2.wfacp_section_heading.wfacp_section_title {
+		margin-bottom: 21px !important;
+	}
+	.elementor-22067 .elementor-element.elementor-element-a1fda1d > .elementor-widget-container {
+		margin: 11px 0px 32px 0px;
+	}
+	.elementor-22067 .elementor-element.elementor-element-b179562 > .elementor-widget-container {
+		margin: 63px 0px 12px 0px;
+	}
+	.elementor-22067 .elementor-element.elementor-element-88de1eb > .elementor-widget-container {
+		margin: 81px 0px 20px 0px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	.elementor-22067 .elementor-element.elementor-element-3f116f64 {
+		width: 45%;
+	}
+	.checkout-heading h2, .custom-aero-checkout h2 {
+		font-size: 20px !important;
+		line-height: 30px !important;
+	}
+	.elementor-22067 .elementor-element.elementor-element-5fb60a7b > .elementor-element-populated {
+		padding: 42px 10px 24px 10px;
+	}
+	.custom-aero-checkout #wfacp-e-form .wfacp_mb_mini_cart_wrap {
+		display: block !important;
+	}
+	.elementor-22067 .elementor-element.elementor-element-3dda422c #wfacp-e-form .wfacp_main_form .woocommerce-form-login-toggle .woocommerce-info {
+		padding: 0px !important;
+	}
+	.elementor-22067 .elementor-element.elementor-element-b179562 > .elementor-widget-container {
+		margin: 0px 0px 5px 0px;
+	}
+	.elementor-22067 .elementor-element.elementor-element-88de1eb > .elementor-widget-container {
+		margin: 35px 0px 10px 0px;
+	}
+	.elementor-22067 .elementor-element.elementor-element-3dda422c #wfacp-e-form .wfacp_collapsible_order_summary_wrap {
+		margin: 0px 10px 15px 10px !important;
+	}
+	.elementor-18659 .elementor-element.elementor-element-a53baca > .elementor-widget-container {
+		margin: 30px 0px 0px 0px;
+	}
+	.custom-email-confirmation-heading {
+		font-size: 25px;
+		line-height: 35px;
+	}
+	.custom-email-confirmation .lead-in, .custom-email-confirmation .view {
+		margin: 11px 0 0 0;
+	}
+	.custom-email-confirmation {
+		padding: 50px 20px 50px 20px;
+	}
+}
+@media screen and (max-width: 767px) {
+	.elementor-22067 .elementor-element.elementor-element-3f116f64 {
+		width: 100%;
+	}
+	.elementor-22067 .elementor-element.elementor-element-5fb60a7b > .elementor-element-populated {
+		padding: 24px 20px 35px 20px;
+		background: #FAFAFC;
+	}
+	.elementor-22067 .elementor-element.elementor-element-3dda422c #wfacp-e-form .wfacp_collapsible_order_summary_wrap {
+		margin: 0px 0px 15px 0px !important;
+	}
+	.elementor-22067 .elementor-element.elementor-element-88de1eb .elementor-image-box-wrapper {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	button.button.wfacp-login-btn {
+		padding: unset !important;
+	}
+	.elementor-18659 .elementor-element.elementor-element-4dd2f51 > .elementor-widget-container {
+		padding: 30px 20px 0px 20px;
+	}
+	.custom-confirmation .woocommerce-order-details table.order_details:last-child th.product-name {
+		width: unset;
+		border: 0 !important;
+	}
+	.custom-confirmation .order_details {
+		display: grid;
+		grid-row-gap: 10px;
+	}
+	.custom-confirmation .order_details li {
+		border: 0;
+	}
+	.custom-confirmation .order_details li {
+		border-right: 0 !important;
+		border-bottom: 1px dashed var(--ast-border-color);
+		padding: 0 0 8px 0 !important;
+		margin: 0 0 5px 0 !important;
+	}
+	.custom-confirmation p {
+		margin-top: 0;
+		margin-bottom: 25px;
+	}
+	.elementor-18659 .elementor-element.elementor-element-a53baca > .elementor-widget-container {
+		margin: 10px 0px 0px 0px;
+		padding: 0 !important;
+	}
+	.custom-confirmation tbody td, .custom-confirmation tfoot th, .custom-confirmation tfoot td, .custom-confirmation .order_details, .custom-confirmation thead th {
+		width: 100% !important;
+	}
+}
+
+/** Checkout Pages Responsive CSS End **/

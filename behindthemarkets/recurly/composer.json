@@ -1,0 +1,6 @@
+{
+    "require": {
+        "recurly/recurly-client": "^4.9",
+        "predis/predis": "^2.2"
+    }
+}

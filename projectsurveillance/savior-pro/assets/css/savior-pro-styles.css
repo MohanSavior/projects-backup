@@ -1,0 +1,396 @@
+/** Homepage CSS Starts **/
+#menu-main-menu .menu-item-1856, #menu-main-menu .menu-item-1857 {
+	display: none;
+}
+.pp-advanced-menu .sub-arrow {
+	font-size: 10px;
+	padding-left: 5px;
+}
+.elementor-element.elementor-element-a095953 .elementor-button-text {
+	text-decoration: underline;
+}
+.elementor-66 .elementor-element.elementor-element-d11a2d7 .pp-advanced-menu--main .pp-advanced-menu--dropdown {
+	min-width: 337px;
+	width: 337px !important;
+}
+.elementor-element.elementor-element-d11a2d7 .current-menu-item, .elementor-element.elementor-element-d11a2d7 .menu-item:hover {
+	background: #FFFFFF;
+	filter: drop-shadow(0px 5px 20px #E8E8E8);
+}
+.elementor-66 .elementor-element.elementor-element-d11a2d7 .pp-advanced-menu--main .pp-advanced-menu--dropdown a {
+	word-wrap: break-word;
+	white-space: -moz-pre-wrap;
+	white-space: pre-wrap;
+}
+.elementor-66 .elementor-element.elementor-element-a93cf66 {
+	width: 67.67%;
+}
+.elementor-66 .elementor-element.elementor-element-532ddf7 {
+	width: 32.33%;
+}
+.elementor-14 .elementor-element.elementor-element-225b0cf > .elementor-container {
+	margin-left: 0;
+}
+.elementor-14 .elementor-element.elementor-element-4960cc6 > .elementor-container {
+	min-height: 300px;
+	height: 300px;
+	margin-right: 0px;
+}
+.elementor-element.elementor-element-40345be h2 span {
+	color: rgba(255, 255, 255, 0.7);
+}
+.footer-menu .pp-advanced-menu li {
+	position: relative;
+	padding-left: 16px !important;
+}
+.footer-menu .pp-advanced-menu li:before {
+	content: "\f054";
+	font-family: "Font Awesome 5 Free";
+	background: transparent !important;
+	font-size: 12px;
+	color: #DEAD6E;
+	position: absolute;
+	left: 0;
+	top: 8px;
+}
+.footer-menu .pp-advanced-menu li:hover:before, .footer-menu .pp-advanced-menu .current-menu-item:before {
+	color: #CC3333;
+}
+.elementor-260 .elementor-element.elementor-element-b60598e.pp-info-box-left .pp-info-box-icon-wrap {
+	width: 26% !important;
+}
+.elementor-260 .elementor-element.elementor-element-b60598e .pp-info-box-content {
+	width: 74% !important;
+}
+.red-heading {
+	color: #CC3333;
+}
+.golden-heading {
+	color: #DEAD6E;
+}
+.review-slider .pp-arrow-prev, .review-slider .pp-arrow-next {
+	top: -40px;
+	left: unset !important;
+	right: 0px;
+}
+.review-slider .pp-arrow-prev {
+	right: 65px;
+}
+.services-parent-box > .elementor-element-populated {
+	overflow: hidden;
+}
+.services-bottom-box {
+	z-index: 3;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-webkit-transform: rotateX(0);
+	transform: rotateX(0);
+	-webkit-transform: rotateY(0);
+	transform: rotateY(0);
+	-webkit-transition-duration: .5s;
+	transition-duration: .5s;
+	-webkit-transition-property: all;
+	transition-property: all;
+	-webkit-transition-timing-function: ease;
+	transition-timing-function: ease;
+	text-align: center;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.services-parent-box > .elementor-element-populated:hover .services-bottom-box {
+	top: 0;
+}
+.services-parent-box > .elementor-element-populated:hover .services-heading {
+	opacity: 0;
+}
+.elementor-14 .elementor-element.elementor-element-267bff2 {
+	width: 58.5%;
+}
+.elementor-14 .elementor-element.elementor-element-790bc4b {
+	width: 41.5%;
+}
+.elementor-element.elementor-element-817d082 > .elementor-container {
+	column-gap: 32px;
+}
+.elementor-element.elementor-element-b60598e .pp-info-box-description {
+	height: 196px;
+}
+.services-parent-box .pp-info-box-description {
+	height: 112px !important;
+}
+.mCSB_draggerRail {
+	height: 200px !important;
+}
+.elementor-element.elementor-element-eeb6492, .elementor-element.elementor-element-e2b6b03, .elementor-element.elementor-element-2d18f14, .elementor-element.elementor-element-dfa73df {
+	position: relative;
+}
+.elementor-element.elementor-element-eeb6492:after, .elementor-element.elementor-element-2d18f14:after {
+	content: '';
+	background: url(http://projectsurveillance.mysites.io/wp-content/uploads/2023/02/decor-1.png);
+	width: 250px;
+	height: 623px;
+	position: absolute;
+	right: 0;
+	top: 0px;
+	z-index: -1;
+}
+.elementor-element.elementor-element-e2b6b03:before, .elementor-element.elementor-element-dfa73df:before {
+	content: '';
+	background: url(http://projectsurveillance.mysites.io/wp-content/uploads/2023/02/decor-2.png);
+	width: 250px;
+	height: 623px;
+	position: absolute;
+	left: 0;
+	bottom: 0px;
+	z-index: -1;
+}
+.elementor-element.elementor-element-8b08a1d .elementor-button-text {
+	text-decoration: underline;
+}
+/** Homepage CSS Ends **/
+
+/** About/Contact Page CSS Starts **/
+.pp-breadcrumbs-separator {
+	margin-top: 5px;
+}
+.pp-contact-form-description {
+	margin: 0px 0px 32px 0px;
+}
+#input_1_6 {
+	padding-top: 10px;
+}
+.contact-icon-box .elementor-icon-box-content {
+	background: #FFFFFF;
+	padding: 40px 26px 44px 26px;
+}
+.contact-icon-box a {
+	color: #141439;
+}
+.contact-icon-box a:hover {
+	color: #CC3333;
+}
+.contact-icon-box .elementor-icon-box-content {
+	height: 209px;
+	background: #FFFFFF;
+	padding: 40px 26px 44px 26px;
+}
+.gform_validation_errors {
+	display: none;
+}
+.pp-contact-form-description span {
+	color: #CC3333;
+}
+.gfield_validation_message, .instruction.validation_message {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: transparent !important;
+}
+.gform_footer.top_label {
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.elementor-28 .elementor-element.elementor-element-f35ea31, .elementor-1096 .elementor-element.elementor-element-075262d {
+	width: 55.5%;
+}
+.elementor-28 .elementor-element.elementor-element-17333c9, .elementor-1096 .elementor-element.elementor-element-4d02689 {
+	width: 44.5%;
+}
+.gform_confirmation_message p {
+	margin-bottom: 0;
+}
+.gfield_label {
+	margin-left: 14px;
+}
+.ps-desc p:not(:last-child), .ps-small-subheading p:not(:last-child) {
+	margin-bottom: 16px;
+}
+.ps-desc p:last-child, .ps-small-subheading p:last-child {
+	margin-bottom: 0;
+}
+.ps-desc strong {
+	color: #343594;
+}
+.elementor-18 .elementor-element.elementor-element-c8cdd2d .pp-info-box-title span {
+	color: #D9DAF2;
+}
+.ginput_container_email, .ginput_container_phone, #field_2_10 .ginput_container, #gform_2 .ginput_container_date {
+	position: relative;
+}
+.ginput_container_email:after, .ginput_container_phone:after {
+	font-family: 'surveillance-icons' !important;
+	color: #CBCCCD;
+	position: absolute;
+	top: 11px;
+	right: 15px;
+}
+.ginput_container_email:after {
+	content: "\e901";
+}
+.ginput_container_phone:after {
+	content: "\e905";
+}
+li.pp-breadcrumbs-item.pp-breadcrumbs-item-current {
+	color: #FFFFFF;
+	font-family: "DM Sans", Sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 17px;
+	margin: 4px 0 0;
+}
+#field_2_10 .ginput_container:after, #gform_2 .ginput_container_date:after {
+	font-family: "Font Awesome 5 Free" !important;
+	color: #CBCCCD;
+	position: absolute;
+	top: 11px;
+	right: 15px;
+}
+#field_2_10 .ginput_container:after {
+	content: "\f002";
+}
+#gform_2 .ginput_container_date:after {
+	content: "\f078";
+	font-size: 10px;
+}
+#input_2_17 label, #field_2_18 label {
+	color: #190B21;
+}
+/** About/Contact Page CSS Ends **/
+
+/** Services Page CSS Starts **/
+.elementor-element.elementor-element-013b17d .pp-advanced-tabs-wrapper .pp-advanced-tabs-title {
+	width: 20% !important;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-left: 1px solid #FFFFFF;
+}
+body.page-id-20 #menu-footer-menu-3 li:before {
+	color: #DEAD6E;
+}
+body.page-id-20 #menu-footer-menu-3 li:hover:before {
+	color: #CC3333;
+}
+/** Services Page CSS Ends **/
+
+/** Request a Quote Page CSS Starts **/
+.request-quote-form .gform_heading, .request-quote-form .gf_progressbar.gf_progressbar_blue, div#gfield_instruction_2_18 {
+	display: none;
+}
+.request-quote-form .gf_progressbar_title {
+	font-size: 18px !important;
+	line-height: 25px !important;
+	text-align: center !important;
+	color: #141439 !important;
+	margin-bottom: 8px !important;
+}
+.req-quote-heading {
+	font-family: 'Montserrat';
+	font-weight: 700;
+	font-size: 32px;
+	line-height: 38px;
+	text-align: center;
+	letter-spacing: 0.03em;
+	text-transform: uppercase;
+	color: #343594;
+}
+.req-quote-desc {
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 28px;
+	text-align: center;
+	color: #141439;
+	margin: 8px 0px 8px 0px;
+}
+.req-quote-page-heading {
+	font-weight: 700;
+	font-size: 22px;
+	line-height: 31px;
+	color: #141439;
+}
+.required-msg {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	color: #8A8C8F;
+	margin: 0px 0px 0px 0px;
+}
+.required-msg span {
+	color: #CC3333;
+}
+.request-quote-form .gform_page_footer.top_label {
+	padding: 0 !important;
+	margin: 0 !important;
+	text-align: center !important;
+}
+#input_2_14, #input_2_15 {
+	width: 100%;
+}
+#gform_fields_2_2 {
+	grid-column-gap: 5%;
+}
+.request-quote-form .gform_previous_button {
+	border: 0 !important;
+	background: transparent !important;
+	color: #8A8C8F !important;
+	padding: 11px 0px !important;
+	position: absolute;
+	left: 0px;
+}
+#input_2_12 {
+	padding-top: 12px;
+}
+#field_2_18 {
+	margin-top: -17px;
+	display: flex;
+}
+#field_2_18 label {
+	width: max-content;
+}
+#input_2_18 {
+	height: 25px;
+	position: relative;
+	top: -5px;
+	left: 10px;
+	font-size: 14px;
+}
+.elementor-1537 .elementor-element.elementor-element-767c925 .elementor-swiper-button, .elementor-1537 .elementor-element.elementor-element-767c925 .elementor-swiper-button {
+	padding: 15px 15px;
+	background: #F7F8FC;
+	border-radius: 7.28205px;
+}
+.elementor-1537 .elementor-element.elementor-element-767c925 .elementor-swiper-button:hover i {
+	color: #343594;
+}
+.elementor-element.elementor-element-767c925 .elementor-swiper-button.elementor-swiper-button-prev {
+	left: 18px;
+}
+.elementor-element.elementor-element-767c925 .elementor-swiper-button.elementor-swiper-button-next {
+	right: 19px;
+}
+.elementor-element.elementor-element-dc517aa ul {
+	margin: 0 0 0 25px;
+}
+.elementor-element.elementor-element-dc517aa > .elementor-widget-container {
+	height: 250px;
+}
+.elementor-element.elementor-element-dc517aa .mCSB_dragger_bar {
+	background: #343594 !important;
+}
+.elementor-element.elementor-element-dc517aa .mCSB_draggerRail {
+	background: #CBCCCD!important;
+}
+.elementor-element.elementor-element-dc517aa p {
+	margin-bottom: 21px;
+}
+.elementor-element.elementor-element-dc517aa .mCSB_container {
+	margin-right: 22px;
+}
+.elementor-element.elementor-element-9788e2f .pp-filter-current {
+	font-weight: 700;
+	text-decoration: underline;
+} 
+/** Request a Quote Page CSS Ends **/

@@ -1,0 +1,611 @@
+/* Header responsive CSS Start */
+
+@media (max-width:767px) {
+	.elementor-element.user-info-cls.elementor-widget .elementor-image-box-wrapper .elementor-image-box-content {
+		display: none;
+	}
+	.elementor-element.user-info-cls.elementor-widget .elementor-image-box-wrapper {
+		text-align: left;
+	}
+	.elementor-element.user-info-cls.elementor-widget .elementor-image-box-wrapper figure.elementor-image-box-img {
+		width: 39%;
+	}
+	.elementor-element.user-pg-list>.elementor-widget-container {
+		width: 150px;
+	}
+	.mbl-menu-cls.menu-item {
+		display: block !important;
+	}
+}
+
+/* Header responsive CSS End */
+
+/* Footer responsive CSS Start */
+
+@media (max-width:1024px) {
+	.elementor-element.bottom-footer-list-cls.elementor-widget ul.elementor-icon-list-items {
+		justify-content: end;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-element.footer-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item,
+	.elementor-element.bottom-footer-list-cls.elementor-widget ul.elementor-icon-list-items,
+	.elementor-element.footer-product-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		justify-content: center;
+	}
+	.elementor-82 .elementor-element.elementor-element-4709a7e .elementor-widget-container {
+		max-width: 280px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+/* Footer responsive CSS End */
+
+/* Home page responsive css start */
+
+@media (max-width:1542px) {
+	.elementor-357 .elementor-element.elementor-element-b9671fb,
+	.elementor-357 .elementor-element.elementor-element-ec36569 {
+		width: 50% !important;
+	}
+}
+
+@media (max-width:1024px) {
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 46px;
+		line-height: 51px;
+	}
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-second-text {
+		font-size: 16px;
+		line-height: 27px;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 32px;
+		line-height: 36px;
+	}
+	.metric-sec-left-col-cls:before {
+		width: 100%;
+		left: -93px;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-right: 10px !important;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item span.elementor-icon-list-text {
+		font-size: 16px;
+		line-height: 27px;
+	}
+	.elementor-element.seller-feat-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-right: 5px !important;
+		min-height: 81px;
+	}
+	.elementor-element.profitable-startups-sec-cls.elementor-widget .elementor-widget-container {
+		padding: 40px 20px;
+	}
+	.elementor-element.profitable-startups-sec-cls.elementor-widget .elementor-widget-container .elementor-image-box-title {
+		font-size: 20px;
+		line-height: 26px;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-left: 30px !important;
+	}
+	.data-sec-inner-col-cls:after {
+		width: 240px;
+		height: 240px;
+		right: -114px;
+	}
+}
+
+@media (max-width:900px) {
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 38px;
+		line-height: 43px;
+	}
+}
+
+@media (max-width:834px) {
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 30px;
+		line-height: 35px;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 26px;
+		line-height: 30px;
+	}
+	.newsletter-main-sec-cls:before {
+		width: 400px;
+		height: 300px;
+	}
+}
+
+@media (max-width:767px) {
+	.hero-sec-col-let {
+		justify-content: left;
+		width: 100%;
+	}
+	.data-sec-inner-col-cls {
+		margin: 0 auto;
+	}
+	.elementor-114 .elementor-element.elementor-element-a23dab9 {
+		max-width: 280px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 22px;
+		line-height: 26px;
+	}
+	.elementor-element.main-heading-cls.elementor-widget .pp-dual-heading span.pp-second-text {
+		font-size: 16px;
+		line-height: 27px;
+	}
+	.elementor-element.hero-sec-heading-cls.elementor-widget .pp-dual-heading span.pp-first-text {
+		font-size: 26px;
+		line-height: 31px;
+	}
+}
+
+@media (max-width:641px) {
+	.elementor-element.newsletter-form-cls form .gform_footer input {
+		min-height: auto;
+		line-height: 24px !important;
+	}
+}
+
+@media (max-width:390px) {
+	.elementor-element.newsletter-form-cls form {
+		flex-direction: column;
+	}
+	.elementor-element.newsletter-form-cls form .gform_footer {
+		width: 100%;
+	}
+	.elementor-element.newsletter-form-cls form .gform_footer input {
+		width: 100%;
+	}
+}
+
+/* Home page responsive css end */
+
+/* About us page responsive css start */
+
+@media (max-width:1024px) {
+	.elementor-element.testimonial-sec-cls.elementor-widget .pp-testimonials-wrap .pp-testimonials .pp-slider-arrow.pp-arrow {
+		bottom: -60px;
+	}
+	.testimonials-main-sec-cls:before {
+		width: 150px;
+		height: 100px;
+		background-size: contain;
+		top: 134px;
+	}
+	.our-team-img-col-cls:before {
+		width: 240px;
+		height: 200px;
+		background-size: contain;
+		left: -85px;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-column.elementor-element.our-team-img-col-cls {
+		max-width: 350px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	.elementor-element.testimonial-sec-cls.elementor-widget .pp-testimonials-wrap .pp-testimonials .pp-slider-arrow.pp-arrow {
+		bottom: -18px;
+	}
+	.testimonials-main-sec-cls:before {
+		right: 0;
+		top: 122px;
+		width: 100px;
+		height: 50px;
+	}
+}
+
+@media (max-width:430px) {
+	.elementor-1396 .elementor-element.elementor-element-7dee8f21 .pp-slider-arrow {
+		font-size: 20px !important;
+	}
+	.elementor-element.testimonial-sec-cls.elementor-widget .pp-testimonials-wrap .pp-testimonials .pp-slider-arrow.pp-arrow {
+		bottom: 0;
+	}
+}
+
+/* About us page responsive css end */
+
+/* Contact us page responsive css start */
+
+@media (max-width:1024px) {
+	.elementor-element.contact-us-form-cls.elementor-widget .gform_wrapper form .gform_body fieldset .ginput_complex {
+		flex-direction: column;
+		gap: 20px;
+	}
+	.elementor-element.contact-form-cls .gform_wrapper form .gform_body .gform_fields fieldset .ginput_complex span {
+		width: 100%;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-element.address-sec-cls.elementor-widget .elementor-icon-box-wrapper {
+		display: flex;
+		flex-direction: row;
+		text-align: left;
+		gap: 15px;
+	}
+	.elementor-element.address-sec-cls.elementor-widget .elementor-icon-box-wrapper .elementor-icon-box-icon {
+		margin-top: 4px;
+	}
+	.elementor-element.contact-us-form-cls.elementor-widget form fieldset#field_4_6 .ginput_container .gfield_checkbox .gchoice label {
+		font-size: 14px;
+		line-height: 22px;
+	}
+}
+
+@media (max-width:641px) {
+	.elementor-element.contact-us-form-cls.elementor-widget form .gform_footer input {
+		line-height: inherit !important;
+		min-height: inherit !important;
+	}
+}
+
+/* Contact us page responsive css end */
+
+/* Sign up page responsive css start */
+
+@media (max-width:641px) {
+	.elementor-element.sign-up-form-cls .pp-contact-form form .gform_body.gform-body .gform_page .gform_page_footer input.button {
+		line-height: inherit !important;
+		min-height: inherit !important;
+		padding: 15px 10px;
+	}
+	.elementor-element.sign-up-form-cls.elementor-widget form .gform_fields .address-field-cls .ginput_complex {
+		flex-direction: column;
+	}
+	.elementor-element.sign-up-form-cls.elementor-widget form .gform_fields .gfield.address-field-cls .ginput_container_address span#input_5_11_3_container,
+	.elementor-element.sign-up-form-cls.elementor-widget form .gform_fields .gfield.address-field-cls .ginput_container_address span#input_5_11_4_container {
+		margin-bottom: 20px;
+	}
+}
+
+@media (min-height:1112px) {
+	.elementor-976 .elementor-element.elementor-element-48c0530>.elementor-container {
+		min-height: 80vh;
+	}
+}
+
+/* Sign up page responsive css end */
+
+/* Login page responsive css start */
+
+@media (max-width:767px) {
+	.elementor-element.icon-gred-bg-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		justify-content: center;
+	}
+}
+
+@media (min-height:1112px) {
+	.elementor-773 .elementor-element.elementor-element-37eb6b0>.elementor-container {
+		min-height: 81vh;
+	}
+}
+
+/* Login page responsive css end */
+
+/* Pricing page responsive css start */
+
+@media (max-width:850px) {
+	.elementor-element.seller-tier-head-cls.pp-dual-heading-inline.elementor-widget .elementor-widget-container {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	.elementor-element.seller-tier-head-cls.pp-dual-heading-inline.elementor-widget+.elementor-element.pp-dual-heading-block.elementor-widget .elementor-widget-container {
+		padding-left: 10px;
+	}
+	.elementor-element.seller-tier-head-cls.pp-dual-heading-inline.elementor-widget+.elementor-element.pp-dual-heading-block.elementor-widget .elementor-widget-container span.pp-first-text {
+		font-size: 24px;
+		line-height: 28px;
+	}
+	.elementor-element.seller-tier-head-cls.pp-dual-heading-inline.elementor-widget+.elementor-element.pp-dual-heading-block.elementor-widget .elementor-widget-container span.pp-second-text {
+		font-size: 12px;
+		line-height: 20px;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-element.elementor-element-2a5b22c.pricing-feat-list-cls.elementor-widget ul.elementor-icon-list-items {}
+	.elementor-element.elementor-element-c79d36b.pricing-feat-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item,
+	.elementor-element.elementor-element-2a5b22c.pricing-feat-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		padding-left: 10px !important;
+	}
+	.elementor-element.seller-feat-list-cls.elementor-widget ul.elementor-icon-list-items li.elementor-icon-list-item {
+		min-height: inherit;
+	}
+	.elementor-element.pricing-feat-list-cls ul.elementor-icon-list-items li.elementor-icon-list-item {
+		min-height: inherit;
+	}
+}
+
+/* Pricing page responsive css end */
+
+/* Marketplace page responsive css start */
+
+@media (max-width:1108px) {
+	.elementor-element.search-form-cls.elementor-widget {
+		max-width: 75%;
+		width: 100%;
+	}
+}
+
+@media (max-width:1024px) {
+	.search-filter-main-cls header h2 {
+		font-size: 16px;
+	}
+	.taxonomy-list-cls label {
+		font-size: 15px;
+	}
+}
+
+@media (max-width:991px) {
+	.elementor-element.search-form-cls.elementor-widget {
+		max-width: 73%;
+	}
+}
+
+@media (max-width:919px) {
+	.elementor-element.search-form-cls.elementor-widget {
+		max-width: 70%;
+	}
+}
+
+@media (max-width:850px) {
+	.price-input {
+		display: block;
+	}
+	.price-input .field {
+		width: 42%;
+		display: inline-block;
+	}
+	.price-input .separator {
+		width: auto;
+		display: inline-block;
+	}
+}
+
+@media (max-width:829px) {
+	.elementor-element.search-form-cls.elementor-widget {
+		max-width: 68%;
+	}
+}
+
+@media (max-width:778px) {
+	.elementor-element.search-form-cls.elementor-widget {
+		max-width: 66%;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-column.search-filter-main-col-cls>.elementor-widget-wrap {
+		display: block;
+	}
+	.elementor-element.search-form-cls.elementor-widget {
+		max-width: 100%;
+		margin-bottom: 20px;
+	}
+	.elementor-element.search-form-cls.elementor-widget>.elementor-widget-container {
+		padding: 0;
+	}
+	.elementor-element.all-filter-btn-cls.elementor-widget, .elementor-562 .elementor-element.elementor-element-2b453ba {
+		width: 49.3%;
+		display: inline-block;
+		max-width: 100%;
+	}
+	.elementor-element.filter-result-main-sec.elementor-widget {
+		top: 81px;
+		left: 0;
+		right: auto;
+	}
+}
+
+/* Marketplace page responsive css end */
+
+/* Marketplace page responsive css start */
+
+@media (max-width:1024px) {
+	.elementor-element.single-post-feature-img {
+		left: 10px;
+		width: 150px;
+		height: 150px;
+		top: -72px;
+	}
+	.elementor-element.post-single-info-sec ul.elementor-icon-list-items li.elementor-icon-list-item {
+		margin-bottom: 15px;
+	}
+	.main-popup-cls {
+		position: fixed !important;
+	}
+	.feature-main-sec-cls .feature-box-cls .feature-title-cls h4 {
+		font-size: 18px;
+		line-height: 27px;
+	}
+	.feature-main-sec-cls .feature-box-cls {
+		padding: 20px;
+	}
+}
+
+@media (max-width:767px) {
+	.feature-main-sec-cls {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	.elementor-element.contact-form-cls .gform_wrapper form .gform_body .gform_fields fieldset .ginput_container.ginput_container_checkbox .gchoice label {
+		font-size: 16px;
+		line-height: 27px;
+		margin-left: 10px;
+	}
+	.elementor-626 .elementor-element.elementor-element-7dc564d.pp-dual-heading-block .pp-second-text,
+	.elementor-626 .elementor-element.elementor-element-6808639.pp-dual-heading-block .pp-second-text,
+	.elementor-626 .elementor-element.elementor-element-89f3e0e.pp-dual-heading-block .pp-second-text,
+	.elementor-626 .elementor-element.elementor-element-d5eb5af.pp-dual-heading-block .pp-second-text,
+	.elementor-724 .elementor-element.elementor-element-7dbf2b3 .pp-second-text {
+		font-size: 14px !important;
+		line-height: 22px !important;
+	}
+	.watchlists-tags-main-sec {
+		right: -42px;
+	}
+	.elementor-element.ad-photo-sec-cls img {
+		height: auto;
+	}
+}
+
+@media (max-width:641px) {
+	.elementor-element.contact-form-cls.elementor-widget form .gform_footer.top_label input[type="submit"] {
+		line-height: inherit;
+		min-height: auto;
+	}
+}
+
+@media (max-width:640px) {
+	.elementor-element.contact-form-cls .gform_wrapper form .gform_body .gform_fields fieldset .ginput_complex {
+		gap: 24px;
+	}
+	.elementor-element.offer-form-cls .gform_wrapper form .gform_body .gform_fields .upload-file-field .gfield_description {
+		font-size: 12px;
+	}
+}
+
+@media (max-width:480px) {
+	.feature-main-sec-cls {
+		grid-template-columns: repeat(1, 1fr);
+	}
+}
+
+/* Marketplace page responsive css end */
+
+/* Create business profile page responsive css start */
+
+@media (max-width:1024px) {
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .business-feature-img-cls .ginput_container_post_image span.ginput_full {
+		width: 200px;
+		height: 200px;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .business-feature-img-cls {
+		height: 200px;
+	}
+	body.page .elementor-element.create-business-profile-form-cls.elementor-widget .gform_wrapper form .gform_body.gform-body .gform_fields .gfield.business-name-field .ginput_container_post_title input {
+		font-size: 40px;
+		line-height: 45px;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .upload-photos-field-cls label.gfield_label {
+		font-size: 34px;
+		line-height: 38px;
+	}
+}
+
+@media (max-width:1018px) {
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields fieldset .gfield_repeater_item .gfield_repeater_cell:nth-child(2) {
+		width: 48%;
+	}
+}
+
+@media (max-width:767px) {
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields fieldset .gfield_repeater_item .gfield_repeater_cell,
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields fieldset .gfield_repeater_item .gfield_repeater_cell:nth-child(2) {
+		width: 100%;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields fieldset .gfield_repeater_item .gfield_repeater_cell:first-child {
+		margin-right: 0 !important;
+		margin-bottom: 20px;
+	}
+	body.page .elementor-element.create-business-profile-form-cls.elementor-widget .gform_wrapper form .gform_body.gform-body .gform_fields .gfield.business-name-field .ginput_container_post_title input {
+		font-size: 30px;
+		line-height: 35px;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .upload-photos-field-cls label.gfield_label {
+		font-size: 28px;
+		line-height: 32px;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .upload-photos-field-cls .ginput_container {
+		max-width: 100%;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .photo-field-cls .gform_fileupload_multifile .gform_drop_area span.gform_drop_instructions {
+		font-size: 17px;
+		line-height: 23px;
+	}
+	.photo-subtitle-field-cls .ginput_container input {
+		max-width: 100% !important;
+	}
+	div#field_6_22 {
+		margin-top: 20px;
+	}
+	.elementor-element.create-business-profile-form-cls .gform_body.gform-body .gform_fields .business-excerpt-cls textarea {
+		border-style: dashed;
+		border-width: 1px 1px 1px 1px;
+		border-color: #8B8B8B99;
+		padding: 10px;
+	}
+}
+
+@media (max-width:641px) {
+	.elementor-element.create-business-profile-form-cls.elementor-widget form input[type="submit"] {
+		line-height: initial !important;
+	}
+}
+
+/* Create business profile page responsive css end */
+
+/* Offer sent & single page responsive css start */
+
+@media (max-width:1024px) {
+	.offer-list-post-main-cls {
+		gap: 30px;
+	}
+	.offer-post-list-cls .header-btn-cls a {
+		font-size: 15px;
+	}
+}
+
+@media (max-width:767px) {
+	.offer-list-post-main-cls {
+		flex-direction: column;
+	}
+	.startup-post-sec-cls {
+		max-width: 100%;
+	}
+}
+
+@media (max-width:480px) {
+	.offer-header {
+		flex-direction: column;
+		gap: 25px;
+	}
+	.offer-header .offer-header-left-sec {
+		justify-content: space-between;
+	}
+	.offer-header .offer-header-right-sec .search-form form.offer-search-form {
+		justify-content: space-between;
+	}
+	.offer-post-list-cls .header-btn-cls {
+		flex-direction: column;
+		gap: 20px;
+	}
+	.offer-header .offer-header-right-sec .search-form form.offer-search-form input {
+		margin-left: 20px;
+	}
+	.offer-header .offer-header-right-sec .search-form form.offer-search-form:before {
+		left: 0;
+	}
+	.letter_of_intent_file_cls, .letter_of_intent_file_cls a {
+		font-size: 14px;
+		line-height: 18px;
+	}
+	.letter_of_intent_file_cls i {
+		font-size: 9px;
+	}
+	.letter_of_intent_file_cls a {
+		margin: 0px 10px;
+	}
+}
+
+/* Offer sent & single page responsive css end */

@@ -1,0 +1,4958 @@
+*,
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+a {
+	outline: 0px;
+	text-decoration: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+a:active,
+a:focus,
+a:hover,
+a:link {
+	text-decoration: none;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-ms-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+	outline: 0px;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 27px;
+	color: #777777;
+	overflow-x: hidden;
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+}
+
+.container {
+	max-width: 1194px;
+}
+
+/** Header Starts Here **/
+.header {
+	text-align: center;
+	background: #F5F7FA;
+	padding: 22px 0;
+}
+
+.header .navbar-brand {
+	padding: 0;
+	margin: 0;
+	display: inline-block;
+}
+
+.header .navbar-brand img {
+	width: 282px;
+}
+
+/** Header Ends Here **/
+/** Progress Bar Starts Here **/
+.stepwizard .progress {
+	background-size: auto auto;
+	background-color: rgba(255, 255, 255, 0);
+	background-image: repeating-linear-gradient(-45deg, transparent, transparent 9px, rgba(255, 175, 60, 0.25) 9px, rgba(255, 175, 60, 0.25) 15px);
+	border: 0;
+	box-shadow: none;
+	background-color: transparent;
+	border-radius: 0;
+	outline: none;
+	height: 16px;
+	margin: 0 0 80px;
+}
+
+.stepwizard .progress .progress-bar {
+	background: #FFAF3C;
+	position: relative;
+	overflow: visible;
+}
+
+.stepwizard .progress .progress-bar:after {
+	content: '';
+	position: absolute;
+	right: -15px;
+	top: 0;
+	display: block;
+	height: 0;
+	width: 0;
+	border-top: 16px solid #ffaf3c;
+	border-right: 16px solid transparent;
+}
+
+.loding-result {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.stepwizard .progress .progress-bar .count {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 12px;
+	line-height: 15px;
+	color: #fff;
+	display: inline-block;
+	letter-spacing: 0.02em;
+	padding: 0 2px 0 0;
+	text-align: right;
+	position: relative;
+	z-index: 1;
+}
+
+/** Progress Bar Ends Here **/
+/* Steps Common Css Starts Here */
+.card.stepwizard {
+	background: #FCFCFD;
+	border: 0;
+	border-radius: 0;
+}
+
+.stepwizard #msform {
+	text-align: center;
+	position: relative;
+	margin: 0px;
+}
+
+.stepwizard #msform .step-fieldset {
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+	left: 100px;
+	visibility: hidden;
+	animation: fadeInRight;
+	animation-duration: 0.5s;
+}
+
+.stepwizard #msform .step-fieldset:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+.stepwizard #msform .step-fieldset.step-01 {
+	max-width: 570px;
+	left: 0;
+	visibility: visible;
+}
+
+.stepwizard .form-card {
+	text-align: left;
+	border: 0;
+	position: relative;
+}
+
+.stepwizard .form-card h4 {
+	font-family: 'Montserrat', sans-serif;
+	display: block;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 24px;
+	color: #0A0A0A;
+	margin: 0 0 16px;
+}
+
+.stepwizard .form-card h4 span {
+	font-weight: 600;
+}
+
+.stepwizard #msform fieldset:not(:first-of-type) {
+	display: none;
+}
+
+.stepwizard #msform .dropdown.bootstrap-select {
+	width: 100%;
+}
+
+.stepwizard #msform .bootstrap-select>.dropdown-toggle {
+	font-family: 'Open Sans', sans-serif;
+	background: #FFFFFF;
+	color: #0A0A0A;
+	border: 1px solid #F2F2F2;
+	border-radius: 2px;
+	padding: 15px 25px;
+	height: 54px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	transition: all 0.3s;
+}
+
+.stepwizard #msform .bootstrap-select>.dropdown-toggle.show,
+.stepwizard #msform .bootstrap-select>.dropdown-toggle:hover {
+	border: 1px solid #FFAF3C;
+	box-sizing: border-box;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bootstrap-select .dropdown-toggle:focus,
+.bootstrap-select>select.mobile-device:focus+.dropdown-toggle {
+	outline: none !important;
+	outline-offset: 0px;
+	box-shadow: none;
+}
+
+.surfskating-filtering {
+	position: relative;
+}
+
+.stepwizard #msform .bootstrap-select>.dropdown-toggle:after {
+	color: #777;
+	display: inline-block;
+	margin-left: 3px;
+	vertical-align: 3px;
+	content: "";
+	border-top: 6px solid;
+	border-right: 6px solid transparent;
+	border-bottom: 0;
+	border-left: 6px solid transparent;
+}
+
+.stepwizard #msform .bootstrap-select>.dropdown-menu {
+	padding: 0;
+	background: #FFFFFF;
+	border: 1px solid #FFAF3C;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+	border-radius: 2px;
+}
+
+.stepwizard #msform .bootstrap-select .dropdown-menu li a {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	color: #0A0A0A;
+	padding: 8px 25px;
+}
+
+.stepwizard #msform .bootstrap-select .dropdown-menu li a:hover,
+.stepwizard #msform .bootstrap-select .dropdown-item.active,
+.stepwizard #msform .bootstrap-select .dropdown-item:active {
+	background: #FAFAFA;
+}
+
+.stepwizard #msform .bootstrap-select .dropdown-menu .inner::-webkit-scrollbar-track {
+	-webkit-box-shadow: none;
+	background-color: transparent;
+}
+
+.stepwizard #msform .bootstrap-select .dropdown-menu .inner::-webkit-scrollbar {
+	width: 4px;
+	background-color: transparent;
+}
+
+.stepwizard #msform .bootstrap-select .dropdown-menu .inner::-webkit-scrollbar-thumb {
+	background-color: #777;
+	border: 0px;
+	border-radius: 2px;
+}
+
+.stepwizard #msform .step-01 .form-card .custom-select {
+	position: relative;
+}
+
+.stepwizard #msform .step-01 .form-card p {
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	text-align: right;
+	color: #777777;
+	width: 45px;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.stepwizard #msform .step-01 .dropdown.bootstrap-select {
+	width: calc(100% - 45px);
+}
+
+.stepwizard #msform input,
+.stepwizard #msform textarea {
+	padding: 8px 15px 8px 15px;
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	margin-bottom: 25px;
+	margin-top: 2px;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
+	color: #2C3E50;
+	background-color: #ECEFF1;
+	font-size: 16px;
+	letter-spacing: 1px;
+}
+
+.stepwizard #msform input:focus,
+.stepwizard #msform textarea:focus {
+	-moz-box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	outline: none;
+}
+
+/** .Button Next Starts Here **/
+.stepwizard #msform .step-fieldset.step-01 .btn.action-button {
+	margin: 24px 0 0px;
+}
+
+.stepwizard #msform .btn.action-button {
+	width: 100%;
+	background: #FFAF3C;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 27px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	border: 0;
+	border-radius: 2px;
+	cursor: pointer;
+	padding: 20px 15px;
+	border-radius: 2px;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s;
+}
+
+.stepwizard #msform .btn.action-button:before,
+.stepwizard #msform .btn.action-button:after {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(-100px) skewX(-15deg);
+	content: "";
+}
+
+.stepwizard #msform .btn.action-button:before {
+	width: 60px;
+	background: rgba(255, 255, 255, 0.5);
+	filter: blur(30px);
+	opacity: 0.5;
+}
+
+.stepwizard #msform .btn.action-button:after {
+	width: 30px;
+	left: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	filter: blur(5px);
+}
+
+.stepwizard #msform .btn.action-button:hover {
+	background: #497E97;
+}
+
+.stepwizard #msform .btn.action-button:hover:before {
+	opacity: 1;
+}
+
+.stepwizard #msform .btn.action-button:hover:before,
+.stepwizard #msform .btn.action-button:hover:after {
+	transform: translateX(1000px) skewX(-15deg);
+	transition: all 1s ease;
+}
+
+.stepwizard #msform .btn:focus,
+.stepwizard #msform .btn:focus-visible {
+	outline: none;
+	box-shadow: none;
+}
+
+/** .Button Next Ends Here **/
+/** .Button Previous Starts Here **/
+.stepwizard #msform .btn.action-button-previous {
+	color: #BBBBBB;
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	-webkit-transition: all 0.3s;
+	transition: all 0.3s;
+	margin: 0px;
+	padding: 22px 12px;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	outline: none;
+	box-shadow: none;
+	align-items: center;
+}
+
+.stepwizard #msform .btn.action-button-previous .icon-arrow-left {
+	display: inline-block;
+	margin: 0 2px 0 0;
+	color: #bbb;
+	font-size: 2.062em;
+}
+
+.stepwizard #msform .btn.action-button-previous .icon-arrow-left:before {
+	display: inline-block;
+	content: "\f12c";
+	font-family: bootstrap-icons !important;
+	font-style: normal;
+	font-weight: normal !important;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	vertical-align: -0.125em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.stepwizard #msform .btn.action-button-previous:hover,
+.stepwizard #msform .btn.action-button-previous:focus {
+	color: #497E97;
+}
+
+.stepwizard #msform .btn.action-button-previous:hover .icon-arrow-left {
+	color: #497E97;
+	-webkit-animation: shakeArrow 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	animation: shakeArrow 1s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+fieldset#surf-step-09,
+fieldset#surf-step-01 {
+	max-width: 570px;
+	margin: 30px auto !important;
+}
+
+fieldset#surf-step-09 .step-head,
+fieldset#surf-step-01 .step-head {
+	margin-bottom: 20px;
+}
+
+fieldset#surf-step-09 input,
+fieldset#surf-step-01 input {
+	height: 54px;
+}
+
+fieldset#surf-step-09 label,
+fieldset#surf-step-01 label {
+	font-family: 'Montserrat', sans-serif;
+	display: block;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 24px;
+	color: #0A0A0A;
+	margin: 0 0 8px;
+}
+
+fieldset#surf-step-01 .form-card .form-group input,
+fieldset#surf-step-09 .form-card .form-group input {
+	background: #FFF;
+	border: 1px solid #F2F2F2;
+}
+
+/** Shake Arrow **/
+@-webkit-keyframes shakeArrow {
+
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-3px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(3px, 0, 0);
+	}
+}
+
+@keyframes shakeArrow {
+
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-3px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(3px, 0, 0);
+	}
+}
+
+/** .Button Previous Ends Here **/
+.stepwizard .card {
+	z-index: 0;
+	border: none;
+	position: relative;
+}
+
+/* Steps Common Css Ends Here */
+/** Step Head Starts Here **/
+.stepwizard .step-head {
+	text-align: center;
+}
+
+.stepwizard .step-head h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #497E97;
+	margin: 0;
+}
+
+.stepwizard .step-head h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 56px;
+	color: #0A0A0A;
+	margin: 4px 0 8px;
+}
+
+.stepwizard .step-head h2 span {
+	font-weight: 700;
+	color: #497E97;
+}
+
+.stepwizard .step-head p {
+	font-size: 20px;
+	line-height: 27px;
+	color: #777777;
+	margin: 0;
+}
+
+.stepwizard .step-head p span {
+	font-weight: 600;
+	color: #0A0A0A;
+}
+
+/** Step Head Ends Here **/
+/** Step Video Starts Here **/
+.stepwizard .step-video {
+	margin: 40px 0;
+}
+
+/** Step Video Ends Here **/
+/** Step 2 Starts Here **/
+.stepwizard #msform .step-fieldset.step-02 .form-card {
+	padding: 32px 0 0px;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-002 {
+	max-width: 570px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-002 .step-head {
+	width: 100vw;
+	margin-left: calc(-50vw + 50% + 0px);
+	padding-right: var(--bs-gutter-x, .75rem);
+	padding-left: var(--bs-gutter-x, .75rem);
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-002 .btn.action-button {
+	margin: 16px 0 0;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-002 .btn.action-button-previous {
+	margin: 16px 0 0;
+	float: left;
+	padding: 22px 10px 22px 0;
+}
+
+.stepwizard #msform .pl-115px {
+	padding-left: 110px;
+}
+
+.stepwizard #msform .step-fieldset.step-02 .btn.action-button,
+.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous {
+	display: flex;
+	position: relative;
+	z-index: 1;
+}
+
+.stepwizard #msform .step-fieldset.step-02 .btn.action-button {
+	width: 100%;
+	max-width: 265px;
+	justify-content: center;
+	float: right;
+	margin: -62px 0 0px;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button,
+.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button-previous {
+	margin: 0px 0 0px;
+}
+
+.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous {
+	float: right;
+	width: 210px;
+	margin: -62px 0 0px;
+	padding: 22px 10px;
+}
+
+.stepwizard #msform .step-fieldset.step-03.step-003 {
+	max-width: 570px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-03.step-003 .btn.action-button,
+.stepwizard #msform .step-fieldset.step-02.step-03.step-003 .btn.action-button-previous {
+	margin: 16px 0 0;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-03.step-003 .btn.action-button-previous {
+	float: left;
+}
+
+.welcom-page .surfskate-models {
+	padding: 70px 0;
+}
+
+.page-template-surfsketquiz-template-v2 .welcom-page {
+	padding: 0px;
+}
+
+/** Step 2 Ends Here **/
+/** Step 4 Starts Here **/
+.stepwizard .step-fieldset.step-04 .step-head h2 {
+	margin-bottom: 44px;
+}
+
+.stepwizard .step-fieldset.step-04 .form-card>.row {
+	--bs-gutter-x: 8px;
+}
+
+.stepwizard .control.control--radio.label-vertical-card {
+	height: 390px;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: center;
+	padding: 15px 15px 18px;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .control__indicator,
+.stepwizard .control.control--radio.label-horizontal-card .control__indicator {
+	visibility: hidden;
+	opacity: 0;
+	height: 0;
+	width: 0;
+}
+
+.stepwizard .control.control--radio.label-vertical-card span,
+.stepwizard .control.control--radio.label-horizontal-card span {
+	flex: 0 0 auto;
+	width: 100%;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .round-img,
+.stepwizard .control.control--radio.label-horizontal-card .round-img {
+	width: 142px;
+	height: 142px;
+	border-radius: 50%;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .round-img img,
+.stepwizard .control.control--radio.label-horizontal-card .round-img img {
+	border-radius: 50%;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .head,
+.stepwizard .control.control--radio.label-horizontal-card .head {
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 25px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #0A0A0A;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .head {
+	margin: 24px 0 16px;
+	text-align: center;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .sub-head,
+.stepwizard .control.control--radio.label-horizontal-card .sub-head {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #0A0A0A;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .sub-head {
+	margin: 0 0 16px;
+	text-align: center;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .sub-head i,
+.stepwizard .control.control--radio.label-horizontal-card .sub-head i {
+	font-style: normal;
+	color: #5A88A1;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .text,
+.stepwizard .control.control--radio.label-horizontal-card .text {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22.5px;
+	color: #777777;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .text {
+	text-align: center;
+	margin: 0 0 24px;
+}
+
+.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose,
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+	border: 1px solid #FFAF3C;
+	border-radius: 2px;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 15px;
+	text-align: center;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #FFAF3C;
+	width: 110px;
+	height: 36px;
+	padding: 10px 6px;
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.stepwizard .control.control--radio.label-vertical-card.isActive .btn.btn-choose,
+.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose:hover,
+.stepwizard .control.control--radio.label-horizontal-card.isActive .btn.btn-choose,
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose:hover {
+	color: #fff;
+	box-shadow: inset 10em 0 0 0 #FFAF3C, inset -10em 0 0 0 #FFAF3C;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose:focus,
+.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose:focus {
+	background: #FFAF3C;
+	color: #fff;
+}
+
+.stepwizard #msform .step-fieldset.step-04 .btn.action-button,
+.stepwizard #msform .step-fieldset.step-05 .btn.action-button {
+	float: right;
+	width: 100%;
+	max-width: 265px;
+	margin: 28px 0 0px;
+}
+
+.stepwizard #msform .step-fieldset.step-04 .btn.action-button-previous,
+.stepwizard #msform .step-fieldset.step-05 .btn.action-button-previous {
+	float: left;
+	padding-left: 2px;
+	margin: 28px 0 0px;
+	display: flex;
+}
+
+.stepwizard #msform .step-fieldset.step-04 .surfskate-models,
+.stepwizard #msform .step-fieldset.step-05 .surfskate-models {
+	margin-top: 145px;
+}
+
+/** Step 4 Ends Here **/
+/** Step 5 Starts Here **/
+.stepwizard .step-fieldset.step-05 {
+	max-width: 785px;
+}
+
+.stepwizard .step-fieldset.step-05 .step-head h2 {
+	margin-bottom: 40px;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card {
+	height: auto;
+	min-height: 180px;
+	padding: 18px 180px 18px 200px;
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 770px;
+	position: relative;
+	width: 100%;
+	margin: 0 auto 8px;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .round-img {
+	position: absolute;
+	left: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .text {
+	margin: 8px 0 14px;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show {
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 17px;
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #497E97;
+	padding: 0;
+	border: 0;
+	text-align: left;
+	letter-spacing: 0;
+	display: inline-block;
+	position: relative;
+	transition: transform 0.3s, letter-spacing 0.3s;
+	width: auto;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show:after {
+	height: 1px;
+	background: #497E97;
+	content: " ";
+	display: block;
+	margin: 0;
+	width: 100%;
+	left: 0;
+	bottom: 4px;
+	position: absolute;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show:hover {
+	color: #ffaf3c;
+	letter-spacing: 1px;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show:hover:after {
+	background: #ffaf3c;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+	position: absolute;
+	right: 25px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.stepwizard #msform .step-fieldset.step-05 .btn.action-button-previous {
+	margin-left: 10px;
+}
+
+.stepwizard #msform .step-fieldset.step-05 .btn.action-button {
+	margin-right: 6px;
+}
+
+/** Step 5 Ends Here **/
+/** Step 6 Starts Here **/
+.stepwizard .step-fieldset.step-06 .control.control--radio.label-vertical-card {
+	height: auto;
+	min-height: 435px;
+	padding: 12px 50px 18px;
+}
+
+/** Step 6 Ends Here **/
+/** Step 7 Starts Here **/
+.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .step-video {
+	margin: 0px;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button {
+	margin: -78px 0 14px;
+}
+
+.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button-previous {
+	margin: -78px 0 14px;
+}
+
+/** Step 7 Ends Here **/
+/** Step 8 Starts Here **/
+.stepwizard .step-fieldset.step-08 {
+	max-width: 950px;
+}
+
+.stepwizard #msform .step-fieldset.step-08 .btn.action-button-previous {
+	margin-left: 90px;
+}
+
+.stepwizard #msform .step-fieldset.step-08 .btn.action-button {
+	margin-right: 90px;
+}
+
+/** Step 8 Ends Here **/
+/** Step 9 Starts Here **/
+.stepwizard .step-fieldset.step-09 .control--checkbox {
+	min-height: 110px;
+	padding: 5px 20px 5px 80px;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.stepwizard .step-fieldset.step-09 .control--checkbox .control__indicator.chb-01 {
+	margin-top: -24px;
+}
+
+.stepwizard .step-fieldset.step-09 .control--checkbox .control__indicator.chb-02 {
+	margin-top: -36px;
+}
+
+.stepwizard .step-fieldset.step-09 .control--checkbox .control__indicator.chb-03 {
+	margin-top: -25px;
+}
+
+.stepwizard .step-fieldset.step-09 .control--checkbox .control__indicator.chb-04 {
+	margin-top: -3px;
+}
+
+/** Step 9 Ends Here **/
+/** Radio Checkbox **/
+.stepwizard .control {
+	display: block;
+	position: relative;
+	padding-left: 32px;
+	margin-bottom: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
+}
+
+.stepwizard .control:last-child {
+	margin-bottom: 0px;
+}
+
+.stepwizard .control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+.stepwizard .control__indicator {
+	position: absolute;
+	top: 4px;
+	left: 0;
+	height: 20px;
+	width: 20px;
+	background: #EDEBE9;
+	border-radius: 2px;
+}
+
+.stepwizard .control--checkbox {
+	background: #FFFFFF;
+	border: 1px solid #F2F2F2;
+	border-radius: 2px;
+}
+
+.stepwizard .control--checkbox.isActive {
+	border: 1px solid #FFAF3C;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.stepwizard .control--checkbox .control__indicator {
+	border: 1px solid #777777;
+	background: #fff;
+	height: 16px;
+	width: 16px;
+	outline: 8px solid rgba(242, 242, 242, 0.5);
+	left: 32px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.stepwizard .control--checkbox .head {
+	display: block;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	color: #0A0A0A;
+	margin: 0 0 8px;
+}
+
+.stepwizard .control--checkbox .text {
+	display: block;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: #777777;
+}
+
+.stepwizard .control--radio .control__indicator {
+	border-radius: 50%;
+}
+
+.stepwizard .control:hover input~.control__indicator,
+.stepwizard .control input:focus~.control__indicator {
+	background: #fff;
+}
+
+.stepwizard .control input:checked~.control__indicator {
+	background: #fff;
+}
+
+.stepwizard .control:hover input:not([disabled]):checked~.control__indicator,
+.stepwizard .control input:checked:focus~.control__indicator {
+	background: #fff;
+}
+
+.stepwizard .control input:disabled~.control__indicator {
+	background: #e6e6e6;
+	opacity: 0.6;
+	pointer-events: none;
+}
+
+.stepwizard .control__indicator:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+.stepwizard .control input:checked~.control__indicator:after {
+	display: block;
+}
+
+.stepwizard .control--checkbox .control__indicator:after {
+	left: 5px;
+	top: 0.08em;
+	width: 5px;
+	height: 10px;
+	border: solid #FFAF3C;
+	border-width: 0 2px 2px 0;
+	transform: rotate(45deg);
+}
+
+.stepwizard .control--checkbox input:disabled~.control__indicator:after {
+	border-color: #7b7b7b;
+}
+
+.stepwizard .control--radio .control__indicator:after {
+	left: 7px;
+	top: 7px;
+	height: 6px;
+	width: 6px;
+	border-radius: 50%;
+	background: #fff;
+}
+
+.stepwizard .control--radio input:disabled~.control__indicator:after {
+	background: #7b7b7b;
+}
+
+.stepwizard .control.control--radio {
+	margin-bottom: 8px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	color: #0A0A0A;
+	background: #FFFFFF;
+	border: 1px solid #F2F2F2;
+	border-radius: 2px;
+	padding: 14px 10px 14px 85px;
+	height: 54px;
+	transition: all 0.3s;
+}
+
+.stepwizard .control.control--radio.isActive {
+	border: 1px solid #FFAF3C;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.stepwizard .control.control--radio .control__indicator {
+	border-radius: 50%;
+	border: 1px solid #777777;
+	background: #fff;
+	width: 16px;
+	height: 16px;
+	outline: 8px solid rgba(242, 242, 242, 0.5);
+	top: 50%;
+	left: 34px;
+	transform: translateY(-50%);
+}
+
+.stepwizard .control.control--radio:hover input~.control__indicator,
+.stepwizard .control.control--radio input:focus~.control__indicator,
+.stepwizard .control.control--radio input:checked~.control__indicator,
+.stepwizard .control.control--radio:hover input:not([disabled]):checked~.control__indicator,
+.stepwizard .control.control--radio input:checked:focus~.control__indicator {
+	background: #fff;
+}
+
+.stepwizard .control--radio .control__indicator:after {
+	left: 4px;
+	top: 4px;
+	height: 6px;
+	width: 6px;
+	border-radius: 50%;
+	background: #FFAF3C;
+}
+
+/** Surfskate Models and Specifications Starts Here **/
+.surfskate-models {
+	background: #ECF6FA;
+	padding: 65px 0 100px;
+	text-align: left;
+	margin-top: 70px;
+}
+
+.surfskate-models h4 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #0A0A0A;
+	border-bottom: 1px solid #fff;
+	padding: 0 0 15px;
+	margin: 0 0 20px;
+}
+
+.surfskate-models h4 .total-cout {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	line-height: 20px;
+	color: #777777;
+}
+
+/** Filter Buttons Starts Here **/
+.surfskate-models:after,
+.surfskate-models:before {
+	content: '';
+	clear: both;
+	display: block;
+}
+
+.surfskate-models .surfskating-filters-btns-box {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 10px;
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn {
+	flex: 1 0 0%;
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	transition: all 0.3s;
+	outline: none;
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure {
+	background: #fff;
+	border-radius: 6px;
+	display: flex;
+	height: 94px;
+	width: 100%;
+	justify-content: center;
+	margin: 0 0 8px;
+	padding: 10px;
+	transition: all 0.3s;
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn:hover .figure {
+	box-shadow: 0px 2px 8px rgb(0 0 0 / 8%);
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure img {
+	width: auto;
+	max-width: calc(100% - 15px);
+	max-height: 100%;
+	height: auto;
+	display: flex;
+	align-self: center;
+	justify-self: center;
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn p {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 13px;
+	line-height: 16px;
+	text-align: center;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: #497E97;
+	transition: all 0.3s;
+}
+
+.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn:hover p {
+	color: #0A0A0A;
+}
+
+/** Filter Buttons Ends Here **/
+/** Filter Content and Item Starts Here **/
+.surfskate-models .surfskating-content {
+	padding: 30px 0 0;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 10px;
+}
+
+.surfskate-models .surfskating-content ul.surfskating-item {
+	list-style: none;
+	flex: 1 0 0%;
+	width: 100%;
+	max-width: 100%;
+	margin: 0 0 30px;
+}
+
+.surfskate-models .surfskating-content ul.surfskating-item li {
+	margin: 0 0 10px;
+	display: block;
+	height: auto !important;
+}
+
+.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details .figure {
+	background: #fff;
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	border-radius: 6px 6px 0px 0px;
+	height: 108px;
+	padding: 10px;
+	margin: 0 0 0px;
+	transition: all 0.3s;
+}
+
+.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details p {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 18px;
+	color: #0A0A0A;
+	background: #F7FBFD;
+	border-top: 1px solid #E7F0F5;
+	border-radius: 0px 0px 6px 6px;
+	padding: 8px;
+	min-height: 70px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+/** Filter Content and Item Ends Here **/
+.surfskate-models .surfskating-content .btn.btn-more-items {
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 19px;
+	text-align: center;
+	text-transform: uppercase;
+	color: #777777;
+	background: #FFFFFF;
+	border: 1px solid #E7F0F5;
+	border-radius: 6px;
+	padding: 10px 12px;
+	width: 170px;
+	margin: 0 auto;
+	transition: all 0.5s;
+}
+
+.surfskate-models .surfskating-content .btn.btn-more-items:hover {
+	box-shadow: inset 15em 0 0 0 #497E97, inset -15em 0 0 0 #497E97;
+	color: #fff;
+}
+
+.surfskate-models .surfskating-content .btn.btn-more-items:focus {
+	background: #497E97;
+	color: #fff;
+}
+
+.stepwizard #msform .surfskate-models .btn.action-button {
+	width: 270px;
+	height: 68px;
+	float: right !important;
+	margin: 35px 0 0 !important;
+}
+
+.stepwizard #msform .surfskate-models .btn.action-button-previous {
+	float: left !important;
+	margin: 35px 0 0 !important;
+	padding-left: 0px !important;
+	display: flex;
+}
+
+/** Surfskate Models and Specifications Ends Here **/
+/** Final Results Starts Here **/
+.step-fieldset.final-results h3 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #0A0A0A;
+	border-bottom: 1px solid #F2F2F2;
+	padding: 0 0 15px;
+	margin: 40px 0 0px;
+	text-align: left;
+}
+
+.final-results .surfskate-models {
+	background: #ECF6FA;
+	padding: 20px 10px;
+	margin-top: 0;
+}
+
+.final-results .surfskating-filters-btns-box.filtering-actions {
+	justify-content: center;
+}
+
+.final-results .surfskating-content.filtering-items-container {
+	justify-content: center;
+}
+
+.step-fieldset.final-results h3 span {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #777777;
+}
+
+/** Model Specifications Starts Here **/
+.step-fieldset.final-results .model-list {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 32px;
+}
+
+.step-fieldset.final-results .model-list .model-item {
+	flex: 0 0 auto;
+	width: calc(50% - 16px);
+	max-width: 100%;
+	padding: 0;
+	margin: 0 0 16px;
+	background: #FFFFFF;
+	border: 1px solid #E7F0F5;
+	border-radius: 6px;
+	display: flex;
+	column-gap: 32px;
+	min-height: 300px;
+	transition: all 0.3s;
+	align-items: center;
+}
+
+.step-fieldset.final-results .model-list .model-item.isActive,
+.step-fieldset.final-results .model-list .model-item:hover {
+	border: 1px solid #FFAF3C;
+	box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.step-fieldset.final-results .model-list .model-item .figure {
+	display: block;
+	flex: 0 0 auto;
+	width: calc(47% - 16px);
+	max-width: 100%;
+	padding: 20px 0 20px 20px;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp {
+	flex: 0 0 auto;
+	width: calc(53% - 16px);
+	max-width: 100%;
+	text-align: left;
+	padding: 20px 20px 20px 0;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp h4 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 26px;
+	line-height: 32px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #497E97;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp h5 {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #0A0A0A;
+	margin: 8px 0;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp h5 span {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #777777;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp p {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #777777;
+	padding: 0 0 22px;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp h6 {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 33px;
+	text-align: justify;
+	letter-spacing: 0.05em;
+	color: #103A58;
+	float: left;
+	display: inline-block;
+	padding: 0 10px 0 0;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp .btn.btn-modal {
+	font-family: 'Source Sans Pro', sans-serif;
+	font-weight: 600;
+	font-size: 15px;
+	line-height: 15px;
+	text-align: center;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #FFAF3C;
+	border: 1px solid #FFAF3C;
+	border-radius: 2px;
+	padding: 9px 5px;
+	width: 130px;
+	float: right;
+	transition: all 0.5s;
+}
+
+.step-fieldset.final-results .model-list .model-item.isActive .descp .btn.btn-modal,
+.step-fieldset.final-results .model-list .model-item .descp .btn.btn-modal:hover {
+	color: #fff;
+	box-shadow: inset 10em 0 0 0 #FFAF3C, inset -10em 0 0 0 #FFAF3C;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp .btn.btn-modal:hover {
+	color: #fff;
+	box-shadow: inset 10em 0 0 0 #FFAF3C, inset -10em 0 0 0 #FFAF3C;
+}
+
+.step-fieldset.final-results .model-list .model-item .descp .btn.btn-modal:focus {
+	background: #FFAF3C;
+	color: #fff;
+}
+
+/** Model Specifications Ends Here **/
+.step-fieldset.final-results .btn.btn-back-to-home {
+	margin: 40px auto 60px;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 27px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	background: #FFAF3C;
+	border-radius: 2px;
+	border: 0px;
+	width: 268px;
+	padding: 20px 15px;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s;
+}
+
+.step-fieldset.final-results .btn.btn-back-to-home:before,
+.step-fieldset.final-results .btn.btn-back-to-home:after {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(-100px) skewX(-15deg);
+	content: "";
+}
+
+.step-fieldset.final-results .btn.btn-back-to-home:before {
+	width: 60px;
+	background: rgba(255, 255, 255, 0.5);
+	filter: blur(30px);
+	opacity: 0.5;
+}
+
+.step-fieldset.final-results .btn.btn-back-to-home:after {
+	width: 30px;
+	left: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	filter: blur(5px);
+}
+
+.step-fieldset.final-results .btn.btn-back-to-home:hover {
+	background: #497E97;
+}
+
+.step-fieldset.final-results .btn.btn-back-to-home:hover:before {
+	opacity: 1;
+}
+
+.step-fieldset.final-results .btn.btn-back-to-home:hover:before,
+.step-fieldset.final-results .btn.btn-back-to-home:hover:after {
+	transform: translateX(1000px) skewX(-15deg);
+	transition: all 1s ease;
+}
+
+/** Product Modal Starts Here **/
+.modal.prod-modal {
+	background: rgba(90, 136, 161, 0.8);
+}
+
+.modal.prod-modal.show .modal-dialog {
+	animation: zoomIn;
+	animation-duration: 0.75s;
+}
+
+.modal.prod-modal .modal-dialog {
+	width: 100%;
+	max-width: 990px;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: 0 auto;
+}
+
+.modal.prod-modal .modal-content {
+	background: #FFFFFF;
+	border-radius: 6px;
+	border: 0px;
+}
+
+.modal.prod-modal .modal-content .modal-body {
+	padding: 34px;
+}
+
+.modal.prod-modal .modal-content .modal-body .prod-item {
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 70px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider {
+	flex: 0 0 auto;
+	width: calc(50% - 35px);
+	max-width: 100%;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp {
+	flex: 0 0 auto;
+	width: calc(50% - 35px);
+	max-width: 100%;
+	position: relative;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp h2 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 700;
+	font-size: 26px;
+	line-height: 36px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #497E97;
+	margin: 0 0 10px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp h3 {
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+	color: #0A0A0A;
+	margin: 0 0 15px;
+	position: relative;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-name {
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+	letter-spacing: 0.05em;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-price {
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 33px;
+	letter-spacing: 0.05em;
+	color: #103A58;
+	display: inline-block;
+	position: absolute;
+	right: 0px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp p {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: #777777;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp ul {
+	list-style: none;
+	margin: 0px -24px 0 -20px;
+	padding: 25px 0 0;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp ul li {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: center;
+	padding: 0.45em 25px 0.45em 20px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp ul li:nth-child(odd) {
+	background: #FCFCFD;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-name {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+	color: #0A0A0A;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-value {
+	font-weight: 700;
+	font-size: 16px;
+	line-height: 22px;
+	text-align: right;
+	letter-spacing: 0.05em;
+	color: #0A0A0A;
+}
+
+/** Product Slider Starts Here **/
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-indicators {
+	position: static;
+	margin: 8px 0 0;
+	justify-content: flex-start;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-indicators button {
+	width: 118px;
+	height: 98px;
+	background-color: #F2F2F2;
+	border: 1px solid transparent;
+	opacity: 1;
+	border-radius: 6px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	text-indent: 0px;
+	margin: 0 3px;
+	transition: all 0.4s;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-indicators button:hover,
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-indicators button.active {
+	background-color: #fff;
+	border: 1px solid #E7F0F5;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-indicators button img {
+	width: auto;
+	max-width: 60px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-inner {
+	width: 100%;
+	max-width: 100%;
+	border: 1px solid #E7F0F5;
+	border-radius: 6px;
+	height: 345px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	border: 1px solid #E7F0F5;
+	border-radius: 6px;
+	height: 345px;
+	padding: 10px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item img {
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	max-height: 100%;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-inner .carousel-item {
+	width: 100%;
+	max-width: 100%;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-inner .carousel-item .slide-item {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: center;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-inner .carousel-item .slide-item img {
+	width: auto;
+	max-width: 380px;
+	max-height: 345px;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-slider .carousel-inner .carousel-item .slide-item .zoomImg {
+	cursor: move;
+}
+
+/** Product Slider Ends Here **/
+.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+	background: #E7F0F5;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	border: 0px;
+	outline: none;
+	box-shadow: none;
+	position: absolute;
+	right: -50px;
+	top: -50px;
+	padding: 0px;
+	color: #5A88A1;
+	font-size: 32px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s;
+}
+
+.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn:hover {
+	background: #5A88A1;
+	color: #fff;
+}
+
+/*Hidden class for adding and removing*/
+.display-none {
+	display: none !important;
+}
+
+/*Add an overlay to the entire page blocking any further presses to buttons or other elements.*/
+.overlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(90, 136, 161, 0.8);
+	z-index: 999;
+	opacity: 1;
+	transition: all 0.5s;
+}
+
+/*Spinner Styles*/
+.lds-dual-ring {
+	display: inline-block;
+}
+
+.lds-dual-ring:after {
+	content: " ";
+	display: block;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 70px;
+	height: 70px;
+	border-radius: 50%;
+	border: 6px solid #fff;
+	border-color: #fff transparent #fff transparent;
+	animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.step-fieldset.final-results {
+	height: 0px;
+}
+
+/** ==================== Filter Columns Starts Here ==================== **/
+/** Column 5 and 6 **/
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"],
+.surfskate-models .surfskating-content[data-col="items-col-6"],
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"],
+.surfskate-models .surfskating-content[data-col="items-col-5"] {
+	column-gap: 32px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn .figure {
+	border-radius: 10px;
+	height: 145px;
+	padding: 14px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn .figure {
+	border-radius: 6px;
+	height: 185px;
+	padding: 18px;
+	margin: 0 0 14px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn p {
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details .figure {
+	height: 208px;
+	padding: 15px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details p {
+	font-size: 16px;
+	line-height: 22px;
+	padding: 15px;
+	min-height: 75px;
+}
+
+/** Column 1, 2 and 3 **/
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"],
+.surfskate-models .surfskating-content[data-col="items-col-1"],
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"],
+.surfskate-models .surfskating-content[data-col="items-col-2"],
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"],
+.surfskate-models .surfskating-content[data-col="items-col-3"] {
+	column-gap: 30px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item {
+	max-width: 268px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn .figure,
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn .figure,
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn .figure {
+	height: 230px;
+	padding: 24px;
+	margin: 0 0 18px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn p,
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn p,
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn p {
+	font-size: 18px;
+	line-height: 22px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details .figure,
+.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details .figure,
+.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details .figure {
+	height: 265px;
+	padding: 24px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details p,
+.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details p,
+.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details p {
+	font-size: 18px;
+	line-height: 25px;
+	padding: 18px;
+	min-height: 90px;
+}
+
+/** Column 4 **/
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"],
+.surfskate-models .surfskating-content[data-col="items-col-4"] {
+	column-gap: 32px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn .figure {
+	height: 230px;
+	padding: 20px;
+	margin: 0 0 18px;
+}
+
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn p {
+	font-size: 18px;
+	line-height: 22px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details .figure {
+	height: 268px;
+	padding: 20px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details p {
+	font-size: 18px;
+	line-height: 22px;
+	padding: 20px;
+	min-height: 90px;
+}
+
+/** Column 7 **/
+.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-7"] .btn.surfskating-filter-btn .figure {
+	height: 120px;
+	padding: 14px;
+}
+
+.surfskate-models .surfskating-content[data-col="items-col-7"] ul.surfskating-item li .cat-item-details .figure {
+	height: 120px;
+	padding: 14px;
+}
+
+.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details p {
+	text-align: left;
+}
+
+/** Filter Columns Ends Heree **/
+/** Footer Starts Here **/
+@font-face {
+	font-family: 'ico-surf';
+	src: url('../fonts/ico-surf.eot?h7xjys');
+	src: url('../fonts/ico-surf.eot?h7xjys#iefix') format('embedded-opentype'), url('../fonts/ico-surf.ttf?h7xjys') format('truetype'), url('../fonts/ico-surf.woff?h7xjys') format('woff'), url('../fonts/ico-surf.svg?h7xjys#ico-surf') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	font-display: block;
+}
+
+[class^="icon-surf-"],
+[class*=" icon-surf-"] {
+	/* use !important to prevent issues with browser extensions that change fonts */
+	font-family: 'ico-surf' !important;
+	speak: never;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-surf-surf-ico-fb:before {
+	content: "\e900";
+}
+
+.icon-surf-surf-ico-insta:before {
+	content: "\e901";
+}
+
+.icon-surf-surf-ico-tiktok:before {
+	content: "\e902";
+}
+
+.icon-surf-surf-ico-yt:before {
+	content: "\e903";
+}
+
+.site-footer {
+	background: #497E97;
+	padding: 10px 0;
+}
+
+.site-footer .container>.row {
+	align-items: center;
+}
+
+.site-footer .footer-site-logo {
+	display: inline-block;
+	overflow: hidden;
+	position: relative;
+	top: 4px;
+}
+
+.site-footer .footer-site-logo a {
+	display: inline-block;
+	margin: -10px 0px -10px -10px;
+}
+
+.site-footer .footer-site-logo a img {
+	max-width: 230px;
+}
+
+.site-footer .copyright {
+	text-align: center;
+}
+
+.site-footer .copyright p {
+	color: #fff;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.site-footer .copyright p .bi {
+	animation: 1s infinite beatHeart;
+	display: inline-block;
+	color: #98BCCD;
+	font-size: 13px;
+	margin: 0 0 0 1px;
+}
+
+/** Heart Beat **/
+@-webkit-keyframes beatHeart {
+	0% {
+		transform: scale(0.75);
+	}
+
+	20% {
+		transform: scale(1);
+	}
+
+	40% {
+		transform: scale(0.75);
+	}
+
+	60% {
+		transform: scale(1);
+	}
+
+	80% {
+		transform: scale(0.75);
+	}
+
+	100% {
+		transform: scale(0.75);
+	}
+}
+
+@keyframes beatHeart {
+	0% {
+		transform: scale(0.75);
+	}
+
+	20% {
+		transform: scale(1);
+	}
+
+	40% {
+		transform: scale(0.75);
+	}
+
+	60% {
+		transform: scale(1);
+	}
+
+	80% {
+		transform: scale(0.75);
+	}
+
+	100% {
+		transform: scale(0.75);
+	}
+}
+
+.site-footer ul.footer-social-icons {
+	list-style: none;
+	display: flex;
+	column-gap: 8px;
+	justify-content: flex-end;
+}
+
+.site-footer ul.footer-social-icons li {
+	display: inline-block;
+}
+
+.site-footer ul.footer-social-icons li a {
+	display: inline-block;
+}
+
+.site-footer ul.footer-social-icons li a .icon-surf {
+	color: #98BCCD;
+	transition: all 0.4s;
+	display: inline-block;
+}
+
+.site-footer ul.footer-social-icons li a:hover .icon-surf {
+	color: #fff;
+	transform: translateY(-2px);
+}
+
+.page-template-surfsketquiz-template .et-l.et-l--footer {
+	display: none;
+}
+
+/** Footer Ends Here **/
+/** ---------------------------------------------------------------------------- **/
+/** Number ProgressBar Starts Here **/
+ul#progressbar {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 40px 0 80px;
+	overflow: hidden;
+	position: relative;
+	list-style: none;
+}
+
+ul#progressbar li {
+	flex: 1 0 0%;
+	width: 100%;
+	max-width: 12.50%;
+	position: relative;
+	font-weight: 400;
+	padding: 0 2px;
+}
+
+ul#progressbar li:after {
+	content: '';
+	width: 100%;
+	height: 8px;
+	background: #497E97;
+	position: absolute;
+	left: 0;
+	top: 23px;
+	z-index: 0;
+	display: block;
+}
+
+ul#progressbar li:before {
+	content: '';
+	width: 50px;
+	height: 50px;
+	line-height: 45px;
+	display: block;
+	font-size: 20px;
+	background: #497E97;
+	border-radius: 50%;
+	margin: 0 auto;
+	padding: 0px;
+}
+
+ul#progressbar li.active:before,
+ul#progressbar li.active:after {
+	background: #FFAF3C;
+}
+
+ul#progressbar li a.btn-circle {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	color: #fff;
+	z-index: 2;
+	width: 50px;
+	height: 50px;
+	display: flex;
+	border-radius: 50%;
+	align-items: center;
+	justify-content: center;
+	font-size: 20px;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	transform: translateX(-50%);
+}
+
+ul#progressbar li.active a.btn-circle:hover {
+	text-decoration: none;
+}
+
+ul#progressbar li h5 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	color: #497e97;
+	margin: 10px 0 0;
+}
+
+ul#progressbar li h5 .daynamic-val {
+	font-family: 'Open Sans', sans-serif;
+	display: block;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+ul#progressbar li h5 .daynamic-val span {
+	display: block;
+}
+
+ul#progressbar li.active h5 {
+	color: #ffaf3c;
+}
+
+/** Welcome Page **/
+.welcom-page {
+	padding: 70px 0 0;
+}
+
+.welcom-page .main-head {
+	margin: 0 0 40px;
+}
+
+.welcom-page .video-section .step-video {
+	margin: 40px auto;
+	text-align: center;
+	width: 570px;
+	height: 320px;
+	max-width: 100%;
+}
+
+.welcom-page p {
+	font-size: 20px;
+	line-height: 27px;
+	color: #777777;
+	margin: 0;
+}
+
+.welcom-page .main-head h1 {
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 56px;
+	color: #0A0A0A;
+	margin: 4px 0 8px;
+}
+
+.welcom-page .main-head h1 span {
+	font-weight: 700;
+	color: #497E97;
+}
+
+.welcom-page .video-section .artice p {
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 30px;
+	color: #0A0A0A;
+	margin: 0 0 25px;
+}
+
+.welcom-page .video-section .artice p a {
+	transition: all 0.3s linear;
+	color: #497E97;
+	letter-spacing: 2px;
+	display: inline-block;
+	position: relative;
+	letter-spacing: 0;
+}
+
+.welcom-page .video-section .artice p a:after {
+	height: 1px;
+	background: #497E97;
+	content: " ";
+	display: block;
+	margin: 0;
+	width: 100%;
+	left: 0;
+	bottom: 4px;
+	position: absolute;
+	transition: all 0.3s linear;
+}
+
+.welcom-page .video-section .artice p a:hover:after {
+	width: 0;
+	transition: all 0.3s linear;
+}
+
+.welcom-page .video-section .artice p a:before {
+	height: 1px;
+	background: #0A0A0A;
+	content: " ";
+	display: block;
+	margin: 0;
+	width: 0;
+	left: 0;
+	bottom: 4px;
+	position: absolute;
+	transition: all 0.3s linear;
+}
+
+.welcom-page .video-section .artice p a:hover:before {
+	width: 100%;
+	transition: all 0.3s linear;
+}
+
+.welcom-page .btn.btn-go {
+	width: 350px;
+	max-width: 100%;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 27px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	border: 0;
+	cursor: pointer;
+	padding: 20px 15px;
+	border-radius: 2px;
+	position: relative;
+	overflow: hidden;
+	transition: all 0.5s;
+	margin: 30px auto 0;
+	display: block;
+	background: #FFAF3C;
+}
+
+.welcom-page .btn.btn-go:before,
+.welcom-page .btn.btn-go:after {
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	transform: translateX(-100px) skewX(-15deg);
+	content: "";
+}
+
+.welcom-page .btn.btn-go:before {
+	width: 60px;
+	background: rgba(255, 255, 255, 0.5);
+	filter: blur(30px);
+	opacity: 0.5;
+}
+
+.welcom-page .btn.btn-go:after {
+	width: 30px;
+	left: 30px;
+	background: rgba(255, 255, 255, 0.2);
+	filter: blur(5px);
+}
+
+.welcom-page .btn.btn-go:hover {
+	background: #497E97;
+}
+
+.welcom-page .btn.btn-go:hover:before {
+	opacity: 1;
+}
+
+.welcom-page .btn.btn-go:hover:before,
+.welcom-page .btn.btn-go:hover:after {
+	transform: translateX(1000px) skewX(-15deg);
+	transition: all 1s ease;
+}
+
+.welcom-page .btn.btn-go:hover,
+.welcom-page .btn.btn-go:focus {
+	outline: none;
+	box-shadow: none;
+}
+
+.welcom-page .surfskate-models .btn.action-button {
+	display: none;
+}
+
+/** Steps Modals **/
+.modal.prod-modal.step-modal .modal-dialog {
+	max-width: 540px;
+}
+
+.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content h4 {
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 25px;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: #0A0A0A;
+}
+
+.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content p {
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22.5px;
+	color: #777777;
+	margin: 8px 0 0px;
+}
+
+.modal.prod-modal.step-modal .modal-content .modal-body .btn.share-btn {
+	background: #E7F0F5;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	border: 0px;
+	outline: none;
+	box-shadow: none;
+	position: absolute;
+	right: -20px;
+	top: -20px;
+	padding: 0px;
+	color: #5A88A1;
+	font-size: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s;
+}
+
+.modal.prod-modal.step-modal .modal-content .modal-body .btn.share-btn:hover {
+	background: #5A88A1;
+	color: #fff;
+}
+
+body.page-template-surfsketquiz-template {
+	overflow: hidden;
+}
+
+/** Result Page **/
+.step-fieldset.final-results .step-head {
+	padding: 0 0 60px;
+}
+
+.step-fieldset.final-results .surfskate-models {
+	padding: 60px 0 20px;
+	width: 100vw;
+	margin-left: calc(-50vw + 50% + 0px);
+	padding-right: var(--bs-gutter-x, .75rem);
+	padding-left: var(--bs-gutter-x, .75rem);
+}
+
+.step-fieldset.final-results .surfskate-models h3 {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #0A0A0A;
+	padding: 0 0 12px;
+	border: 0;
+	margin: 0px;
+}
+
+.step-fieldset.final-results .surfskate-models h3 span {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+	line-height: 20px;
+	color: #777777;
+}
+
+.step-fieldset.final-results .surfskate-models .found-tagline {
+	font-family: 'Roboto', sans-serif;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	color: #0A0A0A;
+	padding: 0 0 15px;
+	display: block;
+	border-bottom: 1px solid #fff;
+	margin: 0 0 20px;
+}
+
+.stepwizard .numberCircleProgressbar .progress {
+	display: none;
+}
+
+/** Card With No Image **/
+.stepwizard .control.control--radio.label-vertical-card.without-image .head {
+	margin-top: 0px;
+}
+
+.stepwizard .control.control--radio.label-vertical-card.without-image {
+	height: 240px;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card.without-image {
+	padding: 18px 180px 18px 25px;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .text br {
+	display: none;
+}
+
+.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show {
+	max-height: 21px;
+}
+
+.welcom-page .surfskate-models .surfskating-content ul.surfskating-item {
+	display: block !important;
+}
+
+.welcom-page .surfskate-models.onlyVisibleOnMobile {
+	display: none !important;
+}
+
+.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .sket-count+span {
+	display: none !important;
+}
+
+/** Main Navbar Starts Here **/
+.header ul.main-nav {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.header ul.main-nav>li {
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+}
+
+.header ul.main-nav>li a {
+	color: rgba(0, 0, 0, .6);
+	font-weight: 700;
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+.header ul.main-nav>li a:hover {
+	opacity: .7;
+}
+
+.header ul.main-nav>li a .bi {
+	display: inline-block;
+	margin: 0px;
+	font-size: 16px;
+}
+
+.header ul.main-nav>li a .bi.bi-chevron-left {
+	margin: 0px -3px 0 0;
+	position: relative;
+	top: 1px;
+}
+
+.header#MobileHeaderOnly {
+	display: none;
+}
+
+#msform .email-txt-cls {
+	font-size: 12px;
+	line-height: 12px;
+}
+
+#msform #useremail {
+	margin-bottom: 0px;
+}
+
+/** Main Navbar Ends Here **/
+/** ===================================================================================================== **/
+/** Responsive CSS **/
+@media (max-width: 1280px) {
+	.header {
+		padding: 16px 0;
+	}
+
+	.header .navbar-brand img {
+		width: 250px;
+	}
+
+	.stepwizard .progress {
+		height: 15px;
+		margin: 0 0 70px;
+	}
+
+	.stepwizard .progress .progress-bar .count {
+		font-weight: 500;
+	}
+
+	.stepwizard .step-head h1 {
+		font-size: 18px;
+		line-height: 22px;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 32px;
+		line-height: 44px;
+	}
+
+	.stepwizard .step-head p {
+		font-size: 18px;
+		line-height: 26px;
+	}
+
+	.stepwizard .step-video {
+		margin: 32px 0;
+	}
+
+	.stepwizard .form-card h4 {
+		font-size: 18px;
+		line-height: 24px;
+		margin: 0 0 15px;
+	}
+
+	.stepwizard #msform .bootstrap-select>.dropdown-toggle {
+		padding: 12px 20px;
+		height: 50px;
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.stepwizard #msform .bootstrap-select .dropdown-menu li a {
+		font-size: 16px;
+		line-height: 24px;
+		padding: 8px 20px;
+	}
+
+	.stepwizard #msform .btn.action-button {
+		font-size: 18px;
+		line-height: 24px;
+		padding: 16px 12px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-01 .btn.action-button {
+		margin: 20px 0 0px;
+	}
+
+	.stepwizard #msform .step-01 .dropdown.bootstrap-select {
+		width: calc(100% - 40px);
+	}
+
+	.stepwizard #msform .step-01 .form-card p {
+		font-size: 16px;
+		line-height: 24px;
+		width: 40px;
+	}
+
+	.surfskate-models {
+		padding: 50px 0 35px;
+		margin-top: 60px;
+	}
+
+	.stepwizard #msform .surfskate-models .btn.action-button {
+		width: 230px;
+		height: 56px;
+		margin: 25px 0 0 !important;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn p {
+		font-size: 12.2px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure {
+		padding: 6px;
+		height: 84px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box,
+	.surfskate-models .surfskating-content {
+		column-gap: 6px;
+	}
+
+	.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details .figure {
+		padding: 6px;
+		height: 98px;
+	}
+
+	.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details p {
+		font-size: 13px;
+		line-height: 18px;
+		min-height: 60px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item {
+		max-width: 220px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn .figure {
+		height: 190px;
+		padding: 18px;
+		margin: 0 0 16px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn p {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details .figure {
+		height: 240px;
+		padding: 18px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details p {
+		font-size: 16px;
+		line-height: 24px;
+		padding: 16px;
+		min-height: 80px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"],
+	.surfskate-models .surfskating-content[data-col="items-col-6"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"],
+	.surfskate-models .surfskating-content[data-col="items-col-5"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"],
+	.surfskate-models .surfskating-content[data-col="items-col-4"] {
+		column-gap: 24px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn .figure {
+		height: 140px;
+		padding: 10px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-7"] .btn.surfskating-filter-btn .figure {
+		height: 115px;
+		padding: 12px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-7"] ul.surfskating-item li .cat-item-details .figure {
+		height: 110px;
+		padding: 12px;
+	}
+
+	.stepwizard .control.control--radio {
+		font-size: 16px;
+		line-height: 24px;
+		padding: 12px 10px 12px 70px;
+		height: 50px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn .figure {
+		height: 180px;
+		padding: 18px;
+		margin: 0 0 16px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn p {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details .figure {
+		height: 200px;
+		padding: 16px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details p {
+		font-size: 16px;
+		line-height: 24px;
+		padding: 16px;
+		min-height: 90px;
+	}
+
+	.stepwizard #msform .pl-115px {
+		padding-left: 75px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button-previous {
+		margin: 16px 0 0px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .round-img,
+	.stepwizard .control.control--radio.label-horizontal-card .round-img {
+		width: 124px;
+		height: 124px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .head,
+	.stepwizard .control.control--radio.label-horizontal-card .head {
+		font-size: 16px;
+		line-height: 24px;
+		letter-spacing: 0.04em;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .sub-head,
+	.stepwizard .control.control--radio.label-horizontal-card .sub-head {
+		font-size: 13px;
+		line-height: 18px;
+		letter-spacing: 0.04em;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .head {
+		margin: 20px 0 15px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .sub-head {
+		margin: 0 0 15px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .text,
+	.stepwizard .control.control--radio.label-horizontal-card .text {
+		font-size: 15px;
+		line-height: 20px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose,
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+		font-size: 14px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card {
+		height: 370px;
+		padding: 15px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show:after {
+		bottom: 4px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card .text {
+		margin: 5px 0 10px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card {
+		min-height: 160px;
+		padding: 15px 180px 15px 180px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-04 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-05 .btn.action-button {
+		max-width: 230px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous {
+		min-height: 56px;
+		padding: 11px 10px;
+	}
+
+	.stepwizard .step-fieldset.step-06 .control.control--radio.label-vertical-card {
+		min-height: 415px;
+		padding: 12px 20px 18px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button-previous {
+		margin: -92px 0 38px;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp h4 {
+		font-size: 22px;
+		line-height: 28px;
+		letter-spacing: 0.04em;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp h6 {
+		font-size: 22px;
+		line-height: 30px;
+		letter-spacing: 0.04em;
+	}
+
+	.step-fieldset.final-results .model-list {
+		column-gap: 24px;
+	}
+
+	.step-fieldset.final-results .model-list .model-item {
+		column-gap: 24px;
+		min-height: 290px;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp .btn.btn-modal {
+		font-size: 14px;
+		line-height: 15px;
+		min-height: 35px;
+		letter-spacing: 0.04em;
+		width: 125px;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .figure {
+		padding: 15px 0 15px 15px;
+		width: calc(45% - 12px);
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp {
+		padding: 15px 15px 15px 0;
+		width: calc(55% - 12px);
+	}
+
+	.step-fieldset.final-results .btn.btn-back-to-home {
+		font-size: 18px;
+		line-height: 26px;
+		margin: 20px auto 50px;
+		width: 240px;
+		padding: 14px 12px;
+		min-height: 55px;
+	}
+
+	.modal.prod-modal .modal-dialog {
+		width: 100%;
+		max-width: calc(100% - 100px);
+	}
+
+	.modal.prod-modal .modal-content .modal-body .prod-item {
+		column-gap: 50px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h2 {
+		font-size: 24px;
+		line-height: 30px;
+		letter-spacing: 0.04em;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-name {
+		font-size: 15px;
+		line-height: 20px;
+		letter-spacing: 0.04em;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-price {
+		font-size: 22px;
+		line-height: 30px;
+		letter-spacing: 0.04em;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-name {
+		font-size: 15px;
+		line-height: 20px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-value {
+		font-size: 15px;
+		line-height: 20px;
+		letter-spacing: 0.04em;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li {
+		padding: 0.45em 20px 0.45em 15px;
+	}
+
+	.modal.prod-modal .modal-content .modal-body {
+		padding: 30px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+		width: 44px;
+		height: 44px;
+		right: -50px;
+		top: -50px;
+		font-size: 30px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp,
+	.modal.prod-modal .modal-content .prod-item .prod-slider {
+		width: calc(50% - 25px);
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul {
+		margin: 0px -20px 0 -15px;
+		padding: 20px 0 0;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 34px;
+		line-height: 46px;
+	}
+
+	.welcom-page .btn.btn-go {
+		font-size: 18px;
+		line-height: 24px;
+		width: 300px;
+		padding: 16px 15px;
+	}
+
+	ul#progressbar li:after {
+		height: 6px;
+	}
+
+	ul#progressbar li:before {
+		width: 45px;
+		height: 45px;
+		line-height: 45px;
+	}
+
+	ul#progressbar li a.btn-circle {
+		width: 45px;
+		height: 45px;
+		font-size: 16px;
+	}
+
+	.welcom-page .video-section .step-video iframe {
+		height: 275px;
+	}
+
+	.welcom-page .video-section .artice p {
+		font-size: 16px;
+		line-height: 26px;
+		margin: 0 0 20px;
+	}
+
+	ul#progressbar li h5 {
+		font-size: 14px;
+		line-height: 20px;
+	}
+
+	ul#progressbar li h5 .daynamic-val {
+		font-size: 13px;
+		line-height: 17px;
+		padding: 2px 0 0;
+	}
+
+	ul#progressbar li:after {
+		height: 5px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card.without-image {
+		height: 220px;
+	}
+}
+
+@media (max-width: 1024px) {
+	.header {
+		padding: 12px 0;
+	}
+
+	.header .navbar-brand img {
+		width: 242px;
+	}
+
+	.stepwizard .step-head h1 {
+		font-size: 17px;
+		line-height: 20px;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 28px;
+		line-height: 38px;
+	}
+
+	.stepwizard .step-head p {
+		font-size: 17px;
+		line-height: 25px;
+	}
+
+	.stepwizard .form-card h4 {
+		font-size: 17px;
+		line-height: 24px;
+		margin: 0 0 12px;
+	}
+
+	.stepwizard #msform .bootstrap-select>.dropdown-toggle,
+	.stepwizard #msform .bootstrap-select .dropdown-menu li a {
+		font-size: 15px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item {
+		max-width: 170px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn .figure {
+		height: 160px;
+		padding: 14px;
+		margin: 0 0 12px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn p {
+		letter-spacing: 0.05em;
+		font-size: 15px;
+		line-height: 18px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details .figure {
+		height: 180px;
+		padding: 12px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details p {
+		font-size: 15px;
+		line-height: 22px;
+		padding: 12px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"],
+	.surfskate-models .surfskating-content[data-col="items-col-6"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"],
+	.surfskate-models .surfskating-content[data-col="items-col-5"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"],
+	.surfskate-models .surfskating-content[data-col="items-col-4"] {
+		column-gap: 10px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn .figure {
+		height: 116px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content ul.surfskating-item {
+		max-width: 78px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-6"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-7"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-7"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-8"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-8"] ul.surfskating-item {
+		max-width: 100%;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn p {
+		font-size: 10px;
+		letter-spacing: 0;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box,
+	.surfskate-models .surfskating-content {
+		column-gap: 4px;
+	}
+
+	.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details p {
+		font-size: 10px;
+		line-height: 14px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item {
+		max-width: 170px !important;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn .figure {
+		height: 150px;
+		padding: 12px;
+		margin: 0 0 12px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn p {
+		letter-spacing: 0.05em;
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details p {
+		font-size: 14px;
+		line-height: 20px;
+		padding: 12px;
+		min-height: 75px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details .figure {
+		height: 160px;
+		padding: 12px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-7"] .btn.surfskating-filter-btn p {
+		font-size: 12px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-6"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-7"] ul.surfskating-item li .cat-item-details p {
+		font-size: 13px;
+		line-height: 17px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-9"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-9"] ul.surfskating-item {
+		max-width: 88px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-8"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-9"] .btn.surfskating-filter-btn p {
+		font-size: 11px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-8"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-9"] ul.surfskating-item li .cat-item-details p {
+		font-size: 11px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"],
+	.surfskate-models .surfskating-content[data-col="items-col-1"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"],
+	.surfskate-models .surfskating-content[data-col="items-col-2"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"],
+	.surfskate-models .surfskating-content[data-col="items-col-3"] {
+		column-gap: 15px;
+	}
+
+	.stepwizard .control.control--radio {
+		font-size: 15px;
+		padding: 12px 10px 12px 55px;
+	}
+
+	.stepwizard .step-video iframe {
+		height: 300px;
+	}
+
+	.stepwizard #msform .pl-115px {
+		padding-left: 12px;
+	}
+
+	.stepwizard .control.control--radio .control__indicator {
+		left: 20px;
+		width: 15px;
+		height: 15px;
+		outline: 6px solid rgba(242, 242, 242, 0.5);
+	}
+
+	.stepwizard #msform .btn.action-button {
+		font-size: 16px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-04 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-05 .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button-previous {
+		max-width: 190px;
+		width: 100%;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous,
+	.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button-previous {
+		width: 200px;
+		margin: 16px 0px 0px 0;
+		max-width: 100%;
+	}
+
+	.stepwizard #msform .btn.action-button-previous {
+		padding: 12px 12px;
+		width: 100%;
+		max-width: 190px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card {
+		padding: 10px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .text {
+		margin: 0 0 20px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .text br {
+		display: none;
+	}
+
+	.stepwizard .step-fieldset.step-06 .control.control--radio.label-vertical-card {
+		padding: 12px 15px 15px;
+		min-height: 390px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .head {
+		font-size: 15px;
+		letter-spacing: 0;
+	}
+
+	.site-footer .footer-site-logo a img {
+		max-width: 195px;
+	}
+
+	.site-footer .copyright p {
+		font-size: 13px;
+		line-height: 19px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button-previous {
+		margin: 4px 0 30px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button-previous {
+		margin-right: 0px;
+	}
+
+	.stepwizard .control--radio .control__indicator:after {
+		height: 5px;
+		width: 5px;
+	}
+
+	.surfskate-models h4 {
+		padding: 0 0 12px;
+		margin: 0 0 18px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-08 .btn.action-button {
+		margin-right: 18px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-08 .btn.action-button-previous {
+		margin-left: 18px;
+	}
+
+	.step-fieldset.final-results .model-list {
+		column-gap: 15px;
+	}
+
+	.step-fieldset.final-results .model-list .model-item {
+		column-gap: 15px;
+		min-height: 240px;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .figure {
+		padding: 12px 0 12px 12px;
+		width: calc(45% - 7.5px);
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp {
+		padding: 12px 12px 12px 0;
+		width: calc(55% - 7.5px);
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp h4 {
+		font-size: 18px;
+		line-height: 26px;
+		letter-spacing: 0;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp h6 {
+		font-size: 16px;
+		line-height: 24px;
+		letter-spacing: 0;
+		margin: 6px 0 0;
+	}
+
+	.step-fieldset.final-results .model-list .model-item .descp .btn.btn-modal {
+		font-size: 12px;
+		line-height: 14px;
+		min-height: 34px;
+		letter-spacing: 0;
+		width: 110px;
+	}
+
+	.modal.prod-modal .modal-content .modal-body {
+		padding: 20px;
+	}
+
+	.modal.prod-modal .modal-content .modal-body .prod-item {
+		column-gap: 40px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h2 {
+		font-size: 22px;
+		line-height: 30px;
+		letter-spacing: 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3,
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-name {
+		font-size: 14px;
+		line-height: 18px;
+		letter-spacing: 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-price {
+		font-size: 18px;
+		line-height: 26px;
+		letter-spacing: 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+		width: 40px;
+		height: 40px;
+		right: -48px;
+		top: -38px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		height: 320px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-01 {
+		max-width: 540px;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 32px;
+		line-height: 42px;
+	}
+
+	.welcom-page p {
+		font-size: 18px;
+		line-height: 26px;
+	}
+
+	.welcom-page .video-section .step-video {
+		margin: 30px auto;
+		width: 540px;
+		height: 300px;
+	}
+
+	.welcom-page .surfskate-models {
+		padding: 50px 0;
+		margin-top: 50px;
+	}
+
+	.welcom-page {
+		padding: 50px 0 0;
+	}
+
+	.stepwizard .step-video iframe {
+		height: 220px;
+	}
+
+	ul#progressbar li a.btn-circle,
+	ul#progressbar li:before {
+		width: 40px;
+		height: 40px;
+		font-size: 14px;
+		line-height: 40px;
+	}
+
+	ul#progressbar li:after {
+		top: 19px;
+	}
+
+	ul#progressbar li h5 {
+		font-size: 13px;
+		line-height: 17px;
+		font-weight: 700;
+	}
+
+	ul#progressbar li h5 .daynamic-val {
+		font-weight: 600;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content h4 {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content p {
+		font-size: 15px;
+		line-height: 22px;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .btn.share-btn {
+		width: 42px;
+		height: 42px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card.without-image {
+		height: 226px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card.without-image {
+		min-height: 152px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box,
+	.surfskate-models .surfskating-content {
+		justify-content: center;
+	}
+}
+
+@media (max-width: 834px) {
+	.stepwizard .progress {
+		margin: 0 0 60px;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 26px;
+		line-height: 34px;
+	}
+
+	.surfskate-models {
+		padding: 40px 0 30px;
+		margin-top: 50px;
+	}
+
+	.site-footer .footer-site-logo a img {
+		max-width: 185px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-01 {
+		max-width: 500px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure {
+		padding: 5px;
+		height: 74px;
+		border-radius: 4px;
+	}
+
+	.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details .figure {
+		padding: 5px;
+		height: 80px;
+		border-radius: 4px 4px 0px 0px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item {
+		max-width: 150px !important;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn .figure {
+		height: 130px;
+		padding: 10px;
+		margin: 0 0 10px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn p {
+		letter-spacing: 0;
+		font-size: 13px;
+		line-height: 18px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details .figure {
+		height: 140px;
+		padding: 10px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details p {
+		font-size: 14px;
+		line-height: 20px;
+		padding: 10px;
+		min-height: 75px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-7"] .btn.surfskating-filter-btn .figure {
+		height: 100px;
+		padding: 10px;
+		border-radius: 4px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-6"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-7"] ul.surfskating-item li .cat-item-details .figure {
+		padding: 10px;
+		height: 100px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-01 .btn.action-button {
+		margin: 15px 0 0px;
+	}
+
+	.stepwizard .step-video iframe {
+		height: 210px;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 30px;
+		line-height: 40px;
+	}
+
+	.welcom-page .video-section .step-video {
+		width: 500px;
+		height: 280px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose,
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+		font-size: 13px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .round-img,
+	.stepwizard .control.control--radio.label-horizontal-card .round-img {
+		width: 112px;
+		height: 112px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card {
+		min-height: 170px;
+		padding: 15px 165px 15px 165px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card {
+		height: 355px;
+	}
+
+	.stepwizard .step-fieldset.step-06 .control.control--radio.label-vertical-card {
+		min-height: 380px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .head {
+		margin: 18px 0 12px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h2 {
+		font-size: 20px;
+		line-height: 28px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-price {
+		font-size: 17px;
+		line-height: 25px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-value {
+		font-size: 14px;
+		line-height: 18px;
+		letter-spacing: 0.02em;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-name {
+		font-size: 14px;
+		line-height: 18px;
+	}
+
+	.modal.prod-modal .modal-content .modal-body .prod-item {
+		column-gap: 32px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li {
+		padding: 10px 20px 10px 15px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+		right: -55px;
+		top: -40px;
+	}
+
+	.step-fieldset.final-results .surfskate-models {
+		padding: 50px 0 20px;
+	}
+}
+
+@media (max-width: 800px) {
+	.header {
+		padding: 10px 0;
+	}
+
+	.header .navbar-brand img {
+		width: 234px;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 28px;
+		line-height: 36px;
+	}
+
+	.welcom-page p {
+		font-size: 17px;
+		line-height: 25px;
+	}
+
+	.welcom-page .main-head {
+		margin: 0 0 35px;
+	}
+
+	.welcom-page .video-section .step-video {
+		width: 480px;
+		height: 270px;
+	}
+
+	.welcom-page .btn.btn-go {
+		font-size: 17px;
+		line-height: 23px;
+		width: 270px;
+		padding: 15px 15px;
+	}
+
+	ul#progressbar li h5 {
+		font-size: 12px;
+		line-height: 16px;
+		margin: 8px 0 0;
+	}
+
+	ul#progressbar li a.btn-circle,
+	ul#progressbar li:before {
+		width: 36px;
+		height: 36px;
+		font-size: 13px;
+		line-height: 36px;
+	}
+
+	ul#progressbar {
+		margin: 30px 0 50px;
+	}
+
+	ul#progressbar li:after {
+		height: 4px;
+		top: 18px;
+	}
+
+	.stepwizard .step-head h1 {
+		font-size: 16px;
+		line-height: 20px;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 22px;
+		line-height: 30px;
+		margin: 5px 0;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .form-card {
+		padding: 25px 0 0px;
+	}
+
+	.stepwizard .form-card h4 {
+		font-size: 16px;
+		line-height: 24px;
+		margin: 0 0 12px;
+	}
+
+	.stepwizard .control.control--radio {
+		font-size: 14px;
+		padding: 10px 10px 10px 55px;
+		height: 45px;
+	}
+
+	.stepwizard #msform .btn.action-button {
+		font-size: 15px;
+		line-height: 22px;
+		padding: 15px 10px;
+	}
+
+	.stepwizard #msform .btn.action-button-previous {
+		font-size: 15px;
+		line-height: 22px;
+	}
+
+	.stepwizard #msform .btn.action-button-previous .icon-arrow-left {
+		font-size: 28px;
+		line-height: 22px;
+		margin: 0px 1px -2px 0;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-002 .btn.action-button-previous {
+		padding: 15px 10px 15px 0;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-04 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-05 .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button-previous {
+		max-width: 180px;
+	}
+
+	.stepwizard #msform .btn.action-button-previous {
+		max-width: 180px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous,
+	.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button-previous {
+		width: 180px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose,
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+		font-size: 12px;
+		letter-spacing: 0.02em;
+		width: 100px;
+		height: 34px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .text,
+	.stepwizard .control.control--radio.label-horizontal-card .text {
+		font-size: 14px;
+		line-height: 20px;
+	}
+
+	.stepwizard .step-fieldset.step-04 .step-head h2 {
+		margin-bottom: 35px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .head {
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .head,
+	.stepwizard .control.control--radio.label-horizontal-card .head {
+		font-size: 14px;
+		line-height: 22px;
+		letter-spacing: 0.02em;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button-previous {
+		padding-left: 0px;
+	}
+
+	.stepwizard .step-video iframe {
+		height: 200px;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content h4 {
+		font-size: 15px;
+		line-height: 22px;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content p {
+		font-size: 14px;
+		line-height: 22px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-08 .btn.action-button-previous {
+		margin-left: 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h2 {
+		font-size: 18px;
+		line-height: 26px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"],
+	.surfskate-models .surfskating-content[data-col="items-col-1"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"],
+	.surfskate-models .surfskating-content[data-col="items-col-2"],
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"],
+	.surfskate-models .surfskating-content[data-col="items-col-3"] {
+		column-gap: 12px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item {
+		max-width: 130px !important;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn p,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn p {
+		font-size: 12px;
+		line-height: 17px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details p,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details p {
+		font-size: 13px;
+		line-height: 18px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-6"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-7"] .btn.surfskating-filter-btn .figure {
+		height: 90px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-6"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-7"] ul.surfskating-item li .cat-item-details .figure {
+		height: 90px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-1"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-2"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-3"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-4"] .btn.surfskating-filter-btn .figure,
+	.surfskate-models .surfskating-filters-btns-box[data-col="brands-col-5"] .btn.surfskating-filter-btn .figure {
+		height: 115px;
+	}
+
+	.surfskate-models .surfskating-content[data-col="items-col-1"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-2"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-3"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-4"] ul.surfskating-item li .cat-item-details .figure,
+	.surfskate-models .surfskating-content[data-col="items-col-5"] ul.surfskating-item li .cat-item-details .figure {
+		height: 120px;
+	}
+
+	.site-footer .footer-site-logo a img {
+		max-width: 180px;
+	}
+
+	.site-footer ul.footer-social-icons li a .icon-surf {
+		font-size: 18px;
+	}
+
+	.welcom-page .btn.btn-go {
+		font-size: 16px;
+		line-height: 22px;
+		width: 240px;
+		padding: 14px 12px;
+	}
+
+	.stepwizard #msform .bootstrap-select>.dropdown-toggle,
+	.stepwizard #msform .bootstrap-select .dropdown-menu li a {
+		font-size: 14px;
+	}
+
+	.stepwizard #msform .step-01 .dropdown.bootstrap-select {
+		width: calc(100% - 35px);
+	}
+
+	.stepwizard #msform .step-01 .form-card p {
+		font-size: 15px;
+		line-height: 22px;
+		width: 35px;
+	}
+
+	.stepwizard #msform .bootstrap-select>.dropdown-toggle:after {
+		border-top: 5px solid;
+		border-right: 5px solid transparent;
+		border-bottom: 0;
+		border-left: 5px solid transparent;
+	}
+
+	.surfskate-models .surfskating-content ul.surfskating-item {
+		margin: 0 0 20px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure {
+		height: 70px;
+	}
+
+	.surfskate-models .surfskating-content ul.surfskating-item li .cat-item-details .figure {
+		height: 76px;
+	}
+}
+
+@media (max-width: 768px) {
+	.stepwizard .numberCircleProgressbar {
+		display: flex;
+		flex-wrap: wrap;
+		column-gap: 10px;
+		padding: 30px 10px;
+		margin: 0 0 20px;
+	}
+
+	.stepwizard .numberCircleProgressbar .progress {
+		height: 6px;
+		background: #5A88A1;
+		border-radius: 35px;
+		flex: 0 0 auto;
+		width: calc(42% - 5px);
+		max-width: 100%;
+		display: flex;
+		margin: 0;
+		align-self: center;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar {
+		flex: 0 0 auto;
+		width: calc(58% - 5px);
+		max-width: 100%;
+		margin: 0;
+	}
+
+	.stepwizard .numberCircleProgressbar .progress .progress-bar {
+		height: 100%;
+	}
+
+	.stepwizard .numberCircleProgressbar .progress .progress-bar .count {
+		display: none;
+	}
+
+	.stepwizard .numberCircleProgressbar .progress .progress-bar:after,
+	.stepwizard .numberCircleProgressbar ul#progressbar li:after {
+		display: none;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar li {
+		display: none;
+		width: 100%;
+		max-width: 100%;
+		padding: 0;
+		transition: all 0.3s;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar li.active {
+		display: none;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar li.showOne {
+		display: flex;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar li:before {
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 36px;
+		content: '/9';
+		height: auto;
+		width: auto;
+		background: none !important;
+		position: absolute;
+		left: 16px;
+		top: 0;
+		z-index: 4;
+		color: #fff;
+		letter-spacing: 0.05em;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar li a.btn-circle {
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		font-size: 13px;
+		line-height: 36px;
+		background: #FFAF3C;
+		text-align: center;
+		display: flex;
+		transform: translateX(0%);
+		position: static;
+		justify-content: flex-start;
+		padding: 0 7px;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar li h5 {
+		margin: 0;
+		display: flex;
+		align-self: center;
+		padding: 0 0 0 12px;
+		flex-wrap: wrap;
+	}
+
+	ul#progressbar li h5 .daynamic-val {
+		padding: 0px 0 0 5px;
+		display: flex;
+		align-self: center;
+	}
+
+	.site-footer .col-sm-3,
+	.site-footer .col-sm-7,
+	.site-footer .col-sm-2 {
+		width: 100%;
+	}
+
+	.site-footer .footer-site-logo {
+		display: block;
+		text-align: center;
+	}
+
+	.site-footer ul.footer-social-icons {
+		column-gap: 10px;
+		justify-content: center;
+	}
+
+	.site-footer .copyright {
+		padding: 18px 0 14px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box {
+		column-gap: 0;
+		display: block;
+		flex-wrap: nowrap;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn {
+		flex: 0 0 auto;
+		max-width: 100%;
+		display: flex;
+		background: #F7FBFD;
+		border: 1px solid #F2F2F2;
+		border-radius: 6px;
+		margin: 0 0 4px;
+		position: relative;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn:after {
+		color: #777;
+		display: inline-block;
+		margin-left: 3px;
+		vertical-align: 3px;
+		content: "";
+		border-top: 6px solid;
+		border-right: 6px solid transparent;
+		border-bottom: 0;
+		border-left: 6px solid transparent;
+		transform: rotate(-90deg) translateY(-50%);
+		position: absolute;
+		right: 20px;
+		top: 50%;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure {
+		width: 110px;
+		margin: 0;
+		height: 95px;
+		padding: 10px;
+		border-radius: 6px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn:hover .figure {
+		box-shadow: none;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn p {
+		font-size: 13px;
+		line-height: 16px;
+		letter-spacing: 0.1em;
+		font-weight: 600;
+		padding: 0 0 0 20px;
+		display: flex;
+		align-self: center;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn span,
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .sket-count {
+		font-family: 'Roboto', sans-serif;
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 20px;
+		color: #C4C4C4;
+		display: flex;
+		align-self: center;
+		padding: 0 0 0 4px;
+		position: relative;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn span:before,
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .sket-count:before {
+		content: "(";
+		display: inline-block;
+		margin: -1px 1px 0 0px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn span:after,
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .sket-count:after {
+		content: ")";
+		display: inline-block;
+		margin: -1px 0px 0 1px;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 26px;
+		line-height: 32px;
+	}
+
+	.welcom-page .video-section .step-video {
+		width: 460px;
+		height: 258px;
+	}
+
+	.welcom-page p {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn .figure img {
+		max-width: 100%;
+	}
+
+	.stepwizard .step-head p {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.stepwizard .step-head h2 {
+		margin: 6px 0;
+		font-size: 20px;
+		line-height: 28px;
+	}
+
+	.stepwizard .step-head h2 br {
+		display: none;
+	}
+
+	.stepwizard .step-fieldset.step-04#surf-step-04 .form-card>.row>.col-sm-3,
+	.stepwizard .step-fieldset.step-04#surf-step-05 .form-card>.row>.col-sm-4 {
+		width: 50%;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-show:after {
+		bottom: 0px;
+	}
+
+	.modal.prod-modal.step-modal .modal-dialog {
+		max-width: 480px;
+	}
+
+	.stepwizard .step-fieldset.step-07.step-007#surf-step-07 .form-card>.row>.col-sm-4,
+	.stepwizard .step-fieldset.step-07.step-007#surf-step-07 .form-card>.row>.col-sm-6 {
+		width: 100%;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .step-video {
+		margin: 0px 0 30px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02.step-03.step-007 .btn.action-button-previous {
+		float: left;
+	}
+
+	.stepwizard #msform .step-fieldset.step-04#surf-step-04 .step-head {
+		width: 100vw;
+		margin-left: calc(-50vw + 50% + 0px);
+		padding-right: var(--bs-gutter-x, .75rem);
+		padding-left: var(--bs-gutter-x, .75rem);
+	}
+
+	.stepwizard #msform .step-fieldset.step-01,
+	.stepwizard #msform .step-fieldset.step-02.step-002,
+	.stepwizard #msform .step-fieldset.step-03.step-003,
+	.stepwizard #msform .step-fieldset.step-04#surf-step-04,
+	.stepwizard #msform .step-fieldset.step-04#surf-step-05,
+	.stepwizard #msform .step-fieldset.step-05#surf-step-06,
+	.stepwizard #msform .step-fieldset.step-07.step-007#surf-step-07,
+	.stepwizard #msform .step-fieldset.step-08#surf-step-08 {
+		max-width: 480px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-item {
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		margin: 0 0 4px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button {
+		background: #F7FBFD;
+		border: 1px solid #F2F2F2;
+		border-radius: 6px;
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 600;
+		font-size: 13px;
+		line-height: 16px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #497E97;
+		padding: 0 20px 0 0;
+		box-shadow: none;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .figure {
+		border-radius: 6px;
+		background: #fff;
+		width: 108px;
+		height: 94px;
+		display: flex;
+		padding: 10px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .figure img {
+		max-height: 100%;
+		height: auto;
+		display: flex;
+		align-self: center;
+		justify-self: center;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button p {
+		padding: 0 0 0 20px;
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 600;
+		font-size: 13px;
+		line-height: 16px;
+		letter-spacing: 0.1em;
+		text-transform: uppercase;
+		color: #497E97;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button:after {
+		width: auto;
+		height: auto;
+		margin-left: auto;
+		background-image: none !important;
+		background-repeat: no-repeat;
+		background-size: auto;
+		content: "";
+		border-top: 6px solid;
+		border-right: 6px solid transparent;
+		border-bottom: 0;
+		border-left: 6px solid transparent;
+		color: #777;
+		transform: rotate(-90deg) !important;
+		display: inline-block;
+		transition: all 0.3s;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button.collapsed:after {
+		color: #777;
+		transform: rotate(-90deg) !important;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button:after,
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button[aria-expanded*="true"]:after {
+		transform: rotate(0deg) !important;
+		color: #5A88A1;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body {
+		padding: 8px 0 20px 0px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item {
+		list-style: none;
+		width: 100%;
+		column-gap: 20px;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item li {
+		margin: 0 0 10px;
+		height: auto !important;
+		width: calc(33.33% - 14px);
+		max-width: 100%;
+		flex: 0 0 auto;
+		display: block;
+		padding: 0;
+		border-radius: 0;
+		border: 0;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item li .cat-item-details .figure {
+		background: #fff;
+		display: flex;
+		width: 100%;
+		justify-content: center;
+		border-radius: 6px 6px 0px 0px;
+		height: auto;
+		padding: 10px;
+		margin: 0 0 0px;
+		transition: all 0.3s;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item li .cat-item-details p {
+		font-family: 'Montserrat', sans-serif;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 18px;
+		color: #0A0A0A;
+		background: #F7FBFD;
+		border-top: 1px solid #E7F0F5;
+		border-radius: 0px 0px 6px 6px;
+		padding: 8px;
+		min-height: 70px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-collapse {
+		transition: all 0.5s ease 0s;
+	}
+
+	.stepwizard #msform .surfskate-models .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous,
+	.stepwizard #msform .btn.action-button-previous {
+		height: 52px;
+		min-height: auto;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card.without-image {
+		padding: 18px 150px 18px 25px;
+	}
+
+	.modal.prod-modal .modal-dialog {
+		max-width: calc(100% - 60px);
+	}
+
+	.modal.prod-modal .modal-content .modal-body .prod-item {
+		column-gap: 20px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		height: 290px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp,
+	.modal.prod-modal .modal-content .prod-item .prod-slider {
+		width: calc(50% - 10px);
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+		right: -38px;
+		top: -40px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 {
+		padding: 0 85px 0 0px;
+	}
+
+	.welcom-page .surfskate-models.onlyVisibleOnDesktop {
+		display: none !important;
+	}
+
+	.welcom-page .surfskate-models.onlyVisibleOnMobile {
+		display: block !important;
+	}
+
+}
+
+@media (max-width: 600px) {
+	.header {
+		padding: 5px 0;
+	}
+
+	.welcom-page {
+		padding: 40px 0 0;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 25px;
+		line-height: 32px;
+		margin: 0 0 8px;
+	}
+
+	.modal.prod-modal.step-modal .modal-dialog {
+		max-width: 420px;
+	}
+
+	.modal.prod-modal .modal-content .modal-body {
+		padding: 15px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h2 {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider {
+		width: calc(44% - 10px);
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp {
+		width: calc(56% - 10px);
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul {
+		margin: 0px -5px 0 -5px;
+		padding: 10px 0 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 .brand-price {
+		font-size: 16px;
+		line-height: 24px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		height: 270px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li .feat-value {
+		letter-spacing: 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp ul li {
+		padding: 10px 15px 10px 12px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+		right: -32px;
+		top: -34px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 {
+		padding: 0 80px 0 0px;
+	}
+
+	.stepwizard .numberCircleProgressbar .progress {
+		width: calc(35% - 5px);
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar {
+		width: calc(65% - 5px);
+	}
+
+	.header#DesktopHeaderOnly {
+		display: none;
+	}
+
+	.header#MobileHeaderOnly {
+		display: block;
+	}
+
+	.header#MobileHeaderOnly ul.main-nav {
+		border-top: 1px solid #fff;
+		padding: 6px 0;
+	}
+}
+
+@media (max-width: 540px) {
+	.welcom-page .main-head h1 {
+		font-size: 24px;
+		line-height: 30px;
+	}
+
+	.welcom-page .video-section .step-video {
+		width: 440px;
+		height: 246px;
+	}
+
+	.welcom-page .main-head {
+		margin: 0 0 30px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-01,
+	.stepwizard #msform .step-fieldset.step-02.step-002,
+	.stepwizard #msform .step-fieldset.step-03.step-003,
+	.stepwizard #msform .step-fieldset.step-04#surf-step-04,
+	.stepwizard #msform .step-fieldset.step-04#surf-step-05,
+	.stepwizard #msform .step-fieldset.step-05#surf-step-06,
+	.stepwizard #msform .step-fieldset.step-07.step-007#surf-step-07,
+	.stepwizard #msform .step-fieldset.step-08#surf-step-08 {
+		max-width: 440px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item {
+		column-gap: 18px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item li {
+		margin: 0 0 5px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item li .cat-item-details .figure {
+		height: 160px;
+	}
+
+	.stepwizard .step-head h1 {
+		font-size: 15px;
+		line-height: 19px;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 19px;
+		line-height: 26px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card.without-image {
+		padding: 18px 140px 18px 20px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+		right: 20px;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card .btn.btn-choose,
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+		letter-spacing: 0;
+		width: 90px;
+		height: 34px;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .btn.share-btn {
+		width: 40px;
+		height: 40px;
+		font-size: 28px;
+		right: -18px;
+		top: -18px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider {
+		width: calc(42% - 10px);
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp {
+		width: calc(58% - 10px);
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		height: 260px;
+	}
+
+	.step-fieldset.final-results .btn.btn-back-to-home {
+		font-size: 17px;
+		width: 230px;
+		padding: 13px 12px;
+		min-height: 52px;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar {
+		width: calc(66% - 5px);
+	}
+
+	.stepwizard .numberCircleProgressbar .progress {
+		width: calc(34% - 5px);
+	}
+}
+
+@media (max-width: 534px) {
+	.welcom-page .video-section .step-video {
+		width: 100%;
+		height: auto;
+	}
+
+	.stepwizard #msform .step-fieldset.step-01,
+	.stepwizard #msform .step-fieldset.step-02.step-002,
+	.stepwizard #msform .step-fieldset.step-03.step-003,
+	.stepwizard #msform .step-fieldset.step-04#surf-step-04,
+	.stepwizard #msform .step-fieldset.step-04#surf-step-05,
+	.stepwizard #msform .step-fieldset.step-05#surf-step-06,
+	.stepwizard #msform .step-fieldset.step-07.step-007#surf-step-07,
+	.stepwizard #msform .step-fieldset.step-08#surf-step-08 {
+		max-width: 100%;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 18px;
+		line-height: 24px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item li .cat-item-details .figure {
+		height: auto;
+	}
+
+	.modal.prod-modal.step-modal .modal-dialog {
+		max-width: calc(100% - 50px);
+	}
+
+	.modal.prod-modal .modal-content .modal-body .prod-item {
+		column-gap: 0;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider,
+	.modal.prod-modal .modal-content .prod-item .prod-descp {
+		width: 100%;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp h3 {
+		margin: 0 0 10px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		height: auto;
+		width: 250px;
+		margin: 0 auto 25px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp {
+		position: static;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-descp .btn.share-btn {
+		right: -20px;
+		top: -20px;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar,
+	.stepwizard .numberCircleProgressbar .progress {
+		width: 100%;
+	}
+
+	.stepwizard .numberCircleProgressbar ul#progressbar {
+		order: 2;
+	}
+
+	.stepwizard .numberCircleProgressbar .progress {
+		margin: 0px 0 15px;
+		order: 1;
+	}
+
+}
+
+@media (max-width: 414px) {
+	.welcom-page .main-head h1 {
+		font-size: 23px;
+		line-height: 30px;
+	}
+
+	.stepwizard .step-head h1 {
+		font-size: 14px;
+		line-height: 18px;
+		margin: 3px 0 6px;
+	}
+
+	.stepwizard .step-head p {
+		font-size: 15px;
+		line-height: 20px;
+	}
+
+	.stepwizard .form-card h4 {
+		font-size: 15px;
+		line-height: 20px;
+		margin: 0 0 12px;
+	}
+
+	.surfskate-models {
+		padding: 30px 0;
+		margin-top: 30px;
+	}
+
+	.stepwizard .step-video {
+		margin: 25px 0;
+	}
+
+	.stepwizard #msform .btn.action-button {
+		padding: 14px 10px;
+		height: 50px;
+	}
+
+	.stepwizard #msform .surfskate-models .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous,
+	.stepwizard #msform .btn.action-button-previous {
+		height: 50px;
+	}
+
+	.stepwizard .step-fieldset.step-04#surf-step-04 .form-card>.row>.col-sm-3,
+	.stepwizard .step-fieldset.step-04#surf-step-05 .form-card>.row>.col-sm-4 {
+		width: 100%;
+	}
+
+	.stepwizard .control.control--radio.label-vertical-card.without-image {
+		height: auto;
+		padding: 15px;
+	}
+
+	.stepwizard .step-fieldset.step-04 .step-head h2 {
+		margin-bottom: 25px;
+	}
+
+	.stepwizard .step-fieldset.step-06 .control.control--radio.label-vertical-card {
+		min-height: auto;
+		padding: 15px;
+		height: auto;
+		max-height: 100%;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card .btn.btn-choose {
+		right: 15px;
+	}
+
+	.stepwizard .control.control--radio.label-horizontal-card.without-image {
+		padding: 15px 120px 15px 15px;
+	}
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-04 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-05 .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button-previous {
+		max-width: 46%;
+	}
+
+	.stepwizard #msform .btn.action-button-previous {
+		max-width: 46%;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-body ul.surfskating-item {
+		column-gap: 10px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		width: 240px;
+	}
+
+	.header#MobileHeaderOnly ul.main-nav>li a {
+		font-size: 13px;
+	}
+
+	.header#MobileHeaderOnly ul.main-nav>li a .bi {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 393px) {
+
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button-previous,
+	.stepwizard #msform .step-fieldset.step-02.step-03 .btn.action-button-previous,
+	.stepwizard #msform .step-fieldset.step-02 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-04 .btn.action-button,
+	.stepwizard #msform .step-fieldset.step-05 .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button,
+	.stepwizard #msform .surfskate-models .btn.action-button-previous {
+		width: 100%;
+		max-width: 130px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .figure {
+		width: 95px;
+		height: 85px;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button p {
+		padding: 0 0 0 15px;
+		font-size: 12px;
+		letter-spacing: 0;
+	}
+
+	.surfskate-models .surfskating-filters-btns-box .btn.surfskating-filter-btn span,
+	.surfskate-models .surfskating-filters-btns-box .accordion .accordion-header .accordion-button .sket-count {
+		font-size: 13px;
+		line-height: 16px;
+	}
+
+	.welcom-page .main-head h1 {
+		font-size: 22px;
+		line-height: 28px;
+	}
+
+	.welcom-page .btn.btn-go {
+		font-size: 15px;
+	}
+
+	.stepwizard .step-head h2 {
+		font-size: 16px;
+		line-height: 22px;
+	}
+
+	.stepwizard .step-head h1 {
+		font-size: 13px;
+		line-height: 16px;
+	}
+
+	.modal.prod-modal.step-modal .modal-content .modal-body .step-modal-content p {
+		margin: 6px 0 0px;
+	}
+
+	.modal.prod-modal .modal-content .prod-item .prod-slider .prod-slider-item {
+		width: 230px;
+	}
+}

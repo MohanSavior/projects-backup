@@ -1,0 +1,265 @@
+/**
+Theme Name: Savior-Pro
+Author: Savior Marketing, LLC
+Author URI: https://savior.im/
+Description: Savior Pro is the child theme of Astra created and used by Savior Marketing Agency.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: savior-pro
+Template: astra
+*/
+
+/* ============== Responsive Css ============== */
+@media screen and (max-width: 1680px) {
+	/* Your Account Page */
+	.elementor-2578 .elementor-element.elementor-element-acc73e5 .elementor-heading-title,
+	.elementor-2578 .elementor-element.elementor-element-4d7df5f .elementor-heading-title{
+		font-size: 21px;
+		line-height: 38px;
+	}
+	/* View Order Page */
+	.woocommerce .woocommerce-customer-details .woocommerce-customer-details--phone{
+		margin: 3px 0;
+	}
+	/* Thank You Page */
+	.elementor-2524 .elementor-element.elementor-element-2fcf8e2 .elementor-heading-title{
+		font-size: 46px;
+		line-height: 62px;
+	}
+}
+@media screen and (max-width: 1536px) {
+	/* Your Account Page */
+	.elementor-2578 .elementor-element.elementor-element-acc73e5 .elementor-heading-title, 
+	.elementor-2578 .elementor-element.elementor-element-4d7df5f .elementor-heading-title{
+		font-size: 20px;
+    	line-height: 36px;
+	}
+}
+@media screen and (max-width: 1440px) {
+	/* Thank You Page */
+	.elementor-2524 .elementor-element.elementor-element-2fcf8e2 .elementor-heading-title{
+		font-size: 44px;
+		line-height: 58px;
+	}
+}
+@media screen and (max-width: 1366px) {
+	/* Your Account Page */
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date,
+	body .order-details-tab-cls table.shop_table tbody tr td.order-total{
+		font-size: 17px;
+    	line-height: 23px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date small,
+	body .order-details-tab-cls table.shop_table tbody tr td.order-total small{
+		font-size: 13px;
+	}
+	.elementor-2578 .elementor-element.elementor-element-acc73e5 .elementor-heading-title, 
+	.elementor-2578 .elementor-element.elementor-element-4d7df5f .elementor-heading-title{
+		font-size: 19px;
+    	line-height: 34px;
+	}
+	/* Thank You Page */
+	.elementor-2524 .elementor-element.elementor-element-2fcf8e2 .elementor-heading-title{
+		font-size: 42px;
+    	line-height: 54px;
+	}
+}
+@media screen and (max-width: 1280px) {
+	/* Your Account Page */
+	body .order-details-tab-cls h2, 
+	body .order-details-tab-cls table.shop_table tbody tr td.order-number, 
+	body .order-details-tab-cls table.shop_table tbody tr td.order-number a{
+		font-size: 15px;
+    	line-height: 22px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date, 
+	body .order-details-tab-cls table.shop_table tbody tr td.order-total{
+		font-size: 14px;
+    	line-height: 20px;
+	}
+	body .elementor-2578 .elementor-element.elementor-element-fb99c46 > .elementor-element-populated{
+		padding: 40px 0px 40px 15px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date small, 
+	body .order-details-tab-cls table.shop_table tbody tr td.order-total small{
+		font-size: 12px;
+	}
+	.elementor-2578 .elementor-element.elementor-element-acc73e5 .elementor-heading-title, 
+	.elementor-2578 .elementor-element.elementor-element-4d7df5f .elementor-heading-title{
+		font-size: 18px;
+    	line-height: 32px;
+	}
+	body .account-details-sec .account-pg-cls form p label{
+		font-size: 15px;
+	}
+	body .elementor-2578 .elementor-element.elementor-element-a1d1382 > .elementor-element-populated{
+		padding: 40px 40px;
+	}
+	body .account-details-sec .account-pg-cls form p button{
+		font-size: 15px;
+    	line-height: 17px;
+	}
+	body .account-heading-cls.elementor-widget, 
+	body .address-heading-cls{
+		padding: 8px 18px;
+	}
+	/* View Order Page */
+	.woocommerce-account.woocommerce-page .woocommerce .woocommerce-MyAccount-content h2, .woocommerce-MyAccount-content section.woocommerce-order-details h2.woocommerce-order-details__title{
+		font-size: 17px !important;
+    	line-height: 23px !important;
+	}
+	.woocommerce-MyAccount-content table.shop_table.order_details tbody tr.order_item td.product-name>a,
+	.woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td>a,
+	.woocommerce-MyAccount-content section.woocommerce-customer-details address, 
+	.woocommerce-MyAccount-content section.woocommerce-customer-details address p,
+	.woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td,
+	.woocommerce-MyAccount-content table.shop_table.order_details tfoot tr td,
+	.woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr td,
+	.woocommerce-MyAccount-content table.shop_table.order_details tfoot tr th, .woocommerce-MyAccount-content table.shop_table.order_details tfoot tr td, .woocommerce-MyAccount-content table.shop_table.subscription_details tr td, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr th, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr td{
+		font-size: 16px !important;
+		line-height: 24px !important; 
+	}
+	.woocommerce a.button, .woocommerce button.button, .woocommerce .woocommerce-message a.button, .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .woocommerce input.button, .woocommerce-cart table.cart td.actions .button, .woocommerce form.checkout_coupon .button, .woocommerce #respond input#submit, .wc-block-grid__products .wc-block-grid__product .wp-block-button__link{
+		padding: 10px 25px;
+	}
+	.woocommerce-MyAccount-content table.shop_table.order_details tbody tr.order_item td.product-name>a{
+		font-size: 16px;
+	}
+	/* Thank You Page */
+	.elementor-2524 .elementor-element.elementor-element-2fcf8e2 .elementor-heading-title{
+		font-size: 40px;
+    	line-height: 50px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-55a87eb .elementor-heading-title{
+		font-size: 18px;
+    	line-height: 26px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-34a089b .elementor-heading-title{
+		font-size: 18px;
+		line-height: 28px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-1816f4d .elementor-button{
+		font-size: 15px;
+	}
+}
+@media screen and (max-width: 1024px) {
+	/* Your Account Page */
+	body .account-details-sec{
+		margin-left: 0px;
+	}
+	body .account-details-sec .account-pg-cls form p{
+		width: 100%;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date, 
+	body .order-details-tab-cls table.shop_table tbody tr td.order-total{
+		width: 25%;
+	}
+}
+@media screen and (max-width: 992px) {
+	/* Your Account Page */
+	body .order-details-tab-cls h2, body .order-details-tab-cls table.shop_table tbody tr td.order-number, body .order-details-tab-cls table.shop_table tbody tr td.order-number a{
+		font-size: 14px;
+	}
+	.order-details-tab-cls table.shop_table tbody tr td.order-status, .order-details-tab-cls table.shop_table thead tr th{
+		font-size: 13px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date, body .order-details-tab-cls table.shop_table tbody tr td.order-total{
+		font-size: 13px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date small, body .order-details-tab-cls table.shop_table tbody tr td.order-total small{
+		font-size: 12px;
+	}
+	.elementor-2578 .elementor-element.elementor-element-acc73e5 .elementor-heading-title, .elementor-2578 .elementor-element.elementor-element-4d7df5f .elementor-heading-title{
+		font-size: 17px;
+		line-height: 30px;
+	}
+	body .account-details-sec .account-pg-cls form p label{
+		font-size: 14px;
+	}
+	/* Thank You Page */
+	.elementor-2524 .elementor-element.elementor-element-272466f > .elementor-element-populated{
+		padding: 0 30px;
+	}
+}
+@media screen and (max-width: 767.98px) {
+	/* Your Account Page */
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date, 
+	body .order-details-tab-cls table.shop_table tbody tr td.order-total{
+		width: auto;
+	}
+	body .order-details-tab-cls h2{
+		font-size: 17px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-number, body .order-details-tab-cls table.shop_table tbody tr td.order-number a {
+		font-size: 14px;
+	}
+	.order-details-tab-cls table.shop_table tbody tr td.order-status, .order-details-tab-cls table.shop_table thead tr th{
+		font-size: 14px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date, body .order-details-tab-cls table.shop_table tbody tr td.order-total{
+		font-size: 14px;
+	}
+	body .order-details-tab-cls table.shop_table tbody tr td.order-date small, body .order-details-tab-cls table.shop_table tbody tr td.order-total small{
+		display: inline-block;
+		width: 75%;
+		line-height: 16px;
+		margin: 4px 0 0;
+	}
+	body .elementor-2578 .elementor-element.elementor-element-a1d1382 > .elementor-element-populated{
+		padding: 40px 15px;
+	}
+	.subscription_details .button{
+		width: auto;
+	}
+}
+@media screen and (max-width: 766px) {
+	.woocommerce table.shop_table .woocommerce-Price-amount, .woocommerce-page table.shop_table .woocommerce-Price-amount{
+		font-size: 16px;
+	}
+	.woocommerce-MyAccount-content table.shop_table.order_details tbody tr.order_item td.product-name>a, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td>a, .woocommerce-MyAccount-content section.woocommerce-customer-details address, .woocommerce-MyAccount-content section.woocommerce-customer-details address p, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td, .woocommerce-MyAccount-content table.shop_table.order_details tfoot tr td, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr td, .woocommerce-MyAccount-content table.shop_table.order_details tfoot tr th, .woocommerce-MyAccount-content table.shop_table.order_details tfoot tr td, .woocommerce-MyAccount-content table.shop_table.subscription_details tr td, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr th, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr td{
+		font-size: 15px !important;
+	}
+	.woocommerce-view-subscription .woocommerce-MyAccount-content table.shop_table.my_account_orders.woocommerce-orders-table tbody tr td.order-number, .woocommerce-view-subscription .woocommerce-MyAccount-content table.shop_table.my_account_orders.woocommerce-orders-table tbody tr td.order-number a,
+	.woocommerce-view-subscription .woocommerce-MyAccount-content table.shop_table.my_account_orders.woocommerce-orders-table tbody tr td{
+		font-size: 15px !important;
+	}
+	.woocommerce-MyAccount-content section.woocommerce-order-details p.order-again a.button, .woocommerce-view-subscription .woocommerce-MyAccount-content table.shop_table.my_account_orders.woocommerce-orders-table tbody tr td a.woocommerce-button.button, .woocommerce-MyAccount-content table.shop_table.order_details tbody tr.order_item td.product-name a.wcs-switch-link, .woocommerce-MyAccount-content table.shop_table.subscription_details tr td a, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td.subscription-actions a.woocommerce-button{
+		font-size: 14px !important;
+	}
+	/* Thank You Page */
+	.elementor-column.elementor-element-fd4678c{
+		order: 1 !important;
+	}
+	.elementor-element.elementor-element-272466f{
+		order: 2 !important;
+	}
+	.elementor-2524 .elementor-element.elementor-element-272466f > .elementor-element-populated{
+		padding: 0 15px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-2fcf8e2 .elementor-heading-title{
+		font-size: 36px;
+    	line-height: 42px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-2fcf8e2,
+	.elementor-2524 .elementor-element.elementor-element-55a87eb{
+		margin-bottom: 15px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-55a87eb .elementor-heading-title{
+		font-size: 17px;
+    	line-height: 24px;
+	}
+	.elementor-2524 .elementor-element.elementor-element-34a089b .elementor-heading-title{
+		font-size: 16px;
+    	line-height: 26px;
+	}
+}
+@media screen and (max-width: 480px) {
+	/* View Order Page */
+	.woocommerce-MyAccount-content table.shop_table.order_details tbody tr.order_item td.product-name>a, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td>a, .woocommerce-MyAccount-content section.woocommerce-customer-details address, .woocommerce-MyAccount-content section.woocommerce-customer-details address p, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table.my_account_orders.woocommerce-orders-table.woocommerce-MyAccount-subscriptions tbody tr.order td, .woocommerce-MyAccount-content table.shop_table.order_details tfoot tr td, .woocommerce-MyAccount-content section.woocommerce-order-details table.shop_table tfoot tr td{
+		font-size: 15px !important;
+	}
+	.my-account-main-sec>.elementor-container.elementor-column-gap-default{
+		padding: 20px 0px !important;
+	}
+}

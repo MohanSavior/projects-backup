@@ -1,0 +1,412 @@
+.member-list .share-icons {
+	background: #F7C338 !important;
+	font-size: 20px;
+	padding: 4px 22px;
+	margin-left: 67px;
+	position: relative;
+	display: flex;
+	box-shadow: inset 0 -6px 10px -8px rgba(0, 0, 0, 0.3), inset 0 6px 10px -8px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	width: fit-content;
+}
+
+.member-list .share-icons__block-left {
+	background: #F7C338;
+	color: #080E41 !important;
+}
+
+.member-list .share-icons__block-right {
+	background: #F7C338;
+	color: #080E41 !important;
+}
+
+.member-list .share-icons:hover .share-icons__item {
+	z-index: 99;
+}
+
+.member-list ul.share-icons:hover .share-icons__block-left,
+.member-list ul.share-icons:hover .share-icons__block-right {
+	background: #080E41;
+	color: #F7C338 !important;
+}
+
+.member-list .share-icons__item {
+	padding: 10px 10px 10px 10px;
+	margin: 0;
+}
+
+.member-list .share-icons:hover .share-icons__block {
+	filter: drop-shadow(0 0 0px rgba(0, 0, 0, 0.0)) !important;
+}
+
+.member-list li.share-icons__item i {
+	font-size: 20px !important;
+	color: #080E41 !important;
+}
+
+.member-list ul {
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+}
+
+.member-list .share-icons__block {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transform: translateZ(0);
+	transition: transform 0.3s, filter 0.2s;
+	transition-timing-function: ease-in-out;
+}
+
+.member-list .share-icons__block-left,
+.member-list .share-icons__block-right {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: white;
+	transition: 0.6s;
+	background: #F7C338;
+}
+
+.member-list .share-icons__block-left {
+	clip-path: inset(0 50% 0 0);
+}
+
+.member-list .share-icons__block-right {
+	clip-path: inset(0 0 0 50%);
+}
+
+.member-list .share-icons:hover .share-icons__block {
+	filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.3));
+}
+
+.member-list .share-icons:hover .share-icons__block-left {
+	transform: translateX(-40%) scale(1.075);
+}
+
+.member-list .share-icons:hover .share-icons__block-right {
+	transform: translateX(40%) scale(1.075);
+}
+
+.member-list button.dt-button.buttons-collection {
+	display: none;
+}
+
+.member-list div#member-listing_length label {
+	display: inline;
+	font-size: 14px !important;
+	line-height: 3.4em;
+}
+
+.member-list .filter-wrapper {
+	display: inline;
+	margin-left: 15px;
+}
+
+.member-list .filter-checkbox {
+	display: inline;
+}
+
+.member-list .print-action-btn {
+	display: inline-block;
+}
+
+.member-list input#filter-checkbox {
+	margin-top: -1px;
+	margin-right: 5px;
+}
+
+.member-list div#member-listing_length select {
+	width: 55px;
+	padding: 0.5px 5px !important;
+}
+
+.member-list div#member-listing_length label {
+	margin-top: -5px !important;
+}
+
+.member-list label {
+	display: inline;
+}
+
+.member-list button.dt-button {
+	margin-left: 16px;
+	margin-top: 7px;
+	font-size: 14px;
+	padding: 5px 15px;
+}
+
+div#member-listing_wrapper {
+	width: 97%;
+	background-color: #FFFFFF;
+	padding: 18px;
+	border-radius: 10px;
+	margin-top: 20px;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+}
+
+#templates .badge_1 .user-friendly-name {
+	font-weight: 700;
+	font-size: 34.56px;
+	line-height: 26px;
+	text-align: left;
+}
+
+#templates .badge_1 .left .flex-block {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 10px;
+	text-align: left;
+}
+
+#templates .badge_1 .right .bottom-qr {
+	font-size: 13px;
+	position: unset !important;
+	width: unset !important;
+}
+#templates .badge_1 .left .user-company-address {
+    padding-top: 5px !important;
+}
+
+#templates .badge_1.tpl-1.daypass {
+	display: flex;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 600;
+	flex-wrap: wrap;
+	padding: 10px 15px 10px 15px;
+}
+
+.daypass-footer,
+.top {
+	width: 100%;
+}
+
+#templates .badge_1 .left .user-company {
+	font-size: 18px !important;
+}
+
+#templates .badge_1 .user-address {
+	font-size: 15px !important;
+}
+
+.daypass-footer h2 {
+    font-size: 18px !important;
+    padding: 0 !important;
+    line-height: 1em !important;
+}
+
+.daypass-footer h4 {
+	font-size: 16px !important;
+	margin: 0 !important;
+}
+
+#templates .badge_1>.top {
+	padding: 0 !important;
+	height: unset !important;
+}
+
+/* #templates .badge_1 {
+	height: 230px !important;
+} */
+#templates .badge_1.tpl-1.daypass {
+    height: 241px !important;
+}
+.user-name .full-width,
+.user-job .full-width {
+	font-size: 15px !important;
+	word-break: break-all;
+	display: block;
+	word-wrap: break-word;
+	white-space: normal;
+}
+#templates .user-email {
+	word-break: break-all;
+	word-wrap: break-word;
+	white-space: normal;
+}
+#templates .badge_1.tpl-2 .bottom {
+	margin-top: 15px;
+}
+
+#templates .badge_1.tpl-2 .right .bottom-qr {
+	display: unset;
+	position: unset !important;
+}
+
+#templates .badge_1.tpl-2 {
+	height: unset !important;
+	padding: 15px !important;
+}
+
+#templates .badge_1.tpl-2 .user-friendly-name {
+	margin-bottom: 10px !important;
+}
+
+#templates .badge_1>.top .right {
+	width: 110px !important;
+}
+
+#templates .badge_1.tpl-2>.top .left {
+	width: calc(100% - 110px) !important;
+}
+
+#templates .badge_1.tpl-2>.top .left {
+	font-size: 16px !important;
+}
+
+#templates .badge_1 .left .flex-block {
+	height: 120px !important;
+}
+
+#templates .badge_1.tpl-2>.top {
+	display: block;
+}
+
+#templates .badge_1.tpl-2 .right .qr-code {
+	margin-bottom: 10px !important;
+}
+
+.badge_1.tpl-2 .user-company span.full-width {
+	display: block;
+	word-wrap: break-word;
+	white-space: normal;
+}
+
+.badge_1.tpl-2 .b-date.latter-print {
+	text-align: right;
+	font-size: 13px;
+	font-weight: 600 !important;
+}
+
+#templates .badge_1.tpl-1.daypass .right {
+	width: 110px !important;
+}
+
+#templates .badge_1.tpl-1.daypass .left {
+	width: calc(100% - 110px);
+}
+
+#templates .badge_1.tpl-1.daypass .qr-code img {
+	width: 100px;
+}
+
+#templates .badge_1.tpl-1 .user-company {
+    word-break: break-all;
+    display: block;
+    word-wrap: break-word;
+    white-space: normal;
+}
+.user-company-address {
+    width: 240px;
+}
+/* .badge_1.tpl-1.daypass:nth-child(4n+1),
+.badge_1.tpl-2.daypass:nth-child(4n+1) {
+	border-left: 1px solid black;
+}
+
+.badge_1.tpl-1.daypass:nth-child(-n+4),
+.badge_1.tpl-2.daypass:nth-child(-n+4) {
+	border-top: 1px solid black;
+}
+
+.badge_1.tpl-1.daypass,
+.badge_1.tpl-2.daypass {
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+} */
+
+#member-listing .button-cover,
+#member-listing .knobs,
+#member-listing .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#member-listing .button {
+    position: relative;
+    top: 50%;
+    width: 50px;
+    height: 20px;
+    margin: 0;
+    overflow: hidden;
+}
+
+#member-listing .button.r,
+#member-listing .button.r .layer {
+    border-radius: 100px;
+}
+
+#member-listing .button.b2 {
+    border-radius: 2px;
+}
+
+#member-listing .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+}
+
+#member-listing .knobs {
+    z-index: 2;
+}
+
+#member-listing .layer {
+    width: 100%;
+    background-color: #fcebeb;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+/* Button 1 */
+#member-listing #button-1 .knobs:before {
+    content: "NO";
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    padding: 5px 0px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    background-color: #f44336;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+}
+
+#member-listing #button-1 .checkbox:checked+.knobs:before {
+    content: "YES";
+    left: 25px;
+    background-color: #3da106;
+}
+
+#member-listing #button-1 .checkbox:checked~.layer {
+    background-color: #3da10640;
+}
+
+#member-listing #button-1 .knobs,
+#member-listing #button-1 .knobs:before,
+#member-listing #button-1 .layer {
+    transition: 0.3s ease all;
+}

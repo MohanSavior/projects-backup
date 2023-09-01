@@ -1,0 +1,5 @@
+{
+    "require": {
+        "2amigos/qrcode-library": "^3.0"
+    }
+}

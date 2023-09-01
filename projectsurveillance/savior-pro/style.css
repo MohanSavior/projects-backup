@@ -1,0 +1,153 @@
+/**
+Theme Name: Savior-Pro
+Author: Savior Marketing, LLC
+Author URI: https://savior.im/
+Description: Savior Pro is the child theme of Astra created and used by Savior Marketing Agency.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: savior-pro
+Template: astra
+*/
+
+/** Confirmation Pages Responsive CSS Start **/
+@media only screen and (max-width: 1490px) {
+	
+	
+	
+/** Confirmation Pages Responsive CSS Ends **/
+
+	/* our-team Page	 */
+	.elementor-18 .elementor-element.elementor-element-4788002 .elementor-heading-title{
+		font-size: 60px;
+		line-height: 60px;
+	}
+	.elementor-element-7c5907a .pp-info-box-description {
+		font-size: 18px !important;
+		line-height: 26px !important;
+	}
+	.elementor-element-6b4238a .elementor-widget-container p,  .elementor-element-721326b .elementor-widget-container p, .elementor-element-ff20736 .elementor-widget-container p, .elementor-element-f1a3acd .elementor-widget-container p{
+		font-size: 18px;
+		line-height: 26px;
+	}	
+	.elementor-element-85ecdf2 a.pp-info-box-button.elementor-button.elementor-size-md {
+		font-size: 18px;
+		padding: 14px 57px 14px 57px;
+	}	
+}
+@media only screen and (max-width: 1064px) {
+	
+	.elementor-18 .elementor-element.elementor-element-4788002 .elementor-heading-title {
+		font-size: 45px;
+		line-height: 45px;
+	}	
+	.elementor-element-7c5907a .elementor-inner-column .elementor-widget-wrap.elementor-element-populated {
+		padding: 20px;
+	}
+	.elementor-element-b6ff0f0.elementor-section-boxed h4.pp-info-box-title {
+		font-size: 90px !important;
+		line-height: 80px !important;
+	}	
+	.elementor-element-6b4238a .elementor-widget-container p, .elementor-element-721326b .elementor-widget-container p, .elementor-element-ff20736 .elementor-widget-container p, .elementor-element-f1a3acd .elementor-widget-container p {
+		font-size: 17px; line-height: 25px;
+	}
+	.elementor-18 .elementor-element.elementor-element-cf73e93 {
+		padding: 60px 20px 60px 20px;
+	}
+}
+@media only screen and (max-width: 884px) {
+	.left-col, .right-col {
+		width: 100% !important;
+	}
+	.left-col .elementor-element.elementor-widget-image {
+		text-align: center;
+	}
+	.left-col .elementor-widget-image img {
+		width: 100%;
+	}
+	.left-col .elementor-element-populated {
+		padding: 0px 16px 0px 16px !important;
+	}
+	.right-col {
+		padding: 0px 0px !important;
+		padding-top:20px !important;
+	}
+	.elementor-18 .elementor-element.elementor-element-c8cdd2d .pp-info-box-title {
+		font-size: 52px;
+		line-height: 52px;}
+	body:not(.rtl) .elementor-18 .elementor-element.elementor-element-49dc3ac {
+		left: 477px;
+	}
+}
+@media only screen and (max-width: 767px) {
+	body:not(.rtl) .elementor-18 .elementor-element.elementor-element-49dc3ac {
+		left: 121px;
+		bottom: 36px;
+		padding-bottom: 29px;
+	}
+	.elementor-18 .elementor-element.elementor-element-c8cdd2d .pp-info-box-subtitle {
+		margin-bottom: 60px;	}
+	.elementor-18 .elementor-element.elementor-element-4788002 .elementor-heading-title {
+		font-size: 37px;
+		line-height: 45px;
+	}
+	.elementor-18 .elementor-element.elementor-element-c8cdd2d .pp-info-box-title {
+		font-size: 34px;
+		line-height: 46px;
+	}
+	.elementor-element-85ecdf2 a.pp-info-box-button.elementor-button.elementor-size-md {
+		font-size: 17px;
+		padding: 14px 45px 14px 45px !important;
+	}	
+	.elementor-element-b6ff0f0.elementor-section-boxed h4.pp-info-box-title {
+		font-size: 80px !important;
+		line-height: 70px !important;
+	}
+	.elementor-element-b6ff0f0.elementor-section-boxed	h5.pp-info-box-subtitle{    font-size: 21px !important;
+		line-height: 27px; !important}
+}
+@media only screen and (max-width: 660px) {
+	body:not(.rtl) .elementor-18 .elementor-element.elementor-element-49dc3ac {
+		left: 156px;
+		bottom: 36px;
+	}
+}
+@media only screen and (max-width: 580px) {
+	body:not(.rtl) .elementor-18 .elementor-element.elementor-element-49dc3ac {
+		left: 92px !important;
+		bottom: 52px !important;
+	}
+	.elementor-18 .elementor-element.elementor-element-4788002 .elementor-heading-title {
+		font-size: 28px;
+		line-height: 32px;
+	}
+	.elementor-18 .elementor-element.elementor-element-cf73e93 {
+		padding: 40px 20px 40px 20px;
+	}	
+}
+@media only screen and (max-width: 420px) {
+	.elementor-18 .elementor-element.elementor-element-c8cdd2d .pp-info-box-title {
+		font-size: 25px;
+		line-height: 31px;
+	}
+	body:not(.rtl) .elementor-18 .elementor-element.elementor-element-49dc3ac {
+		left: 74px !important;
+		bottom: 71px !important;
+	}
+	.left-col .elementor-element-populated  {
+		padding: 0 !important;
+	}	
+}
+@media only screen and (max-width:360px) {
+	.elementor-element-6b4238a .elementor-widget-container p, .elementor-element-721326b .elementor-widget-container p, .elementor-element-ff20736 .elementor-widget-container p, .elementor-element-f1a3acd .elementor-widget-container p {
+		font-size: 16px;
+	}
+	body:not(.rtl) .elementor-18 .elementor-element.elementor-element-49dc3ac {
+		left: 73px !important;
+		bottom: 54px !important;
+	}	
+	.elementor-18 .elementor-element.elementor-element-c8cdd2d .pp-info-box-title {
+		font-size: 18px;
+		line-height: 22px;
+	}	
+}

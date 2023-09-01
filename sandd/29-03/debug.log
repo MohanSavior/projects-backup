@@ -1,0 +1,4611 @@
+[29-Mar-2023 07:16:56 UTC] PHP Notice:  Undefined index: data in /home/savior/webapps/sandd/wp-content/plugins/elementor/core/common/modules/ajax/module.php on line 175
+[29-Mar-2023 07:28:14 UTC] PHP Notice:  Undefined index: url in /home/savior/webapps/sandd/wp-content/plugins/advanced-custom-fields-pro/includes/api/api-helpers.php on line 3303
+[29-Mar-2023 07:28:14 UTC] PHP Notice:  Undefined index: url in /home/savior/webapps/sandd/wp-content/plugins/advanced-custom-fields-pro/includes/api/api-helpers.php on line 3303
+[29-Mar-2023 07:28:15 UTC] PHP Notice:  Undefined index: url in /home/savior/webapps/sandd/wp-content/plugins/advanced-custom-fields-pro/includes/api/api-helpers.php on line 3303
+[29-Mar-2023 07:28:15 UTC] PHP Notice:  Undefined index: url in /home/savior/webapps/sandd/wp-content/plugins/advanced-custom-fields-pro/includes/api/api-helpers.php on line 3303
+[29-Mar-2023 08:40:19 UTC] $post_id
+[29-Mar-2023 08:40:19 UTC] 2084
+[29-Mar-2023 08:40:19 UTC] $feed
+[29-Mar-2023 08:40:19 UTC] Array
+(
+    [id] => 2
+    [form_id] => 6
+    [is_active] => 1
+    [feed_order] => 0
+    [meta] => Array
+        (
+            [feedName] => Post creation business profile
+            [action] => post-create
+            [postVisibility] => public
+            [postType] => startup
+            [postStatus] => publish
+            [postDate] => entry
+            [postDateFieldDate] => 
+            [postDateFieldTime] => 
+            [postDateCustom] => 
+            [postAuthor] => logged-in-user
+            [postComments] => 0
+            [postPingbacks] => 0
+            [postTitle] => {Post Title:3}
+            [postContent] => {Post Body:5}
+            [postThumbnail] => 1007
+            [postMedia] => Array
+                (
+                    [0] => 1007
+                )
+
+            [postExcerpt] => {Post Excerpt:9}
+            [postMetaFields] => Array
+                (
+                    [0] => Array
+                        (
+                            [key] => additional_photo_1
+                            [custom_key] => 
+                            [value] => 19
+                            [custom_value] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [key] => additional_photo_1_subtitle
+                            [custom_key] => 
+                            [value] => 20
+                            [custom_value] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [key] => additional_photo_2
+                            [custom_key] => 
+                            [value] => 21
+                            [custom_value] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [key] => additional_photo_2_subtitle
+                            [custom_key] => 
+                            [value] => 22
+                            [custom_value] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [key] => asking_price
+                            [custom_key] => 
+                            [value] => 12
+                            [custom_value] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [key] => balance_sheets
+                            [custom_key] => 
+                            [value] => 39
+                            [custom_value] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [key] => balance_sheets_last_updated_date
+                            [custom_key] => 
+                            [value] => 40
+                            [custom_value] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [key] => balance_sheets_subtitle
+                            [custom_key] => 
+                            [value] => 41
+                            [custom_value] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [key] => business_website_url
+                            [custom_key] => 
+                            [value] => 10
+                            [custom_value] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [key] => discounted_asking_price
+                            [custom_key] => 
+                            [value] => 13
+                            [custom_value] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [key] => employees
+                            [custom_key] => 
+                            [value] => 11
+                            [custom_value] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [key] => equity_statements
+                            [custom_key] => 
+                            [value] => 45
+                            [custom_value] => 
+                        )
+
+                    [12] => Array
+                        (
+                            [key] => equity_statements_last_updated_date
+                            [custom_key] => 
+                            [value] => 46
+                            [custom_value] => 
+                        )
+
+                    [13] => Array
+                        (
+                            [key] => equity_statements_subtitle
+                            [custom_key] => 
+                            [value] => 47
+                            [custom_value] => 
+                        )
+
+                    [14] => Array
+                        (
+                            [key] => features_description
+                            [custom_key] => 
+                            [value] => 23
+                            [custom_value] => 
+                        )
+
+                    [15] => Array
+                        (
+                            [key] => features_0_features_title
+                            [custom_key] => 
+                            [value] => 24
+                            [custom_value] => 
+                        )
+
+                    [16] => Array
+                        (
+                            [key] => features_0_feature_description__
+                            [custom_key] => 
+                            [value] => 25
+                            [custom_value] => 
+                        )
+
+                    [17] => Array
+                        (
+                            [key] => features_1_features_title
+                            [custom_key] => 
+                            [value] => 26
+                            [custom_value] => 
+                        )
+
+                    [18] => Array
+                        (
+                            [key] => features_1_feature_description__
+                            [custom_key] => 
+                            [value] => 27
+                            [custom_value] => 
+                        )
+
+                    [19] => Array
+                        (
+                            [key] => features_2_features_title
+                            [custom_key] => 
+                            [value] => 28
+                            [custom_value] => 
+                        )
+
+                    [20] => Array
+                        (
+                            [key] => features_2_feature_description__
+                            [custom_key] => 
+                            [value] => 29
+                            [custom_value] => 
+                        )
+
+                    [21] => Array
+                        (
+                            [key] => features_3_features_title
+                            [custom_key] => 
+                            [value] => 30
+                            [custom_value] => 
+                        )
+
+                    [22] => Array
+                        (
+                            [key] => features_3_feature_description__
+                            [custom_key] => 
+                            [value] => 31
+                            [custom_value] => 
+                        )
+
+                    [23] => Array
+                        (
+                            [key] => features_4_features_title
+                            [custom_key] => 
+                            [value] => 32
+                            [custom_value] => 
+                        )
+
+                    [24] => Array
+                        (
+                            [key] => features_4_feature_description__
+                            [custom_key] => 
+                            [value] => 33
+                            [custom_value] => 
+                        )
+
+                    [25] => Array
+                        (
+                            [key] => features_5_features_title
+                            [custom_key] => 
+                            [value] => 34
+                            [custom_value] => 
+                        )
+
+                    [26] => Array
+                        (
+                            [key] => features_5_feature_description__
+                            [custom_key] => 
+                            [value] => 35
+                            [custom_value] => 
+                        )
+
+                    [27] => Array
+                        (
+                            [key] => location
+                            [custom_key] => 
+                            [value] => 15
+                            [custom_value] => 
+                        )
+
+                    [28] => Array
+                        (
+                            [key] => main_photo
+                            [custom_key] => 
+                            [value] => 17
+                            [custom_value] => 
+                        )
+
+                    [29] => Array
+                        (
+                            [key] => main_photo_subtitle
+                            [custom_key] => 
+                            [value] => 18
+                            [custom_value] => 
+                        )
+
+                    [30] => Array
+                        (
+                            [key] => year_of_incorporation
+                            [custom_key] => 
+                            [value] => 14
+                            [custom_value] => 
+                        )
+
+                    [31] => Array
+                        (
+                            [key] => choose_color
+                            [custom_key] => 
+                            [value] => 53
+                            [custom_value] => 
+                        )
+
+                    [32] => Array
+                        (
+                            [key] => cac
+                            [custom_key] => 
+                            [value] => 1006
+                            [custom_value] => 
+                        )
+
+                    [33] => Array
+                        (
+                            [key] => cltv
+                            [custom_key] => 
+                            [value] => 1005
+                            [custom_value] => 
+                        )
+
+                    [34] => Array
+                        (
+                            [key] => mrr
+                            [custom_key] => 
+                            [value] => 1004
+                            [custom_value] => 
+                        )
+
+                    [35] => Array
+                        (
+                            [key] => photo_description
+                            [custom_key] => 
+                            [value] => 16
+                            [custom_value] => 
+                        )
+
+                    [36] => Array
+                        (
+                            [key] => future_financials_description
+                            [custom_key] => 
+                            [value] => 36
+                            [custom_value] => 
+                        )
+
+                    [37] => Array
+                        (
+                            [key] => financial_history_documents_description
+                            [custom_key] => 
+                            [value] => 38
+                            [custom_value] => 
+                        )
+
+                    [38] => Array
+                        (
+                            [key] => income_cashflow_statements_subtitle
+                            [custom_key] => 
+                            [value] => 44
+                            [custom_value] => 
+                        )
+
+                    [39] => Array
+                        (
+                            [key] => income_cashflow_statements_last_updated_date
+                            [custom_key] => 
+                            [value] => 43
+                            [custom_value] => 
+                        )
+
+                    [40] => Array
+                        (
+                            [key] => income_cashflow_statements
+                            [custom_key] => 
+                            [value] => 42
+                            [custom_value] => 
+                        )
+
+                )
+
+            [postTaxonomy_startup_categories] => Array
+                (
+                    [0] => Array
+                        (
+                            [key] => term
+                            [value] => 1003
+                            [custom_value] => 
+                        )
+
+                )
+
+            [postTaxonomy_availability] => Array
+                (
+                    [0] => Array
+                        (
+                            [key] => term
+                            [value] => 
+                            [custom_value] => 
+                        )
+
+                )
+
+            [postTaxonomy_seller] => Array
+                (
+                    [0] => Array
+                        (
+                            [key] => term
+                            [value] => 
+                            [custom_value] => 
+                        )
+
+                )
+
+            [postTaxonomy_startup_tags] => Array
+                (
+                    [0] => Array
+                        (
+                            [key] => term
+                            [value] => 
+                            [custom_value] => 
+                        )
+
+                )
+
+            [feed_condition_conditional_logic_object] => Array
+                (
+                    [conditionalLogic] => Array
+                        (
+                            [actionType] => show
+                            [logicType] => all
+                            [rules] => Array
+                                (
+                                    [0] => Array
+                                        (
+                                            [fieldId] => 3
+                                            [operator] => is
+                                            [value] => 
+                                        )
+
+                                )
+
+                        )
+
+                )
+
+            [feed_condition_conditional_logic] => 0
+            [postDiscussion] => 
+            [feedCondition] => 
+        )
+
+    [addon_slug] => gravityformsadvancedpostcreation
+    [event_type] => 
+)
+
+[29-Mar-2023 08:40:19 UTC] $entry
+[29-Mar-2023 08:40:19 UTC] Array
+(
+    [id] => 23
+    [status] => active
+    [form_id] => 6
+    [ip] => 49.36.16.100
+    [source_url] => http://sandd.saviormarketing.com/create-business-profile/
+    [currency] => USD
+    [post_id] => 
+    [date_created] => 2023-03-29 08:40:19
+    [date_updated] => 2023-03-29 08:40:19
+    [is_starred] => 0
+    [is_read] => 0
+    [user_agent] => Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36
+    [payment_status] => 
+    [payment_date] => 
+    [payment_amount] => 
+    [payment_method] => 
+    [transaction_id] => 
+    [is_fulfilled] => 
+    [created_by] => 2
+    [transaction_type] => 
+    [1007] => http://sandd.saviormarketing.com/wp-content/uploads/gravity_forms/6-271859ad24a0aa15fc8cd0bb004709f1/2023/03/fitness-rooms.png
+    [3] => Test Business
+    [53] => #301111
+    [5] => 
+    [1003.1] => 14
+    [1003.2] => 13
+    [1003.3] => 12
+    [7.1] => 95
+    [7.2] => 85
+    [7.3] => 90
+    [9] => 
+    [10] => 
+    [11] => 
+    [12] => 
+    [13] => 
+    [14] => 
+    [15] => 
+    [1004] => 
+    [1005] => 
+    [1006] => 
+    [16] => 
+    [49] => 
+    [17] => []
+    [18] => 
+    [51] => 
+    [19] => []
+    [20] => 
+    [52] => 
+    [21] => []
+    [22] => 
+    [50] => 
+    [23] => 
+    [24] => 
+    [25] => 
+    [26] => 
+    [27] => 
+    [28] => 
+    [29] => 
+    [30] => 
+    [31] => 
+    [32] => 
+    [33] => 
+    [34] => 
+    [35] => 
+    [36] => 
+    [37] => []
+    [38] => 
+    [39] => []
+    [40] => 
+    [41] => 
+    [42] => []
+    [43] => 
+    [44] => 
+    [45] => []
+    [46] => 
+    [47] => 
+    [1000] => Array
+        (
+            [0] => Array
+                (
+                    [1001] => Feature Title 1
+                    [1002] => Feature Description 2
+                )
+
+            [1] => Array
+                (
+                    [1001] => Feature Title 2
+                    [1002] => Feature Description 2
+                )
+
+        )
+
+)
+
+[29-Mar-2023 08:40:19 UTC] $form
+[29-Mar-2023 08:40:19 UTC] Array
+(
+    [title] => Create Business Profile
+    [description] => 
+    [labelPlacement] => top_label
+    [descriptionPlacement] => below
+    [button] => Array
+        (
+            [type] => text
+            [text] => Submit
+            [imageUrl] => 
+            [width] => auto
+            [location] => bottom
+            [layoutGridColumnSpan] => 12
+            [id] => submit
+        )
+
+    [fields] => Array
+        (
+            [0] => GF_Field_FileUpload Object
+                (
+                    [type] => fileupload
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 1007
+                    [formId] => 6
+                    [label] => Post Image
+                    [adminLabel] => 
+                    [isRequired] => 1
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => business-feature-img-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [maxFileSize] => 
+                    [maxFiles] => 
+                    [multipleFiles] => 
+                    [allowedExtensions] => jpg, jpeg, png
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => f54bc071
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [is_field_hidden] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [1] => GF_Field_Post_Title Object
+                (
+                    [type] => post_title
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 3
+                    [formId] => 6
+                    [label] => Post Title
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Enter Business Name
+                    [cssClass] => business-name-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => d7b91991
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [2] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 53
+                    [formId] => 6
+                    [label] => Choose Color
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Choose Color
+                    [cssClass] => color-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => cd52ac38
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 1
+                    [colorPicker_displayStyleSetting] => horizontal-bar
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => choose_color
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [3] => GF_Field_Post_Content Object
+                (
+                    [type] => post_content
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 5
+                    [formId] => 6
+                    [label] => Post Body
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Post Description
+                    [cssClass] => business-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [form_id] => 
+                    [useRichTextEditor] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 87eb381d
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [4] => GF_Field_Checkbox Object
+                (
+                    [type] => checkbox
+                    [_supports_state_validation:protected] => 1
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [id] => 1003
+                    [formId] => 6
+                    [label] => Post Category
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [choices] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => First Choice
+                                    [value] => First Choice
+                                    [isSelected] => 
+                                    [price] => 
+                                )
+
+                            [1] => Array
+                                (
+                                    [text] => Second Choice
+                                    [value] => Second Choice
+                                    [isSelected] => 
+                                    [price] => 
+                                )
+
+                            [2] => Array
+                                (
+                                    [text] => Third Choice
+                                    [value] => Third Choice
+                                    [isSelected] => 
+                                    [price] => 
+                                )
+
+                        )
+
+                    [inputs] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [id] => 1003.1
+                                    [label] => First Choice
+                                    [name] => 
+                                )
+
+                            [1] => Array
+                                (
+                                    [id] => 1003.2
+                                    [label] => Second Choice
+                                    [name] => 
+                                )
+
+                            [2] => Array
+                                (
+                                    [id] => 1003.3
+                                    [label] => Third Choice
+                                    [name] => 
+                                )
+
+                        )
+
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => post-cat-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enableSelectAll] => 
+                    [enablePrice] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => df794440
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [colorPicker_swatchesPopup] => 
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [errors] => Array
+                        (
+                        )
+
+                    [validateState] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                )
+
+            [5] => GF_Field_Checkbox Object
+                (
+                    [type] => post_tags
+                    [_supports_state_validation:protected] => 1
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [id] => 7
+                    [formId] => 6
+                    [label] => Post Tags
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [id] => 7.1
+                                    [label] => First Choice
+                                    [name] => 
+                                )
+
+                            [1] => Array
+                                (
+                                    [id] => 7.2
+                                    [label] => Second Choice
+                                    [name] => 
+                                )
+
+                            [2] => Array
+                                (
+                                    [id] => 7.3
+                                    [label] => Third Choice
+                                    [name] => 
+                                )
+
+                        )
+
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => checkbox
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => post-tag-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => Array
+                        (
+                            [0] => Array
+                                (
+                                    [text] => First Choice
+                                    [value] => First Choice
+                                    [isSelected] => 
+                                    [price] => 
+                                )
+
+                            [1] => Array
+                                (
+                                    [text] => Second Choice
+                                    [value] => Second Choice
+                                    [isSelected] => 
+                                    [price] => 
+                                )
+
+                            [2] => Array
+                                (
+                                    [text] => Third Choice
+                                    [value] => Third Choice
+                                    [isSelected] => 
+                                    [price] => 
+                                )
+
+                        )
+
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enableEnhancedUI] => 
+                    [layoutGroupId] => df794440
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [checkboxLabel] => 
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [storageType] => json
+                    [validateState] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [6] => GF_Field_Post_Excerpt Object
+                (
+                    [type] => post_excerpt
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 9
+                    [formId] => 6
+                    [label] => Post Excerpt
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Post Excerpt
+                    [cssClass] => business-excerpt-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 1420f250
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [7] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 10
+                    [formId] => 6
+                    [label] => Business website url
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Business website url
+                    [cssClass] => business-info-fields url-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => c12ffc81
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [customFieldTemplate] => 
+                    [customFieldTemplateEnabled] => 
+                    [postCustomFieldName] => business_website_url
+                    [errors] => Array
+                        (
+                        )
+
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [8] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 11
+                    [formId] => 6
+                    [label] => Employees
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Employees
+                    [cssClass] => business-info-fields employees-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => c12ffc81
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => employees
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [9] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 12
+                    [formId] => 6
+                    [label] => Asking Price
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Asking Price
+                    [cssClass] => business-info-fields asking-price-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => c12ffc81
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => asking_price
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [10] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 13
+                    [formId] => 6
+                    [label] => Discounted Asking Price
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Discounted Asking Price
+                    [cssClass] => business-info-fields dis-asking-price
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => ffb79f33
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => discounted_asking_price
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [11] => GF_Field_Date Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 14
+                    [formId] => 6
+                    [label] => Year of Incorporation
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => date
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => business-info-fields year-of-incorporation-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => ffb79f33
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => year_of_incorporation
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [checkboxLabel] => 
+                    [dateType] => datepicker
+                    [dateFormat] => mdy
+                    [dateFormatPlacement] => below
+                    [calendarIconType] => none
+                    [calendarIconUrl] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [12] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 15
+                    [formId] => 6
+                    [label] => Location
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Location
+                    [cssClass] => business-info-fields location-field
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => ffb79f33
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => location
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [13] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 1004
+                    [formId] => 6
+                    [label] => MRR
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => hidden_label
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => MRR
+                    [cssClass] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 5fda3e2c
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => mrr
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [14] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 1005
+                    [formId] => 6
+                    [label] => CLTV
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => hidden_label
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => CLTV
+                    [cssClass] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 5fda3e2c
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [postCustomFieldName] => cltv
+                    [errors] => Array
+                        (
+                        )
+
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [checkboxLabel] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [15] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 1006
+                    [formId] => 6
+                    [label] => CAC
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => hidden_label
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => CAC
+                    [cssClass] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 4
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 5fda3e2c
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [postCustomFieldName] => cac
+                    [errors] => Array
+                        (
+                        )
+
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [checkboxLabel] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [16] => GF_Field_Textarea Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 16
+                    [formId] => 6
+                    [label] => Upload Photos
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => textarea
+                    [description] => Photo Description
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => above
+                    [subLabelPlacement] => 
+                    [placeholder] => Photo Description
+                    [cssClass] => upload-photos-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => a3a77525
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => photo_description
+                    [checkboxLabel] => 
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [17] => GF_Field Object
+                (
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [type] => column_start
+                    [id] => 49
+                    [formId] => 6
+                    [label] => Row Start
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => row-form-main-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 8384a2f1
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [18] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 17
+                    [formId] => 6
+                    [label] => Main Photo
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => e9c2742e
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [checkboxLabel] => 
+                    [postCustomFieldName] => main_photo
+                    [errors] => Array
+                        (
+                        )
+
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [19] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 18
+                    [formId] => 6
+                    [label] => Main Photo Subtitle
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Main Photo
+                    [cssClass] => photo-subtitle-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => c4a3d840
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => main_photo_subtitle
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [20] => GF_Field Object
+                (
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [type] => column_break
+                    [id] => 51
+                    [formId] => 6
+                    [label] => Column Break
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 9a84f3f6
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                    [multipleFiles] => 
+                )
+
+            [21] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 19
+                    [formId] => 6
+                    [label] => Additional Photo 1
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 8d0d38d9
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [checkboxLabel] => 
+                    [postCustomFieldName] => additional_photo_1
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [22] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 20
+                    [formId] => 6
+                    [label] => Additional Photo 1 Subtitle
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Subtitle
+                    [cssClass] => photo-subtitle-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 8c23010b
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => additional_photo_1_subtitle
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [23] => GF_Field Object
+                (
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [type] => column_break
+                    [id] => 52
+                    [formId] => 6
+                    [label] => Column Break
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 050acd49
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                    [multipleFiles] => 
+                )
+
+            [24] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 21
+                    [formId] => 6
+                    [label] => Additional Photo 2
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => d44ce91e
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [checkboxLabel] => 
+                    [postCustomFieldName] => additional_photo_2
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [25] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 22
+                    [formId] => 6
+                    [label] => Additional Photo 2 Subtitle
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Subtitle
+                    [cssClass] => photo-subtitle-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => ef7f5760
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => additional_photo_2_subtitle
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [26] => GF_Field Object
+                (
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [type] => column_end
+                    [id] => 50
+                    [formId] => 6
+                    [label] => Row End
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => eb1e2a3e
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [27] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 23
+                    [formId] => 6
+                    [label] => Features Description
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Description
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 248aa2b4
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_description
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [28] => GF_Field_Repeater Object
+                (
+                    [type] => repeater
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [required] => 1
+                    [description] => Maximum of 6 Feature Details
+                    [id] => 1000
+                    [formId] => 6
+                    [label] => 
+                    [addButtonText] => Add More
+                    [removeButtonText] => Remove
+                    [maxItems] => 6
+                    [pageNumber] => 1
+                    [fields] => Array
+                        (
+                            [0] => GF_Field_Text Object
+                                (
+                                    [type] => text
+                                    [_is_entry_detail:GF_Field:private] => 
+                                    [_context_properties:GF_Field:private] => Array
+                                        (
+                                            [itemIndex] => 
+                                        )
+
+                                    [_merge_tag_modifiers:GF_Field:private] => Array
+                                        (
+                                        )
+
+                                    [_supports_state_validation:protected] => 
+                                    [required] => 1
+                                    [id] => 1001
+                                    [formId] => 6
+                                    [label] => Feature Title
+                                    [pageNumber] => 1
+                                    [placeholder] => Feature Title
+                                    [isRequired] => 
+                                    [fields] => 
+                                    [inputs] => 
+                                    [inputName] => 
+                                    [maxLength] => 
+                                    [failed_validation] => 
+                                    [validation_message] => 
+                                    [enableCopyValuesOption] => 
+                                    [multipleFiles] => 
+                                    [enablePrice] => 
+                                )
+
+                            [1] => GF_Field_Text Object
+                                (
+                                    [type] => text
+                                    [_is_entry_detail:GF_Field:private] => 
+                                    [_context_properties:GF_Field:private] => Array
+                                        (
+                                            [itemIndex] => 
+                                        )
+
+                                    [_merge_tag_modifiers:GF_Field:private] => Array
+                                        (
+                                        )
+
+                                    [_supports_state_validation:protected] => 
+                                    [required] => 1
+                                    [id] => 1002
+                                    [formId] => 6
+                                    [label] => Feature Description
+                                    [pageNumber] => 1
+                                    [placeholder] => Feature Description
+                                    [isRequired] => 
+                                    [fields] => 
+                                    [inputs] => 
+                                    [inputName] => 
+                                    [maxLength] => 
+                                    [failed_validation] => 
+                                    [validation_message] => 
+                                    [enableCopyValuesOption] => 
+                                    [multipleFiles] => 
+                                    [enablePrice] => 
+                                )
+
+                        )
+
+                    [displayOnly] => 
+                    [isRequired] => 
+                    [inputs] => 
+                    [layoutGroupId] => 61d7c2b7
+                    [visibility] => visible
+                    [nestingLevel] => 0
+                    [cssClass] => 
+                    [adminLabel] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [inputType] => 
+                    [errorMessage] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [errors] => Array
+                        (
+                        )
+
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [29] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 24
+                    [formId] => 6
+                    [label] => Features title 1
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Feature One
+                    [cssClass] => feature-title-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => b4b895bc
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_0_features_title
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [30] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 25
+                    [formId] => 6
+                    [label] => Feature Description 1
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => This description should explain your feature.
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => b4b895bc
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_0_feature_description__
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [31] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 26
+                    [formId] => 6
+                    [label] => Features title 2
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Feature Two
+                    [cssClass] => feature-title-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => becdaf16
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_1_features_title
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [32] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 27
+                    [formId] => 6
+                    [label] => Feature Description 2
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => This description should explain your feature.
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => becdaf16
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_1_feature_description__
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [33] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 28
+                    [formId] => 6
+                    [label] => Features title 3
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Feature Three
+                    [cssClass] => feature-title-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 37aef0df
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_2_features_title
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [34] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 29
+                    [formId] => 6
+                    [label] => Feature Description 3
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => This description should explain your feature.
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 37aef0df
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_2_feature_description__
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [35] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 30
+                    [formId] => 6
+                    [label] => Features title 4
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Feature Four
+                    [cssClass] => feature-title-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 1245c4ab
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_3_features_title
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [36] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 31
+                    [formId] => 6
+                    [label] => Feature Description 4
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => This description should explain your feature.
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 1245c4ab
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_3_feature_description__
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [37] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 32
+                    [formId] => 6
+                    [label] => Features title 5
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Feature Five
+                    [cssClass] => feature-title-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 72e7891c
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_4_features_title
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [38] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 33
+                    [formId] => 6
+                    [label] => Feature Description 5
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => This description should explain your feature.
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 72e7891c
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_4_feature_description__
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [39] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 34
+                    [formId] => 6
+                    [label] => Features title 6
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Feature Six
+                    [cssClass] => feature-title-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 1ae8a306
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_5_features_title
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [40] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 35
+                    [formId] => 6
+                    [label] => Feature Description 6
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => hidden
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => This description should explain your feature.
+                    [cssClass] => feature-desc-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 6
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 1ae8a306
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => features_5_feature_description__
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [41] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 36
+                    [formId] => 6
+                    [label] => Forward Looking Financials
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add description
+                    [cssClass] => looking-financials-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 5e514ab5
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => future_financials_description
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [42] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 37
+                    [formId] => 6
+                    [label] => Future profitability and competitive performance
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => upload-file-field photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 2f553621
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => future_profitability_and_competitive_performance
+                    [checkboxLabel] => 
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [43] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 38
+                    [formId] => 6
+                    [label] => Financial History & Documents Description
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Subtitle
+                    [cssClass] => document-subtitle-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 6d02d736
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => financial_history_documents_description
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [44] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 39
+                    [formId] => 6
+                    [label] => Balance Sheets
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => upload-file-field photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 2e2d9e35
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => business_status
+                    [checkboxLabel] => 
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [45] => GF_Field_Date Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 40
+                    [formId] => 6
+                    [label] => Balance Sheets Last Updated Date
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => date
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => date-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 0fd2b60f
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [dateType] => datepicker
+                    [dateFormat] => mdy
+                    [dateFormatPlacement] => below
+                    [calendarIconType] => none
+                    [checkboxLabel] => 
+                    [calendarIconUrl] => 
+                    [postCustomFieldName] => balance_sheets_last_updated_date
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [46] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 41
+                    [formId] => 6
+                    [label] => Balance Sheets Subtitle
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Subtitle
+                    [cssClass] => document-subtitle-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 07e6d049
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => balance_sheets_subtitle
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [47] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 42
+                    [formId] => 6
+                    [label] => Income & Cashflow Statements
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => upload-file-field photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 18f8baef
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [checkboxLabel] => 
+                    [postCustomFieldName] => income_cashflow_statements
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [48] => GF_Field_Date Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 43
+                    [formId] => 6
+                    [label] => Income & Cashflow Statements Last Updated Date
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => date
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => date-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 5a206762
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [dateType] => datepicker
+                    [dateFormat] => mdy
+                    [dateFormatPlacement] => below
+                    [calendarIconType] => none
+                    [checkboxLabel] => 
+                    [calendarIconUrl] => 
+                    [postCustomFieldName] => income_cashflow_statements_last_updated_date
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [49] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 44
+                    [formId] => 6
+                    [label] => Income & Cashflow Statements Subtitle
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Subtitle
+                    [cssClass] => document-subtitle-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 066aa96b
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => income_cashflow_statements_subtitle
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [50] => GF_Field_FileUpload Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 45
+                    [formId] => 6
+                    [label] => Equity Statements
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => fileupload
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => upload-file-field photo-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 296afbec
+                    [multipleFiles] => 1
+                    [maxFiles] => 1
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [checkboxLabel] => 
+                    [postCustomFieldName] => equity_statements
+                    [pageNumber] => 1
+                    [fields] => 
+                    [maxFileSize] => 
+                    [allowedExtensions] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [51] => GF_Field_Date Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 46
+                    [formId] => 6
+                    [label] => Equity Statements Last Updated Date
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => date
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => 
+                    [cssClass] => date-field-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => f0e847ea
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [dateType] => datepicker
+                    [dateFormat] => mdy
+                    [dateFormatPlacement] => below
+                    [calendarIconType] => none
+                    [checkboxLabel] => 
+                    [calendarIconUrl] => 
+                    [postCustomFieldName] => equity_statements_last_updated_date
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+            [52] => GF_Field_Text Object
+                (
+                    [type] => post_custom_field
+                    [_is_entry_detail:GF_Field:private] => 
+                    [_context_properties:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_merge_tag_modifiers:GF_Field:private] => Array
+                        (
+                        )
+
+                    [_supports_state_validation:protected] => 
+                    [id] => 47
+                    [formId] => 6
+                    [label] => Equity Statements Subtitle
+                    [adminLabel] => 
+                    [isRequired] => 
+                    [size] => large
+                    [errorMessage] => 
+                    [visibility] => visible
+                    [inputs] => 
+                    [inputType] => text
+                    [description] => 
+                    [allowsPrepopulate] => 
+                    [inputMask] => 
+                    [inputMaskValue] => 
+                    [inputMaskIsCustom] => 
+                    [maxLength] => 
+                    [labelPlacement] => 
+                    [descriptionPlacement] => 
+                    [subLabelPlacement] => 
+                    [placeholder] => Add Subtitle
+                    [cssClass] => document-subtitle-cls
+                    [inputName] => 
+                    [noDuplicates] => 
+                    [defaultValue] => 
+                    [enableAutocomplete] => 
+                    [autocompleteAttribute] => 
+                    [choices] => 
+                    [conditionalLogic] => 
+                    [productField] => 
+                    [layoutGridColumnSpan] => 12
+                    [enablePasswordInput] => 
+                    [enableEnhancedUI] => 0
+                    [layoutGroupId] => 7638d61a
+                    [multipleFiles] => 
+                    [maxFiles] => 
+                    [calculationFormula] => 
+                    [calculationRounding] => 
+                    [enableCalculation] => 
+                    [disableQuantity] => 
+                    [displayAllCategories] => 
+                    [useRichTextEditor] => 
+                    [colorPicker_enableColors] => 
+                    [colorPicker_displayStyleSetting] => form_setting
+                    [colorPicker_entrySetting] => form_setting
+                    [errors] => Array
+                        (
+                        )
+
+                    [postCustomFieldName] => equity_statements_subtitle
+                    [pageNumber] => 1
+                    [fields] => 
+                    [displayOnly] => 
+                    [postFeaturedImage] => 
+                    [failed_validation] => 
+                    [validation_message] => 
+                    [enableCopyValuesOption] => 
+                    [enablePrice] => 
+                )
+
+        )
+
+    [version] => 2.6.8.1
+    [id] => 6
+    [markupVersion] => 2
+    [nextFieldId] => 1008
+    [useCurrentUserAsAuthor] => 1
+    [postContentTemplateEnabled] => 
+    [postTitleTemplateEnabled] => 
+    [postTitleTemplate] => 
+    [postContentTemplate] => 
+    [lastPageButton] => 
+    [pagination] => 
+    [firstPageCssClass] => 
+    [postAuthor] => 2
+    [postCategory] => 1
+    [postFormat] => 0
+    [postStatus] => publish
+    [is_active] => 1
+    [date_created] => 2023-02-17 06:47:17
+    [is_trash] => 0
+    [gfmcEnableCSS] => 1
+    [gfmcEnableJS] => 
+    [date_updated] => 2023-03-29 07:16:26
+    [subLabelPlacement] => below
+    [requiredIndicator] => text
+    [customRequiredIndicator] => (Required)
+    [cssClass] => 
+    [saveButtonText] => Save and Continue Later
+    [limitEntries] => 
+    [limitEntriesCount] => 
+    [limitEntriesPeriod] => 
+    [limitEntriesMessage] => 
+    [scheduleForm] => 
+    [scheduleStart] => 
+    [scheduleEnd] => 
+    [schedulePendingMessage] => 
+    [scheduleMessage] => 
+    [requireLogin] => 1
+    [requireLoginMessage] => Please login or signup.
+    [validationSummary] => 
+    [deprecated] => 
+    [saveEnabled] => 
+    [enableHoneypot] => 
+    [enableAnimation] => 
+    [legacy] => 
+    [save] => Array
+        (
+            [enabled] => 
+            [button] => Array
+                (
+                    [type] => link
+                    [text] => Save and Continue Later
+                )
+
+        )
+
+    [scheduleStartHour] => 
+    [scheduleStartMinute] => 
+    [scheduleStartAmpm] => 
+    [scheduleEndHour] => 
+    [scheduleEndMinute] => 
+    [scheduleEndAmpm] => 
+    [notifications] => Array
+        (
+            [63ef22f5c1317] => Array
+                (
+                    [id] => 63ef22f5c1317
+                    [isActive] => 1
+                    [to] => {admin_email}
+                    [name] => Admin Notification
+                    [event] => form_submission
+                    [toType] => email
+                    [subject] => New submission from {form_title}
+                    [message] => {all_fields}
+                )
+
+        )
+
+    [confirmations] => Array
+        (
+            [63ef22f5c24fe] => Array
+                (
+                    [id] => 63ef22f5c24fe
+                    [name] => Default Confirmation
+                    [isDefault] => 1
+                    [type] => message
+                    [message] => Thanks for contacting us! We will get in touch with you shortly.
+                    [url] => 
+                    [pageId] => 
+                    [queryString] => 
+                )
+
+        )
+
+    [confirmation] => Array
+        (
+            [id] => 63ef22f5c24fe
+            [name] => Default Confirmation
+            [isDefault] => 1
+            [type] => message
+            [message] => Thanks for contacting us! We will get in touch with you shortly.
+            [url] => 
+            [pageId] => 
+            [queryString] => 
+        )
+
+)
+
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Undefined index: id in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 36
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Undefined index: id in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 36
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:49:30 UTC] PHP Notice:  Trying to access array offset on value of type bool in /home/savior/webapps/sandd/wp-content/plugins/elementor/includes/managers/image.php on line 108
+[29-Mar-2023 08:50:52 UTC] PHP Warning:  Illegal string offset 'url' in /home/savior/webapps/sandd/wp-content/themes/savior-pro/functions.php on line 561
+[29-Mar-2023 08:50:52 UTC] PHP Warning:  Illegal string offset 'filename' in /home/savior/webapps/sandd/wp-content/themes/savior-pro/functions.php on line 561

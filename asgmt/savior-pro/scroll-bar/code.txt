@@ -1,0 +1,42 @@
+folder name : scroll-bar
+
+wp_enqueue_script( 'jquery-mCustomScrollbar-js', get_stylesheet_directory_uri() . '/js/scroll-bar/jquery.mCustomScrollbar.js', array('jquery'), '1.0.0', true );
+wp_enqueue_style( 'jquery-mCustomScrollbar-css', get_stylesheet_directory_uri() . '/js/scroll-bar/jquery.mCustomScrollbar.css', array(), '1.0.0', 'all' );
+
+/** JS File **/
+(function($){
+	$(window).on("load",function(){
+		$(".elementor-433 .elementor-element.elementor-element-333b22b .elementor-heading-title, .elementor-element.elementor-element-1a67e74, .elementor-element.elementor-element-27e8593 .past-event-desc h2").mCustomScrollbar({
+			scrollButtons:{enable:false},
+			theme:"dark-thin",
+			autoDraggerLength: true,
+		});
+	});
+})(jQuery);
+
+/** Function File **/
+add_action('wp_footer','scroll_bar_js');
+
+function scroll_bar_js(){
+	$out = '';
+	$out = '
+		<script>
+			(function($){
+			
+				$(window).on("load",function(){
+					$(".text-scroll").mCustomScrollbar({
+
+							scrollButtons:{enable:false},
+
+							theme:"dark-thin",
+
+							autoHideScrollbar: false,
+
+					});
+	
+			});
+
+		})(jQuery);
+		</script>';
+	echo $out;
+}
