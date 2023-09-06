@@ -414,3 +414,120 @@ div#member-listing_wrapper {
 #member-listing #button-1 .layer {
     transition: 0.3s ease all;
 }
+/*
+New Badge Print Style
+*/
+#templates .badge_1.tpl-2.daypass.ready {
+    padding: 15px 15px !important;
+    height: 320px !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+.badge_1.tpl-2 .letter-format-badge {
+    width: 100% !important;
+}
+.badge_1.tpl-2 .attendee-first-name {
+    width: calc(100% - 120px);
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-right: 10px;
+}
+.badge_1.tpl-2 .keyword-with-date {
+    width: 120px;
+    text-align: right;
+    font-size: 13.5px;
+    line-height: 20px;
+    font-weight: bold;
+}
+.badge_1.tpl-2 .attendee-first-name-with-keyword {
+    display: flex;
+}
+.badge_1.tpl-2 .attendee-full-name, .attendee-designation {
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: bold;
+}
+.badge_1.tpl-2 .attendee-company {
+    font-size: 22px;
+    line-height: 32px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.badge_1.tpl-2 .attendee-company-address {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.badge_1.tpl-2 .attendee-full-name {
+    margin-top: 10px;
+}
+.badge_1.tpl-2 .bottom-img img {
+    width: 100%;
+}
+
+#templates .badge_1.tpl-1.daypass {
+    padding: 15px 15px !important;
+}
+.badge_1.tpl-1 .dymo-format-badge {
+    text-align: left;
+    width: 100%;
+}
+.badge_1.tpl-1 .attendee-first-name {
+    width: calc(100% - 120px);
+    font-size: 32px;
+    line-height: 42px;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-right: 10px;
+}
+.badge_1.tpl-1 .keyword-with-date {
+    width: 120px;
+    text-align: right;
+    font-size: 13.5px;
+    line-height: 20px;
+    font-weight: bold;
+}
+.badge_1.tpl-1 .attendee-first-name-with-keyword {
+    display: flex;
+}
+.badge_1.tpl-1 .attendee-full-name, .badge_1.tpl-1 .attendee-designation {
+    font-size: 20px;
+    line-height: 28px;
+}
+.badge_1.tpl-1 .attendee-company {
+    font-size: 19px;
+    line-height: 31px;
+    font-weight: bold;
+}
+.badge_1.tpl-1 .attendee-company-address {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: bold;
+}
+.badge_1.tpl-2 .attendee-full-name {
+    margin-top: 10px;
+}
+.badge_1.tpl-1 .bottom-img img {
+    width: 100%;
+}
+.badge_1.tpl-1 .day-pass-footer h2 {
+    padding: 0 !important;
+    font-size: 18px !important;
+}
+.badge_1.tpl-1 .day-pass-footer h4 {
+    margin: 0 !important;
+    font-weight: bold !important;
+    font-size: 16px;
+}
+
+.day-pass-footer {
+    text-align: center;
+}
+
+.letter-format-badge {
+    display: grid;
+    align-content: space-between;
+}

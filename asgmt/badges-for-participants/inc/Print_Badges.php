@@ -119,48 +119,58 @@ class Print_Badges
                     // $member_roles_with_flage[$roles_with_keyword['keyword_display_on_the_badge']] = $roles_with_keyword['roles'];
                 }
             }
-            // echo "<pre>";
-            // print_r($user_obj);
-            // echo "</pre>";
-            // print_r($this->check_user_product_matches_in_orders($current_user->ID, $ceu_product_ids));
-            // $role_flag[] = $this->check_user_product_matches_in_orders($current_user->ID, $ceu_product_ids) == true ? 'CEU' : '';
-
+            if($this->check_user_product_matches_in_orders($user_id, $ceu_product_ids))
+            {
+                $role_flag[] = 'CEU';
+            }
             $user_flag = implode(', ', array_filter( $role_flag) );
-            // ob_start();
             $out = sprintf('
                 <div class="user-badge-preview">
-                    <div class="badge-header">
-                        <h3 class="badge-heading">%s</h3>
-                    </div>
-                    <div class="badge-content">
-                        <div class="badge-left-content">
-                            <p class="badge-username">%s</p>
-                            <p class="badge-title">%s</p>
-                            <p class="badge-employer">%s</p>
-                            <p class="badge-address">%s</p>
+                    <div class="attendee-first-name-with-keyword">
+                        <div class="attendee-first-name">%s</div>
+                        <div class="keyword-with-date">
+                            <div class="keyword">%s</div>
+                            <div class="event-date">
+                                SEPT. 11-14, 2023
+                            </div>
                         </div>
-                        <div class="badge-right-content">%s</div>
                     </div>
-                    <div class="badge-footer">
-                        <p class="label">%s</p>
-                        <p class="badge">Sept. 11-14, 2023</p>
-                        <img class="badge-footer-logo" src="%s"/>
-                    </div>
+                    <div class="attendee-full-name">%s</div>
+                    <div class="attendee-designation">%s</div>
+                    <div class="attendee-company">%s</div>
+                    <div class="attendee-company-address">%s</div>
+                    <div class="bottom-img"><img src="%s"/></div>
                 </div>
                 ',
                 $current_user->first_name,
+                $user_flag,
                 $current_user->first_name. ' ' .$current_user->last_name,
                 get_user_meta( $current_user->ID, 'user_title', true ),
                 get_user_meta( $current_user->ID, 'user_employer', true ),
                 preg_replace('!\s+!', ' ', $addr_city. ' ' .$addr_state. ' ' .$addr_country),
-                $this->generate_qr_code($user_obj),
-                $user_flag,
-                //ucfirst(get_user_meta( $current_user->ID, 'user_type_label', true ) ? implode(' ', get_user_meta( $current_user->ID, 'user_type_label', true )) : $user_obj['role'][0]),
-                site_url(). '/wp-content/plugins/badges-for-participants/assets/images/logo.jpg'
+                file_get_contents(BADGES_PLUGIN_URL."assets/images/logo-base64.txt")
             );
-        }
-        // $out = ob_get_contents();
-        // ob_end_clean();
+        } ?>
+        <!-- <div class="user-badge-preview">
+            <div class="badge-header">
+                <h3 class="badge-heading">%s</h3>
+            </div>
+            <div class="badge-content">
+                <div class="badge-left-content">
+                    <p class="badge-username">%s</p>
+                    <p class="badge-title">%s</p>
+                    <p class="badge-employer">%s</p>
+                    <p class="badge-address">%s</p>
+                </div>
+                <div class="badge-right-content">%s</div>
+            </div>
+            <div class="badge-footer">
+                <p class="label">%s</p>
+                <p class="badge">Sept. 11-14, 2023</p>
+                <img class="badge-footer-logo" src="%s"/>
+            </div>
+        </div> -->
+    <?php
         return $out;
     }
     public function display_print_badges()
@@ -482,63 +492,12 @@ class Print_Badges
     }
 
     public function check_user_product_matches_in_orders($user_id, $product_ids) {
-        $current_year = date('Y');
-        $args = array(
-            'post_type'      => 'shop_order',
-            'post_status'    => 'wc-completed', // Change to the desired order status
-            'posts_per_page' => -1,
-            'fields'         => 'ids',
-            'date_query'     => array(
-                array(
-                    'year' => $current_year,
-                ),
-            ),
-            'meta_query'     => array(
-                array(
-                    'key'   => '_attendees_order_meta',
-                    'compare' => 'EXISTS', // Make sure the meta key exists in the order
-                ),
-            ),
-        );
-    
-        $order_ids = get_posts($args);
-    
-        foreach ($order_ids as $order_id) {
-            $attendees_order_meta = get_post_meta($order_id, '_attendees_order_meta', true);
-    
-            if (!$attendees_order_meta || !is_array($attendees_order_meta)) {
-                return false;
-            }
-            $customer_id = get_post_meta($order_id, '_customer_user', true);
-            if( $user_id == $customer_id ) 
-            {
-                $order_items = wc_get_order($order_id)->get_items();
-                if (!empty($order_items)) {
-                    foreach ($order_items as $item) {
-                        if(in_array($item->get_product_id(), $product_ids))
-                        {
-                            return true;
-                        }else{
-                            return false;
-                        }
-                        break;
-                    }
-                }
-            }else{
-                foreach ($attendees_order_meta as $attendee) {
-                    if (
-                        isset($attendee['user_id']) && ( $attendee['user_id'] == $user_id) &&
-                        isset($attendee['product_id']) && in_array($attendee['product_id'], $product_ids)
-                    ) {
-                        return true;
-                        break;
-                    }
-                }
-            }
-        }
-        return false;
+        global $wpdb;
+        $attendee_badge_orders = $wpdb->prefix . 'attendee_badge_orders';
+        $ids = implode(',', $product_ids);
+        // echo "SELECT * FROM $attendee_badge_orders WHERE customer_id = $user_id AND product_id IN ($ids)";
+        $orders = $wpdb->get_results("SELECT * FROM $attendee_badge_orders WHERE customer_id = $user_id AND product_id IN ($ids)");
+        return !empty($orders) ? true : false;
     }
-
-    
 
 }

@@ -211,15 +211,18 @@ jQuery(document).on('gform_post_render', function (event, form_id, current_page)
 	});
 	jQuery('#choice_11_1005_0-0').prop('checked', true);
 });
-function checkForDuplicates(array) {
+function checkForDuplicates(email_array) {
 	let valuesAlreadySeen = []
-  
-	for (let i = 0; i < array.length; i++) {
-	  let value = array[i]
+  	if (email_array.every(item => item === null)) {
+		return false
+	}
+	for (let i = 0; i < email_array.length; i++) {
+	  let value = email_array[i]
 	  if (valuesAlreadySeen.indexOf(value) !== -1) {
 		return true
 	  }
-	  valuesAlreadySeen.push(value)
+	  if(value !== '')
+	  	valuesAlreadySeen.push(value)
 	}
 	return false
 }
@@ -229,13 +232,14 @@ if (typeof gform !== 'undefined' && (jQuery('body').hasClass('page-id-20551') ||
 		let email=[];
 		jQuery('.gfield_repeater .gfield_repeater_item').each(function() {
 			var existingEmail = jQuery(this).find('.ginput_container_email input').val();
-			if(typeof existingEmail !== '')
+			if(typeof existingEmail !== '' || typeof existingEmail !== null)
 			{
 				email.push(existingEmail);
 			}
 		});
 		if (checkForDuplicates(email)) {
-			alert('You cannot use the same email more than once.');
+			console.log(email);
+			alert('Unique email addresses are required for each account');
 			email=[];
 			return false;
 		}

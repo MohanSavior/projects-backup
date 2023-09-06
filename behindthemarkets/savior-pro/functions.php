@@ -3895,58 +3895,15 @@ function missing_subscription_create($sub_data)
 	}
 }
 // ------------------------------End WP_CLI_Command----------------------------------
-
-function test_fn(){
-	// $subscription = wcs_get_subscription(250369);
-	echo "<pre>";
-	global $wpdb;
-	$users                      = $wpdb->prefix . 'users';
-	$shop_subscription_expired  = $wpdb->prefix . 'shop_subscription_expired';
-	$orders = $wpdb->get_results("SELECT * FROM $shop_subscription_expired LIMIT 10");
-
-
-	// $orders = $wpdb->get_results("SELECT
-	// 		u.ID AS user_id,
-	// 		u.user_login,
-	// 		u.user_email,
-	// 		u.user_nicename,
-	// 		u.user_registered,
-	// 		u.display_name,
-	// 		s.subscription_id,
-	// 		s.subscription_status
-	// 	FROM
-	// 		`{$wpdb->prefix}users` as u
-	// 	JOIN
-	// 		`{$wpdb->prefix}usermeta` as um ON u.ID = um.user_id
-	// 	JOIN
-	// 		`{$wpdb->prefix}posts` as p ON um.meta_value = p.ID
-	// 	JOIN
-	// 		`{$wpdb->prefix}woocommerce_order_items` as oi ON p.ID = oi.order_id
-	// 	JOIN
-	// 		`{$wpdb->prefix}woocommerce_order_itemmeta` as oim ON oi.order_item_id = oim.order_item_id
-	// 	JOIN
-	// 		`{$wpdb->prefix}woocommerce_order_itemmeta` as sub_id ON oi.order_item_id = sub_id.order_item_id
-	// 	JOIN
-	// 		`{$wpdb->prefix}woocommerce_order_itemmeta` as sub_status ON oi.order_item_id = sub_status.order_item_id
-	// 	JOIN
-	// 		$shop_subscription_expired as es ON s.ID = es.ID
-	// 		";
-
-
-
-	// foreach ($orders as $order)
-	// {
-	// 	foreach ((array)$order->post_content as $post_content)
-	// 	{
-			
-	// 		foreach ($post_content as $post)
-	// 		{
-				
-	// 			print_r($post);
-	// 		}
-	// 	}
-	// 	// print_r($order->post_content);
-	// }
-	echo "</pre>";
+/*
+ * Expired Subscriptions
+ */
+require_once 'inc/class-expired-subscriptions.php';
+// 
+function test_fn() {
+    echo "<pre>";
+    // print_r($subscriptionExpired);
+    echo "</pre>";
 }
+
 add_shortcode('test','test_fn');

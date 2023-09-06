@@ -275,6 +275,203 @@ class Member_Listing
         }
 
         $out = '';
+        foreach ( array_unique( $user_ids ) as $k => $user_id) {                                
+            // Get the WP_User instance Object
+            $user = new WP_User( $user_id );
+
+            $username           = $user->username; // Get username
+            $user_email         = $user->email; // Get account email
+            $first_name         = $user->first_name;
+            $last_name          = $user->last_name;
+            $display_name       = $user->display_name;
+            $nickname           = $user->display_name;
+
+            // Customer billing information details (from account)
+            $billing_first_name = $user->billing_first_name;
+            $billing_last_name  = $user->billing_last_name;
+            $billing_company    = $user->billing_company;
+            $billing_address_1  = $user->billing_address_1;
+            $billing_address_2  = $user->billing_address_2;
+            $billing_city       = $user->billing_city;
+            $billing_state      = $user->billing_state;
+            $billing_postcode   = $user->billing_postcode;
+            $billing_country    = $user->billing_country;
+            $billing_phone      = $user->billing_phone;
+
+            $role_labels = array();
+            
+            if($format_type == 2 && $_POST['multi_user'])
+            {
+                $member_roles = get_field('member_roles', 'option');
+                if(!empty($member_roles) && is_array($member_roles))
+                {
+                    foreach($member_roles as $roles_with_keyword)
+                    {
+                        if(array_intersect($roles_with_keyword['roles'], $user->roles))
+                        {
+                            $role_labels[]=$roles_with_keyword['keyword_display_on_the_badge'];
+                        }
+                    }
+                }                
+            }
+            
+            $user_flags = $users_flags['user_flags_'.$user_id];
+            foreach ($user_flags as $key => $flags) {
+                if ($flags == 'Y') {
+                    $role_labels[] = $key;
+                }
+            }
+            $primary_booth_admin_contact = get_user_meta($user_id, 'primary_booth_admin_contact', true);
+            $user_phone = get_user_meta($user_id, 'user_phone', true);
+            $primary_contact = !empty($billing_phone) ? $billing_phone : ($primary_booth_admin_contact ? $primary_booth_admin_contact : $user_phone);
+
+            $rec = array(
+                "first_name"        => $first_name ? $first_name : $billing_first_name,
+                "last_name"         => $last_name ? $last_name : $billing_last_name,
+                "friendly_name"     => $nickname ? $nickname : '',
+                "company"           => get_user_meta($user_id, 'user_employer', true) ? get_user_meta($user_id, 'user_employer', true) : $billing_company,
+                "email"             => $user_email ?? $user->user_login,
+                "job"               => get_user_meta($user_id, 'user_title', true),
+                "phone_daytime"     => $primary_contact,
+                "country"           => $billing_country,
+                "state"             => $billing_state,
+                "city"              => $billing_city,
+                "addr_addr_1"       => $billing_address_1,
+                "addr_addr_2"       => $billing_address_2,
+                "addr_city"         => $billing_city,
+                "addr_state"        => $billing_state,
+                "addr_zip"          => $billing_postcode,
+                "addr_country"      => $billing_country,
+            );
+            
+            unset($rec['addr_addr_1']);
+            unset($rec['addr_addr_2']);
+            unset($rec['addr_city']);
+            unset($rec['addr_state']);
+            unset($rec['addr_zip']);
+            unset($rec['addr_country']);
+            ?>
+            <div class="badge_1 <?php echo 'tpl-' . $format_type; ?> daypass <?php echo $format_type == 2 ? 'ready' : ''; ?>"
+                data-id="<?php echo $k; ?>"
+                data-reg-id="<?php echo $user_id; ?>">
+                <?php if ($format_type == 2): ?>
+                    <!-- New letter format -->
+                    <div class="letter-format-badge">
+                        <div class="attendee-first-name-with-keyword">
+                            <div class="attendee-first-name">
+                                <?php echo $first_name; ?>
+                            </div>
+                            <div class="keyword-with-date">
+                                <div class="keyword">
+                                    <?php if(!empty($role_labels) && is_array($role_labels)){echo implode(', ', $role_labels);} ?>
+                                </div>
+                                <div class="event-date">
+                                    SEPT. 11-14, 2023
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attendee-full-name">
+                            <?php echo $first_name . ' ' . $last_name ?>
+                        </div>
+                        <div class="attendee-designation">
+                            <?php echo $rec['job']; ?>
+                        </div>
+                        <div class="attendee-company">
+                            <?php echo $rec['company']; ?>
+                        </div>
+                        <div class="attendee-company-address">
+                            <?php
+                                echo !empty($billing_city)? $billing_city.", ":"";
+                                echo !empty($billing_state)? $billing_state.", ":"";
+                                echo !empty($billing_country)? $billing_country :"";
+                            ?>
+                        </div>
+                        <?php 
+                            $file = file_get_contents(BADGES_PLUGIN_URL."assets/images/logo-base64.txt");
+                            printf('<div class="bottom-img"><img src="%s"/></div>', $file);
+                        ?>
+                    </div>
+                    <!-- End new letter format -->    
+                <?php else: ?>
+                    <!-- New dymo format -->
+                    <div class="dymo-format-badge">
+                        <div class="attendee-first-name-with-keyword">
+                            <div class="attendee-first-name">
+                                <?php echo $first_name; ?>
+                            </div>
+                            <div class="keyword-with-date">
+                                <div class="keyword">
+                                    <?php if(!empty($role_labels) && is_array($role_labels)){echo implode(', ', $role_labels);} ?>
+                                </div>
+                                <div class="event-date">
+                                    SEPT. 11-14, 2023
+                                </div>
+                            </div>
+                        </div>
+                        <div class="attendee-full-name">
+                            <?php echo $first_name . ' ' . $last_name ?>
+                        </div>
+                        <div class="attendee-designation">
+                            <?php echo $rec['job']; ?>
+                        </div>
+                        <div class="attendee-company">
+                            <?php echo $rec['company']; ?>
+                        </div>
+                        <div class="attendee-company-address">
+                            <?php
+                                echo !empty($billing_city)? $billing_city.", ":"";
+                                echo !empty($billing_state)? $billing_state.", ":"";
+                                echo !empty($billing_country)? $billing_country :"";
+                            ?>
+                        </div>
+                        <?php 
+                            $day_pass = isset($_POST['day_pass']) || $day_pass['user_day_pass_'.$user_id] ? $_POST['day_pass'] : false;
+                            if($day_pass['user_day_pass_'.$user_id] == 'true')
+                            {
+                                printf('<div class="day-pass-footer"><h2>DAY PASS - %s</h2><h4>EXHIBITS ONLY</h4></div>',date('l'));
+                            }
+                        ?>
+                    </div>
+                    <!-- End new dymo format -->                        
+                <?php endif; ?>
+            </div>
+            <?php
+        }
+        $out = ob_get_contents();
+        ob_get_clean();
+        wp_send_json_success( $out );
+    }
+
+    public function old_print_badges()
+    {
+        global $wpdb;
+        ob_start();
+        $format_type    = intval($_POST['format_type']);
+        $user_ids       = array();
+        $day_pass       = array();
+        $user_product   = array();
+        // print_r($_POST);
+        if($format_type == 2 && $_POST['multi_user'])
+        {
+            // $ceu_product_ids = get_field('ceu_keyword_display_via_product_purchased', 'option');
+            $attendee_badge_orders = $wpdb->prefix . 'attendee_badge_orders';
+            $results = $wpdb->get_results("SELECT product_id, customer_id FROM $attendee_badge_orders WHERE print_status = 0 LIMIT 60");// LIMIT 25
+            foreach ($results as $result)
+            {
+                $user_ids[] = $result->customer_id;
+                $day_pass['user_day_pass_'.$result->customer_id] = $result->product_id == 18784 ? true : false;
+                $user_product['user_product_'.$result->customer_id] = $result->product_id;
+            }
+        }else{
+            $user_ids       = isset($_POST['customer_ids']) && !empty($_POST['customer_ids']) ? (is_array($_POST['customer_ids']) ? $_POST['customer_ids'] : array($_POST['customer_ids'])) : false;
+            $users_flags    = $_POST['user_flag'];
+        }
+        if(empty($user_ids))
+        {
+            wp_send_json_error(array('message' => 'No Printable Badges Found'));
+        }
+
+        $out = '';
         $counter = 0;
 
         foreach ( array_unique( $user_ids ) as $k => $user_id) {                                
@@ -467,9 +664,6 @@ class Member_Listing
             <?php
             $counter++;
         }
-        $out = ob_get_contents();
-        ob_get_clean();
-        wp_send_json_success( $out );
     }
     public function print_qr_code($user_info)
     {

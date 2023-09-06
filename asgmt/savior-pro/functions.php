@@ -1385,27 +1385,51 @@ function handle_relation_between_orders( $query, $query_vars ) {
 add_filter( 'woocommerce_order_data_store_cpt_get_orders_query', 'handle_relation_between_orders', 10, 2 );
 
 
-add_filter( 'gform_field_validation_13', 'custom_email_validation', 10, 4 );
-function custom_email_validation( $result, $value, $form, $field ) {
-	if( !empty( $value ) && is_array($value))
-	{
-		$email_array = [];
-		foreach( $value as $email)
-		{
-			if(isset($email['1001']) && !empty($email['1001']))
-			{
-				$email_array[]=$email['1001'];
-			}
-		}
-		$uniqueValues = array_unique($email_array);
-		if(count($email_array) !== count($uniqueValues))
-		{
-			$result['is_valid'] = false;
-			$result['message'] = 'You cannot use the same email more than once.';
-		}
-	}
+add_filter('gform_field_validation_13', 'custom_email_validation', 10, 4);
+add_filter('gform_field_validation_11', 'custom_email_validation', 10, 4);
+
+// Initialize an array to store entered email addresses.
+$email_addresses = array();
+
+function custom_email_validation($result, $value, $form, $field) {
+    global $email_addresses; // Access the global array of email addresses.
+
+	if (!empty($value) && is_array($value)) {
+        foreach ($value as $index => $email) {
+            if (isset($email['1001']) && !empty($email['1001'])) {
+                $entered_email = $email['1001'];
+
+                if (in_array($entered_email, $email_addresses)) {
+                    // Set an error message for the specific field by field ID.
+                    $result['is_valid'] = false;
+                    $result['message'] = 'You cannot use the same email more than once in Field ID ' . $field['id'];
+                    
+                    // Highlight the field with an error.
+                    $result['failed_validation'] = true;
+                    $result['value'][$index]['1001'] = ''; // Clear the value to prompt correction.
+                    break; // Stop checking further if a duplicate is found.
+                } else {
+                    $email_addresses[] = $entered_email;
+                }
+            }
+        }
+    }
+
     return $result;
 }
+
+add_action('gform_field_validation_13', function( $result, $value, $form, $field ){
+	if( $field->id === 1001 && is_user_logged_in() && !empty($value))
+	{
+		$current_user = wp_get_current_user();
+		if ( $current_user->user_email === trim($value) )
+		{
+			$result['is_valid'] = false;
+			$field->validation_message = 'Signed in user should use the <a href="https://asgmt.com/school-registration/">My Registration</a> and not the Attendee Registration process.';
+		}
+	}
+	return $result;
+}, 10, 4);
 
 add_shortcode( 'test', function(){
 	echo "<pre>";
