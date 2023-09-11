@@ -214,7 +214,7 @@ function dashboard_url_fn() {
 			return site_url("sign-in");
 		} else {
 			$role_exist = array(
-				'student', 'virtualgmfstudent', 'virtuallmfstudent', 'instructormember', 'exhibitsmember', 'bodmember', 'lmf_in_person', 'gmf_in_person', 'gmf_virtual', 'lmf_virtual'
+				'student', 'virtualgmfstudent', 'virtuallmfstudent', 'instructormember','speaker', 'exhibitsmember', 'bodmember', 'lmf_in_person', 'gmf_in_person', 'gmf_virtual', 'lmf_virtual'
 			);
 			$user_roles = $current_user->roles;
 			$result=array_intersect($role_exist, $user_roles);
@@ -463,7 +463,7 @@ function create_order_items_table($items = []){
 		$product = $item->get_product();
 		$name = $product ? $product->get_name() : $item->get_name();
 		$quantity = $item->get_quantity();
-		$price = $product ? $product->get_price() : $item->get_total() / $quantity;
+		$price = $item->get_total() / $quantity;
 		echo '<tr>';
 		echo '<td style="width: 75%;">' . $name .  ' x '.$quantity.'</td>';
 		echo '<td style="width: 25%;">' . wc_price($price) . '</td>';
@@ -1425,13 +1425,21 @@ add_action('gform_field_validation_13', function( $result, $value, $form, $field
 		if ( $current_user->user_email === trim($value) )
 		{
 			$result['is_valid'] = false;
-			$field->validation_message = 'Signed in user should use the <a href="https://asgmt.com/school-registration/">My Registration</a> and not the Attendee Registration process.';
+			$field->validation_message = 'Signed in user should use the My Registration and not the Attendee Registration process.';
 		}
 	}
 	return $result;
 }, 10, 4);
 
-add_shortcode( 'test', function(){
-	echo "<pre>";
-	echo "</pre>";
-});
+// add_shortcode( 'test', function(){
+// 	echo "<pre>";
+// 	$pages = array(19579, 18332, 18334, 19349, 19515, 18601, 24902);
+// 	$new_roles = array('lmf_in_person', 'gmf_in_person', 'gmf_virtual', 'lmf_virtual', 'exhibitscommitteeliaison', 'registrationcommittee2ndvicechairperson', 'registrationcommitteebodliaison', 'arrangementliaison', 'exhibitscommittee2ndvice', 'marketingcommittee2ndvice', 'marketingcommitteeliaison', 'programcommitteeliaison', 'programcommittee2ndvice', 'websitecommittee2ndvice', 'websitecommitteeliaison', 'generalchairperson', 'bodpresident', 'bodvicepresident', 'bodsecretary', 'bodtreasurer', 'bodhistorian', 'speaker');
+// 	foreach ($pages as $page)
+// 	{
+// 		$postMeta = get_post_meta( $page, 'user_roles', true);
+// 		$rol = array_unique( array_merge($postMeta, $new_roles) );
+// 		update_post_meta( $page, 'user_roles', $rol);
+// 	}
+// 	echo "</pre>";
+// });

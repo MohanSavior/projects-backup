@@ -51,6 +51,9 @@ class ExhibitorManagement {
       
       add_shortcode('my_booth_status', array($this, 'my_booth_status'));
       add_shortcode('activate_user_account', array($this, 'activate_user_account'));
+
+      add_action('acf/pre_save_post', array($this, 'acf_pre_save_company_post'), 10, 1);
+      add_action('acf/save_post', array($this, 'acf_save_company_post'), 10, 1);
     }
 
     public function load_exhibitor_admin_style()
@@ -1614,6 +1617,34 @@ class ExhibitorManagement {
         }
       }
       wp_send_json_success();
+    }
+
+    public function acf_pre_save_company_post( $company_id )
+    {
+      $get_assistants_ids = get_post_meta( $company_id, 'assistants', true );
+      if(!empty($get_assistants_ids))
+      {
+        foreach($get_assistants_ids as $assistant_id)
+        {
+          $assistant_user = new WP_User( $assistant_id );
+          $assistant_user->remove_role( 'exhibitassistant' );
+        }
+      }
+      return $company_id;
+    }
+
+    public function acf_save_company_post( $company_id )
+    {
+      $get_assistants_ids = get_post_meta( $company_id, 'assistants', true );
+      if(!empty($get_assistants_ids))
+      {
+        foreach($get_assistants_ids as $assistant_id)
+        {
+          $assistant_user = new WP_User( $assistant_id );
+          $assistant_user->add_role( 'exhibitassistant' );
+        }
+      }
+      return $company_id;
     }
   
 }

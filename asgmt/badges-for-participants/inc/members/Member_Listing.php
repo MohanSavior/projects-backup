@@ -253,10 +253,9 @@ class Member_Listing
         $user_ids       = array();
         $day_pass       = array();
         $user_product   = array();
-        // print_r($_POST);
-        if($format_type == 2 && $_POST['multi_user'])
+        if($format_type == 2 && isset($_POST['multi_user']))
         {
-            // $ceu_product_ids = get_field('ceu_keyword_display_via_product_purchased', 'option');
+            $ceu_product_ids = get_field('ceu_keyword_display_via_product_purchased', 'option');
             $attendee_badge_orders = $wpdb->prefix . 'attendee_badge_orders';
             $results = $wpdb->get_results("SELECT product_id, customer_id FROM $attendee_badge_orders WHERE print_status = 0 LIMIT 60");// LIMIT 25
             foreach ($results as $result)
@@ -264,6 +263,7 @@ class Member_Listing
                 $user_ids[] = $result->customer_id;
                 $day_pass['user_day_pass_'.$result->customer_id] = $result->product_id == 18784 ? true : false;
                 $user_product['user_product_'.$result->customer_id] = $result->product_id;
+                $users_flags['user_flags_'.$result->customer_id] = in_array($result->product_id , $ceu_product_ids) ? array('CEU' => 'Y') : array('CEU' => 'N');
             }
         }else{
             $user_ids       = isset($_POST['customer_ids']) && !empty($_POST['customer_ids']) ? (is_array($_POST['customer_ids']) ? $_POST['customer_ids'] : array($_POST['customer_ids'])) : false;
@@ -273,7 +273,6 @@ class Member_Listing
         {
             wp_send_json_error(array('message' => 'No Printable Badges Found'));
         }
-
         $out = '';
         foreach ( array_unique( $user_ids ) as $k => $user_id) {                                
             // Get the WP_User instance Object
