@@ -761,7 +761,7 @@ class Member_Listing
         $where_condition = $custom_filter ? 'print_status=0' : '1=1';
 
         if (!empty($search_term)) {
-            $where_condition .= " AND (`first_name` LIKE '%$search_term%' OR `last_name` LIKE '%$search_term%' OR `customer_email` LIKE '%$search_term%' OR `company` LIKE '%$search_term%' OR `product_name` LIKE '%$search_term%' OR `print_status` LIKE '%$search_term%') AND product_id NOT IN (27011, 27010, 18792)";
+            $where_condition .= " AND (`first_name` LIKE '%$search_term%' OR `last_name` LIKE '%$search_term%' OR `customer_email` LIKE '%$search_term%' OR `company` LIKE '%$search_term%' OR `product_name` LIKE '%$search_term%' OR `print_status` LIKE '%$search_term%')";
         }
         $query = "SELECT * FROM $attendee_badge_orders WHERE $where_condition AND product_id NOT IN (27011, 27010, 18792)";
         if($length != -1)
@@ -795,7 +795,7 @@ class Member_Listing
                 'first_name'    =>$order->first_name,
                 'last_name'     =>$order->last_name,
                 'customer_email'=>$order->customer_email,
-                'company'       =>$order->company,
+                'company'       =>$order->company ? $order->company : $this->get_company_details($order->customer_id),
                 'product_name'  =>$order->product_name,
                 'member_bm'     =>in_array('BM', $role_flag) ? '<b style="color:green;">Y</b>' : '<b style="color:red;">N</b>',
                 'member_cm'     =>in_array('CM', $role_flag) ? '<b style="color:green;">Y</b>' : '<b style="color:red;">N</b>',
@@ -814,6 +814,11 @@ class Member_Listing
         wp_send_json( $response );
     }
 
+    public function get_company_details($user_id)
+    {
+        $user = new WP_User( $user_id );
+        return get_user_meta($user_id, 'user_employer', true ) ? get_user_meta($user_id, 'user_employer', true ) : $user->billing_company;
+    }
     public function action_printed_in_ids()
     {
         global $wpdb;

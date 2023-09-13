@@ -1392,29 +1392,23 @@ add_filter('gform_field_validation_11', 'custom_email_validation', 10, 4);
 $email_addresses = array();
 
 function custom_email_validation($result, $value, $form, $field) {
-    global $email_addresses; // Access the global array of email addresses.
-
-	if (!empty($value) && is_array($value)) {
-        foreach ($value as $index => $email) {
-            if (isset($email['1001']) && !empty($email['1001'])) {
-                $entered_email = $email['1001'];
-
-                if (in_array($entered_email, $email_addresses)) {
-                    // Set an error message for the specific field by field ID.
-                    $result['is_valid'] = false;
-                    $result['message'] = 'You cannot use the same email more than once in Field ID ' . $field['id'];
-                    
-                    // Highlight the field with an error.
-                    $result['failed_validation'] = true;
-                    $result['value'][$index]['1001'] = ''; // Clear the value to prompt correction.
-                    break; // Stop checking further if a duplicate is found.
-                } else {
-                    $email_addresses[] = $entered_email;
-                }
-            }
-        }
-    }
-
+	if( $field->id === 1001 )
+	{
+		$exists = email_exists($value);
+		if ( $exists )
+		{
+			$result['is_valid'] = false;
+			$field->validation_message = 'Signed in user email cannot be used in the additional attendees registration process.';
+		}
+		$email_value = rgpost( 'input_1001' );
+		if(isset($email_value) && !empty($email_value)){
+			$valueCounts = array_count_values($email_value);
+			if (isset($valueCounts[$value]) && $valueCounts[$value] > 1) {
+				$result['is_valid'] = false;
+				$field->validation_message = 'Unique email addresses are required for each account.';
+			}
+		}
+	}
     return $result;
 }
 
@@ -1431,15 +1425,18 @@ add_action('gform_field_validation_13', function( $result, $value, $form, $field
 	return $result;
 }, 10, 4);
 
-// add_shortcode( 'test', function(){
-// 	echo "<pre>";
-// 	$pages = array(19579, 18332, 18334, 19349, 19515, 18601, 24902);
-// 	$new_roles = array('lmf_in_person', 'gmf_in_person', 'gmf_virtual', 'lmf_virtual', 'exhibitscommitteeliaison', 'registrationcommittee2ndvicechairperson', 'registrationcommitteebodliaison', 'arrangementliaison', 'exhibitscommittee2ndvice', 'marketingcommittee2ndvice', 'marketingcommitteeliaison', 'programcommitteeliaison', 'programcommittee2ndvice', 'websitecommittee2ndvice', 'websitecommitteeliaison', 'generalchairperson', 'bodpresident', 'bodvicepresident', 'bodsecretary', 'bodtreasurer', 'bodhistorian', 'speaker');
-// 	foreach ($pages as $page)
-// 	{
-// 		$postMeta = get_post_meta( $page, 'user_roles', true);
-// 		$rol = array_unique( array_merge($postMeta, $new_roles) );
-// 		update_post_meta( $page, 'user_roles', $rol);
-// 	}
-// 	echo "</pre>";
-// });
+/**
+ * Badges Sync With Orders
+ */
+include_once 'inc/badges-sync-order.php';
+
+
+add_shortcode( 'test', function(){
+	// echo "<pre>";
+	// $order_id = 28116;
+	// print_r(get_post_meta($order_id));
+	// $order = wc_get_order($order_id);
+	// $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
+	// print_r($_attendees_order_meta);
+	// echo "</pre>";
+});

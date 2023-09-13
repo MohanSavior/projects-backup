@@ -50,6 +50,7 @@ class CreateAttendees
         $main_user_id = get_post_meta($order_id, '_customer_user', true);
         $main_user = new WP_User($main_user_id); 
         $gravity_form_entry_id = get_post_meta($order_id, '_gravity_form_entry_id', true);
+        $_attendees_order_meta = array();
         if (!empty($gravity_form_entry_id)) {
             $entry = GFAPI::get_entry($gravity_form_entry_id);
 
@@ -88,7 +89,7 @@ class CreateAttendees
                     }
                     if (isset($entry['1034']) && $entry['1034'] == 'yes') {
                         $repeater_field_attendees = $entry['1000'];
-                        $_attendees_order_meta = array();
+                        // $_attendees_order_meta = array();
                         $attendees_users= array();
                         $random_password = wp_generate_password(12, false);
                         foreach ($repeater_field_attendees as $attendees_data) {
@@ -144,7 +145,7 @@ class CreateAttendees
                 if($entry['form_id'] == 13)
                 {
                     $repeater_field_attendees = $entry['1000'];
-                    $_attendees_order_meta = array();
+                    // $_attendees_order_meta = array();
                     $attendees_users= array();
                     $main_user = get_user_by('id', $entry['created_by']);//
                     $random_password = wp_generate_password(12, false);
@@ -271,7 +272,7 @@ class CreateAttendees
         }
 
         //Crete Attendees order data
-        $this->prepare_customer_details_by_order_id( $order_id );
+        $this->prepare_customer_details_by_order_id( $order_id, $_attendees_order_meta );
     }
 
     public function get_or_create_user_by_email( $email, $random_password = 0 )
@@ -550,7 +551,7 @@ class CreateAttendees
         exit;
     }
 
-    public function prepare_customer_details_by_order_id( $order_id )
+    public function prepare_customer_details_by_order_id( $order_id, $_attendees_order_meta )
     {
         global $wpdb;
         $attendee_badge_orders 	= $wpdb->prefix . 'attendee_badge_orders';
@@ -559,10 +560,6 @@ class CreateAttendees
         if(!is_wp_error( $order ))
         {
             $customer_ids[$order->get_id()][] = $order->get_customer_id();
-            $item_quantity = 0;
-            foreach ($order->get_items() as $item_id => $item) {
-                $item_quantity += $item->get_quantity();
-            }
             $_gravity_form_entry_id = $order->get_meta('_gravity_form_entry_id');
             if( isset($_gravity_form_entry_id) && GFAPI::entry_exists($_gravity_form_entry_id) )
             {
@@ -571,8 +568,8 @@ class CreateAttendees
                 {
                     $order_data[] = $this->get_customer_details_by_order($order);
                 }
-                $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
-                if (($item_quantity > 1 && !empty($_attendees_order_meta) && is_array($_attendees_order_meta) || $entry['form_id'] == 13)) {
+                // $_attendees_order_meta  = $order->get_meta('_attendees_order_meta');
+                if (!empty($_attendees_order_meta) && is_array($_attendees_order_meta)) {
                     foreach ($_attendees_order_meta as $_attendees) {
                         $order_data[] = $this->get_customer_details_by_order($order, (int)$_attendees['product_id'], (int)$_attendees['user_id']);
                     }

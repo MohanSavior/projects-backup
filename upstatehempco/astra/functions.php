@@ -272,22 +272,39 @@ function update_customer_billing_address( $args = array(), $assoc_args = array()
 	}
 }
 // ------------------------------End WP_CLI_Command----------------------------------
-function custom_cron_intervals($schedules) {
-    $schedules['every_one_minute'] = array(
-        'interval' => 60, // 300 seconds = 5 minutes
-        'display'  => __('Every one Minute', 'savior-pro'),
-    );
-    return $schedules;
-}
-add_filter('cron_schedules', 'custom_cron_intervals');
-function schedule_custom_cron_job() {
-    if (!wp_next_scheduled('update_customer_billing_address_cron')) {
-        wp_schedule_event(time(), 'every_one_minute', 'update_customer_billing_address_cron');
-    }
-}
-add_action('wp', 'schedule_custom_cron_job');
-function update_customer_billing_address_function() {
-    $output = shell_exec("wp update_customer_billing_address");
-	echo "<pre>".$output."</pre>";
-}
-add_action('update_customer_billing_address_cron', 'update_customer_billing_address_function');
+// function custom_cron_intervals($schedules) {
+//     $schedules['every_one_minute'] = array(
+//         'interval' => 60, // 300 seconds = 5 minutes
+//         'display'  => __('Every one Minute', 'savior-pro'),
+//     );
+//     return $schedules;
+// }
+// add_filter('cron_schedules', 'custom_cron_intervals');
+// function schedule_custom_cron_job() {
+//     if (!wp_next_scheduled('update_customer_billing_address_cron')) {
+//         wp_schedule_event(time(), 'every_one_minute', 'update_customer_billing_address_cron');
+//     }
+// }
+// add_action('wp', 'schedule_custom_cron_job');
+// function update_customer_billing_address_function() {
+//     $output = shell_exec("wp update_customer_billing_address");
+// 	echo "<pre>".$output."</pre>";
+// }
+// add_action('update_customer_billing_address_cron', 'update_customer_billing_address_function');
+
+add_shortcode( 'test', function(){
+	$blogusers = get_users( array( 'role__in' => array( 'subscriber' ) ) );
+	// Array of WP_User objects.
+	foreach ( $blogusers as $user ) {
+		// echo "<pre>"; print_r($user); echo "</pre>";
+
+		// Get all WooCommerce emails Objects from WC_Emails Object instance
+
+		// $emails = WC()->mailer()->get_emails();
+		// // Send WooCommerce "Customer New Account" email notification with the password
+		// $password = wp_generate_password();
+		// $emails['WC_Email_Customer_New_Account']->trigger( $user->ID, $password, true );
+
+		echo '<span>' . esc_html( $user->user_email ) . '</span><br />';
+	}
+});
